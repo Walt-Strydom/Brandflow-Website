@@ -1,0 +1,11 @@
+# Editor folders
+.vscode/
+.claude/
+
+# Windows junk
+nul
+Thumbs.db
+desktop.ini
+
+# OS noise
+.DS_Store
