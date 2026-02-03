@@ -201,18 +201,62 @@ dropdownItems.forEach(item => {
 // ============================================
 // ACTIVE NAVIGATION LINK BASED ON CURRENT PAGE
 // ============================================
+function normalizeSlugFromPath(pathname) {
+    if (!pathname || pathname === '/') {
+        return 'index';
+    }
+
+    let cleanPath = pathname.split('?')[0].split('#')[0];
+    if (cleanPath.endsWith('/') && cleanPath.length > 1) {
+        cleanPath = cleanPath.slice(0, -1);
+    }
+
+    let slug = cleanPath.split('/').pop() || 'index';
+
+    if (slug === 'index.html') {
+        return 'index';
+    }
+
+    if (slug.endsWith('.html')) {
+        slug = slug.slice(0, -5);
+    }
+
+    return slug || 'index';
+}
+
+function normalizeSlugFromHref(href) {
+    if (!href || href.startsWith('#')) {
+        return '';
+    }
+
+    const cleanHref = href.split('?')[0].split('#')[0];
+
+    if (cleanHref.startsWith('http')) {
+        try {
+            return normalizeSlugFromPath(new URL(cleanHref).pathname);
+        } catch (error) {
+            return '';
+        }
+    }
+
+    if (cleanHref.startsWith('/')) {
+        return normalizeSlugFromPath(cleanHref);
+    }
+
+    return normalizeSlugFromPath(`/${cleanHref}`);
+}
+
 function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentSlug = normalizeSlugFromPath(window.location.pathname);
 
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
+        const linkSlug = normalizeSlugFromHref(linkHref);
         // Remove any existing active class first
         link.classList.remove('active');
 
         // Check if this link matches the current page
-        if (linkHref === currentPage ||
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage === 'index.html' && linkHref === 'index.html')) {
+        if (linkSlug && linkSlug === currentSlug) {
             link.classList.add('active');
         }
     });
@@ -220,6 +264,41 @@ function setActiveNavLink() {
 
 // Set active link on page load
 document.addEventListener('DOMContentLoaded', setActiveNavLink);
+
+function scrollToSectionFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    let sectionId = params.get('section');
+
+    if (!sectionId && window.location.hash) {
+        const hashId = window.location.hash.replace('#', '');
+        if (hashId) {
+            sectionId = hashId;
+            const newUrl = `${window.location.pathname}?section=${encodeURIComponent(hashId)}`;
+            window.history.replaceState({}, '', newUrl);
+        }
+    }
+
+    if (!sectionId) {
+        return;
+    }
+
+    const target = document.getElementById(sectionId);
+    if (!target) {
+        return;
+    }
+
+    const headerHeight = header ? header.offsetHeight : 0;
+    const targetPosition = target.offsetTop - headerHeight;
+
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(scrollToSectionFromQuery, 150);
+});
 
 // Legacy scroll-based active link for same-page anchor navigation
 function updateActiveNavLinkOnScroll(scrollY) {

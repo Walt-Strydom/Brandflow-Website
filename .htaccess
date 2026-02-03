@@ -4,6 +4,22 @@
 # Enable rewrite engine
 RewriteEngine On
 
+# Clean URL redirects (remove .html)
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Remove trailing slash on clean URLs (non-directories)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# Serve clean URLs from .html files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/.]+)$ $1.html [L]
+
 # Force HTTPS (uncomment if SSL is configured)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -35,7 +51,7 @@ RewriteEngine On
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
         font-src 'self' https://fonts.gstatic.com; \
         img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; \
-        connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.googletagmanager.com https://api.iconify.design; \
+        connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.googletagmanager.com https://api.iconify.design https://n8n.brandflow.co.za; \
         frame-src 'none'; \
         object-src 'none'; \
         base-uri 'self'; \
