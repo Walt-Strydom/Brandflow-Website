@@ -387,6 +387,13 @@
                                     <span>Chat on WhatsApp</span>
                                 </a>
                             </div>
+                            <div class="advisor__download-section">
+                                <p class="advisor__download-text">Want to keep a copy of your assessment?</p>
+                                <button type="button" class="btn btn--outline btn--download" id="download-assessment-btn">
+                                    <iconify-icon icon="ph:download-simple" width="20" height="20"></iconify-icon>
+                                    <span>Download Assessment</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -801,6 +808,58 @@
         aria-label="Chat on WhatsApp">
         <iconify-icon icon="ant-design:whats-app-outlined" width="32" height="32"></iconify-icon>
     </a>
+
+    <!-- Download Assessment Modal -->
+    <div class="download-modal" id="download-modal">
+        <div class="download-modal__backdrop" id="download-modal-backdrop"></div>
+        <div class="download-modal__container">
+            <button type="button" class="download-modal__close" id="download-modal-close" aria-label="Close modal">
+                <iconify-icon icon="ph:x" width="24" height="24"></iconify-icon>
+            </button>
+            <div class="download-modal__header">
+                <div class="download-modal__icon">
+                    <iconify-icon icon="ph:file-pdf" width="32" height="32"></iconify-icon>
+                </div>
+                <h3 class="download-modal__title">Download Your Assessment</h3>
+                <p class="download-modal__subtitle">Enter your details to receive your personalised automation assessment report.</p>
+            </div>
+            <form class="download-modal__form" id="download-form">
+                <input type="hidden" id="download-assessment-id" name="assessment_id" value="">
+                <div class="form__group">
+                    <label for="download-name" class="form__label">Full Name *</label>
+                    <input type="text" id="download-name" name="name" class="form__input" placeholder="Your full name" required minlength="2">
+                </div>
+                <div class="form__group">
+                    <label for="download-email" class="form__label">Email Address *</label>
+                    <input type="email" id="download-email" name="email" class="form__input" placeholder="your@email.com" required>
+                </div>
+                <div class="form__group">
+                    <label for="download-company" class="form__label">Company Name *</label>
+                    <input type="text" id="download-company" name="company" class="form__input" placeholder="Your company name" required minlength="2">
+                </div>
+                <div class="form__group">
+                    <label for="download-phone" class="form__label">Phone Number (Optional)</label>
+                    <input type="tel" id="download-phone" name="phone" class="form__input" placeholder="+27 82 123 4567">
+                </div>
+                <div class="download-modal__footer">
+                    <button type="submit" class="btn btn--primary btn--full" id="download-submit">
+                        <span class="btn__text">
+                            <iconify-icon icon="ph:download-simple" width="20" height="20"></iconify-icon>
+                            Download Report
+                        </span>
+                        <span class="btn__loading" style="display: none;">
+                            <iconify-icon icon="ph:circle-notch" width="20" height="20" class="spin"></iconify-icon>
+                            Processing...
+                        </span>
+                    </button>
+                    <p class="download-modal__disclaimer">
+                        <iconify-icon icon="ph:shield-check" width="16" height="16"></iconify-icon>
+                        Your information is secure and will never be shared with third parties.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookie-banner">
