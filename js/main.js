@@ -953,8 +953,14 @@ if (advisorForm) {
             // Hide loading overlay
             hideAdvisorLoading();
 
+            // Store current assessment data for download
+            window.currentAssessmentData = data;
+
             // Display the results
             displayAdvisorResults(data);
+
+            // Track the assessment in the database
+            trackAssessment(processDescription, data);
 
             // Show results, hide form
             advisorFormContainer.style.display = 'none';
@@ -1327,12 +1333,211 @@ if (newAssessmentBtn) {
         // Reset form
         advisorForm.reset();
 
+        // Clear stored assessment data
+        window.currentAssessmentId = null;
+        window.currentAssessmentData = null;
+
         // Show form, hide results
         advisorResults.style.display = 'none';
         advisorFormContainer.style.display = 'block';
 
         // Scroll to form
         advisorFormContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+}
+
+// ============================================
+// ASSESSMENT TRACKING & DOWNLOAD
+// ============================================
+// Use absolute URL to avoid path issues with clean URLs
+const ASSESSMENT_API_URL = '/api/assessment.php';
+
+// Store current assessment data globally
+window.currentAssessmentId = null;
+window.currentAssessmentData = null;
+
+/**
+ * Track assessment in database
+ */
+async function trackAssessment(processDescription, results) {
+    console.log('Tracking assessment...');
+    try {
+        const response = await fetch(`${ASSESSMENT_API_URL}?action=track`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                process_description: processDescription,
+                results: results
+            })
+        });
+
+        console.log('Track response status:', response.status);
+        const data = await response.json();
+        console.log('Track response data:', data);
+
+        if (response.ok && data.success && data.assessment_id) {
+            window.currentAssessmentId = data.assessment_id;
+            console.log('Assessment tracked:', data.assessment_id);
+
+            // Update hidden field in download form
+            const assessmentIdField = document.getElementById('download-assessment-id');
+            if (assessmentIdField) {
+                assessmentIdField.value = data.assessment_id;
+            }
+        } else {
+            console.error('Track API error:', data.error || 'Unknown error');
+        }
+    } catch (error) {
+        console.error('Failed to track assessment:', error);
+        // Continue anyway - tracking is not critical for user experience
+    }
+}
+
+// Download Modal Elements
+const downloadModal = document.getElementById('download-modal');
+const downloadModalBackdrop = document.getElementById('download-modal-backdrop');
+const downloadModalClose = document.getElementById('download-modal-close');
+const downloadForm = document.getElementById('download-form');
+const downloadBtn = document.getElementById('download-assessment-btn');
+
+/**
+ * Show download modal
+ */
+function showDownloadModal() {
+    if (downloadModal) {
+        downloadModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Focus first input
+        setTimeout(() => {
+            const firstInput = downloadModal.querySelector('input:not([type="hidden"])');
+            if (firstInput) firstInput.focus();
+        }, 100);
+    }
+}
+
+/**
+ * Hide download modal
+ */
+function hideDownloadModal() {
+    if (downloadModal) {
+        downloadModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Download button click handler
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', function() {
+        if (!window.currentAssessmentId) {
+            alert('Assessment data not available. Please try running a new assessment.');
+            return;
+        }
+        showDownloadModal();
+    });
+}
+
+// Close modal handlers
+if (downloadModalClose) {
+    downloadModalClose.addEventListener('click', hideDownloadModal);
+}
+
+if (downloadModalBackdrop) {
+    downloadModalBackdrop.addEventListener('click', hideDownloadModal);
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && downloadModal && downloadModal.classList.contains('active')) {
+        hideDownloadModal();
+    }
+});
+
+// Download form submission
+if (downloadForm) {
+    downloadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('download-submit');
+        const btnText = submitBtn.querySelector('.btn__text');
+        const btnLoading = submitBtn.querySelector('.btn__loading');
+
+        // Get form data
+        const formData = new FormData(downloadForm);
+        const data = {
+            assessment_id: formData.get('assessment_id'),
+            name: formData.get('name').trim(),
+            email: formData.get('email').trim(),
+            company: formData.get('company').trim(),
+            phone: formData.get('phone') ? formData.get('phone').trim() : null
+        };
+
+        // Validate
+        if (!data.assessment_id) {
+            alert('Assessment ID missing. Please try running a new assessment.');
+            return;
+        }
+
+        if (!data.name || data.name.length < 2) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        if (!data.email || !data.email.includes('@')) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        if (!data.company || data.company.length < 2) {
+            alert('Please enter your company name.');
+            return;
+        }
+
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'flex';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${ASSESSMENT_API_URL}?action=download`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                // Trigger download (use absolute path)
+                window.location.href = '/' + result.download_url;
+
+                // Close modal after short delay
+                setTimeout(() => {
+                    hideDownloadModal();
+                    downloadForm.reset();
+
+                    // Reset assessment ID in form
+                    const assessmentIdField = document.getElementById('download-assessment-id');
+                    if (assessmentIdField && window.currentAssessmentId) {
+                        assessmentIdField.value = window.currentAssessmentId;
+                    }
+                }, 1000);
+            } else {
+                throw new Error(result.error || 'Download failed');
+            }
+        } catch (error) {
+            console.error('Download error:', error);
+            alert('Failed to process download: ' + error.message);
+        } finally {
+            // Reset button state
+            btnText.style.display = 'flex';
+            btnLoading.style.display = 'none';
+            submitBtn.disabled = false;
+        }
     });
 }
 
