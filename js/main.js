@@ -1429,14 +1429,23 @@ function hideDownloadModal() {
 }
 
 // Download button click handler
+console.log('Download button element:', downloadBtn);
 if (downloadBtn) {
-    downloadBtn.addEventListener('click', function() {
+    downloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Download button clicked');
+        console.log('currentAssessmentData:', window.currentAssessmentData);
+        console.log('downloadModal element:', downloadModal);
         if (!window.currentAssessmentData) {
             alert('Assessment data not available. Please try running a new assessment.');
             return;
         }
         showDownloadModal();
+        console.log('Modal active class added:', downloadModal ? downloadModal.classList.contains('active') : 'no modal');
     });
+} else {
+    console.error('Download button not found in DOM!');
 }
 
 // Close modal handlers
@@ -1695,20 +1704,30 @@ if (downloadForm) {
 
             const assessmentId = window.currentAssessmentId || 'BF-' + Date.now();
 
-            // Generate PDF using html2pdf.js
-            const opt = {
-                margin: [10, 10, 10, 10],
-                filename: 'BrandFlow-Assessment-' + assessmentId + '.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-            };
+            if (typeof html2pdf !== 'undefined') {
+                // Generate PDF using html2pdf.js
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: 'BrandFlow-Assessment-' + assessmentId + '.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
 
-            await html2pdf().set(opt).from(container.firstElementChild).save();
+                await html2pdf().set(opt).from(container.firstElementChild).save();
 
-            // Clean up
-            document.body.removeChild(container);
+                // Clean up
+                document.body.removeChild(container);
+            } else {
+                // Fallback: open in new window for print-to-PDF
+                document.body.removeChild(container);
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BrandFlow Assessment - ' + assessmentId + '</title></head><body>');
+                printWindow.document.write(pdfHtml);
+                printWindow.document.write('<script>setTimeout(function(){ window.print(); }, 500);<\/script></body></html>');
+                printWindow.document.close();
+            }
 
             // Close modal after short delay
             setTimeout(() => {
@@ -1723,7 +1742,7 @@ if (downloadForm) {
             }, 500);
         } catch (error) {
             console.error('PDF generation error:', error);
-            alert('Failed to generate PDF. Please try again.');
+            alert('Failed to generate PDF: ' + error.message);
         } finally {
             // Reset button state
             btnText.style.display = 'flex';
