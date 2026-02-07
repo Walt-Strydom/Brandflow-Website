@@ -1431,7 +1431,7 @@ function hideDownloadModal() {
 // Download button click handler
 if (downloadBtn) {
     downloadBtn.addEventListener('click', function() {
-        if (!window.currentAssessmentId) {
+        if (!window.currentAssessmentData) {
             alert('Assessment data not available. Please try running a new assessment.');
             return;
         }
@@ -1455,7 +1455,176 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Download form submission
+/**
+ * Build PDF HTML content from assessment data
+ */
+function buildPdfHtml(assessmentData, userName, userCompany) {
+    const data = assessmentData;
+    const date = new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+    const assessmentId = window.currentAssessmentId || 'BF-' + Date.now();
+
+    // Helper to extract text from items
+    function getText(item) {
+        if (typeof item === 'string') return item;
+        if (item && typeof item === 'object') {
+            const props = ['description', 'text', 'value', 'title', 'content', 'name', 'summary'];
+            for (const p of props) {
+                if (item[p] && typeof item[p] === 'string') return item[p];
+            }
+            for (const key in item) {
+                if (typeof item[key] === 'string' && item[key].length > 0) return item[key];
+            }
+        }
+        return String(item || '');
+    }
+
+    function buildList(items) {
+        if (!items || !items.length) return '';
+        return '<ul>' + items.map(item => '<li>' + getText(item) + '</li>').join('') + '</ul>';
+    }
+
+    let sectionsHtml = '';
+
+    // Section 1: Current Process
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">1</span><h2 class="section-title">Current Process Overview</h2></div>
+            <div class="section-content"><p>${data.currentProcess || 'Your process involves manual handling of routine business operations.'}</p></div>
+        </div>`;
+
+    // Section 2: Inefficiencies
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">2</span><h2 class="section-title">Identified Inefficiencies</h2></div>
+            <div class="section-content">${buildList(data.inefficiencies || ['Repetitive manual handling', 'Delays caused by human dependency', 'Risk of overlooked steps'])}</div>
+        </div>`;
+
+    // Section 3: Improvements
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">3</span><h2 class="section-title">How the BrandFlow Automation Engine Would Improve This</h2></div>
+            <div class="section-content">${buildList(data.improvements || ['Information moves automatically', 'Actions triggered immediately', 'Updates sent automatically'])}</div>
+        </div>`;
+
+    // Section 4: Business Impact
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">4</span><h2 class="section-title">Business Impact</h2></div>
+            <div class="section-content">${buildList(data.businessImpact || ['Reduced time on routine tasks', 'Faster turnaround', 'Lower risk of human error', 'Greater consistency'])}</div>
+        </div>`;
+
+    // Section 5: Technical Workflow (if available)
+    let sectionNum = 5;
+    if (data.technicalWorkflow) {
+        const tw = data.technicalWorkflow;
+        let workflowContent = '';
+        if (tw.trigger) {
+            workflowContent += `<p><strong>Trigger:</strong> ${tw.trigger}</p>`;
+        }
+        if (tw.steps && tw.steps.length > 0) {
+            workflowContent += '<div style="margin-top: 12px;">';
+            tw.steps.forEach(step => {
+                workflowContent += `<div style="margin-bottom: 10px; padding: 10px; background: #fff; border-radius: 6px;">
+                    <strong>Step ${step.step}: ${step.name}</strong> <span style="color: #64748b; font-size: 12px;">(${step.duration})</span>
+                    <p style="margin: 4px 0 0; font-size: 14px;">${step.description}</p>
+                </div>`;
+            });
+            workflowContent += '</div>';
+        }
+        if (tw.totalProcessingTime) {
+            workflowContent += `<p style="margin-top: 10px;"><strong>Total Processing Time:</strong> ${tw.totalProcessingTime}</p>`;
+        }
+        sectionsHtml += `
+            <div class="section">
+                <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Technical Workflow Architecture</h2></div>
+                <div class="section-content">${workflowContent}</div>
+            </div>`;
+        sectionNum++;
+    }
+
+    // Process Upgrade Level
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Process Upgrade Level</h2></div>
+            <div class="section-content"><div class="upgrade-level">${data.upgradeLevel || 'Multi-step process enhancement'}</div></div>
+        </div>`;
+    sectionNum++;
+
+    // Implementation (if available)
+    if (data.implementation) {
+        const impl = data.implementation;
+        let implContent = '<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">';
+        if (impl.timeline) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px;"><strong>Timeline</strong><p>${impl.timeline}</p></div>`;
+        if (impl.complexity) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px;"><strong>Complexity</strong><p>${impl.complexity}</p></div>`;
+        if (impl.estimatedCost) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px; border: 2px solid #f97316;"><strong>Investment</strong><p style="font-size: 18px; font-weight: 700; color: #1e3a5f;">${impl.estimatedCost}</p></div>`;
+        implContent += '</div>';
+        if (impl.prerequisites && impl.prerequisites.length > 0) {
+            implContent += '<p><strong>Prerequisites:</strong></p>' + buildList(impl.prerequisites);
+        }
+        sectionsHtml += `
+            <div class="section">
+                <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Implementation Overview</h2></div>
+                <div class="section-content">${implContent}</div>
+            </div>`;
+        sectionNum++;
+    }
+
+    // Recommended Next Step
+    sectionsHtml += `
+        <div class="section">
+            <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Recommended Next Step</h2></div>
+            <div class="section-content"><div class="next-step"><p>${data.nextStep || 'Schedule a consultation to convert this assessment into a live automation solution.'}</p></div></div>
+        </div>`;
+
+    return `
+    <div id="pdf-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #334155; padding: 10px; max-width: 800px; margin: 0 auto;">
+        <div style="text-align: center; padding-bottom: 24px; border-bottom: 3px solid #f97316; margin-bottom: 24px;">
+            <div style="font-size: 28px; font-weight: 700; color: #1e3a5f; margin-bottom: 8px;">Brand<span style="color: #f97316;">Flow</span></div>
+            <div style="display: inline-block; background: linear-gradient(135deg, #f97316, #fb923c); color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">AI-Powered Assessment</div>
+            <h1 style="font-size: 22px; color: #1e3a5f; margin: 0 0 16px;">Your Automation Assessment</h1>
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: #64748b;">
+                <span><strong style="color: #1e3a5f;">Reference:</strong> ${assessmentId}</span>
+                <span><strong style="color: #1e3a5f;">Prepared for:</strong> ${userName}</span>
+                <span><strong style="color: #1e3a5f;">Company:</strong> ${userCompany}</span>
+                <span><strong style="color: #1e3a5f;">Date:</strong> ${date}</span>
+            </div>
+        </div>
+
+        <style>
+            .section { background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 16px; border-left: 4px solid #f97316; }
+            .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+            .section-number { width: 28px; height: 28px; background: linear-gradient(135deg, #f97316, #fb923c); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+            .section-title { font-size: 16px; font-weight: 600; color: #1e3a5f; margin: 0; }
+            .section-content { padding-left: 38px; }
+            .section-content p { margin: 0 0 8px; font-size: 14px; }
+            .section-content ul { list-style: disc; padding-left: 20px; margin: 0; }
+            .section-content li { margin-bottom: 6px; font-size: 14px; }
+            .upgrade-level { display: inline-block; background: linear-gradient(135deg, #1e3a5f, #2d4a6f); color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+            .next-step { background: #ffffff; padding: 14px; border-radius: 8px; border: 2px solid #f97316; }
+            .next-step p { margin: 0; font-size: 14px; }
+        </style>
+
+        ${sectionsHtml}
+
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e2e8f0; text-align: center;">
+            <div style="background: linear-gradient(135deg, #f97316, #fb923c); color: white; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                <h3 style="font-size: 16px; margin: 0 0 8px;">Ready to implement this automation solution?</h3>
+                <p style="font-size: 13px; margin: 0; opacity: 0.9;">Schedule a consultation with our team to convert this assessment into a live automation solution.</p>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">
+                <p style="margin: 0;"><strong>BrandFlow</strong></p>
+                <p style="margin: 4px 0;">Email: hello@brandflow.co.za | Phone: +27 82 785 3646</p>
+                <p style="margin: 4px 0;">Website: brandflow.co.za</p>
+            </div>
+            <p style="margin-top: 16px; font-size: 11px; color: #94a3b8;">
+                This assessment was generated by the BrandFlow Automation Engine.
+                The recommendations provided are based on the process description submitted and are subject to detailed analysis during consultation.
+            </p>
+        </div>
+    </div>`;
+}
+
+// Download form submission - generates PDF client-side
 if (downloadForm) {
     downloadForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -1466,32 +1635,29 @@ if (downloadForm) {
 
         // Get form data
         const formData = new FormData(downloadForm);
-        const data = {
-            assessment_id: formData.get('assessment_id'),
-            name: formData.get('name').trim(),
-            email: formData.get('email').trim(),
-            company: formData.get('company').trim(),
-            phone: formData.get('phone') ? formData.get('phone').trim() : null
-        };
+        const userName = formData.get('name').trim();
+        const userEmail = formData.get('email').trim();
+        const userCompany = formData.get('company').trim();
+        const userPhone = formData.get('phone') ? formData.get('phone').trim() : null;
 
         // Validate
-        if (!data.assessment_id) {
-            alert('Assessment ID missing. Please try running a new assessment.');
-            return;
-        }
-
-        if (!data.name || data.name.length < 2) {
+        if (!userName || userName.length < 2) {
             alert('Please enter your full name.');
             return;
         }
 
-        if (!data.email || !data.email.includes('@')) {
+        if (!userEmail || !userEmail.includes('@')) {
             alert('Please enter a valid email address.');
             return;
         }
 
-        if (!data.company || data.company.length < 2) {
+        if (!userCompany || userCompany.length < 2) {
             alert('Please enter your company name.');
+            return;
+        }
+
+        if (!window.currentAssessmentData) {
+            alert('Assessment data not available. Please try running a new assessment.');
             return;
         }
 
@@ -1501,37 +1667,63 @@ if (downloadForm) {
         submitBtn.disabled = true;
 
         try {
-            const response = await fetch(`${ASSESSMENT_API_URL}?action=download`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                // Trigger download (use absolute path)
-                window.location.href = '/' + result.download_url;
-
-                // Close modal after short delay
-                setTimeout(() => {
-                    hideDownloadModal();
-                    downloadForm.reset();
-
-                    // Reset assessment ID in form
-                    const assessmentIdField = document.getElementById('download-assessment-id');
-                    if (assessmentIdField && window.currentAssessmentId) {
-                        assessmentIdField.value = window.currentAssessmentId;
-                    }
-                }, 1000);
-            } else {
-                throw new Error(result.error || 'Download failed');
+            // Save user info to database (non-blocking)
+            if (window.currentAssessmentId) {
+                fetch(`${ASSESSMENT_API_URL}?action=download`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        assessment_id: window.currentAssessmentId,
+                        name: userName,
+                        email: userEmail,
+                        company: userCompany,
+                        phone: userPhone
+                    })
+                }).catch(err => console.error('Failed to save download info:', err));
             }
+
+            // Build PDF HTML
+            const pdfHtml = buildPdfHtml(window.currentAssessmentData, userName, userCompany);
+
+            // Create a temporary container
+            const container = document.createElement('div');
+            container.innerHTML = pdfHtml;
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            container.style.top = '0';
+            document.body.appendChild(container);
+
+            const assessmentId = window.currentAssessmentId || 'BF-' + Date.now();
+
+            // Generate PDF using html2pdf.js
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: 'BrandFlow-Assessment-' + assessmentId + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            await html2pdf().set(opt).from(container.firstElementChild).save();
+
+            // Clean up
+            document.body.removeChild(container);
+
+            // Close modal after short delay
+            setTimeout(() => {
+                hideDownloadModal();
+                downloadForm.reset();
+
+                // Reset assessment ID in form
+                const assessmentIdField = document.getElementById('download-assessment-id');
+                if (assessmentIdField && window.currentAssessmentId) {
+                    assessmentIdField.value = window.currentAssessmentId;
+                }
+            }, 500);
         } catch (error) {
-            console.error('Download error:', error);
-            alert('Failed to process download: ' + error.message);
+            console.error('PDF generation error:', error);
+            alert('Failed to generate PDF. Please try again.');
         } finally {
             // Reset button state
             btnText.style.display = 'flex';

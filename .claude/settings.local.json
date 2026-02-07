@@ -10,7 +10,10 @@
       "Bash(curl:*)",
       "Bash(openssl dgst:*)",
       "Bash(openssl base64:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
