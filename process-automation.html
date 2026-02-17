@@ -152,13 +152,13 @@
                     <li class="nav__item">
                         <a href="/why-us" class="nav__link">WHY US</a>
                     </li>
-<<<<<<< HEAD
                     <li class="nav__item nav__item--dropdown">
                         <a href="/services" class="nav__link nav__link--dropdown active">
                             SERVICES
                             <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
                         </a>
                         <div class="nav__dropdown">
+                            <a href="/web-development" class="nav__dropdown-link">Web Development</a>
                             <a href="/ai-ml-engineering" class="nav__dropdown-link">AI & ML Engineering</a>
                             <a href="/full-stack-development" class="nav__dropdown-link">Full Stack Development</a>
                             <a href="/process-automation" class="nav__dropdown-link">Process Automation</a>
@@ -180,19 +180,6 @@
                     </li>
                     <li class="nav__item">
                         <a href="/ai-advisor" class="nav__link nav__link--highlight">
-=======
-                    <li class="nav__item">
-                        <a href="/services" class="nav__link">SERVICES</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="/pricing" class="nav__link">PRICING</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="/process-automation" class="nav__link active">AUTOMATION</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="/process-automation?section=automation-advisor" class="nav__link nav__link--highlight">
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
                             <iconify-icon icon="ph:robot" width="16" height="16"></iconify-icon>
                             AI ADVISOR
                         </a>
@@ -220,15 +207,9 @@
                     <div class="page-hero__content">
                         <span class="page-hero__badge">New Service</span>
                         <h1 class="page-hero__title">Process Automation</h1>
-<<<<<<< HEAD
                         <p class="page-hero__subtitle">Enterprise-grade process automation for SMEs. Streamline your operations with the intelligent automation solutions used by large enterprises — at a price that makes sense for your business.</p>
                         <div class="page-hero__buttons">
                             <a href="/ai-advisor" class="btn btn--primary btn--pulse">
-=======
-                        <p class="page-hero__subtitle">Streamline your entire business with smart automation solutions that save time, reduce errors, and help you scale efficiently.</p>
-                        <div class="page-hero__buttons">
-                            <a href="/process-automation?section=automation-advisor" class="btn btn--primary btn--pulse">
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
                                 <iconify-icon icon="ph:robot" width="20" height="20"></iconify-icon>
                                 Try AI Advisor
                             </a>
@@ -341,148 +322,6 @@
             </div>
         </section>
 
-<<<<<<< HEAD
-=======
-        <!-- Automation Engine Advisor Section - Primary CTA -->
-        <section class="advisor section" id="automation-advisor">
-            <div class="container">
-                <div class="section__header">
-                    <span class="advisor__badge">AI-Powered Assessment</span>
-                    <h2 class="section__title">BrandFlow Automation Engine Assessment</h2>
-                    <p class="section__subtitle">Describe your business process and receive a professional assessment of how automation can improve your operations.</p>
-                </div>
-
-                <div class="advisor__wrapper">
-                    <!-- Input Form -->
-                    <div class="advisor__form-container reveal-on-scroll" id="advisor-form-container">
-                        <form class="advisor__form" id="advisor-form">
-                            <div class="advisor__form-header">
-                                <div class="advisor__form-icon">
-                                    <iconify-icon icon="ph:robot" width="32" height="32"></iconify-icon>
-                                </div>
-                                <div>
-                                    <h3 class="advisor__form-title">Describe Your Process</h3>
-                                    <p class="advisor__form-subtitle">What task or process in your business takes unnecessary time or manual effort?</p>
-                                </div>
-                            </div>
-
-                            <div class="form__group">
-                                <label for="process-description" class="form__label">Your Process Description</label>
-                                <textarea
-                                    id="process-description"
-                                    name="process_description"
-                                    class="form__textarea"
-                                    rows="6"
-                                    placeholder="For example: capturing leads, processing orders, sending updates, handling approvals, managing customer inquiries, scheduling appointments..."
-                                    required
-                                    minlength="20"
-                                ></textarea>
-                                <p class="form__hint">Be as detailed as possible for a more accurate assessment.</p>
-                            </div>
-
-                            <div class="advisor__form-footer">
-                                <button type="submit" class="btn btn--primary btn--full" id="advisor-submit">
-                                    <span class="btn__text">Analyze My Process</span>
-                                    <span class="btn__loading" style="display: none;">
-                                        <iconify-icon icon="ph:circle-notch" width="20" height="20" class="spin"></iconify-icon>
-                                        Analyzing...
-                                    </span>
-                                </button>
-                                <p class="advisor__disclaimer">
-                                    <iconify-icon icon="ph:shield-check" width="16" height="16"></iconify-icon>
-                                    Your information is processed securely and never shared.
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Results Container (Hidden by default) -->
-                    <div class="advisor__results" id="advisor-results" style="display: none;">
-                        <div class="advisor__results-header">
-                            <div class="advisor__results-icon">
-                                <iconify-icon icon="ph:chart-line-up" width="32" height="32"></iconify-icon>
-                            </div>
-                            <div>
-                                <h3 class="advisor__results-title">Your Automation Assessment</h3>
-                                <p class="advisor__results-subtitle">Based on the BrandFlow Automation Engine analysis</p>
-                            </div>
-                            <button class="advisor__new-assessment" id="new-assessment" title="Start new assessment">
-                                <iconify-icon icon="ph:arrow-counter-clockwise" width="20" height="20"></iconify-icon>
-                                New Assessment
-                            </button>
-                        </div>
-
-                        <div class="advisor__results-content" id="advisor-results-content">
-                            <!-- Results will be dynamically inserted here -->
-                        </div>
-
-                        <div class="advisor__results-cta">
-                            <p class="advisor__results-cta-text">Ready to implement this automation solution?</p>
-                            <div class="advisor__results-buttons">
-                                <a href="/contact" class="btn btn--primary">Schedule a Consultation</a>
-                                <a href="https://wa.me/27827853646?text=Hi!%20I've%20just%20used%20the%20Automation%20Advisor%20and%20I'm%20interested%20in%20implementing%20the%20recommended%20solution." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
-                                    <iconify-icon icon="simple-icons:whatsapp" width="18" height="18"></iconify-icon>
-                                    <span>Chat on WhatsApp</span>
-                                </a>
-                            </div>
-                            <div class="advisor__download-section">
-                                <p class="advisor__download-text">Want to keep a copy of your assessment?</p>
-                                <button type="button" class="btn btn--outline btn--download" id="download-assessment-btn">
-                                    <iconify-icon icon="ph:download-simple" width="20" height="20"></iconify-icon>
-                                    <span>Download Assessment</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Loading Overlay - Placed outside wrapper for proper mobile positioning -->
-            <div class="advisor__loading-overlay" id="advisor-loading-overlay">
-                <div class="advisor__loading-content">
-                    <div class="advisor__loading-svg">
-                        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316" />
-                                    <stop offset="100%" style="stop-color:#fb923c" />
-                                </linearGradient>
-                            </defs>
-                            <!-- Outer rotating ring -->
-                            <circle class="advisor__loading-ring advisor__loading-ring--outer" cx="60" cy="60" r="50" fill="none" stroke="url(#loadingGradient)" stroke-width="4" stroke-linecap="round" stroke-dasharray="78.5 235.5"/>
-                            <!-- Inner rotating ring (opposite direction) -->
-                            <circle class="advisor__loading-ring advisor__loading-ring--inner" cx="60" cy="60" r="38" fill="none" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round" stroke-dasharray="60 180"/>
-                            <!-- Center gear icon -->
-                            <g class="advisor__loading-gear" transform="translate(60, 60)">
-                                <circle cx="0" cy="0" r="20" fill="url(#loadingGradient)"/>
-                                <circle cx="0" cy="0" r="8" fill="#ffffff"/>
-                                <!-- Gear teeth -->
-                                <rect x="-4" y="-28" width="8" height="10" rx="2" fill="url(#loadingGradient)"/>
-                                <rect x="-4" y="18" width="8" height="10" rx="2" fill="url(#loadingGradient)"/>
-                                <rect x="-28" y="-4" width="10" height="8" rx="2" fill="url(#loadingGradient)"/>
-                                <rect x="18" y="-4" width="10" height="8" rx="2" fill="url(#loadingGradient)"/>
-                                <!-- Diagonal teeth -->
-                                <rect x="12" y="-24" width="8" height="10" rx="2" fill="url(#loadingGradient)" transform="rotate(45)"/>
-                                <rect x="-20" y="14" width="8" height="10" rx="2" fill="url(#loadingGradient)" transform="rotate(45)"/>
-                                <rect x="-24" y="-12" width="10" height="8" rx="2" fill="url(#loadingGradient)" transform="rotate(45)"/>
-                                <rect x="14" y="20" width="10" height="8" rx="2" fill="url(#loadingGradient)" transform="rotate(45)"/>
-                            </g>
-                            <!-- Pulsing dots -->
-                            <circle class="advisor__loading-dot advisor__loading-dot--1" cx="60" cy="105" r="4" fill="#f97316"/>
-                            <circle class="advisor__loading-dot advisor__loading-dot--2" cx="72" cy="103" r="4" fill="#f97316"/>
-                            <circle class="advisor__loading-dot advisor__loading-dot--3" cx="48" cy="103" r="4" fill="#f97316"/>
-                        </svg>
-                    </div>
-                    <h3 class="advisor__loading-title">Analyzing Your Process</h3>
-                    <p class="advisor__loading-text">The BrandFlow Automation Engine is assessing your workflow. Results will be available shortly.</p>
-                    <div class="advisor__loading-progress">
-                        <div class="advisor__loading-progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
         <!-- What is Automation Section -->
         <section class="automation-intro section">
             <div class="container">
@@ -754,11 +593,7 @@
                     <div class="footer__logo">
                         <img src="img/logo-icon.png" alt="BrandFlow Agency" class="footer__logo-img">
                     </div>
-<<<<<<< HEAD
                     <p class="footer__tagline">AI engineering, full stack development, process automation, and API solutions for businesses in South Africa.</p>
-=======
-                    <p class="footer__tagline">Affordable Website Development and Process Automation for small businesses in South Africa.</p>
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
                     <div class="footer__social">
                         <a href="https://www.linkedin.com/company/brandflowconsulting/" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                             <iconify-icon icon="mdi:linkedin" width="24" height="24"></iconify-icon>
@@ -773,11 +608,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/why-us">Why Choose Us</a></li>
                         <li><a href="/services">Our Services</a></li>
-<<<<<<< HEAD
                         <li><a href="/pricing-web-development">Web Development Pricing</a></li>
-=======
-                        <li><a href="/pricing">Pricing</a></li>
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>
@@ -786,18 +617,11 @@
                 <div class="footer__links">
                     <h4 class="footer__heading">Services</h4>
                     <ul class="footer__nav">
-<<<<<<< HEAD
+                        <li><a href="/web-development">Web Development</a></li>
                         <li><a href="/ai-ml-engineering">AI & ML Engineering</a></li>
                         <li><a href="/full-stack-development">Full Stack Development</a></li>
                         <li><a href="/process-automation">Process Automation</a></li>
                         <li><a href="/api-development">API Development</a></li>
-=======
-                        <li><a href="/services">Website Design</a></li>
-                        <li><a href="/services">Website Redesign</a></li>
-                        <li><a href="/services">SEO Optimization</a></li>
-                        <li><a href="/process-automation">Process Automation</a></li>
-                        <li><a href="/process-automation">CRM Automation</a></li>
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
                     </ul>
                 </div>
 
@@ -835,11 +659,7 @@
 
             <div class="footer__bottom">
                 <p class="footer__copyright">&copy; <span id="current-year"></span> BrandFlow. All rights reserved.</p>
-<<<<<<< HEAD
                 <p class="footer__credits">Custom <a href="/services">software engineering</a> for modern businesses</p>
-=======
-                <p class="footer__credits">Professional <a href="/services">web design</a> for small businesses</p>
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
             </div>
         </div>
     </footer>
@@ -858,206 +678,6 @@
     <!-- JavaScript -->
     <script src="js/main.js?v=2.1"></script>
 
-<<<<<<< HEAD
-=======
-    <!-- Download Report Handler -->
-    <script>
-    (function() {
-        function initDownloadHandler() {
-            var btn = document.getElementById('download-assessment-btn');
-            var modal = document.getElementById('download-modal');
-            var modalBackdrop = document.getElementById('download-modal-backdrop');
-            var modalClose = document.getElementById('download-modal-close');
-            var form = document.getElementById('download-form');
-            if (!btn || !modal) return;
-
-            function showModal() {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                setTimeout(function() { var i = modal.querySelector('input:not([type="hidden"])'); if (i) i.focus(); }, 100);
-            }
-            function hideModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
-
-            btn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
-                if (!window.currentAssessmentData) { alert('Assessment data not available. Please try running a new assessment.'); return; }
-                showModal();
-            });
-            if (modalClose) modalClose.addEventListener('click', hideModal);
-            if (modalBackdrop) modalBackdrop.addEventListener('click', hideModal);
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('active')) hideModal(); });
-
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    var submitBtn = document.getElementById('download-submit');
-                    var btnText = submitBtn.querySelector('.btn__text');
-                    var btnLoading = submitBtn.querySelector('.btn__loading');
-                    var fd = new FormData(form);
-                    var userName = (fd.get('name') || '').trim();
-                    var userEmail = (fd.get('email') || '').trim();
-                    var userCompany = (fd.get('company') || '').trim();
-
-                    if (!userName || userName.length < 2) { alert('Please enter your full name.'); return; }
-                    if (!userEmail || !userEmail.includes('@')) { alert('Please enter a valid email address.'); return; }
-                    if (!userCompany || userCompany.length < 2) { alert('Please enter your company name.'); return; }
-                    if (!window.currentAssessmentData) { alert('Assessment data not available.'); return; }
-
-                    btnText.style.display = 'none';
-                    btnLoading.style.display = 'flex';
-                    submitBtn.disabled = true;
-
-                    // Save to DB (non-blocking)
-                    if (window.currentAssessmentId) {
-                        fetch('/api/assessment.php?action=download', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ assessment_id: window.currentAssessmentId, name: userName, email: userEmail, company: userCompany, phone: (fd.get('phone') || '').trim() || null })
-                        }).catch(function() {});
-                    }
-
-                    var data = window.currentAssessmentData;
-                    var assessmentId = window.currentAssessmentId || 'BF-' + Date.now();
-                    var date = new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
-                    var logoUrl = window.location.origin + '/img/logo.png';
-
-                    function gt(item) {
-                        if (typeof item === 'string') return item;
-                        if (item && typeof item === 'object') {
-                            var props = ['description','text','value','title','content','name','summary','issue','solution','impact','improvement'];
-                            for (var i = 0; i < props.length; i++) { if (item[props[i]] && typeof item[props[i]] === 'string') return item[props[i]]; }
-                            for (var k in item) { if (typeof item[k] === 'string' && item[k].length > 0) return item[k]; }
-                        }
-                        return String(item || '');
-                    }
-                    function mkList(items) {
-                        if (!items || !items.length) return '';
-                        return '<ul>' + items.map(function(i) { return '<li>' + gt(i) + '</li>'; }).join('') + '</ul>';
-                    }
-                    function sec(num, title, content) {
-                        return '<div class="sec"><div class="sec-hdr"><span class="sec-num">' + num + '</span><h2>' + title + '</h2></div><div class="sec-body">' + content + '</div></div>';
-                    }
-
-                    var s = '';
-                    s += sec(1, 'Current Process Overview', '<p>' + (data.currentProcess || '') + '</p>');
-                    s += sec(2, 'Identified Inefficiencies', mkList(data.inefficiencies));
-                    s += sec(3, 'Automation Improvements', mkList(data.improvements));
-                    s += sec(4, 'Business Impact', mkList(data.businessImpact));
-                    var sn = 5;
-                    if (data.technicalWorkflow) {
-                        var tw = data.technicalWorkflow;
-                        var twc = '';
-                        if (tw.trigger) twc += '<p><strong>Trigger:</strong> ' + tw.trigger + '</p>';
-                        if (tw.steps && tw.steps.length) {
-                            tw.steps.forEach(function(step) {
-                                twc += '<div class="tw-step"><strong>Step ' + step.step + ': ' + step.name + '</strong> <span class="tw-dur">(' + step.duration + ')</span><p>' + step.description + '</p></div>';
-                            });
-                        }
-                        if (tw.totalProcessingTime) twc += '<p><strong>Total Time:</strong> ' + tw.totalProcessingTime + '</p>';
-                        s += sec(sn, 'Technical Workflow', twc); sn++;
-                    }
-                    s += sec(sn, 'Process Upgrade Level', '<div class="upgrade-badge">' + (data.upgradeLevel || 'Multi-step process enhancement') + '</div>'); sn++;
-                    if (data.implementation) {
-                        var impl = data.implementation;
-                        var ic = '<div class="impl-grid">';
-                        if (impl.timeline) ic += '<div class="impl-box"><strong>Timeline</strong><p>' + impl.timeline + '</p></div>';
-                        if (impl.complexity) ic += '<div class="impl-box"><strong>Complexity</strong><p>' + impl.complexity + '</p></div>';
-                        if (impl.estimatedCost) ic += '<div class="impl-box impl-cost"><strong>Investment</strong><p class="cost-val">' + impl.estimatedCost + '</p></div>';
-                        ic += '</div>';
-                        if (impl.prerequisites && impl.prerequisites.length) ic += '<p><strong>Prerequisites:</strong></p>' + mkList(impl.prerequisites);
-                        s += sec(sn, 'Implementation Overview', ic); sn++;
-                    }
-                    s += sec(sn, 'Recommended Next Step', '<div class="next-step-box"><p>' + (data.nextStep || 'Schedule a consultation to convert this assessment into a live automation solution.') + '</p></div>');
-
-                    // Build complete HTML document with embedded print styles
-                    var html = '<!DOCTYPE html><html><head><meta charset="UTF-8">' +
-                        '<title>BrandFlow Assessment - ' + assessmentId + '</title>' +
-                        '<style>' +
-                        '@page { size: A4; margin: 15mm; }' +
-                        '* { margin: 0; padding: 0; box-sizing: border-box; }' +
-                        'body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #334155; background: #fff; max-width: 700px; margin: 0 auto; padding: 20px; }' +
-                        '.header { text-align: center; padding-bottom: 20px; border-bottom: 3px solid #f97316; margin-bottom: 24px; }' +
-                        '.header img { height: 50px; margin-bottom: 10px; }' +
-                        '.badge { display: inline-block; background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }' +
-                        '.header h1 { font-size: 22px; color: #1e3a5f; margin: 0 0 12px; }' +
-                        '.header .info { font-size: 12px; color: #64748b; }' +
-                        '.header .info strong { color: #1e3a5f; }' +
-                        '.sec { background: #f8fafc; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; border-left: 4px solid #f97316; page-break-inside: avoid; break-inside: avoid; }' +
-                        '.sec-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }' +
-                        '.sec-num { width: 26px; height: 26px; background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }' +
-                        '.sec-hdr h2 { font-size: 15px; font-weight: 600; color: #1e3a5f; margin: 0; }' +
-                        '.sec-body { padding-left: 36px; font-size: 13px; }' +
-                        '.sec-body p { margin: 0 0 6px; }' +
-                        '.sec-body ul { padding-left: 18px; margin: 0; }' +
-                        '.sec-body li { margin-bottom: 5px; }' +
-                        '.tw-step { margin-bottom: 8px; padding: 6px 10px; background: #fff; border-radius: 6px; }' +
-                        '.tw-dur { color: #64748b; font-size: 11px; }' +
-                        '.upgrade-badge { display: inline-block; background: linear-gradient(135deg, #1e3a5f, #2d4a6f); color: #fff; padding: 6px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; }' +
-                        '.impl-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }' +
-                        '.impl-box { flex: 1; min-width: 90px; padding: 8px 10px; background: #fff; border-radius: 6px; }' +
-                        '.impl-box strong { font-size: 11px; color: #1e3a5f; }' +
-                        '.impl-box p { font-size: 13px; margin: 2px 0 0; }' +
-                        '.impl-cost { border: 2px solid #f97316; }' +
-                        '.cost-val { font-size: 17px !important; font-weight: 700; color: #1e3a5f; }' +
-                        '.next-step-box { background: #fff; padding: 12px; border-radius: 8px; border: 2px solid #f97316; }' +
-                        '.footer { margin-top: 28px; padding-top: 20px; border-top: 2px solid #e2e8f0; text-align: center; page-break-inside: avoid; }' +
-                        '.cta { background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; padding: 14px; border-radius: 10px; margin-bottom: 14px; }' +
-                        '.cta h3 { font-size: 15px; margin: 0 0 6px; }' +
-                        '.cta p { font-size: 12px; margin: 0; opacity: 0.9; }' +
-                        '.contact { font-size: 12px; color: #64748b; }' +
-                        '.contact p { margin: 3px 0; }' +
-                        '.disclaimer { margin-top: 14px; font-size: 10px; color: #94a3b8; }' +
-                        '.print-btn { display: block; margin: 20px auto; padding: 12px 30px; background: #f97316; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }' +
-                        '.print-btn:hover { background: #ea580c; }' +
-                        '@media print { .print-btn { display: none !important; } body { padding: 0; } }' +
-                        '</style></head><body>' +
-                        '<div class="header">' +
-                        '<img src="' + logoUrl + '" alt="BrandFlow" onerror="this.style.display=\'none\'">' +
-                        '<div class="badge">AI-Powered Assessment</div>' +
-                        '<h1>Your Automation Assessment</h1>' +
-                        '<div class="info"><strong>Ref:</strong> ' + assessmentId + ' &nbsp;&nbsp; <strong>For:</strong> ' + userName + ' &nbsp;&nbsp; <strong>Company:</strong> ' + userCompany + ' &nbsp;&nbsp; <strong>Date:</strong> ' + date + '</div>' +
-                        '</div>' +
-                        s +
-                        '<div class="footer">' +
-                        '<div class="cta"><h3>Ready to implement?</h3><p>Schedule a consultation to convert this into a live automation solution.</p></div>' +
-                        '<div class="contact"><p><strong>BrandFlow</strong></p><p>Email: hello@brandflow.co.za | Phone: +27 82 785 3646</p><p>Website: brandflow.co.za</p></div>' +
-                        '<p class="disclaimer">Generated by the BrandFlow Automation Engine. Recommendations are subject to detailed analysis during consultation.</p>' +
-                        '</div>' +
-                        '<button class="print-btn" onclick="window.print()">Save as PDF / Print</button>' +
-                        '</body></html>';
-
-                    // Open report in new tab
-                    var w = window.open('', '_blank');
-                    if (w) {
-                        w.document.write(html);
-                        w.document.close();
-                    } else {
-                        alert('Please allow popups for this site to download the report.');
-                    }
-
-                    // Reset form state
-                    setTimeout(function() {
-                        hideModal();
-                        form.reset();
-                        var idField = document.getElementById('download-assessment-id');
-                        if (idField && window.currentAssessmentId) idField.value = window.currentAssessmentId;
-                    }, 500);
-                    btnText.style.display = 'flex';
-                    btnLoading.style.display = 'none';
-                    submitBtn.disabled = false;
-                });
-            }
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initDownloadHandler);
-        } else {
-            initDownloadHandler();
-        }
-    })();
-    </script>
-
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20process%20automation%20services."
         class="whatsapp-float"
@@ -1067,61 +687,6 @@
         <iconify-icon icon="ant-design:whats-app-outlined" width="32" height="32"></iconify-icon>
     </a>
 
-<<<<<<< HEAD
-=======
-    <!-- Download Assessment Modal -->
-    <div class="download-modal" id="download-modal">
-        <div class="download-modal__backdrop" id="download-modal-backdrop"></div>
-        <div class="download-modal__container">
-            <button type="button" class="download-modal__close" id="download-modal-close" aria-label="Close modal">
-                <iconify-icon icon="ph:x" width="24" height="24"></iconify-icon>
-            </button>
-            <div class="download-modal__header">
-                <div class="download-modal__icon">
-                    <iconify-icon icon="ph:file-pdf" width="32" height="32"></iconify-icon>
-                </div>
-                <h3 class="download-modal__title">Download Your Assessment</h3>
-                <p class="download-modal__subtitle">Enter your details to receive your personalised automation assessment report.</p>
-            </div>
-            <form class="download-modal__form" id="download-form">
-                <input type="hidden" id="download-assessment-id" name="assessment_id" value="">
-                <div class="form__group">
-                    <label for="download-name" class="form__label">Full Name *</label>
-                    <input type="text" id="download-name" name="name" class="form__input" placeholder="Your full name" required minlength="2">
-                </div>
-                <div class="form__group">
-                    <label for="download-email" class="form__label">Email Address *</label>
-                    <input type="email" id="download-email" name="email" class="form__input" placeholder="your@email.com" required>
-                </div>
-                <div class="form__group">
-                    <label for="download-company" class="form__label">Company Name *</label>
-                    <input type="text" id="download-company" name="company" class="form__input" placeholder="Your company name" required minlength="2">
-                </div>
-                <div class="form__group">
-                    <label for="download-phone" class="form__label">Phone Number (Optional)</label>
-                    <input type="tel" id="download-phone" name="phone" class="form__input" placeholder="+27 82 123 4567">
-                </div>
-                <div class="download-modal__footer">
-                    <button type="submit" class="btn btn--primary btn--full" id="download-submit">
-                        <span class="btn__text">
-                            <iconify-icon icon="ph:download-simple" width="20" height="20"></iconify-icon>
-                            Download Report
-                        </span>
-                        <span class="btn__loading" style="display: none;">
-                            <iconify-icon icon="ph:circle-notch" width="20" height="20" class="spin"></iconify-icon>
-                            Processing...
-                        </span>
-                    </button>
-                    <p class="download-modal__disclaimer">
-                        <iconify-icon icon="ph:shield-check" width="16" height="16"></iconify-icon>
-                        Your information is secure and will never be shared with third parties.
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
-
->>>>>>> c245359202283115aadb9e9c6bf8efa748559a78
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookie-banner">
         <div class="cookie-banner__content">
