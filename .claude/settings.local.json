@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir)",
+      "Bash(powershell -Command:*)",
+      "WebFetch(domain:cdnjs.com)",
+      "WebFetch(domain:api.cdnjs.com)",
+      "WebFetch(domain:srihash.org)",
+      "WebFetch(domain:www.jsdelivr.com)",
+      "Bash(curl:*)",
+      "Bash(openssl dgst:*)",
+      "Bash(openssl base64:*)",
+      "Bash(grep:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
