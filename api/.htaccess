@@ -1,0 +1,17 @@
+# Protect API configuration files
+<FilesMatch "^config\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect SQL files
+<FilesMatch "\.sql$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow PHP execution for assessment.php only
+<FilesMatch "^assessment\.php$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>

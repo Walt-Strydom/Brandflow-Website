@@ -1,0 +1,16 @@
+# robots.txt for BrandFlow Website
+# https://brandflow.co.za
+
+# Allow all search engine crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://brandflow.co.za/sitemap.xml
+
+# Crawl-delay (optional - helps prevent server overload)
+Crawl-delay: 1
+
+# Disallow access to any sensitive directories (none currently)
+# Disallow: /admin/
+# Disallow: /private/

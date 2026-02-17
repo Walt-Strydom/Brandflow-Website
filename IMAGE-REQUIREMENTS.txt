@@ -1,0 +1,59 @@
+IMAGE REQUIREMENTS FOR BRANDFLOW WEBSITE
+=========================================
+
+This folder should contain your website images.
+
+REQUIRED IMAGE:
+---------------
+
+1. hero.jpg
+   - Recommended size: 1200px x 800px (or larger)
+   - Description: Modern laptop displaying website mockups on screen, 
+     clean workspace with coffee cup, professional lighting
+   - Where to find: 
+     * Unsplash.com - Search "laptop website mockup"
+     * Pexels.com - Search "web design workspace"
+     * PlaceHolder.it - Temporary placeholder
+
+RECOMMENDED SOURCES FOR FREE IMAGES:
+------------------------------------
+
+1. Unsplash (https://unsplash.com)
+   - High-quality, free stock photos
+   - No attribution required
+   - Search terms: "laptop mockup", "website design", "workspace"
+
+2. Pexels (https://pexels.com)
+   - Free stock photos and videos
+   - No attribution required
+   - Search terms: "computer work", "web design", "modern office"
+
+3. Pixabay (https://pixabay.com)
+   - Free images and videos
+   - Search terms: "laptop", "business", "technology"
+
+TEMPORARY PLACEHOLDER OPTION:
+------------------------------
+
+If you want to test the site without downloading images:
+
+1. Open index.html in a text editor
+2. Find the line: <img src="img/hero.jpg" alt="BrandFlow Website Examples" class="hero__img">
+3. Replace with: <img src="https://via.placeholder.com/1200x800/10b981/ffffff?text=BrandFlow+Hero+Image" alt="BrandFlow Website Examples" class="hero__img">
+
+This will display a temporary green placeholder image until you add your own.
+
+IMAGE OPTIMIZATION TIPS:
+------------------------
+
+- Use JPG format for photos
+- Keep file size under 500KB for fast loading
+- Optimize with TinyPNG.com or similar service
+- Use descriptive file names (hero.jpg, not IMG_1234.jpg)
+
+ONCE YOU HAVE YOUR IMAGE:
+--------------------------
+
+1. Save it as "hero.jpg"
+2. Place it in this /img folder
+3. Refresh your browser to see it appear

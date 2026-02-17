@@ -1,0 +1,18 @@
+# Netlify Configuration for BrandFlow Website
+
+[build]
+  publish = "."
+
+# Clean URLs - Remove .html extension
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat"
+  status = 301
+  force = false
+
+# Pretty URLs - Enable clean URL routing
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
