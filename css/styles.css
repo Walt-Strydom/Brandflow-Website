@@ -4098,7 +4098,7 @@ p {
 }
 
 .advisor__wrapper {
-    max-width: 800px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -4527,12 +4527,12 @@ body.advisor-loading-active {
 }
 
 .assessment-section__number {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
     background: var(--color-orange);
     color: var(--color-white);
-    border-radius: var(--radius-full);
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4850,6 +4850,216 @@ body.advisor-loading-active {
     opacity: 0.9;
 }
 
+/* ---- Advisor Step Indicator ---- */
+.advisor-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.advisor-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+.advisor-step__circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+}
+.advisor-step__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+.advisor-step__connector {
+    flex: 1;
+    height: 2px;
+    background: var(--color-border);
+    margin: 0 0.5rem;
+    margin-bottom: 1.25rem;
+    min-width: 40px;
+}
+.advisor-step--active .advisor-step__circle {
+    border-color: var(--color-orange);
+    background: var(--color-orange);
+    color: var(--color-white);
+}
+.advisor-step--active .advisor-step__label {
+    color: var(--color-orange);
+}
+.advisor-step--complete .advisor-step__circle {
+    border-color: var(--color-navy);
+    background: var(--color-navy);
+    color: var(--color-white);
+}
+.advisor-step--complete .advisor-step__label {
+    color: var(--color-navy);
+}
+
+/* ---- Advisor Prompt Chips ---- */
+.advisor-prompts {
+    margin-bottom: 1.5rem;
+}
+.advisor-prompts__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+}
+.advisor-prompts__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.advisor-prompt-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.875rem;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-navy);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.advisor-prompt-chip:hover {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+.advisor-prompt-chip.is-selected {
+    background: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-white);
+}
+
+/* ---- Advisor Form Meta / Char Counter ---- */
+.advisor-form__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+    gap: 1rem;
+}
+.advisor-char-counter {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ---- Advisor Results Summary Bar ---- */
+.advisor__results-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    background: var(--color-navy);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 1rem 2rem;
+    margin-bottom: 0;
+}
+.advisor__results-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0 2rem 0 0;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    margin-right: 2rem;
+}
+.advisor__results-summary-item:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+.advisor__results-summary-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+.advisor__results-summary-value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+/* ---- Advisor How-It-Works Inline Row ---- */
+.advisor-how-it-works {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+.advisor-how-it-works__step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+.advisor-how-it-works__num {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50%;
+    background: var(--color-orange);
+    color: var(--color-white);
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.advisor-how-it-works__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.advisor-how-it-works__text strong {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-navy);
+}
+.advisor-how-it-works__text span {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+.advisor-how-it-works__arrow {
+    color: var(--color-border);
+    font-size: 1.1rem;
+    margin: 0 0.75rem;
+    flex-shrink: 0;
+}
+
 /* Responsive Styles for Advisor */
 @media (max-width: 768px) {
     .advisor__wrapper {
@@ -5073,6 +5283,55 @@ body.advisor-loading-active {
     .assessment-next-step p {
         font-size: 0.9rem;
         line-height: 1.6;
+    }
+
+    /* Step indicator mobile */
+    .advisor-steps {
+        max-width: 100%;
+    }
+    .advisor-step__connector {
+        min-width: 20px;
+    }
+    .advisor-step__label {
+        font-size: 0.65rem;
+    }
+
+    /* Prompt chips mobile */
+    .advisor-prompt-chip {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.65rem;
+    }
+
+    /* Results summary bar mobile */
+    .advisor__results-summary {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .advisor__results-summary-item {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 0.75rem;
+    }
+    .advisor__results-summary-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* How it works inline row mobile */
+    .advisor-how-it-works {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    .advisor-how-it-works__arrow {
+        transform: rotate(90deg);
+        margin: 0;
+        align-self: center;
     }
 }
 

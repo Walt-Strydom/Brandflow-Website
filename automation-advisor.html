@@ -136,10 +136,10 @@
                         <p class="page-hero__subtitle">Describe any manual process or workflow in your business and receive an instant, AI-powered assessment — including automation opportunities, an implementation roadmap, and expected business impact.</p>
                         <div class="page-hero__buttons">
                             <a href="#automation-advisor" class="btn btn--primary">
-                                <iconify-icon icon="ph:robot" width="20" height="20"></iconify-icon>
+                                <iconify-icon icon="ph:lightning" width="20" height="20"></iconify-icon>
                                 Get My Free Assessment
                             </a>
-                            <a href="#how-it-works" class="btn btn--glass">
+                            <a href="#advisor-how-it-works" class="btn btn--glass">
                                 <span>How It Works</span>
                                 <iconify-icon icon="ph:arrow-down" width="18" height="18"></iconify-icon>
                             </a>
@@ -156,6 +156,33 @@
                     <span class="advisor__badge">AI-Powered Assessment</span>
                     <h2 class="section__title">BrandFlow Automation Engine</h2>
                     <p class="section__subtitle">Describe your business process and receive a professional, AI-generated assessment in seconds.</p>
+                </div>
+
+                <!-- Inline How It Works Row -->
+                <div class="advisor-how-it-works" id="advisor-how-it-works">
+                    <div class="advisor-how-it-works__step">
+                        <div class="advisor-how-it-works__num">1</div>
+                        <div class="advisor-how-it-works__text">
+                            <strong>Describe</strong>
+                            <span>Explain your manual process</span>
+                        </div>
+                    </div>
+                    <div class="advisor-how-it-works__arrow">›</div>
+                    <div class="advisor-how-it-works__step">
+                        <div class="advisor-how-it-works__num">2</div>
+                        <div class="advisor-how-it-works__text">
+                            <strong>AI Analysis</strong>
+                            <span>Engine evaluates your workflow</span>
+                        </div>
+                    </div>
+                    <div class="advisor-how-it-works__arrow">›</div>
+                    <div class="advisor-how-it-works__step">
+                        <div class="advisor-how-it-works__num">3</div>
+                        <div class="advisor-how-it-works__text">
+                            <strong>Get Assessment</strong>
+                            <span>Instant PDF-ready report</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Step Indicator -->
@@ -188,7 +215,7 @@
                         <form class="advisor__form" id="advisor-form">
                             <div class="advisor__form-header">
                                 <div class="advisor__form-icon">
-                                    <iconify-icon icon="ph:robot" width="32" height="32"></iconify-icon>
+                                    <iconify-icon icon="ph:lightning" width="32" height="32"></iconify-icon>
                                 </div>
                                 <div>
                                     <h3 class="advisor__form-title">Describe Your Process</h3>
@@ -200,11 +227,11 @@
                             <div class="advisor-prompts">
                                 <span class="advisor-prompts__label">Quick examples:</span>
                                 <div class="advisor-prompts__chips">
-                                    <button type="button" class="advisor-prompt-chip" data-prompt="We manually handle customer email inquiries, sorting and responding to each one individually. This takes our team 3+ hours per day and responses are often delayed or inconsistent.">Customer inquiries</button>
-                                    <button type="button" class="advisor-prompt-chip" data-prompt="Our invoicing process is entirely manual — we create invoices in Excel, email them to clients, and track payments in a spreadsheet. Invoices often go out late and we frequently have to chase payments.">Invoice processing</button>
-                                    <button type="button" class="advisor-prompt-chip" data-prompt="New employee onboarding requires HR to manually send welcome emails, set up system accounts, schedule orientation meetings, and collect documents — taking 2–3 days per new hire.">Employee onboarding</button>
-                                    <button type="button" class="advisor-prompt-chip" data-prompt="We track inventory levels in spreadsheets and manually reorder stock when we notice low levels. This leads to stockouts, delays, and excess ordering.">Inventory management</button>
-                                    <button type="button" class="advisor-prompt-chip" data-prompt="Sales leads arrive from multiple channels and we manually qualify and assign them to sales reps. We regularly lose track of leads and miss follow-up opportunities.">Lead qualification</button>
+                                    <button type="button" class="advisor-prompt-chip" data-prompt="We manually handle customer email inquiries, sorting and responding to each one individually. This takes our team 3+ hours per day and responses are often delayed or inconsistent."><iconify-icon icon="ph:chat-circle" width="14" height="14"></iconify-icon> Customer inquiries</button>
+                                    <button type="button" class="advisor-prompt-chip" data-prompt="Our invoicing process is entirely manual — we create invoices in Excel, email them to clients, and track payments in a spreadsheet. Invoices often go out late and we frequently have to chase payments."><iconify-icon icon="ph:invoice" width="14" height="14"></iconify-icon> Invoice processing</button>
+                                    <button type="button" class="advisor-prompt-chip" data-prompt="New employee onboarding requires HR to manually send welcome emails, set up system accounts, schedule orientation meetings, and collect documents — taking 2–3 days per new hire."><iconify-icon icon="ph:users" width="14" height="14"></iconify-icon> Employee onboarding</button>
+                                    <button type="button" class="advisor-prompt-chip" data-prompt="We track inventory levels in spreadsheets and manually reorder stock when we notice low levels. This leads to stockouts, delays, and excess ordering."><iconify-icon icon="ph:package" width="14" height="14"></iconify-icon> Inventory management</button>
+                                    <button type="button" class="advisor-prompt-chip" data-prompt="Sales leads arrive from multiple channels and we manually qualify and assign them to sales reps. We regularly lose track of leads and miss follow-up opportunities."><iconify-icon icon="ph:funnel" width="14" height="14"></iconify-icon> Lead qualification</button>
                                 </div>
                             </div>
 
@@ -258,6 +285,22 @@
                                 <iconify-icon icon="ph:arrow-counter-clockwise" width="20" height="20"></iconify-icon>
                                 New Assessment
                             </button>
+                        </div>
+
+                        <!-- Results Summary Bar -->
+                        <div class="advisor__results-summary" id="advisor-results-summary" style="display:none">
+                            <div class="advisor__results-summary-item">
+                                <span class="advisor__results-summary-label">Automation Level</span>
+                                <span class="advisor__results-summary-value" id="results-upgrade-level">—</span>
+                            </div>
+                            <div class="advisor__results-summary-item">
+                                <span class="advisor__results-summary-label">Reference</span>
+                                <span class="advisor__results-summary-value" id="results-reference">—</span>
+                            </div>
+                            <div class="advisor__results-summary-item">
+                                <span class="advisor__results-summary-label">Generated</span>
+                                <span class="advisor__results-summary-value" id="results-date">—</span>
+                            </div>
                         </div>
 
                         <div class="advisor__results-content" id="advisor-results-content">
@@ -330,157 +373,25 @@
             </div>
         </section>
 
-        <!-- How It Works Section -->
-        <section class="automation-intro section" id="how-it-works">
+        <!-- Stats Strip -->
+        <section class="stats-strip section--navy">
             <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">How the Automation Advisor Works</h2>
-                    <p class="section__subtitle">Three simple steps to instant, expert-level automation insights</p>
-                </div>
-
-                <div class="automation-intro__benefits">
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:pencil-line" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">1. Describe Your Process</h3>
-                        <p class="automation-benefit__text">Tell us about any manual task or workflow in your business. The more detail you provide, the more accurate the assessment.</p>
+                <div class="stats-strip__grid">
+                    <div class="stats-item">
+                        <span class="stats-item__count">Free</span>
+                        <span class="stats-item__label">No credit card needed</span>
                     </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:brain" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">2. AI Analysis</h3>
-                        <p class="automation-benefit__text">Our AI engine analyzes your process, identifies inefficiencies, and designs an automation solution tailored to your needs.</p>
+                    <div class="stats-item">
+                        <span class="stats-item__count">~30s</span>
+                        <span class="stats-item__label">Instant results</span>
                     </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:file-text" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">3. Get Your Assessment</h3>
-                        <p class="automation-benefit__text">Receive a detailed report with automation recommendations, cost estimates, implementation timeline, and expected ROI.</p>
+                    <div class="stats-item">
+                        <span class="stats-item__count">100%</span>
+                        <span class="stats-item__label">Private &amp; secure</span>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- What You Get Section -->
-        <section class="automation-services section">
-            <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">What Your Assessment Includes</h2>
-                    <p class="section__subtitle">Comprehensive automation insights in seconds</p>
-                </div>
-
-                <div class="services__grid">
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:magnifying-glass" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Process Analysis</h3>
-                        <p class="service-card__text">Detailed breakdown of your current process with identified bottlenecks and inefficiencies.</p>
-                    </div>
-
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:lightbulb" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Automation Recommendations</h3>
-                        <p class="service-card__text">Specific automation solutions and improvements tailored to your workflow.</p>
-                    </div>
-
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:chart-line-up" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Business Impact Analysis</h3>
-                        <p class="service-card__text">Expected time savings, cost reduction, and ROI from implementing the automation.</p>
-                    </div>
-
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:flow-arrow" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Technical Workflow</h3>
-                        <p class="service-card__text">Step-by-step technical implementation plan for the automated process.</p>
-                    </div>
-
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:calendar" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Implementation Timeline</h3>
-                        <p class="service-card__text">Realistic timeline for deploying the automation solution.</p>
-                    </div>
-
-                    <div class="service-card reveal-on-scroll">
-                        <div class="service-card__icon">
-                            <iconify-icon icon="ph:path" width="34" height="34"></iconify-icon>
-                        </div>
-                        <h3 class="service-card__title">Next Steps Roadmap</h3>
-                        <p class="service-card__text">A clear, actionable roadmap for moving from assessment to a live, implemented automation solution.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits Section -->
-        <section class="automation-intro section">
-            <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">Why Use the Automation Advisor?</h2>
-                    <p class="section__subtitle">Discover automation opportunities you didn't know existed</p>
-                </div>
-
-                <div class="automation-intro__benefits">
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:lightning" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">Instant Results</h3>
-                        <p class="automation-benefit__text">Get a professional automation assessment in seconds, not days. No waiting for consultants or lengthy meetings.</p>
-                    </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:gift" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">Completely Free</h3>
-                        <p class="automation-benefit__text">No credit card required. No hidden fees. Just valuable insights to help you make informed decisions.</p>
-                    </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:shield-check" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">Expert-Level Analysis</h3>
-                        <p class="automation-benefit__text">Powered by AI trained on thousands of automation projects. Get insights equivalent to hiring an automation consultant.</p>
-                    </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:download-simple" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">Downloadable Report</h3>
-                        <p class="automation-benefit__text">Save your assessment as a PDF. Share it with stakeholders, reference it later, or use it to plan your automation roadmap.</p>
-                    </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:lock-key" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">Secure & Private</h3>
-                        <p class="automation-benefit__text">Your process descriptions are processed securely and never shared. Your business information remains confidential.</p>
-                    </div>
-
-                    <div class="automation-benefit reveal-on-scroll">
-                        <div class="automation-benefit__icon">
-                            <iconify-icon icon="ph:hand-waving" width="40" height="40"></iconify-icon>
-                        </div>
-                        <h3 class="automation-benefit__title">No Obligation</h3>
-                        <p class="automation-benefit__text">Use the tool for research and planning. Only reach out to us if you decide to implement the recommendations.</p>
+                    <div class="stats-item">
+                        <span class="stats-item__count">PDF</span>
+                        <span class="stats-item__label">Downloadable report</span>
                     </div>
                 </div>
             </div>
@@ -495,7 +406,7 @@
                         <p class="automation-cta__text">Try the Automation Advisor now and discover how intelligent automation can transform your business operations. Free, instant, and no commitment required.</p>
                         <div class="automation-cta__buttons">
                             <a href="#automation-advisor" class="btn btn--primary btn--large">
-                                <iconify-icon icon="ph:robot" width="20" height="20"></iconify-icon>
+                                <iconify-icon icon="ph:lightning" width="20" height="20"></iconify-icon>
                                 Start Free Assessment
                             </a>
                             <a href="https://wa.me/27827853646?text=Hi!%20I%20have%20questions%20about%20the%20AI%20Automation%20Advisor." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
