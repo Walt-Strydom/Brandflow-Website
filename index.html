@@ -192,139 +192,173 @@
                     </p>
 
                     <div class="hero__buttons">
-                        <a href="/ai-advisor" class="btn btn--primary btn--pulse">
-                            Try AI Advisor
+                        <a href="/automation-advisor" class="btn btn--primary btn--pulse">
+                            <iconify-icon icon="ph:robot" width="18" height="18"></iconify-icon>
+                            Try Automation Advisor
                         </a>
-                        <a href="/pricing-web-development" class="btn btn--glass">
-                            <span>View Pricing</span>
-                            <iconify-icon icon="ant-design:arrow-right-outlined" width="20" height="20"></iconify-icon>
+                        <a href="#discovery-call" class="btn btn--glass">
+                            <iconify-icon icon="ph:calendar" width="20" height="20"></iconify-icon>
+                            <span>Book a Discovery Call</span>
                         </a>
                     </div>
 
                 </div>
                 <div class="hero__media">
                     <div class="hero__svg-container">
+                        <!-- Automation Process Visualiser -->
                         <svg class="hero__svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Background Layer - Gradient Circle -->
                             <defs>
-                                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:0.1" />
-                                    <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.1" />
+                                <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f97316"/>
+                                    <stop offset="100%" style="stop-color:#fb923c"/>
                                 </linearGradient>
-                                <linearGradient id="navyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1e3a5f" />
-                                    <stop offset="100%" style="stop-color:#2d4a6f" />
+                                <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1e3a5f"/>
+                                    <stop offset="100%" style="stop-color:#2d4a6f"/>
                                 </linearGradient>
-                                <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316" />
-                                    <stop offset="100%" style="stop-color:#fb923c" />
+                                <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#10b981"/>
+                                    <stop offset="100%" style="stop-color:#34d399"/>
                                 </linearGradient>
-                                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                                <filter id="svgShadow" x="-20%" y="-20%" width="140%" height="140%">
                                     <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.15"/>
                                 </filter>
                             </defs>
 
-                            <!-- Layer 1: Background Decorative Circles -->
-                            <g class="hero__svg-layer hero__svg-layer--bg">
-                                <circle cx="400" cy="80" r="60" fill="url(#bgGradient)" />
-                                <circle cx="80" cy="320" r="45" fill="url(#bgGradient)" />
-                                <circle cx="450" cy="350" r="30" fill="rgba(249, 115, 22, 0.08)" />
+                            <!-- Background ambient circles -->
+                            <circle cx="410" cy="70" r="70" fill="rgba(249,115,22,0.04)"/>
+                            <circle cx="80" cy="330" r="55" fill="rgba(30,58,95,0.04)"/>
+
+                            <!-- Pipeline label -->
+                            <text x="250" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="2">AUTOMATION PIPELINE</text>
+
+                            <!-- Flow paths with animated dashes -->
+                            <path id="flowPath1" d="M150 170 L210 170" stroke="#f97316" stroke-width="2.5" stroke-dasharray="6,4" fill="none" opacity="0.7"/>
+                            <path id="flowPath2" d="M300 170 L360 170" stroke="#1e3a5f" stroke-width="2.5" stroke-dasharray="6,4" fill="none" opacity="0.7"/>
+                            <path id="flowPath3" d="M405 205 Q405 275 310 275" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,4" fill="none" opacity="0.7"/>
+
+                            <!-- Node 1: Trigger -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="65" y="130" width="85" height="80" rx="16" fill="url(#orangeGrad)"/>
+                                <rect x="79" y="154" width="57" height="36" rx="5" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5"/>
+                                <path d="M79 158 L107.5 175 L136 158" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                            <text x="107" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e3a5f">TRIGGER</text>
+                            <text x="107" y="237" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Email / Form</text>
+
+                            <!-- Node 2: AI Process -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="210" y="130" width="90" height="80" rx="16" fill="url(#navyGrad)"/>
+                                <circle cx="255" cy="166" r="20" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                                <circle cx="255" cy="166" r="10" fill="rgba(249,115,22,0.9)"/>
+                                <line x1="255" y1="146" x2="255" y2="142" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="255" y1="186" x2="255" y2="190" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="235" y1="166" x2="231" y2="166" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="275" y1="166" x2="279" y2="166" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                            </g>
+                            <text x="255" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e3a5f">AI PROCESS</text>
+                            <text x="255" y="237" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Classify &amp; Route</text>
+
+                            <!-- Node 3: Action -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="360" y="130" width="90" height="80" rx="16" fill="url(#orangeGrad)"/>
+                                <circle cx="405" cy="170" r="16" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
+                                <circle cx="405" cy="170" r="7" fill="white"/>
+                                <rect x="401" y="150" width="8" height="7" rx="2" fill="white"/>
+                                <rect x="401" y="183" width="8" height="7" rx="2" fill="white"/>
+                                <rect x="385" y="166" width="7" height="8" rx="2" fill="white"/>
+                                <rect x="418" y="166" width="7" height="8" rx="2" fill="white"/>
+                            </g>
+                            <text x="405" y="224" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e3a5f">ACTION</text>
+                            <text x="405" y="237" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Update CRM / Send</text>
+
+                            <!-- Node 4: Done -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="210" y="248" width="90" height="80" rx="16" fill="url(#greenGrad)"/>
+                                <circle cx="255" cy="288" r="20" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
+                                <path d="M243 288 L252 297 L269 278" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <text x="255" y="342" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e3a5f">COMPLETE</text>
+                            <text x="255" y="355" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Zero manual steps</text>
+
+                            <!-- Animated flow dots -->
+                            <circle r="5" fill="#f97316" filter="url(#glow)">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s">
+                                    <mpath href="#flowPath1"/>
+                                </animateMotion>
+                            </circle>
+                            <circle r="5" fill="#ffffff" opacity="0.9" filter="url(#glow)">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.7s">
+                                    <mpath href="#flowPath2"/>
+                                </animateMotion>
+                            </circle>
+                            <circle r="5" fill="#10b981" filter="url(#glow)">
+                                <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.4s">
+                                    <mpath href="#flowPath3"/>
+                                </animateMotion>
+                            </circle>
+
+                            <!-- Floating badge: avg saving -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="18" y="42" width="138" height="52" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                                <circle cx="46" cy="68" r="16" fill="rgba(16,185,129,0.12)"/>
+                                <text x="46" y="73" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" fill="#10b981" font-weight="700">↑</text>
+                                <text x="104" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#1e3a5f">R18,400/mo</text>
+                                <text x="104" y="77" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">avg cost saved</text>
                             </g>
 
-                            <!-- Layer 2: Browser Window -->
-                            <g class="hero__svg-layer hero__svg-layer--browser" filter="url(#shadow)">
-                                <rect x="60" y="60" width="320" height="220" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
-                                <!-- Browser Header -->
-                                <rect x="60" y="60" width="320" height="36" rx="12" fill="#f8fafc"/>
-                                <rect x="60" y="84" width="320" height="12" fill="#f8fafc"/>
-                                <!-- Browser Dots -->
-                                <circle cx="82" cy="78" r="6" fill="#ff5f57"/>
-                                <circle cx="102" cy="78" r="6" fill="#ffbd2e"/>
-                                <circle cx="122" cy="78" r="6" fill="#28ca42"/>
-                                <!-- URL Bar -->
-                                <rect x="145" y="68" width="180" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-                                <!-- Content Lines -->
-                                <rect x="80" y="115" width="120" height="12" rx="2" fill="#1e3a5f"/>
-                                <rect x="80" y="140" width="280" height="8" rx="2" fill="#e2e8f0"/>
-                                <rect x="80" y="158" width="260" height="8" rx="2" fill="#e2e8f0"/>
-                                <rect x="80" y="176" width="200" height="8" rx="2" fill="#e2e8f0"/>
-                                <!-- CTA Button -->
-                                <rect x="80" y="205" width="100" height="32" rx="4" fill="url(#navyGradient)"/>
-                                <rect x="195" y="205" width="80" height="32" rx="4" fill="none" stroke="#1e3a5f" stroke-width="2"/>
-                                <!-- Image Placeholder -->
-                                <rect x="80" y="250" width="280" height="15" rx="2" fill="#f1f5f9"/>
+                            <!-- Floating badge: uptime -->
+                            <g filter="url(#svgShadow)">
+                                <rect x="344" y="308" width="138" height="52" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                                <circle cx="372" cy="334" r="16" fill="rgba(249,115,22,0.12)"/>
+                                <text x="372" y="338" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#f97316">99.9%</text>
+                                <text x="420" y="329" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#1e3a5f">Uptime SLA</text>
+                                <text x="420" y="343" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Monitored 24/7</text>
                             </g>
 
-                            <!-- Layer 3: Floating Code Card -->
-                            <g class="hero__svg-layer hero__svg-layer--code" filter="url(#shadow)">
-                                <rect x="300" y="140" width="160" height="120" rx="10" fill="#0f2744"/>
-                                <!-- Code Lines -->
-                                <rect x="320" y="160" width="60" height="6" rx="2" fill="#f97316"/>
-                                <rect x="390" y="160" width="50" height="6" rx="2" fill="#64748b"/>
-                                <rect x="320" y="176" width="40" height="6" rx="2" fill="#64748b"/>
-                                <rect x="370" y="176" width="70" height="6" rx="2" fill="#94a3b8"/>
-                                <rect x="330" y="192" width="80" height="6" rx="2" fill="#fb923c"/>
-                                <rect x="420" y="192" width="20" height="6" rx="2" fill="#64748b"/>
-                                <rect x="330" y="208" width="50" height="6" rx="2" fill="#94a3b8"/>
-                                <rect x="320" y="224" width="30" height="6" rx="2" fill="#64748b"/>
-                                <rect x="360" y="224" width="60" height="6" rx="2" fill="#f97316"/>
-                            </g>
-
-                            <!-- Layer 4: Design Elements Card -->
-                            <g class="hero__svg-layer hero__svg-layer--design" filter="url(#shadow)">
-                                <rect x="30" y="200" width="130" height="100" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
-                                <!-- Color Swatches -->
-                                <circle cx="60" cy="235" r="15" fill="#1e3a5f"/>
-                                <circle cx="100" cy="235" r="15" fill="#f97316"/>
-                                <circle cx="140" cy="235" r="15" fill="#64748b"/>
-                                <!-- Typography Lines -->
-                                <rect x="50" y="265" width="90" height="8" rx="2" fill="#1e3a5f"/>
-                                <rect x="50" y="280" width="60" height="6" rx="2" fill="#e2e8f0"/>
-                            </g>
-
-                            <!-- Layer 5: Floating Icons -->
-                            <g class="hero__svg-layer hero__svg-layer--icons">
-                                <!-- Responsive Icon -->
-                                <g class="hero__svg-icon hero__svg-icon--responsive">
-                                    <circle cx="420" cy="180" r="28" fill="url(#orangeGradient)" filter="url(#shadow)"/>
-                                    <rect x="408" y="168" width="24" height="16" rx="2" fill="#ffffff"/>
-                                    <rect x="415" y="186" width="10" height="14" rx="1" fill="#ffffff"/>
-                                </g>
-
-                                <!-- SEO/Chart Icon -->
-                                <g class="hero__svg-icon hero__svg-icon--chart">
-                                    <circle cx="180" cy="320" r="24" fill="url(#navyGradient)" filter="url(#shadow)"/>
-                                    <rect x="166" y="320" width="6" height="14" rx="1" fill="#ffffff"/>
-                                    <rect x="177" y="312" width="6" height="22" rx="1" fill="#ffffff"/>
-                                    <rect x="188" y="316" width="6" height="18" rx="1" fill="#ffffff"/>
-                                </g>
-
-                                <!-- Rocket/Speed Icon -->
-                                <g class="hero__svg-icon hero__svg-icon--rocket">
-                                    <circle cx="350" cy="40" r="22" fill="#ffffff" stroke="#f97316" stroke-width="3" filter="url(#shadow)"/>
-                                    <path d="M350 30 L356 45 L350 42 L344 45 Z" fill="#f97316"/>
-                                    <circle cx="346" cy="48" r="3" fill="#1e3a5f"/>
-                                    <circle cx="354" cy="48" r="3" fill="#1e3a5f"/>
-                                </g>
-                            </g>
-
-                            <!-- Layer 6: Connection Lines -->
-                            <g class="hero__svg-layer hero__svg-layer--lines">
-                                <path d="M380 180 Q400 140 420 180" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="5,5" opacity="0.5"/>
-                                <path d="M160 280 Q120 300 180 320" stroke="#1e3a5f" stroke-width="2" fill="none" stroke-dasharray="5,5" opacity="0.5"/>
-                            </g>
-
-                            <!-- Layer 7: Accent Dots -->
-                            <g class="hero__svg-layer hero__svg-layer--dots">
-                                <circle cx="250" cy="30" r="4" fill="#f97316"/>
-                                <circle cx="270" cy="40" r="3" fill="#1e3a5f"/>
-                                <circle cx="480" cy="250" r="5" fill="#f97316" opacity="0.6"/>
-                                <circle cx="20" cy="150" r="4" fill="#1e3a5f" opacity="0.4"/>
-                                <circle cx="490" cy="120" r="3" fill="#f97316" opacity="0.5"/>
-                            </g>
+                            <!-- Accent dots -->
+                            <circle cx="490" cy="110" r="4" fill="#f97316" opacity="0.5"/>
+                            <circle cx="18" cy="270" r="3" fill="#1e3a5f" opacity="0.4"/>
+                            <circle cx="480" cy="375" r="5" fill="#f97316" opacity="0.3"/>
                         </svg>
                     </div>
                 </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Strip -->
+        <section class="stats-strip" id="stats">
+            <div class="container">
+                <div class="stats-strip__grid">
+                    <div class="stats-item reveal-on-scroll">
+                        <div class="stats-item__number">
+                            <span class="stats-item__count" data-target="50">0</span><span class="stats-item__suffix">+</span>
+                        </div>
+                        <p class="stats-item__label">Automations Deployed</p>
+                    </div>
+                    <div class="stats-item reveal-on-scroll">
+                        <div class="stats-item__number">
+                            <span class="stats-item__count" data-target="3200">0</span><span class="stats-item__suffix">+</span>
+                        </div>
+                        <p class="stats-item__label">Hours Saved for Clients</p>
+                    </div>
+                    <div class="stats-item reveal-on-scroll">
+                        <div class="stats-item__number">
+                            <span class="stats-item__count" data-target="8">0</span>
+                        </div>
+                        <p class="stats-item__label">Industries Served</p>
+                    </div>
+                    <div class="stats-item reveal-on-scroll">
+                        <div class="stats-item__number">
+                            <span class="stats-item__count" data-target="99">0</span><span class="stats-item__suffix">.9%</span>
+                        </div>
+                        <p class="stats-item__label">Uptime Guarantee</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -340,9 +374,9 @@
                         <h3 class="advisor-banner__title">Get a Free AI-Powered Process Assessment</h3>
                         <p class="advisor-banner__description">Describe your current workflow and receive a detailed analysis of automation opportunities, implementation steps, and estimated ROI.</p>
                     </div>
-                    <a href="/ai-advisor" class="btn btn--primary btn--sm">
+                    <a href="/automation-advisor" class="btn btn--primary btn--sm">
                         <iconify-icon icon="ph:sparkle" width="16" height="16"></iconify-icon>
-                        Try AI Advisor
+                        Try Automation Advisor
                     </a>
                 </div>
             </div>
@@ -435,6 +469,671 @@
                             <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
                         </span>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             BEFORE vs AFTER AUTOMATION TOGGLE
+             ============================================= -->
+        <section class="before-after section" id="before-after">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">See the Difference</span>
+                    <h2 class="section__title">Manual vs Automated</h2>
+                    <p class="section__subtitle">A typical invoice handling process — before and after BrandFlow automation</p>
+                </div>
+
+                <div class="ba-toggle-bar">
+                    <button class="ba-toggle-btn ba-toggle-btn--active" id="ba-btn-before">
+                        <iconify-icon icon="ph:warning-circle" width="16" height="16"></iconify-icon>
+                        Before: Manual
+                    </button>
+                    <button class="ba-toggle-btn" id="ba-btn-after">
+                        <iconify-icon icon="ph:lightning" width="16" height="16"></iconify-icon>
+                        After: Automated
+                    </button>
+                </div>
+
+                <div class="ba-panels">
+                    <!-- Before Panel -->
+                    <div class="ba-panel ba-panel--before" id="ba-panel-before">
+                        <div class="ba-panel__header">
+                            <iconify-icon icon="ph:warning-circle-fill" width="18" height="18"></iconify-icon>
+                            Invoice Handling — ~65 minutes &amp; 4 people
+                        </div>
+                        <div class="ba-steps">
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:envelope-open" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Read &amp; classify invoice email</span>
+                                    <span class="ba-step__time">~15 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Context switching</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:table" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Manually enter data into spreadsheet</span>
+                                    <span class="ba-step__time">~20 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Error-prone</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:paper-plane-tilt" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Email finance team to action</span>
+                                    <span class="ba-step__time">~5 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Lost in inbox</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:user" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Finance team reviews &amp; approves</span>
+                                    <span class="ba-step__time">~20 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Waiting period</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:bell-ringing" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Manual follow-up reminder</span>
+                                    <span class="ba-step__time">~5 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Often forgotten</span>
+                            </div>
+                        </div>
+                        <div class="ba-panel__footer ba-panel__footer--before">
+                            <span><iconify-icon icon="ph:clock" width="15" height="15"></iconify-icon> ~65 minutes per invoice</span>
+                            <span><iconify-icon icon="ph:users" width="15" height="15"></iconify-icon> 4 manual touchpoints</span>
+                            <span><iconify-icon icon="ph:currency-zar" width="15" height="15"></iconify-icon> ~R162 in labour cost</span>
+                        </div>
+                    </div>
+
+                    <!-- After Panel -->
+                    <div class="ba-panel ba-panel--after ba-panel--hidden" id="ba-panel-after">
+                        <div class="ba-panel__header ba-panel__header--after">
+                            <iconify-icon icon="ph:lightning-fill" width="18" height="18"></iconify-icon>
+                            Automated Invoice Handling — ~3 seconds, 0 people
+                        </div>
+                        <div class="ba-steps">
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:envelope" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Invoice email detected automatically</span>
+                                    <span class="ba-step__time">Instant</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Auto-triggered</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:brain" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">AI extracts &amp; validates all data</span>
+                                    <span class="ba-step__time">~1 sec</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">99.5% accuracy</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:database" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">CRM &amp; accounting system auto-updated</span>
+                                    <span class="ba-step__time">~1 sec</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Zero data entry</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:check-circle" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Finance notified, invoice filed &amp; audit trail created</span>
+                                    <span class="ba-step__time">~1 sec</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Audit-ready</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:calendar-check" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Payment reminder scheduled automatically</span>
+                                    <span class="ba-step__time">Automatic</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Never missed</span>
+                            </div>
+                        </div>
+                        <div class="ba-panel__footer ba-panel__footer--after">
+                            <span><iconify-icon icon="ph:lightning" width="15" height="15"></iconify-icon> ~3 seconds per invoice</span>
+                            <span><iconify-icon icon="ph:robot" width="15" height="15"></iconify-icon> 0 manual touchpoints</span>
+                            <span><iconify-icon icon="ph:trend-up" width="15" height="15"></iconify-icon> R162 labour saved each time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ba-cta">
+                    <p>Your team handles processes like this every day. What's that costing you?</p>
+                    <a href="#roi-calculator" class="btn btn--primary">
+                        <iconify-icon icon="ph:calculator" width="18" height="18"></iconify-icon>
+                        Calculate My ROI
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             INDUSTRY USE CASES — SA SME FOCUS
+             ============================================= -->
+        <section class="use-cases section section--alt" id="use-cases">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Built for South African SMEs</span>
+                    <h2 class="section__title">Automation for Your Industry</h2>
+                    <p class="section__subtitle">Real workflows, real savings — tailored to the challenges SA businesses face every day</p>
+                </div>
+
+                <div class="use-cases__grid">
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:storefront" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Retail &amp; E-commerce</h3>
+                        <ul class="use-case-card__list">
+                            <li>Auto-reorder stock when levels drop below threshold</li>
+                            <li>Sync inventory across Shopify, Takealot &amp; physical store</li>
+                            <li>Automated customer order status notifications via WhatsApp</li>
+                            <li>Returns &amp; refund processing workflow</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>12 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:briefcase" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Professional Services</h3>
+                        <ul class="use-case-card__list">
+                            <li>Invoice generation &amp; delivery on project completion</li>
+                            <li>Client onboarding document collection &amp; e-signature</li>
+                            <li>Automated payment reminders &amp; follow-ups</li>
+                            <li>Timesheet capture &amp; billing reconciliation</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>8 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:heart-pulse" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Healthcare &amp; Wellness</h3>
+                        <ul class="use-case-card__list">
+                            <li>Appointment confirmations &amp; reminders via SMS/WhatsApp</li>
+                            <li>Patient intake form automation &amp; record creation</li>
+                            <li>No-show follow-up &amp; rebooking workflows</li>
+                            <li>POPIA-compliant patient communication logging</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>15 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:truck" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Logistics &amp; Transport</h3>
+                        <ul class="use-case-card__list">
+                            <li>Driver route optimisation &amp; dispatch notifications</li>
+                            <li>Proof of delivery capture &amp; automated client notification</li>
+                            <li>Vehicle maintenance scheduling alerts</li>
+                            <li>Fuel &amp; expense report automation</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>20 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:building-office" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Real Estate</h3>
+                        <ul class="use-case-card__list">
+                            <li>Lead capture from Property24 / Private Property → CRM</li>
+                            <li>Automated viewing scheduling &amp; confirmations</li>
+                            <li>Offer &amp; mandate document workflows</li>
+                            <li>Commission calculation &amp; statement generation</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>10 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:fork-knife" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Hospitality &amp; Food</h3>
+                        <ul class="use-case-card__list">
+                            <li>Reservation confirmations &amp; pre-arrival WhatsApp messages</li>
+                            <li>Post-visit review request automation</li>
+                            <li>Staff scheduling &amp; shift notification workflows</li>
+                            <li>Supplier order placement when stock is low</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>9 hrs/week</strong></div>
+                    </div>
+                </div>
+
+                <div class="use-cases__footer">
+                    <p>Don't see your industry? <a href="/automation-advisor">Describe your process</a> and our AI will identify automation opportunities specific to your business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             ROI CALCULATOR
+             ============================================= -->
+        <section class="roi-calculator section" id="roi-calculator">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Free Tool</span>
+                    <h2 class="section__title">Automation ROI Calculator</h2>
+                    <p class="section__subtitle">Find out exactly how much your manual processes are costing you — and what automation would save</p>
+                </div>
+
+                <div class="roi-calc__wrapper">
+                    <div class="roi-calc__form-side">
+                        <div class="roi-calc__group">
+                            <label class="roi-calc__label">
+                                <iconify-icon icon="ph:list-bullets" width="16" height="16"></iconify-icon>
+                                Which process do you want to automate?
+                            </label>
+                            <select class="roi-calc__select" id="roi-process">
+                                <option value="70">Invoice &amp; payment processing</option>
+                                <option value="75">Data entry &amp; spreadsheet management</option>
+                                <option value="65">Lead follow-up &amp; CRM updates</option>
+                                <option value="80">Report generation &amp; distribution</option>
+                                <option value="60">Appointment scheduling &amp; reminders</option>
+                                <option value="70">Document creation &amp; e-signatures</option>
+                                <option value="65">Inventory tracking &amp; reordering</option>
+                                <option value="75">Customer onboarding workflows</option>
+                            </select>
+                        </div>
+
+                        <div class="roi-calc__group">
+                            <label class="roi-calc__label">
+                                <iconify-icon icon="ph:clock" width="16" height="16"></iconify-icon>
+                                Hours per week your team spends on this task
+                            </label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="roi-hours" min="1" max="40" value="10">
+                                <div class="roi-calc__slider-labels">
+                                    <span>1 hr</span>
+                                    <span class="roi-calc__slider-val"><span id="roi-hours-val">10</span> hrs/week</span>
+                                    <span>40 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="roi-calc__group">
+                            <label class="roi-calc__label">
+                                <iconify-icon icon="ph:users" width="16" height="16"></iconify-icon>
+                                Number of team members doing this task
+                            </label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="roi-people" min="1" max="20" value="2">
+                                <div class="roi-calc__slider-labels">
+                                    <span>1</span>
+                                    <span class="roi-calc__slider-val"><span id="roi-people-val">2</span> people</span>
+                                    <span>20</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="roi-calc__group">
+                            <label class="roi-calc__label">
+                                <iconify-icon icon="ph:currency-zar" width="16" height="16"></iconify-icon>
+                                Average hourly labour cost (R/hour)
+                            </label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="roi-rate" min="50" max="500" step="10" value="150">
+                                <div class="roi-calc__slider-labels">
+                                    <span>R50</span>
+                                    <span class="roi-calc__slider-val">R<span id="roi-rate-val">150</span>/hr</span>
+                                    <span>R500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roi-calc__results-side">
+                        <div class="roi-results">
+                            <div class="roi-results__header">Your Automation Opportunity</div>
+
+                            <div class="roi-result-item">
+                                <span class="roi-result-item__label">Current monthly labour cost</span>
+                                <span class="roi-result-item__value" id="roi-monthly-cost">R0</span>
+                            </div>
+
+                            <div class="roi-result-item roi-result-item--highlight">
+                                <span class="roi-result-item__label">Estimated monthly saving</span>
+                                <span class="roi-result-item__value" id="roi-monthly-saving">R0</span>
+                            </div>
+
+                            <div class="roi-result-item">
+                                <span class="roi-result-item__label">Annual saving</span>
+                                <span class="roi-result-item__value" id="roi-annual-saving">R0</span>
+                            </div>
+
+                            <div class="roi-result-item">
+                                <span class="roi-result-item__label">Hours freed per month</span>
+                                <span class="roi-result-item__value" id="roi-hours-freed">0 hrs</span>
+                            </div>
+
+                            <div class="roi-payback">
+                                <iconify-icon icon="ph:trend-up" width="20" height="20"></iconify-icon>
+                                Typical ROI achieved within <strong id="roi-payback-period">3–6 months</strong>
+                            </div>
+
+                            <a href="/automation-advisor" class="btn btn--primary roi-results__cta">
+                                <iconify-icon icon="ph:robot" width="16" height="16"></iconify-icon>
+                                Get My Free Automation Plan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             AUTOMATION READINESS QUIZ
+             ============================================= -->
+        <section class="quiz-section section section--alt" id="readiness-quiz">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">5-Minute Assessment</span>
+                    <h2 class="section__title">Are You Ready to Automate?</h2>
+                    <p class="section__subtitle">Answer 5 quick questions and discover your automation readiness score</p>
+                </div>
+
+                <div class="quiz-wrapper">
+                    <div class="quiz-progress" id="quiz-progress">
+                        <div class="quiz-progress__bar" id="quiz-progress-bar" style="width:20%"></div>
+                    </div>
+                    <div class="quiz-counter" id="quiz-counter">Question <span id="quiz-q-num">1</span> of 5</div>
+
+                    <div class="quiz-questions" id="quiz-questions">
+                        <!-- Q1 -->
+                        <div class="quiz-question active" data-question="0">
+                            <h3 class="quiz-question__text">How many hours per week does your team spend on repetitive admin tasks?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q0" value="0"><span>Less than 5 hours</span></label>
+                                <label class="quiz-option"><input type="radio" name="q0" value="1"><span>5 – 15 hours</span></label>
+                                <label class="quiz-option"><input type="radio" name="q0" value="2"><span>More than 15 hours</span></label>
+                            </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="quiz-question" data-question="1">
+                            <h3 class="quiz-question__text">How many manual hand-offs occur in your main business process (e.g. email → spreadsheet → person → system)?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q1" value="0"><span>1 – 2 hand-offs</span></label>
+                                <label class="quiz-option"><input type="radio" name="q1" value="1"><span>3 – 5 hand-offs</span></label>
+                                <label class="quiz-option"><input type="radio" name="q1" value="2"><span>More than 5 hand-offs</span></label>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="quiz-question" data-question="2">
+                            <h3 class="quiz-question__text">Do you use spreadsheets or manual emails to track business-critical data (clients, orders, invoices)?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q2" value="0"><span>Rarely — we have proper systems</span></label>
+                                <label class="quiz-option"><input type="radio" name="q2" value="1"><span>Sometimes — mixed approach</span></label>
+                                <label class="quiz-option"><input type="radio" name="q2" value="2"><span>Yes — spreadsheets are our main tool</span></label>
+                            </div>
+                        </div>
+                        <!-- Q4 -->
+                        <div class="quiz-question" data-question="3">
+                            <h3 class="quiz-question__text">How often do errors occur because of manual data entry or re-keying information?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q3" value="0"><span>Rarely or never</span></label>
+                                <label class="quiz-option"><input type="radio" name="q3" value="1"><span>Occasionally — it's a known issue</span></label>
+                                <label class="quiz-option"><input type="radio" name="q3" value="2"><span>Frequently — it costs us time &amp; money</span></label>
+                            </div>
+                        </div>
+                        <!-- Q5 -->
+                        <div class="quiz-question" data-question="4">
+                            <h3 class="quiz-question__text">How many disconnected software tools does your team juggle daily (e.g. email, WhatsApp, spreadsheets, accounting, CRM)?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q4" value="0"><span>1 – 2 tools (well integrated)</span></label>
+                                <label class="quiz-option"><input type="radio" name="q4" value="1"><span>3 – 4 tools (some integration)</span></label>
+                                <label class="quiz-option"><input type="radio" name="q4" value="2"><span>5+ tools (mostly disconnected)</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-nav">
+                        <button class="btn btn--glass btn--sm" id="quiz-prev" disabled>
+                            <iconify-icon icon="ph:arrow-left" width="16" height="16"></iconify-icon>
+                            Previous
+                        </button>
+                        <button class="btn btn--primary btn--sm" id="quiz-next">
+                            Next
+                            <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon>
+                        </button>
+                    </div>
+
+                    <!-- Results Panel -->
+                    <div class="quiz-result" id="quiz-result" style="display:none">
+                        <div class="quiz-result__score-ring">
+                            <svg viewBox="0 0 120 120" class="quiz-score-ring">
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#f97316" stroke-width="8"
+                                    stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"
+                                    class="quiz-score-ring__arc" id="quiz-score-arc"
+                                    style="transform:rotate(-90deg);transform-origin:center"/>
+                            </svg>
+                            <div class="quiz-result__score-text">
+                                <span class="quiz-result__score-num" id="quiz-score-num">0</span>
+                                <span class="quiz-result__score-max">/10</span>
+                            </div>
+                        </div>
+                        <div class="quiz-result__content">
+                            <h3 class="quiz-result__title" id="quiz-result-title">Exploring Automation</h3>
+                            <p class="quiz-result__desc" id="quiz-result-desc"></p>
+                            <div class="quiz-result__actions">
+                                <a href="/automation-advisor" class="btn btn--primary">
+                                    <iconify-icon icon="ph:robot" width="16" height="16"></iconify-icon>
+                                    Get My Free AI Assessment
+                                </a>
+                                <button class="btn btn--glass btn--sm" id="quiz-retake">Retake Quiz</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             INSIGHTS SECTION
+             ============================================= -->
+        <section class="insights section" id="insights">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Knowledge Base</span>
+                    <h2 class="section__title">Automation Insights</h2>
+                    <p class="section__subtitle">Practical guides and case studies for South African SMEs looking to automate and scale</p>
+                </div>
+
+                <div class="insights-grid" id="insights-grid">
+                    <!-- Populated from data/insights.json via JavaScript -->
+                    <div class="insights-loading" id="insights-loading">
+                        <div class="insights-loading__spinner"></div>
+                        <p>Loading articles...</p>
+                    </div>
+                </div>
+
+                <div class="insights__footer" id="insights-footer" style="display:none">
+                    <a href="#" class="btn btn--glass insights__view-all" id="insights-view-all">
+                        View All Articles
+                        <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             DISCOVERY CALL CTA
+             ============================================= -->
+        <section class="discovery-cta section" id="discovery-call">
+            <div class="container">
+                <div class="discovery-cta__inner">
+                    <div class="discovery-cta__content">
+                        <span class="discovery-cta__eyebrow">Free — No Obligation</span>
+                        <h2 class="discovery-cta__title">Book a 30-Minute Discovery Call</h2>
+                        <p class="discovery-cta__desc">Tell us about your business and its biggest bottlenecks. We'll map out exactly which processes to automate first, what it'll cost, and what ROI to expect — all in 30 minutes.</p>
+                        <ul class="discovery-cta__list">
+                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Process audit &amp; bottleneck identification</li>
+                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Custom automation roadmap for your business</li>
+                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Honest ROI estimate — no sales pressure</li>
+                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Tailored to SA market &amp; pricing reality</li>
+                        </ul>
+                        <div class="discovery-cta__actions">
+                            <a href="https://wa.me/27827853646?text=Hi!%20I'd%20like%20to%20book%20a%2030-minute%20discovery%20call%20about%20automation%20for%20my%20business."
+                               class="btn btn--primary btn--lg"
+                               target="_blank" rel="noopener noreferrer">
+                                <iconify-icon icon="ph:calendar-check" width="20" height="20"></iconify-icon>
+                                Book via WhatsApp
+                            </a>
+                            <a href="mailto:hello@brandflow.co.za?subject=Discovery%20Call%20Request&body=Hi%20BrandFlow%2C%20I'd%20like%20to%20book%20a%2030-minute%20discovery%20call."
+                               class="btn btn--glass btn--lg">
+                                <iconify-icon icon="ph:envelope" width="20" height="20"></iconify-icon>
+                                Book via Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="discovery-cta__visual">
+                        <div class="discovery-cta__card">
+                            <div class="discovery-cta__card-header">
+                                <div class="discovery-cta__avatar">
+                                    <iconify-icon icon="ph:user-circle" width="40" height="40"></iconify-icon>
+                                </div>
+                                <div>
+                                    <p class="discovery-cta__name">BrandFlow Team</p>
+                                    <p class="discovery-cta__role">Automation Specialist</p>
+                                </div>
+                                <span class="discovery-cta__status">
+                                    <span class="discovery-cta__status-dot"></span>
+                                    Available
+                                </span>
+                            </div>
+                            <div class="discovery-cta__agenda">
+                                <p class="discovery-cta__agenda-title">What we'll cover:</p>
+                                <div class="discovery-cta__agenda-item">
+                                    <span class="discovery-cta__agenda-time">0:00</span>
+                                    <span>Understand your business &amp; processes</span>
+                                </div>
+                                <div class="discovery-cta__agenda-item">
+                                    <span class="discovery-cta__agenda-time">10:00</span>
+                                    <span>Identify top 3 automation opportunities</span>
+                                </div>
+                                <div class="discovery-cta__agenda-item">
+                                    <span class="discovery-cta__agenda-time">20:00</span>
+                                    <span>ROI estimate &amp; implementation roadmap</span>
+                                </div>
+                                <div class="discovery-cta__agenda-item">
+                                    <span class="discovery-cta__agenda-time">28:00</span>
+                                    <span>Q&amp;A — your questions answered</span>
+                                </div>
+                            </div>
+                            <div class="discovery-cta__card-footer">
+                                <iconify-icon icon="ph:clock" width="16" height="16"></iconify-icon>
+                                30 minutes · Free · No commitment
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SLA / SECURITY COMMITMENT
+             ============================================= -->
+        <section class="sla-section section section--alt" id="security">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Enterprise-Grade Security</span>
+                    <h2 class="section__title">Your Data Is Safe With Us</h2>
+                    <p class="section__subtitle">We implement the same security standards used by enterprise organisations — now accessible to SA SMEs</p>
+                </div>
+
+                <div class="sla-grid">
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--green">
+                            <iconify-icon icon="ph:shield-check" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">99.9% Uptime SLA</h3>
+                        <p class="sla-card__desc">All client automation systems are guaranteed 99.9% availability. We proactively monitor every workflow and intervene before issues impact your operations.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--blue">
+                            <iconify-icon icon="ph:lock-key" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">Hardened Infrastructure</h3>
+                        <p class="sla-card__desc">All systems run in isolated, containerised environments with no public internet exposure for internal services. Every component communicates on encrypted private networks only.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--orange">
+                            <iconify-icon icon="ph:eye" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">24/7 Security Monitoring</h3>
+                        <p class="sla-card__desc">Continuous, automated security monitoring across all infrastructure. All system logs are collected, correlated, and monitored in real time. Anomalies trigger immediate alerts.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--blue">
+                            <iconify-icon icon="ph:identification-card" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">POPIA Compliant</h3>
+                        <p class="sla-card__desc">All automation workflows and data handling practices are designed to be compliant with South Africa's Protection of Personal Information Act. Your clients' data is handled lawfully and responsibly.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--green">
+                            <iconify-icon icon="ph:lock-laminated" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">End-to-End Encryption</h3>
+                        <p class="sla-card__desc">All data in transit is encrypted using industry-standard TLS. Sensitive credentials and API keys are stored in encrypted vaults — never in plain text or accessible via public endpoints.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--orange">
+                            <iconify-icon icon="ph:clock-countdown" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">Rapid Incident Response</h3>
+                        <p class="sla-card__desc">Any service disruption triggers immediate automated recovery procedures. Our team is alerted within minutes. Clients are proactively notified with status updates until resolution.</p>
+                    </div>
+                </div>
+
+                <div class="sla-badges">
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:shield-check-fill" width="20" height="20"></iconify-icon>
+                        POPIA Compliant
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:lock-key-fill" width="20" height="20"></iconify-icon>
+                        TLS Encrypted
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:eye-fill" width="20" height="20"></iconify-icon>
+                        24/7 Monitored
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:trend-up-fill" width="20" height="20"></iconify-icon>
+                        99.9% Uptime
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:container-fill" width="20" height="20"></iconify-icon>
+                        Containerised
+                    </div>
                 </div>
             </div>
         </section>
@@ -535,14 +1234,44 @@
     <!-- JavaScript -->
     <script src="js/main.js"></script>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20services."
-        class="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp">
-        <iconify-icon icon="ant-design:whats-app-outlined" width="32" height="32"></iconify-icon>
-    </a>
+    <!-- WhatsApp Quick-Reply Panel -->
+    <div class="wa-widget" id="wa-widget">
+        <div class="wa-panel" id="wa-panel" aria-hidden="true">
+            <div class="wa-panel__header">
+                <div class="wa-panel__avatar">
+                    <iconify-icon icon="mdi:whatsapp" width="22" height="22"></iconify-icon>
+                </div>
+                <div class="wa-panel__info">
+                    <p class="wa-panel__name">BrandFlow</p>
+                    <p class="wa-panel__status">
+                        <span class="wa-panel__dot"></span>
+                        Typically replies within the hour
+                    </p>
+                </div>
+                <button class="wa-panel__close" id="wa-close" aria-label="Close WhatsApp panel">
+                    <iconify-icon icon="ph:x" width="18" height="18"></iconify-icon>
+                </button>
+            </div>
+            <div class="wa-panel__body">
+                <div class="wa-panel__bubble">
+                    <p>Hi! 👋 Interested in automating a process or want to explore what BrandFlow can do for your business?</p>
+                    <p>We'd love to help — send us a message and we'll get back to you quickly.</p>
+                    <span class="wa-panel__time">BrandFlow Team</span>
+                </div>
+            </div>
+            <a href="https://wa.me/27827853646?text=Hi%20BrandFlow!%20I%27m%20interested%20in%20automating%20a%20process%20for%20my%20business."
+               class="wa-panel__cta"
+               target="_blank" rel="noopener noreferrer">
+                <iconify-icon icon="mdi:whatsapp" width="20" height="20"></iconify-icon>
+                Start a Conversation
+            </a>
+        </div>
+        <button class="wa-trigger" id="wa-trigger" aria-label="Open WhatsApp chat">
+            <iconify-icon icon="mdi:whatsapp" width="30" height="30" class="wa-trigger__icon wa-trigger__icon--open"></iconify-icon>
+            <iconify-icon icon="ph:x" width="24" height="24" class="wa-trigger__icon wa-trigger__icon--close" style="display:none"></iconify-icon>
+            <span class="wa-trigger__badge" id="wa-badge">1</span>
+        </button>
+    </div>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookie-banner">
