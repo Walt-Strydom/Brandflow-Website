@@ -143,8 +143,7 @@
                     </li>
                     <li class="nav__item">
                         <a href="/ai-advisor" class="nav__link nav__link--highlight">
-                            <iconify-icon icon="ph:robot" width="16" height="16"></iconify-icon>
-                            AI ADVISOR
+                            AUTOMATION ADVISOR
                         </a>
                     </li>
                     <li class="nav__item">
@@ -174,60 +173,61 @@
                     <div class="page-hero__svg-container">
                         <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="whyGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316" />
-                                    <stop offset="100%" style="stop-color:#fb923c" />
-                                </linearGradient>
-                                <linearGradient id="whyGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.2" />
-                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
-                                </linearGradient>
-                                <filter id="whyShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.15"/>
+                                <filter id="whyShadow" x="-10%" y="-10%" width="120%" height="130%">
+                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
                                 </filter>
                             </defs>
 
-                            <!-- Background decorative elements -->
-                            <g class="page-svg__layer page-svg__layer--bg">
-                                <circle cx="350" cy="50" r="40" fill="url(#whyGradient2)" />
-                                <circle cx="50" cy="270" r="30" fill="url(#whyGradient2)" />
-                                <circle cx="380" cy="280" r="20" fill="rgba(249, 115, 22, 0.15)" />
+                            <!-- Left side: Without BrandFlow (chaos) -->
+                            <g opacity="0.7">
+                                <!-- Scattered nodes -->
+                                <circle cx="60" cy="80" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+                                <circle cx="115" cy="55" r="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <circle cx="140" cy="130" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                                <circle cx="70" cy="170" r="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <circle cx="130" cy="215" r="14" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                                <circle cx="55" cy="250" r="10" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                                <!-- Chaotic crossing lines -->
+                                <line x1="60" y1="80" x2="140" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                <line x1="115" y1="55" x2="70" y2="170" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,5"/>
+                                <line x1="140" y1="130" x2="55" y2="250" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                <line x1="60" y1="80" x2="130" y2="215" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="2,6"/>
+                                <line x1="70" y1="170" x2="130" y2="215" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,5"/>
+                                <!-- Label -->
+                                <text x="95" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" font-weight="600" letter-spacing="0.05em">WITHOUT BRANDFLOW</text>
                             </g>
 
-                            <!-- Central shield/trust badge -->
-                            <g class="page-svg__layer page-svg__layer--main" filter="url(#whyShadow)">
-                                <path d="M200 40 L280 70 L280 160 C280 210 245 250 200 280 C155 250 120 210 120 160 L120 70 Z" fill="#ffffff" stroke="none"/>
-                                <path d="M200 55 L265 80 L265 155 C265 195 238 230 200 255 C162 230 135 195 135 155 L135 80 Z" fill="url(#whyGradient1)"/>
-                                <!-- Checkmark -->
-                                <path d="M170 155 L190 175 L235 125" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" class="page-svg__check"/>
-                            </g>
+                            <!-- Centre divider -->
+                            <line x1="200" y1="20" x2="200" y2="300" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="6,4"/>
+                            <text x="200" y="16" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">VS</text>
 
-                            <!-- Floating badges -->
-                            <g class="page-svg__layer page-svg__layer--badge1">
-                                <circle cx="80" cy="100" r="35" fill="#ffffff" filter="url(#whyShadow)"/>
-                                <text x="80" y="95" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a5f">100%</text>
-                                <text x="80" y="112" text-anchor="middle" font-size="9" fill="#64748b">Satisfaction</text>
+                            <!-- Right side: With BrandFlow (clean, ordered) -->
+                            <!-- Pipeline nodes top-to-bottom -->
+                            <g filter="url(#whyShadow)">
+                                <!-- Node 1 -->
+                                <circle cx="310" cy="70" r="18" fill="#f97316"/>
+                                <line x1="310" y1="88" x2="310" y2="115" stroke="rgba(249,115,22,0.5)" stroke-width="2"/>
+                                <!-- Node 2 -->
+                                <circle cx="310" cy="133" r="18" fill="#f97316"/>
+                                <line x1="310" y1="151" x2="310" y2="178" stroke="rgba(249,115,22,0.5)" stroke-width="2"/>
+                                <!-- Node 3 -->
+                                <circle cx="310" cy="196" r="18" fill="#f97316"/>
+                                <line x1="310" y1="214" x2="310" y2="241" stroke="rgba(249,115,22,0.5)" stroke-width="2"/>
+                                <!-- Node 4 -->
+                                <circle cx="310" cy="259" r="18" fill="#f97316"/>
                             </g>
-
-                            <g class="page-svg__layer page-svg__layer--badge2">
-                                <circle cx="320" cy="130" r="35" fill="#ffffff" filter="url(#whyShadow)"/>
-                                <text x="320" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a5f">50+</text>
-                                <text x="320" y="142" text-anchor="middle" font-size="9" fill="#64748b">Projects</text>
-                            </g>
-
-                            <g class="page-svg__layer page-svg__layer--badge3">
-                                <circle cx="100" cy="220" r="30" fill="#ffffff" filter="url(#whyShadow)"/>
-                                <text x="100" y="216" text-anchor="middle" font-size="11" font-weight="700" fill="#f97316">Fast</text>
-                                <text x="100" y="230" text-anchor="middle" font-size="8" fill="#64748b">Delivery</text>
-                            </g>
-
-                            <!-- Stars -->
-                            <g class="page-svg__layer page-svg__layer--stars">
-                                <polygon points="320,220 324,232 337,232 327,240 330,252 320,244 310,252 313,240 303,232 316,232" fill="#f97316"/>
-                                <polygon points="60" cy="160" r="3" fill="#f97316"/>
-                                <circle cx="340" cy="60" r="3" fill="#ffffff" opacity="0.6"/>
-                                <circle cx="30" cy="140" r="4" fill="#f97316" opacity="0.4"/>
-                            </g>
+                            <!-- Checkmarks in nodes -->
+                            <path d="M302 70 L308 76 L320 62" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M302 133 L308 139 L320 125" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M302 196 L308 202 L320 188" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M302 259 L308 265 L320 251" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Labels -->
+                            <text x="235" y="74" text-anchor="end" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Expert Build</text>
+                            <text x="235" y="137" text-anchor="end" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Full Ownership</text>
+                            <text x="235" y="200" text-anchor="end" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Rapid Delivery</text>
+                            <text x="235" y="263" text-anchor="end" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Ongoing Support</text>
+                            <!-- Right label -->
+                            <text x="310" y="292" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f97316" font-weight="700" letter-spacing="0.05em">WITH BRANDFLOW</text>
                         </svg>
                     </div>
                 </div>
@@ -305,16 +305,360 @@
                 <!-- CTA Section -->
                 <div class="section-cta reveal-on-scroll">
                     <h3 class="section-cta__title">See What We Can Build for You</h3>
-                    <p class="section-cta__text">Use our AI Advisor for a free process assessment, or get in touch to discuss your project directly.</p>
+                    <p class="section-cta__text">Use our Automation Advisor for a free process assessment, or get in touch to discuss your project directly.</p>
                     <div class="section-cta__buttons">
                         <a href="/ai-advisor" class="btn btn--primary">
                             <iconify-icon icon="ph:robot" width="18" height="18"></iconify-icon>
-                            Try AI Advisor
+                            Try Automation Advisor
                         </a>
                         <a href="/contact" class="btn btn--primary">
                             <span>Contact Us</span>
                             <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             BEFORE vs AFTER AUTOMATION TOGGLE
+             ============================================= -->
+        <section class="before-after section" id="before-after">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Real-World Impact</span>
+                    <h2 class="section__title">Manual vs Automated</h2>
+                    <p class="section__subtitle">A typical invoice handling process — before and after BrandFlow automation</p>
+                </div>
+
+                <div class="ba-toggle-bar">
+                    <button class="ba-toggle-btn ba-toggle-btn--active" id="ba-btn-before">
+                        <iconify-icon icon="ph:warning-circle" width="16" height="16"></iconify-icon>
+                        Before: Manual
+                    </button>
+                    <button class="ba-toggle-btn" id="ba-btn-after">
+                        <iconify-icon icon="ph:lightning" width="16" height="16"></iconify-icon>
+                        After: Automated
+                    </button>
+                </div>
+
+                <div class="ba-panels">
+                    <!-- Before Panel -->
+                    <div class="ba-panel ba-panel--before" id="ba-panel-before">
+                        <div class="ba-panel__header">
+                            <iconify-icon icon="ph:warning-circle-fill" width="18" height="18"></iconify-icon>
+                            Invoice Handling — ~65 minutes &amp; 4 people
+                        </div>
+                        <div class="ba-steps">
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:envelope-open" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Read &amp; classify invoice email</span>
+                                    <span class="ba-step__time">~15 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Context switching</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:table" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Manually enter data into spreadsheet</span>
+                                    <span class="ba-step__time">~20 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Error-prone</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:paper-plane-tilt" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Email finance team to action</span>
+                                    <span class="ba-step__time">~5 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Lost in inbox</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:user" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Finance team reviews &amp; approves</span>
+                                    <span class="ba-step__time">~20 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Waiting period</span>
+                            </div>
+                            <div class="ba-connector ba-connector--manual"></div>
+                            <div class="ba-step ba-step--manual">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:credit-card" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Payment processed manually</span>
+                                    <span class="ba-step__time">~5 min</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--pain">Human error risk</span>
+                            </div>
+                        </div>
+                        <div class="ba-panel__footer ba-panel__footer--before">
+                            <span><iconify-icon icon="ph:clock" width="15" height="15"></iconify-icon> ~65 minutes per invoice</span>
+                            <span><iconify-icon icon="ph:users" width="15" height="15"></iconify-icon> 4 people involved</span>
+                            <span><iconify-icon icon="ph:warning" width="15" height="15"></iconify-icon> High error rate</span>
+                        </div>
+                    </div>
+
+                    <!-- After Panel -->
+                    <div class="ba-panel ba-panel--after" id="ba-panel-after" style="display:none">
+                        <div class="ba-panel__header">
+                            <iconify-icon icon="ph:lightning-fill" width="18" height="18"></iconify-icon>
+                            Invoice Handling — ~3 seconds &amp; 0 people
+                        </div>
+                        <div class="ba-steps">
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:envelope-open" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Invoice email received &amp; auto-classified by AI</span>
+                                    <span class="ba-step__time">Instant</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Zero effort</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:database" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Data extracted &amp; written to system automatically</span>
+                                    <span class="ba-step__time">~1 sec</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">100% accurate</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:check-circle" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Approval routing triggered based on amount rules</span>
+                                    <span class="ba-step__time">~1 sec</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Rules-based</span>
+                            </div>
+                            <div class="ba-connector ba-connector--auto"></div>
+                            <div class="ba-step ba-step--auto">
+                                <div class="ba-step__icon"><iconify-icon icon="ph:calendar-check" width="20" height="20"></iconify-icon></div>
+                                <div class="ba-step__body">
+                                    <span class="ba-step__name">Payment reminder scheduled automatically</span>
+                                    <span class="ba-step__time">Automatic</span>
+                                </div>
+                                <span class="ba-step__tag ba-step__tag--win">Never missed</span>
+                            </div>
+                        </div>
+                        <div class="ba-panel__footer ba-panel__footer--after">
+                            <span><iconify-icon icon="ph:lightning" width="15" height="15"></iconify-icon> ~3 seconds per invoice</span>
+                            <span><iconify-icon icon="ph:robot" width="15" height="15"></iconify-icon> 0 manual touchpoints</span>
+                            <span><iconify-icon icon="ph:trend-up" width="15" height="15"></iconify-icon> 40%+ cost reduction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ba-cta">
+                    <p>Your team handles processes like this every day. What's that costing you?</p>
+                    <a href="/process-automation#roi-calculator" class="btn btn--primary">
+                        <iconify-icon icon="ph:calculator" width="18" height="18"></iconify-icon>
+                        Calculate My ROI
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             AUTOMATION READINESS QUIZ
+             ============================================= -->
+        <section class="quiz-section section section--alt" id="readiness-quiz">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">5-Minute Assessment</span>
+                    <h2 class="section__title">Are You Ready to Automate?</h2>
+                    <p class="section__subtitle">Answer 5 quick questions and discover your automation readiness score</p>
+                </div>
+
+                <div class="quiz-wrapper">
+                    <div class="quiz-progress" id="quiz-progress">
+                        <div class="quiz-progress__bar" id="quiz-progress-bar" style="width:20%"></div>
+                    </div>
+                    <div class="quiz-counter" id="quiz-counter">Question <span id="quiz-q-num">1</span> of 5</div>
+
+                    <div class="quiz-questions" id="quiz-questions">
+                        <!-- Q1 -->
+                        <div class="quiz-question active" data-question="0">
+                            <h3 class="quiz-question__text">How many hours per week does your team spend on repetitive admin tasks?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q0" value="0"><span>Less than 5 hours</span></label>
+                                <label class="quiz-option"><input type="radio" name="q0" value="1"><span>5 – 15 hours</span></label>
+                                <label class="quiz-option"><input type="radio" name="q0" value="2"><span>More than 15 hours</span></label>
+                            </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="quiz-question" data-question="1">
+                            <h3 class="quiz-question__text">How many manual hand-offs occur in your main business process (e.g. email → spreadsheet → person → system)?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q1" value="0"><span>1 – 2 hand-offs</span></label>
+                                <label class="quiz-option"><input type="radio" name="q1" value="1"><span>3 – 5 hand-offs</span></label>
+                                <label class="quiz-option"><input type="radio" name="q1" value="2"><span>More than 5 hand-offs</span></label>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="quiz-question" data-question="2">
+                            <h3 class="quiz-question__text">Do you use spreadsheets or manual emails to track business-critical data (clients, orders, invoices)?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q2" value="0"><span>Rarely — we have proper systems</span></label>
+                                <label class="quiz-option"><input type="radio" name="q2" value="1"><span>Sometimes — mixed approach</span></label>
+                                <label class="quiz-option"><input type="radio" name="q2" value="2"><span>Yes — spreadsheets are our main tool</span></label>
+                            </div>
+                        </div>
+                        <!-- Q4 -->
+                        <div class="quiz-question" data-question="3">
+                            <h3 class="quiz-question__text">Has your team ever missed a deadline or made an error due to a manual process?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q3" value="0"><span>Rarely or never</span></label>
+                                <label class="quiz-option"><input type="radio" name="q3" value="1"><span>Occasionally</span></label>
+                                <label class="quiz-option"><input type="radio" name="q3" value="2"><span>Frequently — it's a real problem</span></label>
+                            </div>
+                        </div>
+                        <!-- Q5 -->
+                        <div class="quiz-question" data-question="4">
+                            <h3 class="quiz-question__text">How would you describe your team's reaction to adopting new technology?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="q4" value="0"><span>Resistant — we like how things are</span></label>
+                                <label class="quiz-option"><input type="radio" name="q4" value="1"><span>Cautious but open</span></label>
+                                <label class="quiz-option"><input type="radio" name="q4" value="2"><span>Enthusiastic — we want to improve</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-nav" id="quiz-nav">
+                        <button class="btn btn--glass btn--sm" id="quiz-prev" style="display:none">Back</button>
+                        <button class="btn btn--primary btn--sm" id="quiz-next">Next Question</button>
+                    </div>
+
+                    <div class="quiz-result" id="quiz-result" style="display:none">
+                        <div class="quiz-result__score-wrap">
+                            <div class="quiz-result__score" id="quiz-score-display">0</div>
+                            <div class="quiz-result__label" id="quiz-score-label">Calculating...</div>
+                        </div>
+                        <p class="quiz-result__desc" id="quiz-result-desc"></p>
+                        <div class="quiz-result__actions">
+                            <a href="/automation-advisor" class="btn btn--primary">
+                                Get My Free AI Assessment
+                            </a>
+                            <button class="btn btn--glass btn--sm" id="quiz-retake">Retake Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             INSIGHTS SECTION
+             ============================================= -->
+        <section class="insights section" id="insights">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Knowledge Base</span>
+                    <h2 class="section__title">Automation Insights</h2>
+                    <p class="section__subtitle">Practical guides and case studies for South African SMEs looking to automate and scale</p>
+                </div>
+
+                <div class="insights-grid" id="insights-grid">
+                    <!-- Populated from data/insights.json via JavaScript -->
+                    <div class="insights-loading" id="insights-loading">
+                        <div class="insights-loading__spinner"></div>
+                        <p>Loading articles...</p>
+                    </div>
+                </div>
+
+                <div class="insights__footer" id="insights-footer" style="display:none">
+                    <a href="#" class="btn btn--glass insights__view-all" id="insights-view-all">
+                        View All Articles
+                        <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SLA / SECURITY COMMITMENT
+             ============================================= -->
+        <section class="sla-section section section--alt" id="security">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Enterprise-Grade Security</span>
+                    <h2 class="section__title">Your Data Is Safe With Us</h2>
+                    <p class="section__subtitle">We implement the same security standards used by enterprise organisations — now accessible to SA SMEs</p>
+                </div>
+
+                <div class="sla-grid">
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--green">
+                            <iconify-icon icon="ph:shield-check" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">99.9% Uptime SLA</h3>
+                        <p class="sla-card__desc">All client automation systems are guaranteed 99.9% availability. We proactively monitor every workflow and intervene before issues impact your operations.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--blue">
+                            <iconify-icon icon="ph:lock-key" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">Hardened Infrastructure</h3>
+                        <p class="sla-card__desc">All systems run in isolated, containerised environments with no public internet exposure for internal services. Every component communicates on encrypted private networks only.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--orange">
+                            <iconify-icon icon="ph:eye" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">24/7 Security Monitoring</h3>
+                        <p class="sla-card__desc">Continuous, automated security monitoring across all infrastructure. All system logs are collected, correlated, and monitored in real time. Anomalies trigger immediate alerts.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--blue">
+                            <iconify-icon icon="ph:identification-card" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">POPIA Compliant</h3>
+                        <p class="sla-card__desc">All automation workflows and data handling practices are designed to be compliant with South Africa's Protection of Personal Information Act. Your clients' data is handled lawfully and responsibly.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--green">
+                            <iconify-icon icon="ph:lock-laminated" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">End-to-End Encryption</h3>
+                        <p class="sla-card__desc">All data in transit is encrypted using industry-standard TLS. Sensitive credentials and API keys are stored in encrypted vaults — never in plain text or accessible via public endpoints.</p>
+                    </div>
+
+                    <div class="sla-card reveal-on-scroll">
+                        <div class="sla-card__icon sla-card__icon--orange">
+                            <iconify-icon icon="ph:clock-countdown" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="sla-card__title">Rapid Incident Response</h3>
+                        <p class="sla-card__desc">Any service disruption triggers immediate automated recovery procedures. Our team is alerted within minutes. Clients are proactively notified with status updates until resolution.</p>
+                    </div>
+                </div>
+
+                <div class="sla-badges">
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:shield-check-fill" width="20" height="20"></iconify-icon>
+                        POPIA Compliant
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:lock-key-fill" width="20" height="20"></iconify-icon>
+                        TLS Encrypted
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:eye-fill" width="20" height="20"></iconify-icon>
+                        24/7 Monitored
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:trend-up-fill" width="20" height="20"></iconify-icon>
+                        99.9% Uptime
+                    </div>
+                    <div class="sla-badge">
+                        <iconify-icon icon="ph:container-fill" width="20" height="20"></iconify-icon>
+                        Containerised
                     </div>
                 </div>
             </div>

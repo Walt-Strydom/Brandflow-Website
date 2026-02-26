@@ -119,10 +119,10 @@ const heroRotatingTitle = document.querySelector('.hero__title-rotating');
 if (heroRotatingTitle) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rotatingPhrases = [
-        'Make your <span class="hero__keyword">brand</span> easy to <span class="hero__keyword">trust</span> online',
-        'Go from <span class="hero__keyword">idea</span> to <span class="hero__keyword">live website</span>, fast',
-        '<span class="hero__keyword">Enterprise-grade</span> website for <span class="hero__keyword">SMEs</span>',
-        'Turn <span class="hero__keyword">clicks</span> into <span class="hero__keyword">clients</span>'
+        'Build systems that <span class="hero__keyword">work while you sleep</span>',
+        '<span class="hero__keyword">AI engineering</span> for businesses that mean business',
+        'From <span class="hero__keyword">concept</span> to <span class="hero__keyword">production</span> \u2014 end to end',
+        '<span class="hero__keyword">Automate</span> the repetitive. <span class="hero__keyword">Amplify</span> the exceptional'
     ];
 
     let phraseIndex = 0;
@@ -1270,6 +1270,24 @@ function displayAdvisorResults(data) {
     `;
 
     advisorResultsContent.innerHTML = html;
+
+    // Populate results summary bar
+    const summaryEl = document.getElementById('advisor-results-summary');
+    const levelEl = document.getElementById('results-upgrade-level');
+    const refEl = document.getElementById('results-reference');
+    const dateEl = document.getElementById('results-date');
+    if (summaryEl) {
+        if (levelEl && data.upgradeLevel) levelEl.textContent = data.upgradeLevel;
+        if (refEl) {
+            // currentAssessmentId is set asynchronously after tracking; use fallback until available
+            const refVal = window.currentAssessmentId || ('BF-' + Date.now().toString(36).toUpperCase());
+            refEl.textContent = refVal;
+            // Update once tracking completes (poll once after 3s)
+            setTimeout(() => { if (window.currentAssessmentId && refEl) refEl.textContent = window.currentAssessmentId; }, 3000);
+        }
+        if (dateEl) dateEl.textContent = new Date().toLocaleDateString('en-ZA', {day: 'numeric', month: 'short', year: 'numeric'});
+        summaryEl.style.display = 'flex';
+    }
 }
 
 // Escape HTML to prevent XSS
@@ -1985,7 +2003,7 @@ if (btnBefore && btnAfter) {
             desc = 'You have clear automation opportunities available. Several of your processes are repetitive and error-prone enough to benefit from automation. A targeted approach starting with your highest-frequency tasks will deliver strong results.';
         } else {
             title = 'Exploring Automation';
-            desc = 'Your current processes are relatively lean, but there may still be opportunities to gain efficiency. Our AI Advisor can help identify where automation would add the most value in your specific business context.';
+            desc = 'Your current processes are relatively lean, but there may still be opportunities to gain efficiency. Our Automation Advisor can help identify where automation would add the most value in your specific business context.';
         }
 
         document.getElementById('quiz-result-title').textContent = title;
