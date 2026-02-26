@@ -571,7 +571,7 @@ p {
 .header:not(.scrolled) .nav__link--btn:hover,
 .header.scrolled .nav__link--btn,
 .header.scrolled .nav__link--btn:hover {
-    color: var(--color-white);
+    color: var(--color-white) !important;
 }
 
 /* AI Advisor Highlight Button in Nav */
@@ -869,128 +869,6 @@ p {
     overflow: visible;
 }
 
-/* Base layer transitions */
-.hero__svg-layer {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-}
-
-.hero__svg-icon {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Background layer - subtle pulse animation */
-.hero__svg-layer--bg circle {
-    animation: bgPulse 4s ease-in-out infinite;
-}
-
-.hero__svg-layer--bg circle:nth-child(2) {
-    animation-delay: 1s;
-}
-
-.hero__svg-layer--bg circle:nth-child(3) {
-    animation-delay: 2s;
-}
-
-@keyframes bgPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-}
-
-/* Connection lines animation */
-.hero__svg-layer--lines path {
-    stroke-dasharray: 5, 5;
-    animation: dashMove 2s linear infinite;
-}
-
-@keyframes dashMove {
-    0% { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: 20; }
-}
-
-/* Floating dots subtle movement */
-.hero__svg-layer--dots circle {
-    animation: dotFloat 3s ease-in-out infinite;
-}
-
-.hero__svg-layer--dots circle:nth-child(odd) {
-    animation-direction: reverse;
-    animation-delay: 0.5s;
-}
-
-@keyframes dotFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-/* ============================================
-   HERO SVG HOVER ANIMATIONS
-   ============================================ */
-
-/* Browser window - lift and slight rotation on hover */
-.hero__svg-container:hover .hero__svg-layer--browser {
-    transform: translateY(-8px) rotate(-1deg);
-}
-
-/* Code card - lift and move slightly right */
-.hero__svg-container:hover .hero__svg-layer--code {
-    transform: translate(10px, -12px) rotate(2deg);
-}
-
-/* Design card - lift and move slightly left */
-.hero__svg-container:hover .hero__svg-layer--design {
-    transform: translate(-8px, -10px) rotate(-2deg);
-}
-
-/* Icons - bounce and scale on hover */
-.hero__svg-container:hover .hero__svg-icon--responsive {
-    transform: translateY(-15px) scale(1.15);
-}
-
-.hero__svg-container:hover .hero__svg-icon--chart {
-    transform: translateY(-12px) scale(1.12);
-    transition-delay: 0.05s;
-}
-
-.hero__svg-container:hover .hero__svg-icon--rocket {
-    transform: translateY(-18px) scale(1.1) rotate(-10deg);
-    transition-delay: 0.1s;
-}
-
-/* Connection lines - increase opacity on hover */
-.hero__svg-container:hover .hero__svg-layer--lines {
-    opacity: 0.8;
-}
-
-.hero__svg-container:hover .hero__svg-layer--lines path {
-    animation-duration: 1s;
-}
-
-/* Background circles - expand on hover */
-.hero__svg-container:hover .hero__svg-layer--bg {
-    transform: scale(1.05);
-}
-
-/* Dots - scatter effect on hover */
-.hero__svg-container:hover .hero__svg-layer--dots circle:nth-child(1) {
-    transform: translate(-5px, -8px);
-}
-
-.hero__svg-container:hover .hero__svg-layer--dots circle:nth-child(2) {
-    transform: translate(8px, -5px);
-}
-
-.hero__svg-container:hover .hero__svg-layer--dots circle:nth-child(3) {
-    transform: translate(5px, 10px);
-}
-
-.hero__svg-container:hover .hero__svg-layer--dots circle:nth-child(4) {
-    transform: translate(-8px, 5px);
-}
-
-.hero__svg-container:hover .hero__svg-layer--dots circle:nth-child(5) {
-    transform: translate(3px, -10px);
-}
-
 /* Responsive adjustments for SVG */
 @media (max-width: 768px) {
     .hero__svg-container {
@@ -1005,18 +883,6 @@ p {
         padding: 0.5rem;
     }
 
-    /* Reduce animation intensity on mobile */
-    .hero__svg-container:hover .hero__svg-layer--browser {
-        transform: translateY(-4px) rotate(-0.5deg);
-    }
-
-    .hero__svg-container:hover .hero__svg-layer--code {
-        transform: translate(5px, -6px) rotate(1deg);
-    }
-
-    .hero__svg-container:hover .hero__svg-layer--design {
-        transform: translate(-4px, -5px) rotate(-1deg);
-    }
 }
 
 .btn--glass {
@@ -2282,6 +2148,133 @@ p {
 
 /* btn--pulse class kept for compatibility, no glow animation */
 
+/* Orange CTA button — for hero secondary actions */
+.btn--orange {
+    background: var(--color-orange);
+    color: #fff;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.btn--orange::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+.btn--orange:hover::before {
+    left: 150%;
+}
+
+.btn--orange:hover {
+    background: var(--color-orange-dark);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Alternating section backgrounds for layout variety */
+.section--tinted {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, rgba(30, 58, 95, 0.04) 100%);
+}
+
+.section--navy {
+    background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%);
+}
+
+.section--navy .section__title {
+    color: #fff;
+}
+
+.section--navy .section__subtitle {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section--navy .automation-benefit {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.section--navy .automation-benefit__title {
+    color: #fff;
+}
+
+.section--navy .automation-benefit__text {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section--navy .automation-benefit__icon {
+    background: rgba(249, 115, 22, 0.2);
+    color: var(--color-orange-light);
+}
+
+.section--navy .service-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.section--navy .service-card__title {
+    color: #fff;
+}
+
+.section--navy .service-card__text {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section--navy .service-card__icon {
+    color: var(--color-orange-light);
+    background: rgba(249, 115, 22, 0.15);
+}
+
+.section--navy .service-card__link {
+    color: var(--color-orange-light);
+}
+
+.section--navy .industry-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.section--navy .industry-card__title {
+    color: #fff;
+}
+
+.section--navy .industry-card__text {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section--navy .industry-card__icon {
+    color: var(--color-orange-light);
+    background: rgba(249, 115, 22, 0.15);
+}
+
+.section--navy .feature-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.section--navy .feature-card__title {
+    color: #fff;
+}
+
+.section--navy .feature-card__text {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.section--navy .feature-card__icon {
+    background: rgba(249, 115, 22, 0.2);
+    border-color: rgba(249, 115, 22, 0.3);
+    color: var(--color-orange-light);
+}
+
 /* ============================================
    FOOTER
    ============================================ */
@@ -3149,183 +3142,6 @@ p {
     overflow: visible;
 }
 
-/* Page SVG Layer Animations */
-.page-svg__layer {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-}
-
-/* Background pulse animation */
-.page-svg__layer--bg circle {
-    animation: pageSvgPulse 4s ease-in-out infinite;
-}
-
-.page-svg__layer--bg circle:nth-child(2) {
-    animation-delay: 1s;
-}
-
-.page-svg__layer--bg circle:nth-child(3) {
-    animation-delay: 2s;
-}
-
-@keyframes pageSvgPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.08); opacity: 0.7; }
-}
-
-/* Main element subtle float animation */
-.page-svg__layer--main {
-    animation: pageSvgFloat 4s ease-in-out infinite;
-}
-
-@keyframes pageSvgFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-/* Card/badge float animations */
-.page-svg__layer--card1,
-.page-svg__layer--badge1,
-.page-svg__layer--node1,
-.page-svg__layer--bubble1 {
-    animation: pageSvgFloatLeft 3.5s ease-in-out infinite;
-}
-
-.page-svg__layer--card2,
-.page-svg__layer--badge2,
-.page-svg__layer--node2,
-.page-svg__layer--bubble2 {
-    animation: pageSvgFloatRight 3.5s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-.page-svg__layer--card3,
-.page-svg__layer--badge3,
-.page-svg__layer--node3,
-.page-svg__layer--at {
-    animation: pageSvgFloatLeft 3.8s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-.page-svg__layer--card4,
-.page-svg__layer--node4,
-.page-svg__layer--icons {
-    animation: pageSvgFloatRight 3.8s ease-in-out infinite;
-    animation-delay: 1.5s;
-}
-
-@keyframes pageSvgFloatLeft {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-5px, -8px); }
-}
-
-@keyframes pageSvgFloatRight {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(5px, -8px); }
-}
-
-/* Connection lines animated dash */
-.page-svg__layer--lines path {
-    animation: pageSvgDash 2s linear infinite;
-}
-
-@keyframes pageSvgDash {
-    0% { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: 20; }
-}
-
-/* Dots/particles subtle movement */
-.page-svg__layer--dots circle,
-.page-svg__layer--stars circle,
-.page-svg__layer--particles circle {
-    animation: pageSvgDotFloat 3s ease-in-out infinite;
-}
-
-.page-svg__layer--dots circle:nth-child(odd),
-.page-svg__layer--particles circle:nth-child(odd) {
-    animation-direction: reverse;
-    animation-delay: 0.5s;
-}
-
-@keyframes pageSvgDotFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-4px) scale(1.1); }
-}
-
-/* Arrows/gears pulse */
-.page-svg__layer--arrows circle,
-.page-svg__layer--gears circle {
-    animation: pageSvgArrowPulse 2s ease-in-out infinite;
-}
-
-.page-svg__layer--arrows circle:nth-child(even),
-.page-svg__layer--gears > circle:nth-child(even) {
-    animation-delay: 0.3s;
-}
-
-@keyframes pageSvgArrowPulse {
-    0%, 100% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.2); opacity: 1; }
-}
-
-/* Checkmark draw animation */
-.page-svg__check {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: pageSvgCheckDraw 1.5s ease-out forwards;
-    animation-delay: 0.5s;
-}
-
-@keyframes pageSvgCheckDraw {
-    to { stroke-dashoffset: 0; }
-}
-
-/* ============================================
-   PAGE HERO SVG HOVER ANIMATIONS
-   ============================================ */
-.page-hero__svg-container:hover .page-svg__layer--main {
-    transform: translateY(-12px) scale(1.02);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--card1,
-.page-hero__svg-container:hover .page-svg__layer--badge1,
-.page-hero__svg-container:hover .page-svg__layer--node1,
-.page-hero__svg-container:hover .page-svg__layer--bubble1 {
-    transform: translate(-10px, -15px);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--card2,
-.page-hero__svg-container:hover .page-svg__layer--badge2,
-.page-hero__svg-container:hover .page-svg__layer--node2,
-.page-hero__svg-container:hover .page-svg__layer--bubble2 {
-    transform: translate(10px, -15px);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--card3,
-.page-hero__svg-container:hover .page-svg__layer--badge3,
-.page-hero__svg-container:hover .page-svg__layer--node3,
-.page-hero__svg-container:hover .page-svg__layer--at {
-    transform: translate(-8px, -12px);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--card4,
-.page-hero__svg-container:hover .page-svg__layer--node4,
-.page-hero__svg-container:hover .page-svg__layer--icons {
-    transform: translate(8px, -12px);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--bg {
-    transform: scale(1.05);
-}
-
-.page-hero__svg-container:hover .page-svg__layer--lines path {
-    animation-duration: 1s;
-    opacity: 0.8;
-}
-
-.page-hero__svg-container:hover .page-svg__layer--arrows circle {
-    animation-duration: 0.8s;
-}
-
 @media (max-width: 768px) {
     .page-hero {
         padding: 7rem 0 3rem;
@@ -3359,28 +3175,6 @@ p {
         max-width: 320px;
     }
 
-    /* Reduce animation intensity on mobile */
-    .page-hero__svg-container:hover .page-svg__layer--main {
-        transform: translateY(-6px) scale(1.01);
-    }
-
-    .page-hero__svg-container:hover .page-svg__layer--card1,
-    .page-hero__svg-container:hover .page-svg__layer--badge1,
-    .page-hero__svg-container:hover .page-svg__layer--node1,
-    .page-hero__svg-container:hover .page-svg__layer--bubble1,
-    .page-hero__svg-container:hover .page-svg__layer--card2,
-    .page-hero__svg-container:hover .page-svg__layer--badge2,
-    .page-hero__svg-container:hover .page-svg__layer--node2,
-    .page-hero__svg-container:hover .page-svg__layer--bubble2,
-    .page-hero__svg-container:hover .page-svg__layer--card3,
-    .page-hero__svg-container:hover .page-svg__layer--badge3,
-    .page-hero__svg-container:hover .page-svg__layer--node3,
-    .page-hero__svg-container:hover .page-svg__layer--at,
-    .page-hero__svg-container:hover .page-svg__layer--card4,
-    .page-hero__svg-container:hover .page-svg__layer--node4,
-    .page-hero__svg-container:hover .page-svg__layer--icons {
-        transform: translate(0, -6px);
-    }
 }
 
 /* ============================================

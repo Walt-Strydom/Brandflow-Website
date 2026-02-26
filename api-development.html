@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -150,11 +150,138 @@
                             <a href="/contact" class="btn btn--primary">
                                 Get API Consultation
                             </a>
-                            <a href="#capabilities" class="btn btn--glass">
+                            <a href="#capabilities" class="btn btn--orange">
                                 <span>Explore API Services</span>
                                 <iconify-icon icon="ph:arrow-down" width="18" height="18"></iconify-icon>
                             </a>
                         </div>
+                    </div>
+                    <div class="page-hero__svg-container">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="ap-g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#fb923c"/></linearGradient>
+                                <linearGradient id="ap-navy" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1e3a5f"/><stop offset="100%" stop-color="#0f2744"/></linearGradient>
+                                <filter id="ap-sh"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.18"/></filter>
+                                <marker id="ap-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#f97316"/></marker>
+                            </defs>
+
+                            <!-- Background -->
+                            <circle cx="42" cy="42" r="35" fill="#fff" opacity="0.08"/>
+                            <circle cx="372" cy="285" r="25" fill="#f97316" opacity="0.06"/>
+
+                            <!-- Client devices (left) -->
+                            <g filter="url(#ap-sh)">
+                                <!-- Browser -->
+                                <rect x="16" y="68" width="56" height="44" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+                                <rect x="16" y="68" width="56" height="14" rx="6" fill="#f1f5f9"/>
+                                <rect x="16" y="76" width="56" height="6" fill="#f1f5f9"/>
+                                <circle cx="28" cy="75" r="3" fill="#ff5f57"/><circle cx="37" cy="75" r="3" fill="#ffbd2e"/><circle cx="46" cy="75" r="3" fill="#28ca42"/>
+                                <rect x="22" y="88" width="44" height="4" rx="1" fill="#e2e8f0"/>
+                                <rect x="22" y="96" width="32" height="3" rx="1" fill="#e2e8f0"/>
+                                <text x="44" y="120" text-anchor="middle" font-size="6.5" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Browser</text>
+                                <!-- Mobile -->
+                                <rect x="20" y="132" width="44" height="70" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+                                <rect x="20" y="132" width="44" height="12" rx="6" fill="url(#ap-navy)"/>
+                                <rect x="20" y="138" width="44" height="6" fill="url(#ap-navy)"/>
+                                <rect x="26" y="150" width="32" height="18" rx="2" fill="#f8fafc"/>
+                                <rect x="26" y="172" width="32" height="4" rx="1" fill="#e2e8f0"/>
+                                <rect x="26" y="180" width="22" height="3" rx="1" fill="#e2e8f0"/>
+                                <rect x="30" y="194" width="24" height="4" rx="2" fill="#e2e8f0"/>
+                                <text x="42" y="214" text-anchor="middle" font-size="6.5" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Mobile</text>
+                            </g>
+
+                            <!-- Connector arrows client→gateway -->
+                            <line x1="74" y1="92" x2="128" y2="92" stroke="#f97316" stroke-width="2" marker-end="url(#ap-arr)" stroke-dasharray="5 3" opacity="0.6"/>
+                            <line x1="66" y1="168" x2="128" y2="168" stroke="#f97316" stroke-width="2" marker-end="url(#ap-arr)" stroke-dasharray="5 3" opacity="0.6"/>
+
+                            <!-- API Gateway panel (centre) -->
+                            <g filter="url(#ap-sh)">
+                                <rect x="130" y="48" width="140" height="224" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                                <rect x="130" y="48" width="140" height="30" rx="14" fill="url(#ap-navy)"/>
+                                <rect x="130" y="64" width="140" height="14" fill="url(#ap-navy)"/>
+                                <text x="200" y="68" text-anchor="middle" font-size="9" fill="#fff" font-weight="700" font-family="Inter,sans-serif">API Gateway</text>
+                                <!-- Auth layer -->
+                                <rect x="142" y="90" width="116" height="30" rx="6" fill="rgba(249,115,22,0.1)" stroke="#f97316" stroke-width="0.8"/>
+                                <circle cx="155" cy="105" r="7" fill="url(#ap-g1)" opacity="0.9"/>
+                                <text x="155" y="108" text-anchor="middle" font-size="5" fill="#fff" font-weight="700">🔒</text>
+                                <text x="172" y="108" font-size="7" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Auth / JWT</text>
+                                <rect x="224" y="100" width="26" height="10" rx="3" fill="rgba(34,197,94,0.15)"/>
+                                <text x="237" y="108" text-anchor="middle" font-size="5.5" fill="#16a34a" font-weight="600" font-family="Inter,sans-serif">Active</text>
+                                <!-- Rate limit layer -->
+                                <rect x="142" y="128" width="116" height="30" rx="6" fill="rgba(30,58,95,0.06)"/>
+                                <text x="155" y="142" font-size="7" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Rate Limiting</text>
+                                <rect x="155" y="150" width="92" height="4" rx="2" fill="#e2e8f0"/>
+                                <rect x="155" y="150" width="55" height="4" rx="2" fill="url(#ap-g1)"/>
+                                <!-- Router layer -->
+                                <rect x="142" y="166" width="116" height="30" rx="6" fill="rgba(30,58,95,0.06)"/>
+                                <text x="155" y="180" font-size="7" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Router</text>
+                                <rect x="155" y="186" width="40" height="4" rx="2" fill="rgba(30,58,95,0.15)"/>
+                                <rect x="200" y="186" width="30" height="4" rx="2" fill="rgba(30,58,95,0.1)"/>
+                                <rect x="235" y="186" width="18" height="4" rx="2" fill="rgba(30,58,95,0.08)"/>
+                                <!-- Transform layer -->
+                                <rect x="142" y="204" width="116" height="30" rx="6" fill="rgba(30,58,95,0.06)"/>
+                                <text x="155" y="218" font-size="7" fill="#1e3a5f" font-weight="600" font-family="Inter,sans-serif">Transform</text>
+                                <text x="230" y="220" font-size="8" fill="#94a3b8" font-family="monospace">{ }</text>
+                                <!-- Footer -->
+                                <rect x="130" y="242" width="140" height="30" rx="14" fill="#f8fafc"/>
+                                <circle cx="155" cy="257" r="3" fill="#22c55e"/><circle cx="165" cy="257" r="3" fill="#22c55e"/><circle cx="175" cy="257" r="3" fill="#f97316"/>
+                                <text x="218" y="260" font-size="6.5" fill="#64748b" font-family="Inter,sans-serif">99.9% uptime</text>
+                            </g>
+
+                            <!-- Connector arrows gateway→endpoints -->
+                            <line x1="272" y1="105" x2="310" y2="85" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" marker-end="url(#ap-arr)"/>
+                            <line x1="272" y1="143" x2="310" y2="137" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" marker-end="url(#ap-arr)"/>
+                            <line x1="272" y1="181" x2="310" y2="189" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" marker-end="url(#ap-arr)"/>
+                            <line x1="272" y1="219" x2="310" y2="241" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5" marker-end="url(#ap-arr)"/>
+
+                            <!-- Endpoint cards (right) -->
+                            <g filter="url(#ap-sh)">
+                                <rect x="312" y="68" width="80" height="30" rx="8" fill="#1e3a5f"/>
+                                <rect x="318" y="76" width="24" height="10" rx="3" fill="rgba(34,197,94,0.8)"/>
+                                <text x="330" y="83.5" text-anchor="middle" font-size="5.5" fill="#fff" font-weight="700" font-family="monospace">GET</text>
+                                <text x="355" y="84" font-size="5.5" fill="rgba(255,255,255,0.65)" font-family="monospace">/users</text>
+                                <circle cx="386" cy="83" r="3" fill="rgba(34,197,94,0.9)"/>
+                            </g>
+                            <g filter="url(#ap-sh)">
+                                <rect x="312" y="120" width="80" height="30" rx="8" fill="#1e3a5f"/>
+                                <rect x="318" y="128" width="28" height="10" rx="3" fill="rgba(249,115,22,0.85)"/>
+                                <text x="332" y="135.5" text-anchor="middle" font-size="5.5" fill="#fff" font-weight="700" font-family="monospace">POST</text>
+                                <text x="360" y="136" font-size="5.5" fill="rgba(255,255,255,0.65)" font-family="monospace">/orders</text>
+                                <circle cx="386" cy="135" r="3" fill="rgba(34,197,94,0.9)"/>
+                            </g>
+                            <g filter="url(#ap-sh)">
+                                <rect x="312" y="172" width="80" height="30" rx="8" fill="#1e3a5f"/>
+                                <rect x="318" y="180" width="22" height="10" rx="3" fill="rgba(59,130,246,0.8)"/>
+                                <text x="329" y="187.5" text-anchor="middle" font-size="5.5" fill="#fff" font-weight="700" font-family="monospace">PUT</text>
+                                <text x="352" y="188" font-size="5" fill="rgba(255,255,255,0.65)" font-family="monospace">/products</text>
+                                <circle cx="386" cy="187" r="3" fill="rgba(34,197,94,0.9)"/>
+                            </g>
+                            <g filter="url(#ap-sh)">
+                                <rect x="312" y="224" width="80" height="30" rx="8" fill="#1e3a5f"/>
+                                <rect x="318" y="232" width="30" height="10" rx="3" fill="rgba(139,92,246,0.8)"/>
+                                <text x="333" y="239.5" text-anchor="middle" font-size="5" fill="#fff" font-weight="700" font-family="monospace">DEL</text>
+                                <text x="360" y="240" font-size="5" fill="rgba(255,255,255,0.65)" font-family="monospace">/sessions</text>
+                                <circle cx="386" cy="239" r="3" fill="#f97316" opacity="0.7"/>
+                            </g>
+
+                            <!-- Swagger doc card (top-right) -->
+                            <g filter="url(#ap-sh)">
+                                <rect x="316" y="12" width="78" height="46" rx="8" fill="rgba(255,255,255,0.08)"/>
+                                <rect x="324" y="20" width="42" height="5" rx="2" fill="url(#ap-g1)" opacity="0.9"/>
+                                <text x="324" y="34" font-size="5" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif">OpenAPI 3.0</text>
+                                <rect x="324" y="40" width="18" height="4" rx="2" fill="rgba(34,197,94,0.6)"/>
+                                <rect x="346" y="40" width="22" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+                                <rect x="324" y="48" width="22" height="4" rx="2" fill="rgba(249,115,22,0.6)"/>
+                                <rect x="350" y="48" width="18" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+                            </g>
+
+                            <!-- Accent dots -->
+                            <circle cx="100" cy="48" r="4" fill="#f97316" opacity="0.45"/>
+                            <circle cx="108" cy="246" r="3" fill="#f97316" opacity="0.35"/>
+                            <circle cx="290" cy="38" r="3" fill="#fff" opacity="0.3"/>
+                            <circle cx="302" cy="280" r="4" fill="#fff" opacity="0.25"/>
+                            <circle cx="14" cy="278" r="3" fill="#f97316" opacity="0.3"/>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -197,7 +324,7 @@
         </section>
 
         <!-- API Services Section -->
-        <section class="automation-services section" id="capabilities">
+        <section class="automation-services section section--navy" id="capabilities">
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">API Development Services</h2>
@@ -281,7 +408,7 @@
         </section>
 
         <!-- API Best Practices -->
-        <section class="automation-intro section">
+        <section class="automation-intro section section--tinted">
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">Our API Development Approach</h2>
@@ -538,6 +665,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
+    <script src="js/snap.svg-min.js"></script>
+    <script src="js/svg-animations.js"></script>
     <script src="js/main.js"></script>
 
     <!-- WhatsApp Float Button -->

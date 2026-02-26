@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -150,11 +150,129 @@
                             <a href="/contact" class="btn btn--primary">
                                 Start Your Project
                             </a>
-                            <a href="#capabilities" class="btn btn--glass">
+                            <a href="#capabilities" class="btn btn--orange">
                                 <span>Explore Our Stack</span>
                                 <iconify-icon icon="ph:arrow-down" width="18" height="18"></iconify-icon>
                             </a>
                         </div>
+                    </div>
+                    <div class="page-hero__svg-container">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="fs-g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#fb923c"/></linearGradient>
+                                <linearGradient id="fs-navy" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1e3a5f"/><stop offset="100%" stop-color="#0f2744"/></linearGradient>
+                                <filter id="fs-sh"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.18"/></filter>
+                                <marker id="fs-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#f97316"/></marker>
+                            </defs>
+
+                            <!-- Background -->
+                            <circle cx="375" cy="45" r="45" fill="#fff" opacity="0.08"/>
+                            <circle cx="35" cy="280" r="35" fill="#fff" opacity="0.06"/>
+
+                            <!-- Frontend layer (browser) -->
+                            <g filter="url(#fs-sh)">
+                                <rect x="80" y="28" width="240" height="72" rx="12" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+                                <rect x="80" y="28" width="240" height="24" rx="12" fill="#0f2744"/>
+                                <rect x="80" y="40" width="240" height="12" fill="#0f2744"/>
+                                <circle cx="98" cy="40" r="4" fill="#ff5f57"/><circle cx="112" cy="40" r="4" fill="#ffbd2e"/><circle cx="126" cy="40" r="4" fill="#28ca42"/>
+                                <rect x="140" y="34" width="130" height="12" rx="4" fill="rgba(255,255,255,0.08)"/>
+                                <text x="205" y="43" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.5)" font-family="monospace">app.brandflow.co.za</text>
+                                <!-- Content inside -->
+                                <rect x="80" y="52" width="240" height="14" fill="url(#fs-navy)"/>
+                                <rect x="92" y="56" width="30" height="6" rx="2" fill="rgba(255,255,255,0.8)"/>
+                                <rect x="218" y="56" width="16" height="5" rx="2" fill="rgba(255,255,255,0.4)"/>
+                                <rect x="240" y="56" width="16" height="5" rx="2" fill="rgba(255,255,255,0.4)"/>
+                                <rect x="262" y="56" width="16" height="5" rx="2" fill="rgba(255,255,255,0.4)"/>
+                                <rect x="286" y="55" width="26" height="7" rx="3" fill="#f97316"/>
+                                <!-- Hero content -->
+                                <rect x="92" y="72" width="80" height="6" rx="2" fill="#1e3a5f"/>
+                                <rect x="92" y="82" width="55" height="4" rx="2" fill="#94a3b8"/>
+                                <rect x="92" y="90" width="36" height="8" rx="4" fill="url(#fs-g1)"/>
+                            </g>
+                            <text x="200" y="22" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif" font-weight="600">Frontend — React / Next.js</text>
+
+                            <!-- Arrow: Frontend → API -->
+                            <line x1="200" y1="102" x2="200" y2="127" stroke="#f97316" stroke-width="2.5" marker-end="url(#fs-arr)"/>
+                            <rect x="212" y="108" width="48" height="12" rx="4" fill="rgba(249,115,22,0.12)"/>
+                            <text x="236" y="117" text-anchor="middle" font-size="5.5" fill="#f97316" font-family="Inter,sans-serif">JSON / REST</text>
+
+                            <!-- API/Server layer -->
+                            <g filter="url(#fs-sh)">
+                                <rect x="100" y="130" width="200" height="62" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+                                <rect x="100" y="130" width="200" height="22" rx="10" fill="#0f2744"/>
+                                <rect x="100" y="142" width="200" height="10" fill="#0f2744"/>
+                                <text x="200" y="145" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="700" font-family="Inter,sans-serif">Node.js API Server</text>
+                                <!-- Routes -->
+                                <rect x="112" y="158" width="24" height="7" rx="3" fill="rgba(34,197,94,0.8)"/>
+                                <text x="124" y="163.5" text-anchor="middle" font-size="5" fill="#fff" font-weight="700" font-family="monospace">GET</text>
+                                <rect x="140" y="158" width="68" height="7" rx="2" fill="rgba(30,58,95,0.1)"/>
+                                <text x="174" y="163.5" text-anchor="middle" font-size="5" fill="#64748b" font-family="monospace">/api/users</text>
+                                <rect x="112" y="169" width="28" height="7" rx="3" fill="rgba(249,115,22,0.85)"/>
+                                <text x="126" y="174.5" text-anchor="middle" font-size="5" fill="#fff" font-weight="700" font-family="monospace">POST</text>
+                                <rect x="144" y="169" width="68" height="7" rx="2" fill="rgba(30,58,95,0.1)"/>
+                                <text x="178" y="174.5" text-anchor="middle" font-size="5" fill="#64748b" font-family="monospace">/api/orders</text>
+                                <rect x="112" y="180" width="22" height="7" rx="3" fill="rgba(59,130,246,0.8)"/>
+                                <text x="123" y="185.5" text-anchor="middle" font-size="5" fill="#fff" font-weight="700" font-family="monospace">PUT</text>
+                                <rect x="138" y="180" width="74" height="7" rx="2" fill="rgba(30,58,95,0.1)"/>
+                                <text x="175" y="185.5" text-anchor="middle" font-size="5" fill="#64748b" font-family="monospace">/api/products</text>
+                                <!-- Status dots -->
+                                <circle cx="288" cy="161" r="3" fill="#22c55e"/><circle cx="288" cy="172" r="3" fill="#22c55e"/><circle cx="288" cy="183" r="3" fill="#22c55e"/>
+                            </g>
+                            <text x="200" y="125" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.45)" font-family="Inter,sans-serif">Backend — Node.js / Python</text>
+
+                            <!-- Arrow: API → DB -->
+                            <line x1="200" y1="194" x2="200" y2="219" stroke="#f97316" stroke-width="2.5" marker-end="url(#fs-arr)"/>
+                            <rect x="212" y="200" width="42" height="12" rx="4" fill="rgba(249,115,22,0.12)"/>
+                            <text x="233" y="209" text-anchor="middle" font-size="5.5" fill="#f97316" font-family="Inter,sans-serif">SQL / ORM</text>
+
+                            <!-- Database layer (cylinder) -->
+                            <g filter="url(#fs-sh)">
+                                <rect x="120" y="240" width="160" height="36" fill="url(#fs-navy)"/>
+                                <ellipse cx="200" cy="240" rx="80" ry="16" fill="#2d4a6f"/>
+                                <ellipse cx="200" cy="276" rx="80" ry="16" fill="url(#fs-navy)"/>
+                                <ellipse cx="200" cy="240" rx="80" ry="16" fill="#2d4a6f"/>
+                                <text x="200" y="260" text-anchor="middle" font-size="8" fill="#fff" font-weight="700" font-family="Inter,sans-serif">PostgreSQL</text>
+                                <ellipse cx="200" cy="240" rx="52" ry="8" fill="none" stroke="url(#fs-g1)" stroke-width="1.2" opacity="0.5"/>
+                            </g>
+
+                            <!-- CI/CD card (right) -->
+                            <g filter="url(#fs-sh)">
+                                <rect x="312" y="80" width="78" height="105" rx="10" fill="#0f2744"/>
+                                <rect x="320" y="90" width="50" height="5" rx="2" fill="url(#fs-g1)"/>
+                                <text x="320" y="106" font-size="6" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif">CI/CD Pipeline</text>
+                                <!-- Stages -->
+                                <rect x="320" y="114" width="12" height="12" rx="3" fill="rgba(34,197,94,0.8)"/>
+                                <text x="337" y="123" font-size="6" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif">Build ✓</text>
+                                <rect x="320" y="132" width="12" height="12" rx="3" fill="rgba(34,197,94,0.8)"/>
+                                <text x="337" y="141" font-size="6" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif">Test ✓</text>
+                                <rect x="320" y="150" width="12" height="12" rx="3" fill="rgba(59,130,246,0.8)"/>
+                                <text x="337" y="159" font-size="6" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif">Deploy...</text>
+                                <rect x="320" y="168" width="12" height="12" rx="3" fill="rgba(255,255,255,0.15)"/>
+                                <text x="337" y="177" font-size="6" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif">Live</text>
+                                <!-- Connector line -->
+                                <line x1="326" y1="126" x2="326" y2="132" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line x1="326" y1="144" x2="326" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line x1="326" y1="162" x2="326" y2="168" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            </g>
+
+                            <!-- Tech stack card (left) -->
+                            <g filter="url(#fs-sh)">
+                                <rect x="10" y="100" width="72" height="85" rx="10" fill="rgba(255,255,255,0.07)"/>
+                                <rect x="18" y="110" width="50" height="5" rx="2" fill="url(#fs-g1)" opacity="0.85"/>
+                                <text x="18" y="126" font-size="6" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif">Tech Stack</text>
+                                <circle cx="22" cy="138" r="4" fill="#61dafb"/><text x="30" y="141" font-size="5.5" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif">React</text>
+                                <circle cx="22" cy="152" r="4" fill="#68a063"/><text x="30" y="155" font-size="5.5" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif">Node.js</text>
+                                <circle cx="22" cy="166" r="4" fill="#336791"/><text x="30" y="169" font-size="5.5" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif">PostgreSQL</text>
+                                <circle cx="22" cy="180" r="4" fill="#f97316"/><text x="30" y="183" font-size="5.5" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif">Docker</text>
+                            </g>
+
+                            <!-- Accent dots -->
+                            <circle cx="55" cy="58" r="4" fill="#f97316" opacity="0.45"/>
+                            <circle cx="355" cy="210" r="5" fill="#f97316" opacity="0.4"/>
+                            <circle cx="200" cy="14" r="4" fill="#f97316" opacity="0.35"/>
+                            <circle cx="45" cy="205" r="3" fill="#fff" opacity="0.25"/>
+                            <circle cx="348" cy="55" r="3" fill="#fff" opacity="0.25"/>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -197,7 +315,7 @@
         </section>
 
         <!-- Development Capabilities Section -->
-        <section class="automation-services section" id="capabilities">
+        <section class="automation-services section section--navy" id="capabilities">
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">Development Capabilities</h2>
@@ -281,7 +399,7 @@
         </section>
 
         <!-- Technology Stack -->
-        <section class="automation-intro section">
+        <section class="automation-intro section section--tinted">
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">Our Technology Stack</h2>
@@ -538,6 +656,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
+    <script src="js/snap.svg-min.js"></script>
+    <script src="js/svg-animations.js"></script>
     <script src="js/main.js"></script>
 
     <!-- WhatsApp Float Button -->
