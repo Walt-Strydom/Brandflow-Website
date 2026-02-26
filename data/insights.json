@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "description": "BrandFlow Insights — updated automatically by n8n workflow. To update: POST new articles to this file via GitHub API or direct file write. The website fetches this JSON on each page load.",
+    "n8n_instructions": "n8n workflow should: 1) Generate/curate article content 2) Write to this file 3) Trigger Vercel/Netlify redeploy via webhook. Article slugs must be URL-safe strings. Dates in ISO 8601 format.",
+    "lastUpdated": "2026-02-26T00:00:00Z",
+    "totalArticles": 4
+  },
+  "articles": [
+    {
+      "id": "art-001",
+      "title": "The 5 Business Processes Every SA SME Should Automate First",
+      "excerpt": "From invoice processing to lead follow-up, these five high-impact automations deliver measurable ROI within weeks — not months. We break down exactly what to automate, what tools to use, and what to expect.",
+      "category": "Getting Started",
+      "readTime": "6 min read",
+      "publishedAt": "2026-02-20",
+      "slug": "5-processes-sa-sme-automate-first",
+      "featured": true,
+      "tags": ["automation", "ROI", "SME", "South Africa"]
+    },
+    {
+      "id": "art-002",
+      "title": "How a Cape Town Logistics Firm Cut Admin Time by 78%",
+      "excerpt": "A real-world case study showing how a 12-person logistics company automated their proof-of-delivery, invoicing, and driver dispatch workflows — saving 32 hours per week.",
+      "category": "Case Study",
+      "readTime": "5 min read",
+      "publishedAt": "2026-02-15",
+      "slug": "cape-town-logistics-automation-case-study",
+      "featured": false,
+      "tags": ["logistics", "case study", "workflow automation"]
+    },
+    {
+      "id": "art-003",
+      "title": "POPIA & Automation: What SA Businesses Need to Know",
+      "excerpt": "Automating your business doesn't mean compromising on compliance. Here's how to build POPIA-compliant automation workflows that protect customer data while maximising efficiency.",
+      "category": "Compliance",
+      "readTime": "7 min read",
+      "publishedAt": "2026-02-10",
+      "slug": "popia-compliant-automation-south-africa",
+      "featured": false,
+      "tags": ["POPIA", "compliance", "data protection", "South Africa"]
+    },
+    {
+      "id": "art-004",
+      "title": "n8n vs Zapier for South African SMEs: An Honest Comparison",
+      "excerpt": "Both tools promise to automate your business, but which one makes sense for a South African SME? We compare pricing, capabilities, and data residency — with a clear recommendation.",
+      "category": "Tools",
+      "readTime": "8 min read",
+      "publishedAt": "2026-02-05",
+      "slug": "n8n-vs-zapier-south-africa-sme",
+      "featured": false,
+      "tags": ["n8n", "Zapier", "automation tools", "comparison"]
+    }
+  ]
+}

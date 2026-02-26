@@ -1780,3 +1780,343 @@ window.BrandFlow = {
         }
     }
 };
+
+// ============================================
+// STATS COUNTER ANIMATION
+// ============================================
+function animateCounters() {
+    const counters = document.querySelectorAll('.stats-item__count');
+    if (!counters.length) return;
+
+    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+    const animateCounter = (el) => {
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1800;
+        const start = performance.now();
+
+        const step = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutQuart(progress);
+            el.textContent = Math.round(eased * target).toLocaleString();
+            if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
+
+document.addEventListener('DOMContentLoaded', animateCounters);
+
+// ============================================
+// BEFORE vs AFTER TOGGLE
+// ============================================
+const btnBefore = document.getElementById('ba-btn-before');
+const btnAfter = document.getElementById('ba-btn-after');
+const panelBefore = document.getElementById('ba-panel-before');
+const panelAfter = document.getElementById('ba-panel-after');
+
+if (btnBefore && btnAfter) {
+    btnBefore.addEventListener('click', () => {
+        btnBefore.classList.add('ba-toggle-btn--active');
+        btnAfter.classList.remove('ba-toggle-btn--active');
+        panelBefore.classList.remove('ba-panel--hidden');
+        panelAfter.classList.add('ba-panel--hidden');
+    });
+
+    btnAfter.addEventListener('click', () => {
+        btnAfter.classList.add('ba-toggle-btn--active');
+        btnBefore.classList.remove('ba-toggle-btn--active');
+        panelAfter.classList.remove('ba-panel--hidden');
+        panelBefore.classList.add('ba-panel--hidden');
+    });
+}
+
+// ============================================
+// ROI CALCULATOR
+// ============================================
+(function initROICalc() {
+    const processSelect = document.getElementById('roi-process');
+    const hoursSlider = document.getElementById('roi-hours');
+    const hoursVal = document.getElementById('roi-hours-val');
+    const peopleSlider = document.getElementById('roi-people');
+    const peopleVal = document.getElementById('roi-people-val');
+    const rateSlider = document.getElementById('roi-rate');
+    const rateVal = document.getElementById('roi-rate-val');
+
+    const resultMonthlyCost = document.getElementById('roi-monthly-cost');
+    const resultMonthlySaving = document.getElementById('roi-monthly-saving');
+    const resultAnnualSaving = document.getElementById('roi-annual-saving');
+    const resultHoursFreed = document.getElementById('roi-hours-freed');
+    const resultPayback = document.getElementById('roi-payback-period');
+
+    if (!processSelect || !hoursSlider) return;
+
+    const fmt = (n) => 'R' + Math.round(n).toLocaleString('en-ZA');
+
+    function calculate() {
+        const savingPct = parseInt(processSelect.value, 10) / 100;
+        const hrsPerWeek = parseInt(hoursSlider.value, 10);
+        const people = parseInt(peopleSlider.value, 10);
+        const rate = parseInt(rateSlider.value, 10);
+
+        const hrsPerMonth = hrsPerWeek * 4.33 * people;
+        const monthlyCost = hrsPerMonth * rate;
+        const monthlySaving = monthlyCost * savingPct;
+        const annualSaving = monthlySaving * 12;
+        const hoursFreed = Math.round(hrsPerMonth * savingPct);
+
+        // Estimate payback based on saving size
+        let payback;
+        if (annualSaving < 20000) payback = '6–9 months';
+        else if (annualSaving < 60000) payback = '3–6 months';
+        else payback = '1–3 months';
+
+        resultMonthlyCost.textContent = fmt(monthlyCost);
+        resultMonthlySaving.textContent = fmt(monthlySaving);
+        resultAnnualSaving.textContent = fmt(annualSaving);
+        resultHoursFreed.textContent = hoursFreed + ' hrs';
+        resultPayback.textContent = payback;
+    }
+
+    [hoursSlider, peopleSlider, rateSlider].forEach(slider => {
+        slider.addEventListener('input', () => {
+            if (slider === hoursSlider) hoursVal.textContent = slider.value;
+            if (slider === peopleSlider) peopleVal.textContent = slider.value;
+            if (slider === rateSlider) rateVal.textContent = slider.value;
+            calculate();
+        });
+    });
+
+    processSelect.addEventListener('change', calculate);
+    calculate();
+})();
+
+// ============================================
+// AUTOMATION READINESS QUIZ
+// ============================================
+(function initQuiz() {
+    const questions = document.querySelectorAll('.quiz-question');
+    const prevBtn = document.getElementById('quiz-prev');
+    const nextBtn = document.getElementById('quiz-next');
+    const progressBar = document.getElementById('quiz-progress-bar');
+    const qNumEl = document.getElementById('quiz-q-num');
+    const quizQuestionsEl = document.getElementById('quiz-questions');
+    const resultEl = document.getElementById('quiz-result');
+    const navEl = document.querySelector('.quiz-nav');
+    const retakeBtn = document.getElementById('quiz-retake');
+
+    if (!questions.length || !prevBtn || !nextBtn) return;
+
+    let current = 0;
+    const total = questions.length;
+    const answers = new Array(total).fill(null);
+
+    function showQuestion(idx) {
+        questions.forEach((q, i) => q.classList.toggle('active', i === idx));
+        prevBtn.disabled = idx === 0;
+        nextBtn.textContent = idx === total - 1 ? 'See Results' : 'Next';
+        nextBtn.innerHTML = idx === total - 1
+            ? 'See Results <iconify-icon icon="ph:check" width="16" height="16"></iconify-icon>'
+            : 'Next <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon>';
+        progressBar.style.width = ((idx + 1) / total * 100) + '%';
+        qNumEl.textContent = idx + 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (current > 0) { current--; showQuestion(current); }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        // Save answer
+        const radios = document.querySelectorAll(`input[name="q${current}"]`);
+        let selected = null;
+        radios.forEach(r => { if (r.checked) selected = parseInt(r.value, 10); });
+        answers[current] = selected;
+
+        if (current < total - 1) {
+            current++;
+            showQuestion(current);
+        } else {
+            showResults();
+        }
+    });
+
+    function showResults() {
+        const score = answers.reduce((sum, val) => sum + (val || 0), 0);
+        const maxScore = total * 2;
+
+        quizQuestionsEl.style.display = 'none';
+        navEl.style.display = 'none';
+        resultEl.style.display = 'flex';
+
+        document.getElementById('quiz-score-num').textContent = score;
+
+        // Animate the arc
+        const arc = document.getElementById('quiz-score-arc');
+        if (arc) {
+            const circumference = 339.3;
+            const pct = score / maxScore;
+            const offset = circumference - (pct * circumference);
+            setTimeout(() => {
+                arc.style.strokeDashoffset = offset;
+                arc.style.stroke = score >= 7 ? '#f97316' : score >= 4 ? '#f59e0b' : '#10b981';
+            }, 100);
+        }
+
+        let title, desc;
+        if (score >= 7) {
+            title = 'Prime for Automation';
+            desc = 'Your business is an excellent candidate for automation. You have significant manual overhead, multiple disconnected systems, and clear processes that can be automated quickly for measurable ROI. We recommend starting immediately.';
+        } else if (score >= 4) {
+            title = 'Ready to Automate';
+            desc = 'You have clear automation opportunities available. Several of your processes are repetitive and error-prone enough to benefit from automation. A targeted approach starting with your highest-frequency tasks will deliver strong results.';
+        } else {
+            title = 'Exploring Automation';
+            desc = 'Your current processes are relatively lean, but there may still be opportunities to gain efficiency. Our AI Advisor can help identify where automation would add the most value in your specific business context.';
+        }
+
+        document.getElementById('quiz-result-title').textContent = title;
+        document.getElementById('quiz-result-desc').textContent = desc;
+    }
+
+    if (retakeBtn) {
+        retakeBtn.addEventListener('click', () => {
+            current = 0;
+            answers.fill(null);
+            document.querySelectorAll('.quiz-question input[type="radio"]').forEach(r => r.checked = false);
+            quizQuestionsEl.style.display = 'block';
+            navEl.style.display = 'flex';
+            resultEl.style.display = 'none';
+            progressBar.style.width = '20%';
+            showQuestion(0);
+        });
+    }
+
+    showQuestion(0);
+})();
+
+// ============================================
+// INSIGHTS LOADER (n8n-updatable JSON)
+// ============================================
+(function loadInsights() {
+    const grid = document.getElementById('insights-grid');
+    const loading = document.getElementById('insights-loading');
+    const footer = document.getElementById('insights-footer');
+    if (!grid) return;
+
+    fetch('/data/insights.json')
+        .then(r => r.json())
+        .then(data => {
+            const articles = (data.articles || []).slice(0, 4);
+            if (!articles.length) {
+                if (loading) loading.innerHTML = '<p>No articles available yet. Check back soon.</p>';
+                return;
+            }
+
+            if (loading) loading.remove();
+
+            articles.forEach((article, idx) => {
+                const isFeatured = article.featured && idx === 0;
+                const card = document.createElement('a');
+                card.className = 'insight-card reveal-on-scroll' + (isFeatured ? ' insight-card--featured' : '');
+                card.href = article.slug ? '/insights/' + article.slug : '#';
+
+                const date = new Date(article.publishedAt).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                card.innerHTML = `
+                    <div class="insight-card__image">
+                        <iconify-icon icon="ph:article" width="64" height="64" class="insight-card__image-icon"></iconify-icon>
+                        <span class="insight-card__image-cat">${article.category || 'Automation'}</span>
+                    </div>
+                    <div class="insight-card__body">
+                        <div class="insight-card__meta">
+                            <span>${date}</span>
+                            <span class="insight-card__meta-dot"></span>
+                            <span>${article.readTime || '5 min read'}</span>
+                        </div>
+                        <h3 class="insight-card__title">${article.title}</h3>
+                        <p class="insight-card__excerpt">${article.excerpt}</p>
+                        <span class="insight-card__read-more">
+                            Read article
+                            <iconify-icon icon="ph:arrow-right" width="14" height="14"></iconify-icon>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (footer && data.articles && data.articles.length > 4) {
+                footer.style.display = 'block';
+            }
+        })
+        .catch(() => {
+            // Fallback: show static placeholder cards if JSON not available
+            if (loading) {
+                loading.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--color-text-light)">
+                        <iconify-icon icon="ph:article" width="48" height="48" style="opacity:0.3;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto"></iconify-icon>
+                        <p>Articles are being prepared. Check back soon for automation insights and SA SME guides.</p>
+                    </div>`;
+            }
+        });
+})();
+
+// ============================================
+// WHATSAPP QUICK-REPLY PANEL
+// ============================================
+(function initWAPanel() {
+    const widget = document.getElementById('wa-widget');
+    const trigger = document.getElementById('wa-trigger');
+    const panel = document.getElementById('wa-panel');
+    const closeBtn = document.getElementById('wa-close');
+    const badge = document.getElementById('wa-badge');
+
+    if (!trigger || !panel) return;
+
+    let isOpen = false;
+    const openIcon = trigger.querySelector('.wa-trigger__icon--open');
+    const closeIcon = trigger.querySelector('.wa-trigger__icon--close');
+
+    function openPanel() {
+        isOpen = true;
+        panel.classList.add('wa-panel--open');
+        panel.setAttribute('aria-hidden', 'false');
+        if (openIcon) openIcon.style.display = 'none';
+        if (closeIcon) closeIcon.style.display = '';
+        if (badge) badge.style.display = 'none';
+    }
+
+    function closePanel() {
+        isOpen = false;
+        panel.classList.remove('wa-panel--open');
+        panel.setAttribute('aria-hidden', 'true');
+        if (openIcon) openIcon.style.display = '';
+        if (closeIcon) closeIcon.style.display = 'none';
+    }
+
+    trigger.addEventListener('click', () => {
+        if (isOpen) closePanel(); else openPanel();
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePanel);
+    }
+
+    // Auto-open panel after 8 seconds if user hasn't interacted
+    setTimeout(() => {
+        if (!isOpen) openPanel();
+    }, 8000);
+})();
