@@ -119,10 +119,10 @@ const heroRotatingTitle = document.querySelector('.hero__title-rotating');
 if (heroRotatingTitle) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rotatingPhrases = [
-        'Make your <span class="hero__keyword">brand</span> easy to <span class="hero__keyword">trust</span> online',
-        'Go from <span class="hero__keyword">idea</span> to <span class="hero__keyword">live website</span>, fast',
-        '<span class="hero__keyword">Enterprise-grade</span> website for <span class="hero__keyword">SMEs</span>',
-        'Turn <span class="hero__keyword">clicks</span> into <span class="hero__keyword">clients</span>'
+        'Build systems that <span class="hero__keyword">work while you sleep</span>',
+        '<span class="hero__keyword">AI engineering</span> for businesses that mean business',
+        'From <span class="hero__keyword">concept</span> to <span class="hero__keyword">production</span> \u2014 end to end',
+        '<span class="hero__keyword">Automate</span> the repetitive. <span class="hero__keyword">Amplify</span> the exceptional'
     ];
 
     let phraseIndex = 0;

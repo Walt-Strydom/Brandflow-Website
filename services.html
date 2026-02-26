@@ -179,7 +179,6 @@
                     </li>
                     <li class="nav__item">
                         <a href="/ai-advisor" class="nav__link nav__link--highlight">
-                            <iconify-icon icon="ph:robot" width="16" height="16"></iconify-icon>
                             AI ADVISOR
                         </a>
                     </li>
@@ -210,83 +209,97 @@
                     <div class="page-hero__svg-container">
                         <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="svcGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316" />
-                                    <stop offset="100%" style="stop-color:#fb923c" />
+                                <linearGradient id="svcGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#1e3a5f"/>
+                                    <stop offset="100%" style="stop-color:#2d5282"/>
                                 </linearGradient>
-                                <linearGradient id="svcGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
-                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+                                <linearGradient id="svcGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#f97316"/>
+                                    <stop offset="100%" style="stop-color:#fb923c"/>
                                 </linearGradient>
-                                <filter id="svcShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.12"/>
+                                <filter id="svcShadow" x="-10%" y="-10%" width="120%" height="130%">
+                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
                                 </filter>
                             </defs>
 
-                            <!-- Background circles -->
-                            <g class="page-svg__layer page-svg__layer--bg">
-                                <circle cx="50" cy="50" r="35" fill="url(#svcGradient2)" />
-                                <circle cx="370" cy="280" r="25" fill="url(#svcGradient2)" />
-                                <circle cx="380" cy="80" r="15" fill="rgba(249, 115, 22, 0.1)" />
+                            <!-- Background subtle grid -->
+                            <rect x="0" y="0" width="400" height="320" fill="none"/>
+                            <g opacity="0.06">
+                                <line x1="80" y1="0" x2="80" y2="320" stroke="#fff" stroke-width="1"/>
+                                <line x1="160" y1="0" x2="160" y2="320" stroke="#fff" stroke-width="1"/>
+                                <line x1="240" y1="0" x2="240" y2="320" stroke="#fff" stroke-width="1"/>
+                                <line x1="320" y1="0" x2="320" y2="320" stroke="#fff" stroke-width="1"/>
                             </g>
 
-                            <!-- Central gear/cog -->
-                            <g class="page-svg__layer page-svg__layer--main" filter="url(#svcShadow)">
-                                <circle cx="200" cy="160" r="55" fill="#ffffff"/>
-                                <circle cx="200" cy="160" r="42" fill="url(#svcGradient1)"/>
-                                <circle cx="200" cy="160" r="18" fill="#ffffff"/>
-                                <!-- Gear teeth -->
-                                <rect x="192" y="95" width="16" height="20" rx="3" fill="#ffffff"/>
-                                <rect x="192" y="205" width="16" height="20" rx="3" fill="#ffffff"/>
-                                <rect x="135" y="152" width="20" height="16" rx="3" fill="#ffffff"/>
-                                <rect x="245" y="152" width="20" height="16" rx="3" fill="#ffffff"/>
-                                <rect x="150" y="110" width="16" height="18" rx="3" fill="#ffffff" transform="rotate(-45 158 119)"/>
-                                <rect x="234" y="110" width="16" height="18" rx="3" fill="#ffffff" transform="rotate(45 242 119)"/>
-                                <rect x="150" y="192" width="16" height="18" rx="3" fill="#ffffff" transform="rotate(45 158 201)"/>
-                                <rect x="234" y="192" width="16" height="18" rx="3" fill="#ffffff" transform="rotate(-45 242 201)"/>
+                            <!-- Stack layers — centred column -->
+                            <!-- Layer 1: Frontend -->
+                            <g filter="url(#svcShadow)">
+                                <rect x="90" y="28" width="220" height="46" rx="4" fill="url(#svcGrad1)"/>
+                                <rect x="90" y="28" width="5" height="46" rx="0" fill="url(#svcGrad2)"/>
+                                <text x="114" y="48" font-family="monospace" font-size="11" fill="#f97316" font-weight="bold">01</text>
+                                <text x="135" y="48" font-family="sans-serif" font-size="12" fill="#fff" font-weight="600">Frontend</text>
+                                <text x="135" y="63" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">React · Vue · Vanilla JS</text>
+                                <!-- Globe icon -->
+                                <circle cx="278" cy="51" r="12" fill="rgba(249,115,22,0.15)"/>
+                                <circle cx="278" cy="51" r="7" stroke="#f97316" stroke-width="1.5" fill="none"/>
+                                <line x1="278" y1="44" x2="278" y2="58" stroke="#f97316" stroke-width="1" opacity="0.6"/>
+                                <ellipse cx="278" cy="51" rx="4" ry="7" stroke="#f97316" stroke-width="1" fill="none" opacity="0.6"/>
                             </g>
 
-                            <!-- Service icon cards floating around -->
-                            <g class="page-svg__layer page-svg__layer--card1">
-                                <rect x="40" y="100" width="70" height="70" rx="12" fill="#ffffff" filter="url(#svcShadow)"/>
-                                <rect x="55" y="115" width="40" height="6" rx="2" fill="#1e3a5f"/>
-                                <rect x="55" y="128" width="30" height="4" rx="2" fill="#e2e8f0"/>
-                                <rect x="55" y="138" width="35" height="4" rx="2" fill="#e2e8f0"/>
-                                <circle cx="75" cy="155" r="8" fill="url(#svcGradient1)"/>
+                            <!-- Arrow 1→2 -->
+                            <line x1="200" y1="74" x2="200" y2="92" stroke="#f97316" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>
+                            <polygon points="196,90 204,90 200,96" fill="#f97316" opacity="0.6"/>
+
+                            <!-- Layer 2: Backend -->
+                            <g filter="url(#svcShadow)">
+                                <rect x="90" y="96" width="220" height="46" rx="4" fill="url(#svcGrad1)"/>
+                                <rect x="90" y="96" width="5" height="46" rx="0" fill="url(#svcGrad2)"/>
+                                <text x="114" y="116" font-family="monospace" font-size="11" fill="#f97316" font-weight="bold">02</text>
+                                <text x="135" y="116" font-family="sans-serif" font-size="12" fill="#fff" font-weight="600">Backend &amp; APIs</text>
+                                <text x="135" y="131" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Node · Python · REST / GraphQL</text>
+                                <!-- API icon -->
+                                <circle cx="278" cy="119" r="12" fill="rgba(249,115,22,0.15)"/>
+                                <text x="272" y="123" font-family="monospace" font-size="9" fill="#f97316" font-weight="bold">&lt;/&gt;</text>
                             </g>
 
-                            <g class="page-svg__layer page-svg__layer--card2">
-                                <rect x="290" y="80" width="70" height="70" rx="12" fill="#ffffff" filter="url(#svcShadow)"/>
-                                <circle cx="325" cy="105" r="12" fill="#1e3a5f"/>
-                                <rect x="305" y="125" width="40" height="4" rx="2" fill="#e2e8f0"/>
-                                <rect x="310" y="135" width="30" height="4" rx="2" fill="#e2e8f0"/>
+                            <!-- Arrow 2→3 -->
+                            <line x1="200" y1="142" x2="200" y2="160" stroke="#f97316" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>
+                            <polygon points="196,158 204,158 200,164" fill="#f97316" opacity="0.6"/>
+
+                            <!-- Layer 3: AI / Automation -->
+                            <g filter="url(#svcShadow)">
+                                <rect x="90" y="164" width="220" height="46" rx="4" fill="url(#svcGrad2)"/>
+                                <text x="114" y="184" font-family="monospace" font-size="11" fill="#fff" font-weight="bold" opacity="0.8">03</text>
+                                <text x="135" y="184" font-family="sans-serif" font-size="12" fill="#fff" font-weight="700">AI &amp; Automation</text>
+                                <text x="135" y="199" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">LLMs · n8n · Custom Agents</text>
+                                <!-- Brain icon -->
+                                <circle cx="278" cy="187" r="12" fill="rgba(255,255,255,0.2)"/>
+                                <path d="M272 187 Q272 181 278 181 Q284 181 284 187 Q284 193 278 193 Q272 193 272 187" stroke="#fff" stroke-width="1.5" fill="none"/>
+                                <line x1="278" y1="181" x2="278" y2="193" stroke="#fff" stroke-width="1" opacity="0.6"/>
                             </g>
 
-                            <g class="page-svg__layer page-svg__layer--card3">
-                                <rect x="60" y="220" width="65" height="60" rx="10" fill="#ffffff" filter="url(#svcShadow)"/>
-                                <rect x="75" y="232" width="35" height="20" rx="3" fill="#f97316" opacity="0.2"/>
-                                <polyline points="80,250 88,242 95,248 105,235" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- Arrow 3→4 -->
+                            <line x1="200" y1="210" x2="200" y2="228" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="3,3"/>
+                            <polygon points="196,226 204,226 200,232" fill="rgba(255,255,255,0.3)"/>
+
+                            <!-- Layer 4: Infrastructure -->
+                            <g filter="url(#svcShadow)">
+                                <rect x="90" y="232" width="220" height="46" rx="4" fill="url(#svcGrad1)"/>
+                                <rect x="90" y="232" width="5" height="46" rx="0" fill="rgba(255,255,255,0.15)"/>
+                                <text x="114" y="252" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.5)" font-weight="bold">04</text>
+                                <text x="135" y="252" font-family="sans-serif" font-size="12" fill="#fff" font-weight="600">Cloud Infrastructure</text>
+                                <text x="135" y="267" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">AWS · GCP · Docker · CI/CD</text>
+                                <!-- Cloud icon -->
+                                <circle cx="278" cy="255" r="12" fill="rgba(255,255,255,0.08)"/>
+                                <path d="M270 257 Q270 252 275 252 Q276 249 280 249 Q284 249 285 252 Q288 252 288 255 Q288 259 284 259 L272 259 Q270 259 270 257" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
                             </g>
 
-                            <g class="page-svg__layer page-svg__layer--card4">
-                                <rect x="280" y="200" width="65" height="60" rx="10" fill="#ffffff" filter="url(#svcShadow)"/>
-                                <rect x="295" y="215" width="8" height="30" rx="2" fill="#1e3a5f"/>
-                                <rect x="308" y="225" width="8" height="20" rx="2" fill="#f97316"/>
-                                <rect x="321" y="220" width="8" height="25" rx="2" fill="#1e3a5f"/>
-                            </g>
-
-                            <!-- Connecting dots -->
-                            <g class="page-svg__layer page-svg__layer--dots">
-                                <circle cx="130" cy="140" r="4" fill="#f97316" opacity="0.6"/>
-                                <circle cx="270" cy="180" r="4" fill="#f97316" opacity="0.6"/>
-                                <circle cx="150" cy="200" r="3" fill="#ffffff" opacity="0.4"/>
-                                <circle cx="250" cy="120" r="3" fill="#ffffff" opacity="0.4"/>
-                            </g>
-
-                            <!-- Connection lines -->
-                            <g class="page-svg__layer page-svg__layer--lines">
-                                <path d="M110 135 Q130 150 145 145" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
-                                <path d="M255 145 Q270 130 290 115" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
+                            <!-- Floating service badge -->
+                            <g filter="url(#svcShadow)">
+                                <rect x="316" y="140" width="76" height="36" rx="3" fill="#ffffff"/>
+                                <text x="325" y="153" font-family="sans-serif" font-size="9" fill="#1e3a5f" font-weight="700">5 Services</text>
+                                <text x="325" y="167" font-family="sans-serif" font-size="8" fill="#64748b">End-to-end</text>
+                                <rect x="316" y="140" width="3" height="36" fill="#f97316" rx="0"/>
                             </g>
                         </svg>
                     </div>
@@ -418,6 +431,81 @@
                             <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             INDUSTRY USE CASES — SA SME FOCUS
+             ============================================= -->
+        <section class="use-cases section section--alt" id="use-cases">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Built for South African SMEs</span>
+                    <h2 class="section__title">Automation for Your Industry</h2>
+                    <p class="section__subtitle">Real workflows, real savings — tailored to the challenges SA businesses face every day</p>
+                </div>
+
+                <div class="use-cases__grid">
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:storefront" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Retail &amp; E-commerce</h3>
+                        <ul class="use-case-card__list">
+                            <li>Auto-reorder stock when levels drop below threshold</li>
+                            <li>Sync inventory across Shopify, Takealot &amp; physical store</li>
+                            <li>Automated customer order status notifications via WhatsApp</li>
+                            <li>Returns &amp; refund processing workflow</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>12 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:briefcase" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Professional Services</h3>
+                        <ul class="use-case-card__list">
+                            <li>Invoice generation &amp; delivery on project completion</li>
+                            <li>Client onboarding document collection &amp; e-signature</li>
+                            <li>Automated payment reminders &amp; follow-ups</li>
+                            <li>Timesheet capture &amp; billing reconciliation</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>8 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:heart-pulse" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Healthcare &amp; Wellness</h3>
+                        <ul class="use-case-card__list">
+                            <li>Appointment confirmations &amp; reminders via SMS/WhatsApp</li>
+                            <li>Patient intake form automation &amp; record creation</li>
+                            <li>No-show follow-up &amp; rebooking workflows</li>
+                            <li>POPIA-compliant patient communication logging</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>15 hrs/week</strong></div>
+                    </div>
+
+                    <div class="use-case-card reveal-on-scroll">
+                        <div class="use-case-card__icon">
+                            <iconify-icon icon="ph:truck" width="28" height="28"></iconify-icon>
+                        </div>
+                        <h3 class="use-case-card__industry">Logistics &amp; Distribution</h3>
+                        <ul class="use-case-card__list">
+                            <li>Automated proof-of-delivery capture &amp; client notification</li>
+                            <li>Driver dispatch &amp; route optimisation workflows</li>
+                            <li>Supplier invoice matching &amp; approval routing</li>
+                            <li>Fleet maintenance scheduling &amp; compliance alerts</li>
+                        </ul>
+                        <div class="use-case-card__saving">Avg saving: <strong>9 hrs/week</strong></div>
+                    </div>
+                </div>
+
+                <div class="use-cases__footer">
+                    <p>Don't see your industry? <a href="/automation-advisor">Describe your process</a> and our AI will identify automation opportunities specific to your business.</p>
                 </div>
             </div>
         </section>
