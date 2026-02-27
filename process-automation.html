@@ -179,7 +179,7 @@
                         </div>
                     </li>
                     <li class="nav__item">
-                        <a href="/ai-advisor" class="nav__link nav__link--highlight">
+                        <a href="/automation-advisor" class="nav__link nav__link--highlight">
                             AUTOMATION ADVISOR
                         </a>
                     </li>
@@ -204,17 +204,15 @@
             <div class="container">
                 <div class="page-hero__inner">
                     <div class="page-hero__content">
-                        <span class="page-hero__badge">New Service</span>
+                        <span class="page-hero__badge">Save Up To 80% Admin Time</span>
                         <h1 class="page-hero__title">Process Automation</h1>
-                        <p class="page-hero__subtitle">Enterprise-grade process automation for SMEs. Streamline your operations with the intelligent automation solutions used by large enterprises — at a price that makes sense for your business.</p>
+                        <p class="page-hero__subtitle">Cut admin time by up to 80%, eliminate manual data entry, and free your team to focus on growing your business. Intelligent process automation — built for South African SMEs.</p>
                         <div class="page-hero__buttons">
-                            <a href="/ai-advisor" class="btn btn--primary btn--pulse">
-                                <iconify-icon icon="ph:robot" width="20" height="20"></iconify-icon>
+                            <a href="/automation-advisor" class="btn btn--primary">
                                 Try Automation Advisor
                             </a>
-                            <a href="/contact" class="btn btn--glass">
-                                <span>Get Consultation</span>
-                                <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
+                            <a href="/contact" class="btn btn--glass-light">
+                                Get Consultation
                             </a>
                         </div>
                     </div>
@@ -290,7 +288,7 @@
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">What is Business Process Automation?</h2>
-                    <p class="section__subtitle">Automation means letting technology handle repetitive tasks so you can focus on what matters most - growing your business.</p>
+                    <p class="section__subtitle">Every hour your team spends on copy-paste work, manual approvals, and repetitive data entry is an hour not spent on revenue. Automation eliminates that waste — permanently.</p>
                 </div>
 
                 <div class="automation-intro__benefits">
@@ -607,8 +605,8 @@
                         </div>
                     </div>
 
-                    <div class="ba-panel ba-panel--after" id="ba-panel-after" style="display:none">
-                        <div class="ba-panel__header">
+                    <div class="ba-panel ba-panel--after ba-panel--hidden" id="ba-panel-after">
+                        <div class="ba-panel__header ba-panel__header--after">
                             <iconify-icon icon="ph:lightning-fill" width="18" height="18"></iconify-icon>
                             Invoice Handling — ~3 seconds &amp; 0 people
                         </div>
@@ -660,7 +658,6 @@
                 <div class="ba-cta">
                     <p>Processes like this run dozens of times a day in most businesses. Calculate your exact savings below.</p>
                     <a href="#roi-calculator" class="btn btn--primary">
-                        <iconify-icon icon="ph:calculator" width="18" height="18"></iconify-icon>
                         Calculate My ROI
                     </a>
                 </div>
@@ -767,7 +764,6 @@
                             </div>
                         </div>
                         <a href="/automation-advisor" class="btn btn--primary roi-calc__cta">
-                            <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
                             Get a Custom Automation Quote
                         </a>
                     </div>
@@ -785,8 +781,7 @@
                         <div class="automation-cta__buttons">
                             <a href="/contact" class="btn btn--primary btn--large">Get a Custom Quote</a>
                             <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20process%20automation%20services." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
-                                <iconify-icon icon="simple-icons:whatsapp" width="20" height="20"></iconify-icon>
-                                <span>Chat on WhatsApp</span>
+                                Chat on WhatsApp
                             </a>
                         </div>
                     </div>
@@ -889,15 +884,44 @@
 
     <!-- JavaScript -->
     <script src="js/main.js?v=2.1"></script>
-
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20process%20automation%20services."
-        class="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp">
-        <iconify-icon icon="ant-design:whats-app-outlined" width="32" height="32"></iconify-icon>
-    </a>
+    <!-- WhatsApp Quick-Reply Panel -->
+    <div class="wa-widget" id="wa-widget">
+        <div class="wa-panel" id="wa-panel" aria-hidden="true">
+            <div class="wa-panel__header">
+                <div class="wa-panel__avatar">
+                    <iconify-icon icon="mdi:whatsapp" width="22" height="22"></iconify-icon>
+                </div>
+                <div class="wa-panel__info">
+                    <p class="wa-panel__name">BrandFlow</p>
+                    <p class="wa-panel__status">
+                        <span class="wa-panel__dot"></span>
+                        Typically replies within the hour
+                    </p>
+                </div>
+                <button class="wa-panel__close" id="wa-close" aria-label="Close WhatsApp panel">
+                    <iconify-icon icon="ph:x" width="18" height="18"></iconify-icon>
+                </button>
+            </div>
+            <div class="wa-panel__body">
+                <div class="wa-panel__bubble">
+                    <p>Hi! 👋 Looking to streamline your business or need a digital solution?</p>
+                    <p>We'd love to help — send us a message and we'll get back to you quickly.</p>
+                    <span class="wa-panel__time">BrandFlow Team</span>
+                </div>
+            </div>
+            <a href="https://wa.me/27827853646?text=Hi%20BrandFlow!%20I%20have%20a%20question%20about%20your%20services."
+               class="wa-panel__cta"
+               target="_blank" rel="noopener noreferrer">
+                <iconify-icon icon="mdi:whatsapp" width="20" height="20"></iconify-icon>
+                Start a Conversation
+            </a>
+        </div>
+        <button class="wa-trigger" id="wa-trigger" aria-label="Open WhatsApp chat">
+            <iconify-icon icon="mdi:whatsapp" width="30" height="30" class="wa-trigger__icon wa-trigger__icon--open"></iconify-icon>
+            <iconify-icon icon="ph:x" width="24" height="24" class="wa-trigger__icon wa-trigger__icon--close" style="display:none"></iconify-icon>
+            <span class="wa-trigger__badge" id="wa-badge">1</span>
+        </button>
+    </div>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookie-banner">

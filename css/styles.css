@@ -913,14 +913,17 @@ p {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
+    padding: 0.4rem 0.875rem 0.4rem 0.75rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    border: none;
+    border-left: 3px solid rgba(255, 255, 255, 0.5);
     color: var(--color-white);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin-bottom: var(--spacing-lg);
 }
 
@@ -1338,7 +1341,7 @@ p {
     background: #fbbf24;
     color: var(--color-white);
     padding: 0.4rem 1rem;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-xl);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1961,11 +1964,12 @@ p {
     transform: translateX(-50%);
     background: var(--solid-orange);
     color: var(--color-white);
-    padding: 0.5rem 1.5rem;
-    border-radius: var(--radius-full);
-    font-size: 0.875rem;
-    font-weight: 600;
+    padding: 0.4rem 1.25rem;
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    font-weight: 700;
     box-shadow: var(--shadow-md);
+    white-space: nowrap;
 }
 
 .pricing-card__badge--featured {
@@ -2118,6 +2122,8 @@ p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: var(--spacing-md);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .industry-card {
@@ -2559,6 +2565,7 @@ p {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
+    align-items: start;
 }
 
 .footer__links {
@@ -6000,7 +6007,7 @@ body.advisor-loading-active {
     gap: 0.5rem;
     background: var(--color-bg-light);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-xl);
     padding: 0.375rem;
     width: fit-content;
     margin: 0 auto 2rem;
@@ -6012,7 +6019,7 @@ body.advisor-loading-active {
     gap: 0.5rem;
     padding: 0.625rem 1.5rem;
     border: none;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-lg);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -6526,12 +6533,92 @@ body.advisor-loading-active {
     margin-top: 0.5rem;
 }
 
+/* ROI Calculator Results Side — matching HTML class names */
+.roi-calc__results-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.roi-calc__result-card {
+    background: var(--color-navy-dark);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    color: var(--color-white);
+    position: sticky;
+    top: 100px;
+}
+
+.roi-calc__result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.roi-calc__result-item:last-of-type { border-bottom: none; }
+
+.roi-calc__result-item--highlight {
+    background: rgba(249, 115, 22, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin: 0.5rem -1.25rem;
+    border-bottom: none;
+}
+
+.roi-calc__result-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+.roi-calc__result-item--highlight .roi-calc__result-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.roi-calc__result-value {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-white);
+    text-align: right;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.roi-calc__result-item--highlight .roi-calc__result-value {
+    color: var(--color-orange-light);
+    font-size: 1.5rem;
+}
+
+/* Savings values stand out with large green text + glow */
+.roi-calc__result-value--green {
+    color: #4ade80;
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.35);
+}
+
+.roi-calc__cta {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .roi-calc__wrapper {
         grid-template-columns: 1fr;
     }
 
     .roi-results {
+        position: static;
+    }
+
+    .roi-calc__result-card {
         position: static;
     }
 }
@@ -6633,7 +6720,8 @@ body.advisor-loading-active {
     cursor: pointer;
 }
 
-.quiz-option:has(input:checked) {
+.quiz-option:has(input:checked),
+.quiz-option--checked {
     border-color: var(--color-orange);
     background: rgba(249, 115, 22, 0.06);
     color: var(--color-navy);
@@ -7226,11 +7314,11 @@ body.advisor-loading-active {
 .wa-widget {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    left: 2rem;
     z-index: var(--z-fixed);
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 0.75rem;
 }
 
@@ -7422,4 +7510,610 @@ body.advisor-loading-active {
     padding: 0.3rem 0.875rem 0.3rem 0.75rem;
     border-radius: 0;
     margin-bottom: 0.875rem;
+}
+
+/* ============================================
+   PRICING WEB DEVELOPMENT — NEW SECTIONS
+   ============================================ */
+
+/* ROI Calc Grid */
+.roi-calc__grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.roi-calc__inputs-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.roi-calc__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.roi-calc__package-select {
+    margin-top: 0.5rem;
+}
+
+.roi-calc__pkg-btns {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.roi-calc__pkg-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+    line-height: 1.4;
+}
+
+.roi-calc__pkg-btn small {
+    display: block;
+    font-weight: 400;
+    color: var(--color-text-lighter);
+    font-size: 0.78rem;
+}
+
+.roi-calc__pkg-btn:hover {
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+}
+
+.roi-calc__pkg-btn--active {
+    border-color: var(--color-orange);
+    background: rgba(249, 115, 22, 0.07);
+    color: var(--color-orange);
+}
+
+.roi-calc__pkg-btn--active small {
+    color: var(--color-orange);
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .roi-calc__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Feature Comparison Table */
+.compare-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-white);
+    font-size: 0.9rem;
+}
+
+.compare-table thead {
+    background: var(--color-navy);
+    color: var(--color-white);
+}
+
+.compare-table thead th {
+    padding: 1.25rem 1rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.compare-table thead th.compare-table__feature-col {
+    text-align: left;
+    padding-left: 1.5rem;
+}
+
+.compare-table thead th.compare-table__featured {
+    background: var(--color-orange);
+}
+
+.compare-table thead th span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-top: 0.25rem;
+}
+
+.compare-table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+}
+
+.compare-table tbody tr:last-child { border-bottom: none; }
+
+.compare-table tbody tr:hover { background: rgba(30, 58, 95, 0.03); }
+
+.compare-table tbody td {
+    padding: 0.875rem 1rem;
+    text-align: center;
+    color: var(--color-text);
+    vertical-align: middle;
+}
+
+.compare-table tbody td:first-child {
+    text-align: left;
+    padding-left: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+.compare-table tbody td.compare-table__featured {
+    background: rgba(249, 115, 22, 0.05);
+}
+
+.compare-check {
+    color: #059669;
+    font-size: 1.2rem;
+}
+
+.compare-cross {
+    color: #94a3b8;
+    font-size: 1.2rem;
+}
+
+/* Trust Signal Cards */
+.trust-signals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.trust-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.trust-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.trust-card__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-lg);
+    background: rgba(249, 115, 22, 0.08);
+    color: var(--color-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+}
+
+.trust-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 0.5rem;
+}
+
+.trust-card__text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .trust-signals {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* FAQ Section */
+.faq-section {
+    background: var(--color-bg-light);
+}
+
+.faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.faq-item {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: box-shadow var(--transition-fast);
+}
+
+.faq-item:hover,
+.faq-item.faq-item--open {
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-item__question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    text-align: left;
+    transition: color var(--transition-fast);
+}
+
+.faq-item__question:hover { color: var(--color-orange); }
+
+.faq-item--open .faq-item__question { color: var(--color-orange); }
+
+.faq-item__icon {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+    color: var(--color-text-lighter);
+}
+
+.faq-item--open .faq-item__icon {
+    transform: rotate(180deg);
+    color: var(--color-orange);
+}
+
+.faq-item__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-item--open .faq-item__answer {
+    max-height: 400px;
+}
+
+.faq-item__answer p {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ============================================
+   AI PRICING PAGE — SCOPE TIERS & TIMELINE
+   ============================================ */
+
+/* Scope Tier Cards */
+.scope-tier-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    align-items: start;
+}
+
+.scope-tier-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.scope-tier-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.scope-tier-card--featured {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    box-shadow: var(--shadow-lg);
+}
+
+.scope-tier-card--featured:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(30, 58, 95, 0.35);
+}
+
+.scope-tier-card__badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-orange);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 1rem;
+    border-radius: var(--radius-xl);
+    white-space: nowrap;
+}
+
+.scope-tier-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.scope-tier-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    background: rgba(249, 115, 22, 0.1);
+    color: var(--color-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+}
+
+.scope-tier-card--featured .scope-tier-card__icon {
+    background: rgba(249, 115, 22, 0.2);
+}
+
+.scope-tier-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.scope-tier-card--featured .scope-tier-card__title {
+    color: var(--color-white);
+}
+
+.scope-tier-card__subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.scope-tier-card--featured .scope-tier-card__subtitle {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.scope-tier-card__price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    background: rgba(30, 58, 95, 0.04);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--color-orange);
+}
+
+.scope-tier-card--featured .scope-tier-card__price {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.scope-tier-card__price-range {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-navy);
+}
+
+.scope-tier-card--featured .scope-tier-card__price-range {
+    color: var(--color-orange-light);
+}
+
+.scope-tier-card__timeline {
+    font-size: 0.8rem;
+    color: var(--color-text-lighter);
+    font-weight: 500;
+}
+
+.scope-tier-card--featured .scope-tier-card__timeline {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.scope-tier-card__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.scope-tier-card__features li {
+    font-size: 0.875rem;
+    color: var(--color-text);
+    padding-left: 1.4rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.scope-tier-card__features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-orange);
+    flex-shrink: 0;
+}
+
+.scope-tier-card--featured .scope-tier-card__features li {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.scope-tier-card--featured .scope-tier-card__features li::before {
+    background: var(--color-orange-light);
+}
+
+@media (max-width: 960px) {
+    .scope-tier-cards {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* AI Always Included Checklist */
+.ai-checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.ai-checklist__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem 1.5rem;
+    transition: box-shadow var(--transition-fast);
+}
+
+.ai-checklist__item:hover { box-shadow: var(--shadow-sm); }
+
+.ai-checklist__icon {
+    font-size: 1.5rem;
+    color: #059669;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.ai-checklist__item strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 0.3rem;
+}
+
+.ai-checklist__item p {
+    font-size: 0.875rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .ai-checklist {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* AI Process Timeline */
+.ai-timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.ai-timeline__step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.ai-timeline__step-num {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: var(--color-navy);
+    color: var(--color-orange);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.ai-timeline__connector {
+    flex: 0 0 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-navy) 0%, rgba(30, 58, 95, 0.2) 100%);
+    margin-top: 27px;
+    align-self: flex-start;
+}
+
+.ai-timeline__step-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 0.5rem;
+}
+
+.ai-timeline__step-content p {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 180px;
+}
+
+@media (max-width: 768px) {
+    .ai-timeline {
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+    }
+    .ai-timeline__step {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 1.25rem;
+    }
+    .ai-timeline__step-num {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+    .ai-timeline__connector {
+        width: 2px;
+        height: 40px;
+        flex: 0;
+        margin: 0 0 0 27px;
+        background: linear-gradient(180deg, var(--color-navy) 0%, rgba(30, 58, 95, 0.2) 100%);
+    }
+    .ai-timeline__step-content p {
+        max-width: none;
+    }
 }
