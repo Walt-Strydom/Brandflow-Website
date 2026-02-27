@@ -908,6 +908,11 @@ p {
     text-align: left;
 }
 
+.hero__split-left__inner .hero__content {
+    max-width: 100%;
+    padding: 0;
+}
+
 /* Hero Badge */
 .hero__badge {
     display: inline-flex;
@@ -1019,6 +1024,11 @@ p {
     position: relative;
     display: flex;
     justify-content: flex-end;
+}
+
+.hero__split-right .hero__media {
+    width: 100%;
+    justify-content: center;
 }
 
 .hero__media-frame {
