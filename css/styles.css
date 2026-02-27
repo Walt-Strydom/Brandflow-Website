@@ -849,6 +849,8 @@ p {
 .hero__split-left__inner {
     padding: clamp(2.5rem, 5vw, 5.5rem) clamp(1.5rem, 4vw, 4.5rem);
     max-width: min(760px, 100%);
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 580px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -1074,6 +1076,7 @@ p {
     align-items: center;
     width: 100%;
     max-width: min(820px, 100%);
+    max-width: 580px;
     margin: 0 auto;
     padding: 1rem;
 }
