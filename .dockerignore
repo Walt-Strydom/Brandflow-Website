@@ -1,0 +1,7 @@
+.git
+.gitignore
+README.md
+SETUP.md
+QUICK-START.txt
+api/
+*.sql

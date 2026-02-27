@@ -1,0 +1,14 @@
+services:
+  brandflow-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: brandflow-web
+    restart: unless-stopped
+    networks:
+      - brandflow-network
+    # No ports exposed; reachable only via shared Docker network.
+
+networks:
+  brandflow-network:
+    external: true
