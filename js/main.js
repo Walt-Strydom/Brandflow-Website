@@ -115,8 +115,9 @@ if (!isMobileDevice && heroSection) {
 // HERO ROTATING TITLE
 // ============================================
 const heroRotatingTitle = document.querySelector('.hero__title-rotating');
+const heroTitleRotator = document.querySelector('.hero__title-rotator');
 
-if (heroRotatingTitle) {
+if (heroRotatingTitle && heroTitleRotator) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rotatingPhrases = [
         'Build systems that <span class="hero__keyword">work while you sleep</span>',
@@ -129,16 +130,26 @@ if (heroRotatingTitle) {
     const transitionDuration = 600;
     const rotationDelay = 3200;
 
+    const setRotatorHeight = (height) => {
+        heroTitleRotator.style.height = `${height}px`;
+    };
+
     const showPhrase = (index) => {
         heroRotatingTitle.innerHTML = rotatingPhrases[index];
+        heroRotatingTitle.classList.remove('is-out');
+
         if (prefersReducedMotion) {
             heroRotatingTitle.classList.add('is-in');
-            heroRotatingTitle.classList.remove('is-out');
+            heroTitleRotator.style.height = 'auto';
             return;
         }
+
         requestAnimationFrame(() => {
+            setRotatorHeight(heroRotatingTitle.scrollHeight);
             heroRotatingTitle.classList.add('is-in');
-            heroRotatingTitle.classList.remove('is-out');
+            setTimeout(() => {
+                heroTitleRotator.style.height = 'auto';
+            }, transitionDuration);
         });
     };
 
@@ -151,15 +162,23 @@ if (heroRotatingTitle) {
             return;
         }
 
+        setRotatorHeight(heroTitleRotator.offsetHeight);
         heroRotatingTitle.classList.remove('is-in');
         heroRotatingTitle.classList.add('is-out');
 
         setTimeout(() => {
             phraseIndex = (phraseIndex + 1) % rotatingPhrases.length;
-            heroRotatingTitle.classList.remove('is-out');
             heroRotatingTitle.innerHTML = rotatingPhrases[phraseIndex];
-            void heroRotatingTitle.offsetWidth;
-            heroRotatingTitle.classList.add('is-in');
+            heroRotatingTitle.classList.remove('is-out');
+
+            requestAnimationFrame(() => {
+                setRotatorHeight(heroRotatingTitle.scrollHeight);
+                heroRotatingTitle.classList.add('is-in');
+            });
+
+            setTimeout(() => {
+                heroTitleRotator.style.height = 'auto';
+            }, transitionDuration);
         }, transitionDuration);
     }, rotationDelay);
 }
@@ -2095,7 +2114,7 @@ if (btnBefore && btnAfter) {
 // ============================================
 // WHATSAPP QUICK-REPLY PANEL
 // ============================================
-(function initWAPanel() {
+function initWAPanel() {
     const widget = document.getElementById('wa-widget');
     const trigger = document.getElementById('wa-trigger');
     const panel = document.getElementById('wa-panel');
@@ -2133,8 +2152,21 @@ if (btnBefore && btnAfter) {
         closeBtn.addEventListener('click', closePanel);
     }
 
+    document.addEventListener('click', (event) => {
+        if (!isOpen || !widget) return;
+        if (!widget.contains(event.target)) {
+            closePanel();
+        }
+    });
+
     // Auto-open panel after 8 seconds if user hasn't interacted
     setTimeout(() => {
         if (!isOpen) openPanel();
     }, 8000);
-})();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWAPanel);
+} else {
+    initWAPanel();
+}
