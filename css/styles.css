@@ -818,20 +818,19 @@ p {
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr;
-    padding-top: 0;
+    padding-top: 88px;
 }
 
 .hero__split {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    min-height: 100vh;
+    min-height: calc(100vh - 88px);
 }
 
 .hero__split-left {
     background: var(--color-navy-dark);
     display: flex;
     align-items: center;
-    padding-top: 88px;
     position: relative;
     overflow: hidden;
 }
@@ -848,8 +847,9 @@ p {
 }
 
 .hero__split-left__inner {
-    padding: 5rem 4rem 5rem 2rem;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
     max-width: 580px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
 }
@@ -872,7 +872,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 88px;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
     position: relative;
     overflow: hidden;
 }
@@ -1064,6 +1064,7 @@ p {
     align-items: center;
     width: 100%;
     max-width: 580px;
+    margin: 0 auto;
     padding: 1rem;
 }
 
