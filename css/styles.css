@@ -368,8 +368,8 @@ p {
 .section--navy .section__tag,
 .section--navy .section__badge {
     color: var(--color-orange-light);
-    border-left-color: var(--color-orange);
     background: rgba(249, 115, 22, 0.12);
+    border-color: rgba(251, 146, 60, 0.4);
 }
 
 /* Asymmetric two-column preview grid */
@@ -742,8 +742,8 @@ p {
     gap: 0.35rem;
     background: var(--color-orange);
     color: var(--color-white) !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 0;
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-sm);
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
@@ -751,14 +751,15 @@ p {
     position: relative;
     overflow: hidden;
     transition: all var(--transition-fast);
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(234, 88, 12, 0.8);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.22);
 }
 
 .nav__link--highlight::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.24) 50%, transparent 100%);
     transform: translateX(-150%);
     transition: transform 0.6s ease;
 }
@@ -769,6 +770,7 @@ p {
 
 .nav__link--highlight:hover {
     background: var(--color-orange-dark);
+    border-color: var(--color-orange-dark);
     transform: translateY(-1px);
 }
 
@@ -814,7 +816,7 @@ p {
    ============================================ */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 88vh;
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr;
@@ -824,7 +826,7 @@ p {
 .hero__split {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    min-height: calc(100vh - 88px);
+    min-height: calc(88vh - 88px);
 }
 
 .hero__split-left {
@@ -862,10 +864,12 @@ p {
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--color-orange);
+    color: var(--color-orange-dark);
     background: rgba(249, 115, 22, 0.1);
-    border-left: 3px solid var(--color-orange);
-    padding: 0.35rem 0.875rem 0.35rem 0.75rem;
+    border: 1px solid rgba(249, 115, 22, 0.24);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.1);
     margin-bottom: 1.75rem;
 }
 
@@ -920,12 +924,11 @@ p {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.875rem 0.4rem 0.75rem;
+    padding: 0.4rem 0.875rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 0;
-    border: none;
-    border-left: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     color: var(--color-white);
     font-size: 0.78rem;
     font-weight: 700;
@@ -941,17 +944,19 @@ p {
 .hero__title {
     color: var(--color-white);
     margin-bottom: var(--spacing-md);
-    line-height: 1.05;
-    font-size: clamp(2.4rem, 4.8vw, 5rem);
+    line-height: 1.08;
+    font-size: clamp(2rem, 3.6vw, 3.6rem);
     letter-spacing: -0.01em;
 }
 
 .hero__title-rotator {
     display: block;
     position: relative;
-    min-height: 2.4em;
+    min-height: 2.5em;
     max-width: 100%;
     width: 100%;
+    transition: height 0.6s ease;
+    will-change: height;
 }
 
 .hero__title-rotating {
@@ -979,7 +984,7 @@ p {
 }
 
 .hero__description {
-    font-size: clamp(1.0625rem, 1.2vw, 1.3125rem);
+    font-size: clamp(1rem, 1vw, 1.125rem);
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: var(--spacing-lg);
     line-height: 1.8;
@@ -1294,16 +1299,16 @@ p {
 
 .section__badge {
     display: inline-block;
-    padding: 0.4rem 0.875rem 0.4rem 0.75rem;
-    background: rgba(249, 115, 22, 0.07);
-    border: none;
-    border-left: 3px solid var(--color-orange);
-    border-radius: 0;
-    color: var(--color-orange);
+    padding: 0.4rem 0.875rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.24);
+    border-radius: var(--radius-lg);
+    color: var(--color-orange-dark);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.08);
     margin-bottom: var(--spacing-md);
 }
 
@@ -1767,7 +1772,6 @@ p {
     max-width: 700px;
     background: var(--color-white);
     border: 2px solid var(--color-navy);
-    border-left: 6px solid var(--color-orange);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     position: relative;
@@ -3055,7 +3059,7 @@ p {
     }
 
     .hero {
-        min-height: 100vh;
+        min-height: 90vh;
         padding-top: 80px;
     }
 
@@ -3072,12 +3076,12 @@ p {
     }
 
     .hero__title {
-        font-size: clamp(1.75rem, 8vw, 2.5rem);
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
         line-height: 1.2;
     }
 
     .hero__title-rotator {
-        min-height: 3.6em;
+        min-height: 3.3em;
     }
 
     .hero__title-rotating {
@@ -3166,12 +3170,17 @@ p {
         bottom: 6.5rem;
         right: 1rem;
     }
+
+    .wa-widget {
+        right: 1rem;
+        bottom: 1rem;
+    }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
     .hero {
-        min-height: 100svh; /* Use small viewport height for mobile */
+        min-height: 86svh; /* Use small viewport height for mobile */
     }
 
     .hero__content {
@@ -3179,12 +3188,12 @@ p {
     }
 
     .hero__title {
-        font-size: clamp(1.5rem, 10vw, 2rem);
+        font-size: clamp(1.35rem, 8.5vw, 1.9rem);
         margin-bottom: 1rem;
     }
 
     .hero__title-rotator {
-        min-height: 4.8em;
+        min-height: 4.2em;
     }
 
     .hero__description {
@@ -3245,6 +3254,11 @@ p {
         width: 48px;
         height: 48px;
         font-size: 1.25rem;
+    }
+
+    .wa-widget {
+        right: 1rem;
+        bottom: 1rem;
     }
 
     .whatsapp-float {
@@ -3354,16 +3368,17 @@ p {
 
 .page-hero__badge {
     display: inline-block;
-    background: rgba(249, 115, 22, 0.15);
-    color: var(--color-orange-light);
-    padding: 0.4rem 0.875rem 0.4rem 0.75rem;
-    border-radius: 0;
-    border-left: 3px solid var(--color-orange);
+    background: rgba(249, 115, 22, 0.16);
+    color: #ffedd5;
+    padding: 0.4rem 0.875rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(251, 146, 60, 0.35);
     font-size: 0.78rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.14);
 }
 
 .page-hero__title {
@@ -7058,12 +7073,12 @@ body.advisor-loading-active {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-orange-light);
-    background: rgba(249, 115, 22, 0.1);
-    border: none;
-    border-left: 3px solid var(--color-orange);
-    padding: 0.3rem 0.875rem 0.3rem 0.75rem;
-    border-radius: 0;
+    color: #fdba74;
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(251, 146, 60, 0.36);
+    padding: 0.3rem 0.875rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.16);
     margin-bottom: 1rem;
 }
 
@@ -7347,11 +7362,11 @@ body.advisor-loading-active {
 .wa-widget {
     position: fixed;
     bottom: 2rem;
-    left: 2rem;
+    right: 2rem;
     z-index: var(--z-fixed);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 0.75rem;
 }
 
@@ -7536,12 +7551,12 @@ body.advisor-loading-active {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-orange);
-    background: rgba(249, 115, 22, 0.07);
-    border: none;
-    border-left: 3px solid var(--color-orange);
-    padding: 0.3rem 0.875rem 0.3rem 0.75rem;
-    border-radius: 0;
+    color: var(--color-orange-dark);
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.24);
+    padding: 0.3rem 0.875rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.1);
     margin-bottom: 0.875rem;
 }
 
@@ -7944,7 +7959,7 @@ body.advisor-loading-active {
     padding: 1rem;
     background: rgba(30, 58, 95, 0.04);
     border-radius: var(--radius-lg);
-    border-left: 3px solid var(--color-orange);
+    border: 1px solid rgba(249, 115, 22, 0.28);
 }
 
 .scope-tier-card--featured .scope-tier-card__price {
