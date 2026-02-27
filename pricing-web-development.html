@@ -99,7 +99,7 @@
                         </div>
                     </li>
                     <li class="nav__item">
-                        <a href="/ai-advisor" class="nav__link nav__link--highlight">
+                        <a href="/automation-advisor" class="nav__link nav__link--highlight">
                             AUTOMATION ADVISOR
                         </a>
                     </li>
@@ -126,7 +126,7 @@
                         <p class="page-hero__subtitle">Professional websites for South African SMEs — at a price that makes sense. Fixed once-off packages, no bloated agency retainers, no surprises.</p>
                         <div class="page-hero__buttons">
                             <a href="/contact" class="btn btn--primary">Get Started</a>
-                            <a href="/services" class="btn btn--outline">View Services</a>
+                            <a href="/services" class="btn btn--glass-light">View Services</a>
                         </div>
                     </div>
                     <div class="page-hero__svg-container">
@@ -309,6 +309,258 @@
             </div>
         </section>
 
+        <!-- ROI Calculator -->
+        <section class="section roi-calc" id="roi-calculator">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__badge">See Your Return</span>
+                    <h2 class="section__title">What Does a Professional Website Save You?</h2>
+                    <p class="section__subtitle">Without a proper website, you're spending hours answering repetitive enquiries by phone or WhatsApp. See what that's costing you — and how fast a website pays for itself.</p>
+                </div>
+                <div class="roi-calc__grid">
+                    <div class="roi-calc__inputs-side">
+                        <div class="roi-calc__input-group">
+                            <label class="roi-calc__label" for="rc-hours">Hours per week answering customer enquiries by phone or WhatsApp</label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="rc-hours" min="1" max="20" value="5" step="1">
+                                <span class="roi-calc__slider-val" id="rc-hours-val">5 hrs/week</span>
+                            </div>
+                        </div>
+                        <div class="roi-calc__input-group">
+                            <label class="roi-calc__label" for="rc-rate">Your hourly rate or time value (ZAR)</label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="rc-rate" min="100" max="1500" value="300" step="50">
+                                <span class="roi-calc__slider-val" id="rc-rate-val">R300/hr</span>
+                            </div>
+                        </div>
+                        <div class="roi-calc__input-group">
+                            <label class="roi-calc__label" for="rc-leads">Potential new leads per month a website could capture</label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="rc-leads" min="1" max="40" value="8" step="1">
+                                <span class="roi-calc__slider-val" id="rc-leads-val">8 leads/mo</span>
+                            </div>
+                        </div>
+                        <div class="roi-calc__input-group">
+                            <label class="roi-calc__label" for="rc-deal">Average deal value per customer (ZAR)</label>
+                            <div class="roi-calc__slider-wrap">
+                                <input type="range" class="roi-calc__slider" id="rc-deal" min="500" max="25000" value="3000" step="500">
+                                <span class="roi-calc__slider-val" id="rc-deal-val">R3,000</span>
+                            </div>
+                        </div>
+                        <div class="roi-calc__package-select">
+                            <label class="roi-calc__label">Which package are you considering?</label>
+                            <div class="roi-calc__pkg-btns">
+                                <button class="roi-calc__pkg-btn" data-price="1500" onclick="selectWebPkg(this, 1500)">Starter<br><small>R1,500</small></button>
+                                <button class="roi-calc__pkg-btn roi-calc__pkg-btn--active" data-price="3500" onclick="selectWebPkg(this, 3500)">Professional<br><small>R3,500</small></button>
+                                <button class="roi-calc__pkg-btn" data-price="5000" onclick="selectWebPkg(this, 5000)">Executive<br><small>R5,000</small></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roi-calc__results-side">
+                        <div class="roi-calc__result-card">
+                            <h3 style="color:var(--color-white); margin-bottom: 1.25rem; font-size: 1.05rem; font-family: var(--font-heading);">Your 12-Month Estimate</h3>
+                            <div class="roi-calc__result-item">
+                                <span class="roi-calc__result-label">Time freed up per month</span>
+                                <span class="roi-calc__result-value" id="res-time">~17 hrs</span>
+                            </div>
+                            <div class="roi-calc__result-item">
+                                <span class="roi-calc__result-label">Value of time saved (monthly)</span>
+                                <span class="roi-calc__result-value roi-calc__result-value--green" id="res-time-value">R5,200</span>
+                            </div>
+                            <div class="roi-calc__result-item">
+                                <span class="roi-calc__result-label">Potential new revenue (monthly)</span>
+                                <span class="roi-calc__result-value roi-calc__result-value--green" id="res-revenue">R3,600/mo</span>
+                            </div>
+                            <div class="roi-calc__result-item">
+                                <span class="roi-calc__result-label">Combined annual value</span>
+                                <span class="roi-calc__result-value roi-calc__result-value--green" id="res-annual">R105,600/yr</span>
+                            </div>
+                            <div class="roi-calc__result-item roi-calc__result-item--highlight">
+                                <span class="roi-calc__result-label">Website pays for itself in</span>
+                                <span class="roi-calc__result-value" id="res-payback">12 days</span>
+                            </div>
+                            <div class="roi-calc__cta">
+                                <a href="/contact" class="btn btn--primary btn--full">Start Your Project Today</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Comparison Table -->
+        <section class="section pricing-compare" id="comparison" style="background: var(--color-bg-light);">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__badge">Side by Side</span>
+                    <h2 class="section__title">What's Included in Each Package</h2>
+                    <p class="section__subtitle">A clear breakdown of everything you get — no fine print, no hidden extras.</p>
+                </div>
+                <div class="compare-table-wrap reveal-on-scroll">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th class="compare-table__feature-col">Feature</th>
+                                <th>Starter<br><span>R1,500</span></th>
+                                <th class="compare-table__featured">Professional<br><span>R3,500</span></th>
+                                <th>Executive<br><span>R5,000</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Number of pages</td>
+                                <td>Up to 3</td>
+                                <td class="compare-table__featured">Up to 6</td>
+                                <td>Up to 10</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile responsive design</td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Contact form &amp; WhatsApp button</td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Social media integration</td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Post-launch support</td>
+                                <td>1 month</td>
+                                <td class="compare-table__featured">2 months</td>
+                                <td>3 months</td>
+                            </tr>
+                            <tr>
+                                <td>Domain registration (1st year)</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Hosting setup &amp; configuration</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Google Analytics integration</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>On-page SEO optimisation</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Content writing (up to 5 pages)</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                            <tr>
+                                <td>Google Search Console setup</td>
+                                <td><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td class="compare-table__featured"><iconify-icon icon="ph:x-circle" class="compare-cross"></iconify-icon></td>
+                                <td><iconify-icon icon="ph:check-circle" class="compare-check"></iconify-icon></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Trust Signal Cards -->
+                <div class="trust-signals reveal-on-scroll">
+                    <div class="trust-card">
+                        <div class="trust-card__icon">
+                            <iconify-icon icon="ph:certificate" width="32" height="32"></iconify-icon>
+                        </div>
+                        <h4 class="trust-card__title">You Own Everything</h4>
+                        <p class="trust-card__text">Full ownership of all code, design files, and content. Take it anywhere, host it anywhere — no strings attached.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-card__icon">
+                            <iconify-icon icon="ph:lock-open" width="32" height="32"></iconify-icon>
+                        </div>
+                        <h4 class="trust-card__title">No Monthly Lock-In</h4>
+                        <p class="trust-card__text">One price, one payment. We don't charge retainers for your own website. The only ongoing cost is your hosting fee.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-card__icon">
+                            <iconify-icon icon="ph:map-pin" width="32" height="32"></iconify-icon>
+                        </div>
+                        <h4 class="trust-card__title">SA-Based Team</h4>
+                        <p class="trust-card__text">Built by South Africans, for South African businesses. Local context, local pricing, and support in your timezone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section faq-section" id="faq">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__badge">Common Questions</span>
+                    <h2 class="section__title">Frequently Asked Questions</h2>
+                    <p class="section__subtitle">Everything you need to know before getting started.</p>
+                </div>
+                <div class="faq-list reveal-on-scroll">
+                    <div class="faq-item">
+                        <button class="faq-item__question" onclick="toggleFaq(this)">
+                            Does the price include hosting?
+                            <iconify-icon icon="ph:caret-down" width="20" height="20" class="faq-item__icon"></iconify-icon>
+                        </button>
+                        <div class="faq-item__answer">
+                            <p>No — hosting is a separate ongoing cost, typically from R150/month for shared hosting. For the Professional and Executive packages, we handle the hosting setup for you, but the hosting subscription is billed by the provider directly. This keeps your costs transparent and gives you full control.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-item__question" onclick="toggleFaq(this)">
+                            How long does it take to build my website?
+                            <iconify-icon icon="ph:caret-down" width="20" height="20" class="faq-item__icon"></iconify-icon>
+                        </button>
+                        <div class="faq-item__answer">
+                            <p>Starter sites are typically live within 5–7 business days. Professional websites take 1–2 weeks, and Executive packages (with content writing and SEO) take 2–3 weeks. Timelines depend on how quickly you can provide your brand assets and feedback — we move as fast as you do.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-item__question" onclick="toggleFaq(this)">
+                            How many revisions do I get?
+                            <iconify-icon icon="ph:caret-down" width="20" height="20" class="faq-item__icon"></iconify-icon>
+                        </button>
+                        <div class="faq-item__answer">
+                            <p>We include up to 2 rounds of revisions in each package. We start with a clear brief, so most clients are happy after the first draft. Additional rounds can be arranged at our standard hourly rate if needed.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-item__question" onclick="toggleFaq(this)">
+                            What happens after my post-launch support period ends?
+                            <iconify-icon icon="ph:caret-down" width="20" height="20" class="faq-item__icon"></iconify-icon>
+                        </button>
+                        <div class="faq-item__answer">
+                            <p>After the support period, you own the site outright and can maintain it yourself or hire anyone you like. We're always available for ad-hoc updates at our standard hourly rate — but there's no mandatory maintenance contract. Your site, your call.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-item__question" onclick="toggleFaq(this)">
+                            What are the payment terms?
+                            <iconify-icon icon="ph:caret-down" width="20" height="20" class="faq-item__icon"></iconify-icon>
+                        </button>
+                        <div class="faq-item__answer">
+                            <p>We require a 50% deposit to start work, with the remaining 50% due on delivery before the site goes live. We accept EFT (South African bank transfer). No hidden fees — the quoted price is the final price.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="section-cta section" id="cta">
             <div class="container">
@@ -383,11 +635,108 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Web Dev ROI Calculator
+        (function () {
+            var webPkg = 3500;
+            function fmtZAR(n) {
+                return 'R' + Math.round(n).toLocaleString('en-ZA');
+            }
+            function calcWeb() {
+                var hours = parseInt(document.getElementById('rc-hours').value) || 5;
+                var rate  = parseInt(document.getElementById('rc-rate').value)  || 300;
+                var leads = parseInt(document.getElementById('rc-leads').value) || 8;
+                var deal  = parseInt(document.getElementById('rc-deal').value)  || 3000;
+                // A website handles ~80% of basic repetitive enquiries automatically
+                var hoursFreedMonthly = hours * 0.8 * 4.33;
+                var timeSavedValue    = hoursFreedMonthly * rate;
+                var newRevenue        = leads * deal * 0.15; // ~15% close rate
+                var monthlyGain       = timeSavedValue + newRevenue;
+                var annualGain        = monthlyGain * 12;
+                var paybackDays       = Math.ceil((webPkg / monthlyGain) * 30);
+                document.getElementById('res-time').textContent       = Math.round(hoursFreedMonthly) + ' hrs/mo';
+                document.getElementById('res-time-value').textContent = fmtZAR(timeSavedValue);
+                document.getElementById('res-revenue').textContent    = fmtZAR(newRevenue) + '/mo';
+                document.getElementById('res-annual').textContent     = fmtZAR(annualGain) + '/yr';
+                var pb = paybackDays <= 30
+                    ? paybackDays + ' day' + (paybackDays !== 1 ? 's' : '')
+                    : Math.ceil(paybackDays / 30) + ' month' + (Math.ceil(paybackDays / 30) !== 1 ? 's' : '');
+                document.getElementById('res-payback').textContent = pb;
+            }
+            window.selectWebPkg = function (btn, price) {
+                webPkg = price;
+                document.querySelectorAll('.roi-calc__pkg-btn').forEach(function (b) {
+                    b.classList.remove('roi-calc__pkg-btn--active');
+                });
+                btn.classList.add('roi-calc__pkg-btn--active');
+                calcWeb();
+            };
+            [['rc-hours', 'hrs/week'], ['rc-rate', '/hr', true], ['rc-leads', 'leads/mo'], ['rc-deal', '', true]].forEach(function (cfg) {
+                var el = document.getElementById(cfg[0]);
+                if (!el) return;
+                el.addEventListener('input', function () {
+                    var v = parseInt(this.value);
+                    var display;
+                    if (cfg[0] === 'rc-hours')  display = v + ' hrs/week';
+                    else if (cfg[0] === 'rc-rate')   display = 'R' + v + '/hr';
+                    else if (cfg[0] === 'rc-leads')  display = v + ' leads/mo';
+                    else if (cfg[0] === 'rc-deal')   display = 'R' + v.toLocaleString('en-ZA');
+                    document.getElementById(cfg[0] + '-val').textContent = display;
+                    calcWeb();
+                });
+            });
+            calcWeb();
+        })();
 
-    <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20web%20development%20services."
-        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <iconify-icon icon="mdi:whatsapp" width="28" height="28"></iconify-icon>
-    </a>
+        // FAQ Accordion
+        window.toggleFaq = function (btn) {
+            var item   = btn.closest('.faq-item');
+            var isOpen = item.classList.contains('faq-item--open');
+            document.querySelectorAll('.faq-item').forEach(function (i) {
+                i.classList.remove('faq-item--open');
+            });
+            if (!isOpen) item.classList.add('faq-item--open');
+        };
+    </script>
+
+        <!-- WhatsApp Quick-Reply Panel -->
+    <div class="wa-widget" id="wa-widget">
+        <div class="wa-panel" id="wa-panel" aria-hidden="true">
+            <div class="wa-panel__header">
+                <div class="wa-panel__avatar">
+                    <iconify-icon icon="mdi:whatsapp" width="22" height="22"></iconify-icon>
+                </div>
+                <div class="wa-panel__info">
+                    <p class="wa-panel__name">BrandFlow</p>
+                    <p class="wa-panel__status">
+                        <span class="wa-panel__dot"></span>
+                        Typically replies within the hour
+                    </p>
+                </div>
+                <button class="wa-panel__close" id="wa-close" aria-label="Close WhatsApp panel">
+                    <iconify-icon icon="ph:x" width="18" height="18"></iconify-icon>
+                </button>
+            </div>
+            <div class="wa-panel__body">
+                <div class="wa-panel__bubble">
+                    <p>Hi! 👋 Looking to streamline your business or need a digital solution?</p>
+                    <p>We'd love to help — send us a message and we'll get back to you quickly.</p>
+                    <span class="wa-panel__time">BrandFlow Team</span>
+                </div>
+            </div>
+            <a href="https://wa.me/27827853646?text=Hi%20BrandFlow!%20I%20have%20a%20question%20about%20your%20services."
+               class="wa-panel__cta"
+               target="_blank" rel="noopener noreferrer">
+                <iconify-icon icon="mdi:whatsapp" width="20" height="20"></iconify-icon>
+                Start a Conversation
+            </a>
+        </div>
+        <button class="wa-trigger" id="wa-trigger" aria-label="Open WhatsApp chat">
+            <iconify-icon icon="mdi:whatsapp" width="30" height="30" class="wa-trigger__icon wa-trigger__icon--open"></iconify-icon>
+            <iconify-icon icon="ph:x" width="24" height="24" class="wa-trigger__icon wa-trigger__icon--close" style="display:none"></iconify-icon>
+            <span class="wa-trigger__badge" id="wa-badge">1</span>
+        </button>
+    </div>
 
 </body>
 </html>

@@ -98,7 +98,7 @@
                         </div>
                     </li>
                     <li class="nav__item">
-                        <a href="/ai-advisor" class="nav__link nav__link--highlight">
+                        <a href="/automation-advisor" class="nav__link nav__link--highlight">
                             AUTOMATION ADVISOR
                         </a>
                     </li>
@@ -123,16 +123,15 @@
             <div class="container">
                 <div class="page-hero__inner">
                     <div class="page-hero__content">
-                        <span class="page-hero__badge">Intelligent Solutions</span>
+                        <span class="page-hero__badge">Measurable Business Results</span>
                         <h1 class="page-hero__title">AI & ML Engineering</h1>
-                        <p class="page-hero__subtitle">Enterprise-grade AI and machine learning, built for SMEs. From predictive analytics to natural language processing — we build the intelligent systems that large enterprises rely on, now accessible to your business.</p>
+                        <p class="page-hero__subtitle">Turn your business data into decisions that reduce costs, cut manual work, and unlock new revenue streams. Enterprise AI and machine learning — built and priced for South African SMEs.</p>
                         <div class="page-hero__buttons">
                             <a href="/contact" class="btn btn--primary">
                                 Start Your AI Project
                             </a>
-                            <a href="#capabilities" class="btn btn--glass">
-                                <span>Explore AI Services</span>
-                                <iconify-icon icon="ph:arrow-down" width="18" height="18"></iconify-icon>
+                            <a href="#capabilities" class="btn btn--glass-light">
+                                Explore AI Services
                             </a>
                         </div>
                     </div>
@@ -227,8 +226,8 @@
         <section class="automation-intro section">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">Transforming Business with AI</h2>
-                    <p class="section__subtitle">Harness the power of machine learning to automate decisions, predict outcomes, and gain insights from your data</p>
+                    <h2 class="section__title">What Your Business Gains from AI</h2>
+                    <p class="section__subtitle">Every manual decision is a risk. Every repetitive task is a cost. AI turns your data into competitive advantage — predicting outcomes, automating judgements, and surfacing insights that would otherwise stay hidden.</p>
                 </div>
 
                 <div class="automation-intro__benefits">
@@ -264,7 +263,7 @@
             <div class="container">
                 <div class="section__header">
                     <h2 class="section__title">AI & ML Capabilities</h2>
-                    <p class="section__subtitle">Comprehensive AI engineering services tailored to your needs</p>
+                    <p class="section__subtitle">Every capability mapped to a business outcome — not a buzzword. We build what solves your problem, nothing more.</p>
                 </div>
 
                 <div class="services__grid">
@@ -482,8 +481,7 @@
                         <div class="automation-cta__buttons">
                             <a href="/contact" class="btn btn--primary btn--large">Start Your AI Journey</a>
                             <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20AI%20and%20ML%20engineering%20services." class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
-                                <iconify-icon icon="simple-icons:whatsapp" width="20" height="20"></iconify-icon>
-                                <span>Chat on WhatsApp</span>
+                                Chat on WhatsApp
                             </a>
                         </div>
                     </div>
@@ -586,15 +584,44 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
-
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/27827853646?text=Hi!%20I'm%20interested%20in%20your%20AI%20and%20ML%20engineering%20services."
-        class="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp">
-        <iconify-icon icon="ant-design:whats-app-outlined" width="32" height="32"></iconify-icon>
-    </a>
+    <!-- WhatsApp Quick-Reply Panel -->
+    <div class="wa-widget" id="wa-widget">
+        <div class="wa-panel" id="wa-panel" aria-hidden="true">
+            <div class="wa-panel__header">
+                <div class="wa-panel__avatar">
+                    <iconify-icon icon="mdi:whatsapp" width="22" height="22"></iconify-icon>
+                </div>
+                <div class="wa-panel__info">
+                    <p class="wa-panel__name">BrandFlow</p>
+                    <p class="wa-panel__status">
+                        <span class="wa-panel__dot"></span>
+                        Typically replies within the hour
+                    </p>
+                </div>
+                <button class="wa-panel__close" id="wa-close" aria-label="Close WhatsApp panel">
+                    <iconify-icon icon="ph:x" width="18" height="18"></iconify-icon>
+                </button>
+            </div>
+            <div class="wa-panel__body">
+                <div class="wa-panel__bubble">
+                    <p>Hi! 👋 Looking to streamline your business or need a digital solution?</p>
+                    <p>We'd love to help — send us a message and we'll get back to you quickly.</p>
+                    <span class="wa-panel__time">BrandFlow Team</span>
+                </div>
+            </div>
+            <a href="https://wa.me/27827853646?text=Hi%20BrandFlow!%20I%20have%20a%20question%20about%20your%20services."
+               class="wa-panel__cta"
+               target="_blank" rel="noopener noreferrer">
+                <iconify-icon icon="mdi:whatsapp" width="20" height="20"></iconify-icon>
+                Start a Conversation
+            </a>
+        </div>
+        <button class="wa-trigger" id="wa-trigger" aria-label="Open WhatsApp chat">
+            <iconify-icon icon="mdi:whatsapp" width="30" height="30" class="wa-trigger__icon wa-trigger__icon--open"></iconify-icon>
+            <iconify-icon icon="ph:x" width="24" height="24" class="wa-trigger__icon wa-trigger__icon--close" style="display:none"></iconify-icon>
+            <span class="wa-trigger__badge" id="wa-badge">1</span>
+        </button>
+    </div>
 
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookie-banner">
