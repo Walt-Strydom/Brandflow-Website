@@ -11,6 +11,10 @@ RewriteRule ^index\.html$ / [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
 RewriteRule ^ %1 [R=301,L]
 
+
+# Redirect legacy AI advisor URL to canonical route
+RewriteRule ^ai-advisor(?:\.html)?$ /automation-advisor [R=301,L,NC]
+
 # Remove trailing slash on clean URLs (non-directories)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]

@@ -28,9 +28,16 @@ switch ($method) {
  * Handle POST requests
  */
 function handlePostRequest($action) {
-    $input = json_decode(file_get_contents('php://input'), true);
+    enforceRateLimit('assessment_post_' . $action, 90, 60);
 
-    if (!$input) {
+    $rawInput = file_get_contents('php://input');
+    if ($rawInput === false || strlen($rawInput) > 200000) {
+        jsonResponse(['error' => 'Invalid request payload'], 400);
+    }
+
+    $input = json_decode($rawInput, true);
+
+    if (!is_array($input)) {
         jsonResponse(['error' => 'Invalid JSON input'], 400);
     }
 
@@ -50,6 +57,8 @@ function handlePostRequest($action) {
  * Handle GET requests
  */
 function handleGetRequest($action) {
+    enforceRateLimit('assessment_get_' . $action, 180, 60);
+
     switch ($action) {
         case 'pdf':
             generatePdf();
@@ -70,6 +79,11 @@ function trackAssessment($data) {
 
     $assessmentId = generateAssessmentId();
     $processDescription = isset($data['process_description']) ? sanitizeInput($data['process_description']) : '';
+
+    if (strlen($processDescription) > 10000) {
+        jsonResponse(['error' => 'Process description is too long'], 400);
+    }
+
     $resultsJson = isset($data['results']) ? json_encode($data['results']) : '{}';
 
     try {
@@ -176,7 +190,7 @@ function initiateDownload($data) {
 function generatePdf() {
     $token = isset($_GET['token']) ? sanitizeInput($_GET['token']) : '';
 
-    if (empty($token)) {
+    if (empty($token) || !preg_match('/^[a-f0-9]{64}$/', $token)) {
         jsonResponse(['error' => 'Invalid download token'], 400);
     }
 

@@ -2114,12 +2114,17 @@ if (btnBefore && btnAfter) {
     const grid = document.getElementById('insights-grid');
     const loading = document.getElementById('insights-loading');
     const footer = document.getElementById('insights-footer');
+    const viewAllLink = document.getElementById('insights-view-all');
     if (!grid) return;
+
+    if (viewAllLink) {
+        viewAllLink.setAttribute('href', '/insights');
+    }
 
     fetch('/data/insights.json')
         .then(r => r.json())
         .then(data => {
-            const articles = (data.articles || []).slice(0, 4);
+            const articles = Array.isArray(data.articles) ? data.articles.slice(0, 4) : [];
             if (!articles.length) {
                 if (loading) loading.innerHTML = '<p>No articles available yet. Check back soon.</p>';
                 return;
@@ -2128,36 +2133,80 @@ if (btnBefore && btnAfter) {
             if (loading) loading.remove();
 
             articles.forEach((article, idx) => {
+                if (!article || typeof article !== 'object') return;
+
                 const isFeatured = article.featured && idx === 0;
                 const card = document.createElement('a');
                 card.className = 'insight-card reveal-on-scroll' + (isFeatured ? ' insight-card--featured' : '');
-                card.href = article.slug ? '/insights/' + article.slug : '#';
+                card.href = '/insights';
 
-                const date = new Date(article.publishedAt).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' });
+                const imageWrap = document.createElement('div');
+                imageWrap.className = 'insight-card__image';
 
-                card.innerHTML = `
-                    <div class="insight-card__image">
-                        <iconify-icon icon="ph:article" width="64" height="64" class="insight-card__image-icon"></iconify-icon>
-                        <span class="insight-card__image-cat">${article.category || 'Automation'}</span>
-                    </div>
-                    <div class="insight-card__body">
-                        <div class="insight-card__meta">
-                            <span>${date}</span>
-                            <span class="insight-card__meta-dot"></span>
-                            <span>${article.readTime || '5 min read'}</span>
-                        </div>
-                        <h3 class="insight-card__title">${article.title}</h3>
-                        <p class="insight-card__excerpt">${article.excerpt}</p>
-                        <span class="insight-card__read-more">
-                            Read article
-                            <iconify-icon icon="ph:arrow-right" width="14" height="14"></iconify-icon>
-                        </span>
-                    </div>
-                `;
+                const icon = document.createElement('iconify-icon');
+                icon.setAttribute('icon', 'ph:article');
+                icon.setAttribute('width', '64');
+                icon.setAttribute('height', '64');
+                icon.className = 'insight-card__image-icon';
+
+                const category = document.createElement('span');
+                category.className = 'insight-card__image-cat';
+                category.textContent = typeof article.category === 'string' && article.category ? article.category : 'Automation';
+
+                imageWrap.appendChild(icon);
+                imageWrap.appendChild(category);
+
+                const body = document.createElement('div');
+                body.className = 'insight-card__body';
+
+                const meta = document.createElement('div');
+                meta.className = 'insight-card__meta';
+
+                const dateText = document.createElement('span');
+                const publishedAt = new Date(article.publishedAt);
+                dateText.textContent = Number.isNaN(publishedAt.getTime())
+                    ? 'Recent'
+                    : publishedAt.toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                const dot = document.createElement('span');
+                dot.className = 'insight-card__meta-dot';
+
+                const readTime = document.createElement('span');
+                readTime.textContent = typeof article.readTime === 'string' && article.readTime ? article.readTime : '5 min read';
+
+                meta.appendChild(dateText);
+                meta.appendChild(dot);
+                meta.appendChild(readTime);
+
+                const title = document.createElement('h3');
+                title.className = 'insight-card__title';
+                title.textContent = typeof article.title === 'string' ? article.title : 'Automation insight';
+
+                const excerpt = document.createElement('p');
+                excerpt.className = 'insight-card__excerpt';
+                excerpt.textContent = typeof article.excerpt === 'string' ? article.excerpt : 'Discover practical automation insights for your business.';
+
+                const readMore = document.createElement('span');
+                readMore.className = 'insight-card__read-more';
+                readMore.appendChild(document.createTextNode('Read article'));
+
+                const readMoreIcon = document.createElement('iconify-icon');
+                readMoreIcon.setAttribute('icon', 'ph:arrow-right');
+                readMoreIcon.setAttribute('width', '14');
+                readMoreIcon.setAttribute('height', '14');
+                readMore.appendChild(readMoreIcon);
+
+                body.appendChild(meta);
+                body.appendChild(title);
+                body.appendChild(excerpt);
+                body.appendChild(readMore);
+
+                card.appendChild(imageWrap);
+                card.appendChild(body);
                 grid.appendChild(card);
             });
 
-            if (footer && data.articles && data.articles.length > 4) {
+            if (footer && Array.isArray(data.articles) && data.articles.length > 4) {
                 footer.style.display = 'block';
             }
         })
