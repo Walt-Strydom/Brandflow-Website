@@ -2186,8 +2186,10 @@ function initWAPanel() {
     if (!trigger || !panel) return;
 
     let isOpen = false;
+    let hasInteracted = false;
     const openIcon = trigger.querySelector('.wa-trigger__icon--open');
     const closeIcon = trigger.querySelector('.wa-trigger__icon--close');
+    const autoOpenKey = `waAutoOpenShown:${window.location.pathname}`;
 
     function openPanel() {
         isOpen = true;
@@ -2207,11 +2209,19 @@ function initWAPanel() {
     }
 
     trigger.addEventListener('click', () => {
-        if (isOpen) closePanel(); else openPanel();
+        hasInteracted = true;
+        if (isOpen) {
+            closePanel();
+        } else {
+            openPanel();
+        }
     });
 
     if (closeBtn) {
-        closeBtn.addEventListener('click', closePanel);
+        closeBtn.addEventListener('click', () => {
+            hasInteracted = true;
+            closePanel();
+        });
     }
 
     document.addEventListener('click', (event) => {
@@ -2221,10 +2231,18 @@ function initWAPanel() {
         }
     });
 
-    // Auto-open panel after 8 seconds if user hasn't interacted
-    setTimeout(() => {
-        if (!isOpen) openPanel();
-    }, 8000);
+    // Auto-open only on homepage (once per browser session)
+    const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    const isHomepage = normalizedPath === '/' || normalizedPath === '/index.html';
+
+    if (isHomepage && !sessionStorage.getItem(autoOpenKey)) {
+        setTimeout(() => {
+            if (!isOpen && !hasInteracted) {
+                openPanel();
+                sessionStorage.setItem(autoOpenKey, 'true');
+            }
+        }, 8000);
+    }
 }
 
 if (document.readyState === 'loading') {
