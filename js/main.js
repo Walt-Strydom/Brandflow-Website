@@ -15,6 +15,11 @@ const contactForm = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 const hasAnchorNavLinks = document.querySelector('.nav__link[href^="#"]');
 
+function trackEvent(eventName, params = {}) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', eventName, params);
+}
+
 // ============================================
 // SCROLL PERFORMANCE OPTIMIZATION
 // ============================================
@@ -184,37 +189,72 @@ if (heroRotatingTitle && heroTitleRotator) {
 }
 
 // ============================================
-// MOBILE NAVIGATION TOGGLE
+// MOBILE NAVIGATION TOGGLE + ACCESSIBILITY
 // ============================================
+const dropdownItems = document.querySelectorAll('.nav__item--dropdown');
+
+function closeMobileMenu() {
+    if (!navMenu || !navToggle) return;
+    navMenu.classList.remove('show');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+}
+
 if (navToggle && navMenu) {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-controls', 'nav-menu');
+
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-        navToggle.classList.toggle('active');
+        const isOpen = navMenu.classList.toggle('show');
+        navToggle.classList.toggle('active', isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 }
 
 // Close mobile menu when clicking a nav link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('show');
-        navToggle.classList.remove('active');
+        closeMobileMenu();
     });
 });
 
 // ============================================
 // MOBILE DROPDOWN NAVIGATION
 // ============================================
-const dropdownItems = document.querySelectorAll('.nav__item--dropdown');
-
-dropdownItems.forEach(item => {
+dropdownItems.forEach((item, index) => {
     const dropdownLink = item.querySelector('.nav__link--dropdown');
+    const dropdownPanel = item.querySelector('.nav__dropdown');
 
-    if (dropdownLink && window.innerWidth <= 768) {
-        dropdownLink.addEventListener('click', (e) => {
+    if (!dropdownLink || !dropdownPanel) return;
+
+    const dropdownId = dropdownPanel.id || `nav-dropdown-${index + 1}`;
+    dropdownPanel.id = dropdownId;
+
+    dropdownLink.setAttribute('role', 'button');
+    dropdownLink.setAttribute('aria-expanded', 'false');
+    dropdownLink.setAttribute('aria-controls', dropdownId);
+
+    const toggleDropdown = (shouldOpen) => {
+        item.classList.toggle('active', shouldOpen);
+        dropdownLink.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    };
+
+    dropdownLink.addEventListener('click', (e) => {
+        if (window.innerWidth > 768) return;
+        e.preventDefault();
+        toggleDropdown(!item.classList.contains('active'));
+    });
+
+    dropdownLink.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            item.classList.toggle('active');
-        });
-    }
+            toggleDropdown(!item.classList.contains('active'));
+        }
+        if (e.key === 'Escape') {
+            toggleDropdown(false);
+            dropdownLink.focus();
+        }
+    });
 });
 
 // ============================================
@@ -745,9 +785,33 @@ if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
 const cookieBanner = document.getElementById('cookie-banner');
 const cookieAccept = document.getElementById('cookie-accept');
 const cookieDecline = document.getElementById('cookie-decline');
+const cookieManage = document.getElementById('cookie-manage');
+const COOKIE_NAME = 'brandflow_cookie_consent';
+const COOKIE_DAYS = 180;
 
 // Track if GA has been loaded to prevent duplicate loading
 let gaLoaded = false;
+
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax; Secure`;
+}
+
+function getCookie(name) {
+    return document.cookie.split('; ').reduce((acc, cookie) => {
+        const [key, ...vals] = cookie.split('=');
+        return key === name ? decodeURIComponent(vals.join('=')) : acc;
+    }, null);
+}
+
+function setConsent(consentValue) {
+    localStorage.setItem('cookieConsent', consentValue);
+    setCookie(COOKIE_NAME, consentValue, COOKIE_DAYS);
+}
+
+function getConsent() {
+    return localStorage.getItem('cookieConsent') || getCookie(COOKIE_NAME);
+}
 
 // Load Google Analytics only when consent is given
 function loadGoogleAnalytics() {
@@ -755,38 +819,30 @@ function loadGoogleAnalytics() {
 
     gaLoaded = true;
 
-    // Create and append the gtag.js script
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
     document.head.appendChild(script);
 
-    // Initialize GA after script loads
     script.onload = function() {
         gtag('js', new Date());
-        gtag('config', window.GA_MEASUREMENT_ID);
+        gtag('config', window.GA_MEASUREMENT_ID, { anonymize_ip: true });
+        trackEvent('consent_analytics_enabled', { source: 'cookie_banner' });
     };
 }
 
 function showCookieBanner() {
-    const consent = localStorage.getItem('cookieConsent');
+    const consent = getConsent();
 
-    // If already accepted, load GA immediately
     if (consent === 'accepted') {
         loadGoogleAnalytics();
         return;
     }
 
-    // If already declined, don't show banner or load GA
-    if (consent === 'declined') {
-        return;
-    }
-
-    // Show banner for new visitors
     if (cookieBanner) {
         setTimeout(() => {
             cookieBanner.classList.add('show');
-        }, 1500);
+        }, 800);
     }
 }
 
@@ -798,7 +854,7 @@ function hideCookieBanner() {
 
 if (cookieAccept) {
     cookieAccept.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
+        setConsent('accepted');
         hideCookieBanner();
         loadGoogleAnalytics();
     });
@@ -806,13 +862,19 @@ if (cookieAccept) {
 
 if (cookieDecline) {
     cookieDecline.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'declined');
+        setConsent('declined');
         hideCookieBanner();
-        // GA will not be loaded
     });
 }
 
-// Check consent and show banner or load GA on page load
+if (cookieManage) {
+    cookieManage.addEventListener('click', () => {
+        if (cookieBanner) {
+            cookieBanner.classList.add('show');
+        }
+    });
+}
+
 showCookieBanner();
 
 // ============================================
@@ -2124,8 +2186,10 @@ function initWAPanel() {
     if (!trigger || !panel) return;
 
     let isOpen = false;
+    let hasInteracted = false;
     const openIcon = trigger.querySelector('.wa-trigger__icon--open');
     const closeIcon = trigger.querySelector('.wa-trigger__icon--close');
+    const autoOpenKey = `waAutoOpenShown:${window.location.pathname}`;
 
     function openPanel() {
         isOpen = true;
@@ -2145,11 +2209,19 @@ function initWAPanel() {
     }
 
     trigger.addEventListener('click', () => {
-        if (isOpen) closePanel(); else openPanel();
+        hasInteracted = true;
+        if (isOpen) {
+            closePanel();
+        } else {
+            openPanel();
+        }
     });
 
     if (closeBtn) {
-        closeBtn.addEventListener('click', closePanel);
+        closeBtn.addEventListener('click', () => {
+            hasInteracted = true;
+            closePanel();
+        });
     }
 
     document.addEventListener('click', (event) => {
@@ -2159,10 +2231,18 @@ function initWAPanel() {
         }
     });
 
-    // Auto-open panel after 8 seconds if user hasn't interacted
-    setTimeout(() => {
-        if (!isOpen) openPanel();
-    }, 8000);
+    // Auto-open only on homepage (once per browser session)
+    const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    const isHomepage = normalizedPath === '/' || normalizedPath === '/index.html';
+
+    if (isHomepage && !sessionStorage.getItem(autoOpenKey)) {
+        setTimeout(() => {
+            if (!isOpen && !hasInteracted) {
+                openPanel();
+                sessionStorage.setItem(autoOpenKey, 'true');
+            }
+        }, 8000);
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -2170,3 +2250,113 @@ if (document.readyState === 'loading') {
 } else {
     initWAPanel();
 }
+
+// ============================================
+// CONVERSION TRACKING + CONTACT FUNNEL UX
+// ============================================
+(function initConversionEnhancements() {
+    document.querySelectorAll('a[href^="https://wa.me"], a[href*="whatsapp"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('whatsapp_click', {
+                location: window.location.pathname,
+                cta_text: (link.textContent || '').trim().slice(0, 60)
+            });
+        });
+    });
+
+    document.querySelectorAll('.btn, .nav__link--btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const label = (button.textContent || '').trim();
+            if (!label) return;
+            trackEvent('cta_click', {
+                location: window.location.pathname,
+                cta_label: label.slice(0, 80)
+            });
+        });
+    });
+
+    if (!contactForm || !contactForm.classList.contains('contact__form--funnel')) return;
+
+    const stepPanels = Array.from(contactForm.querySelectorAll('.contact-funnel__step-panel'));
+    const indicators = Array.from(contactForm.querySelectorAll('[data-step-indicator]'));
+    const prevBtn = document.getElementById('contact-prev-step');
+    const nextBtn = document.getElementById('contact-next-step');
+    const submitBtn = document.getElementById('contact-submit');
+    let currentStep = 1;
+
+    function validateStep(step) {
+        const panel = stepPanels.find(el => Number(el.dataset.step) === step);
+        if (!panel) return true;
+        const requiredInputs = panel.querySelectorAll('input[required], select[required], textarea[required]');
+        return Array.from(requiredInputs).every(input => input.value.trim() !== '');
+    }
+
+    function showStep(step) {
+        currentStep = step;
+        stepPanels.forEach(panel => {
+            const isActive = Number(panel.dataset.step) === step;
+            panel.hidden = !isActive;
+        });
+
+        indicators.forEach(indicator => {
+            const indicatorStep = Number(indicator.dataset.stepIndicator);
+            indicator.classList.toggle('contact-funnel__step--active', indicatorStep === step);
+        });
+
+        if (prevBtn) prevBtn.hidden = step === 1;
+        if (nextBtn) nextBtn.hidden = step === stepPanels.length;
+        if (submitBtn) submitBtn.hidden = step !== stepPanels.length;
+
+        trackEvent('form_step_view', {
+            form_name: 'contact_funnel',
+            step_number: step
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (!validateStep(currentStep)) {
+                trackEvent('form_step_validation_error', { form_name: 'contact_funnel', step_number: currentStep });
+                return;
+            }
+            if (currentStep < stepPanels.length) {
+                showStep(currentStep + 1);
+            }
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        });
+    }
+
+    contactForm.addEventListener('submit', () => {
+        trackEvent('form_submit_start', {
+            form_name: 'contact_funnel',
+            service_need: (document.getElementById('website-need') || {}).value || 'unknown'
+        });
+    });
+
+    showStep(1);
+})();
+
+(function trackAdvisorCompletion() {
+    const results = document.getElementById('advisor-results');
+    if (!results) return;
+
+    let fired = false;
+    const maybeTrack = () => {
+        if (fired) return;
+        const visible = results.style.display !== 'none' && results.style.display !== '';
+        if (visible) {
+            fired = true;
+            trackEvent('advisor_assessment_complete', { location: window.location.pathname });
+        }
+    };
+
+    const observer = new MutationObserver(maybeTrack);
+    observer.observe(results, { attributes: true, attributeFilter: ['style', 'class'] });
+})();

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NZTFBHJH');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free automation advisor powered by AI. Describe your business process and get instant recommendations for automation, workflow optimisation, and implementation roadmaps.">
@@ -76,6 +84,11 @@
     </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZTFBHJH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
 
     <!-- Header / Navigation -->
     <header class="header" id="header">
@@ -142,6 +155,43 @@
                                 How It Works
                             </a>
                         </div>
+                    </div>
+                    <div class="page-hero__svg-container" aria-hidden="true">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="advisorHeroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#fb923c;stop-opacity:1" />
+                                </linearGradient>
+                                <filter id="advisorHeroShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.15"/>
+                                </filter>
+                            </defs>
+
+                            <circle cx="330" cy="46" r="32" fill="rgba(255,255,255,0.14)"/>
+                            <circle cx="66" cy="280" r="42" fill="rgba(249,115,22,0.14)"/>
+
+                            <g filter="url(#advisorHeroShadow)">
+                                <rect x="70" y="55" width="260" height="210" rx="18" fill="#ffffff"/>
+                                <rect x="70" y="55" width="260" height="42" rx="18" fill="#f8fafc"/>
+                                <circle cx="94" cy="76" r="5" fill="#f97316"/>
+                                <circle cx="110" cy="76" r="5" fill="#fdba74"/>
+                                <circle cx="126" cy="76" r="5" fill="#cbd5e1"/>
+                            </g>
+
+                            <rect x="94" y="118" width="95" height="12" rx="6" fill="#e2e8f0"/>
+                            <rect x="94" y="138" width="188" height="10" rx="5" fill="#e2e8f0"/>
+                            <rect x="94" y="154" width="164" height="10" rx="5" fill="#e2e8f0"/>
+
+                            <rect x="94" y="176" width="210" height="14" rx="7" fill="#e2e8f0"/>
+                            <rect x="94" y="197" width="180" height="14" rx="7" fill="url(#advisorHeroGrad)" opacity="0.9"/>
+                            <rect x="94" y="218" width="148" height="14" rx="7" fill="#10b981" opacity="0.8"/>
+
+                            <g>
+                                <circle cx="318" cy="202" r="36" fill="#0f172a" opacity="0.95"/>
+                                <path d="M302 202h32M318 186v32" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                            </g>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -504,7 +554,6 @@
     </button>
 
     <!-- Tilt.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
@@ -865,11 +914,12 @@
     <div class="cookie-banner" id="cookie-banner">
         <div class="cookie-banner__content">
             <p class="cookie-banner__text">
-                We use cookies to enhance your browsing experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies.
+                We use essential cookies to keep this site secure and functional. With your consent, we also use analytics cookies to improve performance and user experience.
             </p>
             <div class="cookie-banner__actions">
-                <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
-                <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
+                <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept all</button>
+                <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Reject analytics</button>
+                <button class="cookie-banner__btn cookie-banner__btn--manage" id="cookie-manage">Cookie settings</button>
             </div>
         </div>
     </div>
