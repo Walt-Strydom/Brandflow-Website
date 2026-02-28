@@ -29,8 +29,33 @@
                 <ul class="nav__list">
                     <li class="nav__item"><a href="/" class="nav__link">HOME</a></li>
                     <li class="nav__item"><a href="/why-us" class="nav__link">WHY US</a></li>
-                    <li class="nav__item"><a href="/services" class="nav__link">SERVICES</a></li>
-                    <li class="nav__item"><a href="/automation-advisor" class="nav__link">AUTOMATION ADVISOR</a></li>
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="/services" class="nav__link nav__link--dropdown" aria-haspopup="true">
+                            SERVICES
+                            <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
+                        </a>
+                        <div class="nav__dropdown">
+                            <a href="/web-development" class="nav__dropdown-link">Web Development</a>
+                            <a href="/ai-ml-engineering" class="nav__dropdown-link">AI & ML Engineering</a>
+                            <a href="/full-stack-development" class="nav__dropdown-link">Full Stack Development</a>
+                            <a href="/process-automation" class="nav__dropdown-link">Process Automation</a>
+                            <a href="/api-development" class="nav__dropdown-link">API Development</a>
+                        </div>
+                    </li>
+                    <li class="nav__item nav__item--dropdown">
+                        <a href="#" class="nav__link nav__link--dropdown" aria-haspopup="true">
+                            PRICING
+                            <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
+                        </a>
+                        <div class="nav__dropdown">
+                            <a href="/pricing-web-development" class="nav__dropdown-link">Web Development</a>
+                            <a href="/pricing-ai-ml" class="nav__dropdown-link">AI & ML Engineering</a>
+                            <a href="/pricing-full-stack" class="nav__dropdown-link">Full Stack Development</a>
+                            <a href="/pricing-process-automation" class="nav__dropdown-link">Process Automation</a>
+                            <a href="/pricing-api-development" class="nav__dropdown-link">API Development</a>
+                        </div>
+                    </li>
+                    <li class="nav__item"><a href="/automation-advisor" class="nav__link nav__link--highlight">AUTOMATION ADVISOR</a></li>
                     <li class="nav__item"><a href="/contact" class="nav__link nav__link--btn">CONTACT</a></li>
                 </ul>
             </div>
