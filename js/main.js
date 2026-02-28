@@ -15,6 +15,15 @@ const contactForm = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 const hasAnchorNavLinks = document.querySelector('.nav__link[href^="#"]');
 
+// Global top scroll progress indicator
+const scrollProgressBar = document.getElementById('scroll-progress-bar') || (() => {
+    const el = document.createElement('div');
+    el.id = 'scroll-progress-bar';
+    el.className = 'scroll-progress-bar';
+    document.body.appendChild(el);
+    return el;
+})();
+
 function trackEvent(eventName, params = {}) {
     if (typeof gtag !== 'function') return;
     gtag('event', eventName, params);
@@ -80,6 +89,14 @@ function handleAllScrollEffects() {
     // 4. Active anchor link tracking (if present)
     if (hasAnchorNavLinks) {
         updateActiveNavLinkOnScroll(scrollY);
+    }
+
+    // 5. Top scroll progress indicator
+    if (scrollProgressBar) {
+        const doc = document.documentElement;
+        const scrollable = doc.scrollHeight - doc.clientHeight;
+        const progress = scrollable > 0 ? Math.min((scrollY / scrollable) * 100, 100) : 0;
+        scrollProgressBar.style.width = progress + '%';
     }
 
     scrollTicking = false;
@@ -1571,164 +1588,106 @@ function buildPdfHtml(assessmentData, userName, userCompany) {
     const date = new Date().toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
     const assessmentId = window.currentAssessmentId || 'BF-' + Date.now();
 
-    // Helper to extract text from items
-    function getText(item) {
-        if (typeof item === 'string') return item;
-        if (item && typeof item === 'object') {
-            const props = ['description', 'text', 'value', 'title', 'content', 'name', 'summary'];
-            for (const p of props) {
-                if (item[p] && typeof item[p] === 'string') return item[p];
-            }
-            for (const key in item) {
-                if (typeof item[key] === 'string' && item[key].length > 0) return item[key];
-            }
-        }
-        return String(item || '');
-    }
+    const resultsContent = document.getElementById('advisor-results-content');
+    const scoreEl = document.getElementById('advisor-score-value');
+    const automationLevelEl = document.getElementById('results-upgrade-level');
 
-    function buildList(items) {
-        if (!items || !items.length) return '';
-        return '<ul>' + items.map(item => '<li>' + getText(item) + '</li>').join('') + '</ul>';
-    }
+    const summaryMarkup = `
+        <div class="pdf-summary-grid">
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Prepared for</span>
+                <span class="pdf-summary-value">${escapeHtml(userName)}</span>
+            </div>
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Company</span>
+                <span class="pdf-summary-value">${escapeHtml(userCompany)}</span>
+            </div>
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Reference</span>
+                <span class="pdf-summary-value">${escapeHtml(assessmentId)}</span>
+            </div>
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Generated</span>
+                <span class="pdf-summary-value">${escapeHtml(date)}</span>
+            </div>
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Automation Level</span>
+                <span class="pdf-summary-value">${escapeHtml(automationLevelEl ? automationLevelEl.textContent.trim() : (data.upgradeLevel || '—'))}</span>
+            </div>
+            <div class="pdf-summary-item">
+                <span class="pdf-summary-label">Assessment Score</span>
+                <span class="pdf-summary-value">${escapeHtml(scoreEl ? scoreEl.textContent.trim() : '—')}</span>
+            </div>
+        </div>
+    `;
 
-    let sectionsHtml = '';
-
-    // Section 1: Current Process
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">1</span><h2 class="section-title">Current Process Overview</h2></div>
-            <div class="section-content"><p>${data.currentProcess || 'Your process involves manual handling of routine business operations.'}</p></div>
-        </div>`;
-
-    // Section 2: Inefficiencies
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">2</span><h2 class="section-title">Identified Inefficiencies</h2></div>
-            <div class="section-content">${buildList(data.inefficiencies || ['Repetitive manual handling', 'Delays caused by human dependency', 'Risk of overlooked steps'])}</div>
-        </div>`;
-
-    // Section 3: Improvements
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">3</span><h2 class="section-title">How the BrandFlow Automation Engine Would Improve This</h2></div>
-            <div class="section-content">${buildList(data.improvements || ['Information moves automatically', 'Actions triggered immediately', 'Updates sent automatically'])}</div>
-        </div>`;
-
-    // Section 4: Business Impact
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">4</span><h2 class="section-title">Business Impact</h2></div>
-            <div class="section-content">${buildList(data.businessImpact || ['Reduced time on routine tasks', 'Faster turnaround', 'Lower risk of human error', 'Greater consistency'])}</div>
-        </div>`;
-
-    // Section 5: Technical Workflow (if available)
-    let sectionNum = 5;
-    if (data.technicalWorkflow) {
-        const tw = data.technicalWorkflow;
-        let workflowContent = '';
-        if (tw.trigger) {
-            workflowContent += `<p><strong>Trigger:</strong> ${tw.trigger}</p>`;
-        }
-        if (tw.steps && tw.steps.length > 0) {
-            workflowContent += '<div style="margin-top: 12px;">';
-            tw.steps.forEach(step => {
-                workflowContent += `<div style="margin-bottom: 10px; padding: 10px; background: #fff; border-radius: 6px;">
-                    <strong>Step ${step.step}: ${step.name}</strong> <span style="color: #64748b; font-size: 12px;">(${step.duration})</span>
-                    <p style="margin: 4px 0 0; font-size: 14px;">${step.description}</p>
-                </div>`;
-            });
-            workflowContent += '</div>';
-        }
-        if (tw.totalProcessingTime) {
-            workflowContent += `<p style="margin-top: 10px;"><strong>Total Processing Time:</strong> ${tw.totalProcessingTime}</p>`;
-        }
-        sectionsHtml += `
-            <div class="section">
-                <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Technical Workflow Architecture</h2></div>
-                <div class="section-content">${workflowContent}</div>
-            </div>`;
-        sectionNum++;
-    }
-
-    // Process Upgrade Level
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Process Upgrade Level</h2></div>
-            <div class="section-content"><div class="upgrade-level">${data.upgradeLevel || 'Multi-step process enhancement'}</div></div>
-        </div>`;
-    sectionNum++;
-
-    // Implementation (if available)
-    if (data.implementation) {
-        const impl = data.implementation;
-        let implContent = '<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">';
-        if (impl.timeline) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px;"><strong>Timeline</strong><p>${impl.timeline}</p></div>`;
-        if (impl.complexity) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px;"><strong>Complexity</strong><p>${impl.complexity}</p></div>`;
-        if (impl.estimatedCost) implContent += `<div style="flex: 1; min-width: 120px; padding: 10px; background: #fff; border-radius: 6px; border: 2px solid #f97316;"><strong>Investment</strong><p style="font-size: 18px; font-weight: 700; color: #1e3a5f;">${impl.estimatedCost}</p></div>`;
-        implContent += '</div>';
-        if (impl.prerequisites && impl.prerequisites.length > 0) {
-            implContent += '<p><strong>Prerequisites:</strong></p>' + buildList(impl.prerequisites);
-        }
-        sectionsHtml += `
-            <div class="section">
-                <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Implementation Overview</h2></div>
-                <div class="section-content">${implContent}</div>
-            </div>`;
-        sectionNum++;
-    }
-
-    // Recommended Next Step
-    sectionsHtml += `
-        <div class="section">
-            <div class="section-header"><span class="section-number">${sectionNum}</span><h2 class="section-title">Recommended Next Step</h2></div>
-            <div class="section-content"><div class="next-step"><p>${data.nextStep || 'Schedule a consultation to convert this assessment into a live automation solution.'}</p></div></div>
-        </div>`;
+    const reportBody = resultsContent && resultsContent.innerHTML.trim()
+        ? resultsContent.innerHTML
+        : '<p>Assessment results are not available. Please run a new assessment and try again.</p>';
 
     return `
-    <div id="pdf-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #334155; padding: 10px; max-width: 800px; margin: 0 auto;">
-        <div style="text-align: center; padding-bottom: 24px; border-bottom: 3px solid #f97316; margin-bottom: 24px;">
-            <div style="font-size: 28px; font-weight: 700; color: #1e3a5f; margin-bottom: 8px;">Brand<span style="color: #f97316;">Flow</span></div>
-            <div style="display: inline-block; background: linear-gradient(135deg, #f97316, #fb923c); color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">AI-Powered Assessment</div>
-            <h1 style="font-size: 22px; color: #1e3a5f; margin: 0 0 16px;">Your Automation Assessment</h1>
-            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: #64748b;">
-                <span><strong style="color: #1e3a5f;">Reference:</strong> ${assessmentId}</span>
-                <span><strong style="color: #1e3a5f;">Prepared for:</strong> ${userName}</span>
-                <span><strong style="color: #1e3a5f;">Company:</strong> ${userCompany}</span>
-                <span><strong style="color: #1e3a5f;">Date:</strong> ${date}</span>
-            </div>
-        </div>
-
+    <div id="pdf-content" class="pdf-report">
         <style>
-            .section { background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 16px; border-left: 4px solid #f97316; }
-            .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-            .section-number { width: 28px; height: 28px; background: linear-gradient(135deg, #f97316, #fb923c); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-            .section-title { font-size: 16px; font-weight: 600; color: #1e3a5f; margin: 0; }
-            .section-content { padding-left: 38px; }
-            .section-content p { margin: 0 0 8px; font-size: 14px; }
-            .section-content ul { list-style: disc; padding-left: 20px; margin: 0; }
-            .section-content li { margin-bottom: 6px; font-size: 14px; }
-            .upgrade-level { display: inline-block; background: linear-gradient(135deg, #1e3a5f, #2d4a6f); color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 14px; }
-            .next-step { background: #ffffff; padding: 14px; border-radius: 8px; border: 2px solid #f97316; }
-            .next-step p { margin: 0; font-size: 14px; }
+            .pdf-report { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; color: #334155; max-width: 820px; margin: 0 auto; padding: 8px; }
+            .pdf-header { text-align: center; border-bottom: 3px solid #f97316; padding-bottom: 20px; margin-bottom: 22px; }
+            .pdf-brand { font-size: 30px; font-weight: 800; color: #1e3a5f; margin-bottom: 6px; }
+            .pdf-brand span { color: #f97316; }
+            .pdf-badge { display: inline-block; background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; }
+            .pdf-title { color: #1e3a5f; font-size: 24px; margin: 0; }
+            .pdf-summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 16px 0 0; }
+            .pdf-summary-item { border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; background: #f8fafc; text-align: left; }
+            .pdf-summary-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin-bottom: 4px; font-weight: 700; }
+            .pdf-summary-value { display: block; color: #1e3a5f; font-size: 13px; font-weight: 700; line-height: 1.4; }
+            .pdf-results { margin-top: 10px; }
+            .pdf-results .assessment-section { background: #f8fafc; border-radius: 12px; padding: 18px; margin-bottom: 14px; border-left: 4px solid #f97316; page-break-inside: avoid; break-inside: avoid; }
+            .pdf-results .assessment-section__header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+            .pdf-results .assessment-section__number { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+            .pdf-results .assessment-section__title { margin: 0; color: #1e3a5f; font-size: 16px; }
+            .pdf-results .assessment-section__content { color: #334155; font-size: 14px; line-height: 1.6; }
+            .pdf-results ul { margin: 0; padding-left: 1.25rem; }
+            .pdf-results li { margin-bottom: 6px; }
+            .pdf-results .implementation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+            .pdf-results .implementation-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; }
+            .pdf-results .implementation-item--highlight { border: 2px solid #f97316; }
+            .pdf-results .implementation-item__title { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; color: #1e3a5f; font-size: 13px; }
+            .pdf-results .implementation-item__value { margin: 0; font-size: 14px; }
+            .pdf-results .implementation-item__value--large { font-size: 18px; font-weight: 700; color: #1e3a5f; }
+            .pdf-results .assessment-upgrade { display: inline-block; background: linear-gradient(135deg, #1e3a5f, #2d4a6f); color: #fff; border-radius: 8px; padding: 8px 14px; font-weight: 700; }
+            .pdf-results .assessment-next-step { background: #fff; border: 2px solid #f97316; border-radius: 8px; padding: 12px; }
+            .pdf-results iconify-icon { display: none; }
+            .pdf-footer { margin-top: 24px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; }
+            .pdf-footer .cta { background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+            .pdf-footer .cta h3 { margin: 0 0 6px; font-size: 16px; }
+            .pdf-footer .cta p { margin: 0; font-size: 13px; opacity: .95; }
+            .pdf-footer p { margin: 3px 0; font-size: 12px; color: #64748b; }
+            .pdf-footer .disclaimer { margin-top: 12px; font-size: 10px; color: #94a3b8; }
+            @media (max-width: 760px) {
+                .pdf-summary-grid { grid-template-columns: 1fr 1fr; }
+                .pdf-results .implementation-grid { grid-template-columns: 1fr; }
+            }
         </style>
 
-        ${sectionsHtml}
+        <header class="pdf-header">
+            <div class="pdf-brand">Brand<span>Flow</span></div>
+            <div class="pdf-badge">AI-Powered Assessment</div>
+            <h1 class="pdf-title">Your Automation Assessment</h1>
+            ${summaryMarkup}
+        </header>
 
-        <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e2e8f0; text-align: center;">
-            <div style="background: linear-gradient(135deg, #f97316, #fb923c); color: white; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
-                <h3 style="font-size: 16px; margin: 0 0 8px;">Ready to implement this automation solution?</h3>
-                <p style="font-size: 13px; margin: 0; opacity: 0.9;">Schedule a consultation with our team to convert this assessment into a live automation solution.</p>
+        <section class="pdf-results">
+            ${reportBody}
+        </section>
+
+        <footer class="pdf-footer">
+            <div class="cta">
+                <h3>Ready to implement this automation solution?</h3>
+                <p>Schedule a consultation with our team to convert this assessment into a live automation solution.</p>
             </div>
-            <div style="font-size: 13px; color: #64748b;">
-                <p style="margin: 0;"><strong>BrandFlow</strong></p>
-                <p style="margin: 4px 0;">Email: hello@brandflow.co.za | Phone: +27 82 785 3646</p>
-                <p style="margin: 4px 0;">Website: brandflow.co.za</p>
-            </div>
-            <p style="margin-top: 16px; font-size: 11px; color: #94a3b8;">
-                This assessment was generated by the BrandFlow Automation Engine.
-                The recommendations provided are based on the process description submitted and are subject to detailed analysis during consultation.
-            </p>
-        </div>
+            <p><strong>BrandFlow</strong></p>
+            <p>Email: hello@brandflow.co.za | Phone: +27 82 785 3646</p>
+            <p>Website: brandflow.co.za</p>
+            <p class="disclaimer">This assessment was generated by the BrandFlow Automation Engine. Recommendations are based on the process description submitted and are confirmed during consultation.</p>
+        </footer>
     </div>`;
 }
 
