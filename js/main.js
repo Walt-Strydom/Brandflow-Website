@@ -15,6 +15,15 @@ const contactForm = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 const hasAnchorNavLinks = document.querySelector('.nav__link[href^="#"]');
 
+// Global top scroll progress indicator
+const scrollProgressBar = document.getElementById('scroll-progress-bar') || (() => {
+    const el = document.createElement('div');
+    el.id = 'scroll-progress-bar';
+    el.className = 'scroll-progress-bar';
+    document.body.appendChild(el);
+    return el;
+})();
+
 function trackEvent(eventName, params = {}) {
     if (typeof gtag !== 'function') return;
     gtag('event', eventName, params);
@@ -80,6 +89,14 @@ function handleAllScrollEffects() {
     // 4. Active anchor link tracking (if present)
     if (hasAnchorNavLinks) {
         updateActiveNavLinkOnScroll(scrollY);
+    }
+
+    // 5. Top scroll progress indicator
+    if (scrollProgressBar) {
+        const doc = document.documentElement;
+        const scrollable = doc.scrollHeight - doc.clientHeight;
+        const progress = scrollable > 0 ? Math.min((scrollY / scrollable) * 100, 100) : 0;
+        scrollProgressBar.style.width = progress + '%';
     }
 
     scrollTicking = false;

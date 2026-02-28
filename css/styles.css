@@ -367,9 +367,9 @@ p {
 
 .section--navy .section__tag,
 .section--navy .section__badge {
-    color: var(--color-orange-light);
-    background: rgba(249, 115, 22, 0.12);
-    border-color: rgba(251, 146, 60, 0.4);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.26);
 }
 
 /* Light alternate section used across service + pricing pages */
@@ -528,6 +528,19 @@ p {
     font-size: 1.125rem;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Top scroll progress indicator */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+    z-index: calc(var(--z-fixed) + 20);
+    transition: width 0.14s linear;
+    pointer-events: none;
 }
 
 /* ============================================
@@ -1303,17 +1316,18 @@ p {
 }
 
 .section__badge {
-    display: inline-block;
-    padding: 0.4rem 0.875rem;
-    background: rgba(249, 115, 22, 0.1);
-    border: 1px solid rgba(249, 115, 22, 0.24);
-    border-radius: var(--radius-lg);
-    color: var(--color-orange-dark);
-    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.46rem 0.92rem;
+    background: #fff;
+    border: 1px solid #dbe4ef;
+    border-radius: 999px;
+    color: #0f2744;
+    font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.08);
     margin-bottom: var(--spacing-md);
 }
 
@@ -7608,17 +7622,18 @@ body.advisor-loading-active {
 
 /* Section Tag utility */
 .section__tag {
-    display: inline-block;
-    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.74rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-orange-dark);
-    background: rgba(249, 115, 22, 0.1);
-    border: 1px solid rgba(249, 115, 22, 0.24);
-    padding: 0.3rem 0.875rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.1);
+    letter-spacing: 0.08em;
+    color: #0f2744;
+    background: #fff;
+    border: 1px solid #dbe4ef;
+    padding: 0.42rem 0.86rem;
+    border-radius: 999px;
     margin-bottom: 0.875rem;
 }
 
