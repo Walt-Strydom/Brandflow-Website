@@ -97,6 +97,13 @@
         </div>
     </footer>
 
+    
+    <script>
+        // Optional: point this to your n8n GET webhook endpoint in production.
+        // Example: https://n8n.yourdomain.com/webhook/insights-feed
+        window.BRANDFLOW_INSIGHTS_WEBHOOK_URL = window.BRANDFLOW_INSIGHTS_WEBHOOK_URL || '/api/insights-webhook.php';
+    </script>
+
     <script src="js/main.js"></script>
 </body>
 </html>

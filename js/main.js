@@ -1849,7 +1849,11 @@ function animateCounters() {
     const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
     const animateCounter = (el) => {
-        const target = parseInt(el.dataset.target, 10);
+        const target = Number.parseInt(el.dataset.target, 10);
+        if (!Number.isFinite(target)) {
+            return;
+        }
+
         const duration = 1800;
         const start = performance.now();
 
@@ -2080,10 +2084,30 @@ if (btnBefore && btnAfter) {
         viewAllLink.setAttribute('href', '/insights');
     }
 
-    fetch('/data/insights.json')
-        .then(r => r.json())
+    const webhookUrl = typeof window !== 'undefined' ? window.BRANDFLOW_INSIGHTS_WEBHOOK_URL : null;
+    const sources = [webhookUrl, '/api/insights-webhook.php', '/data/insights.json'].filter(Boolean);
+
+    const fetchInsights = (sourceIndex = 0) => {
+        if (sourceIndex >= sources.length) {
+            throw new Error('No insights source available');
+        }
+
+        return fetch(sources[sourceIndex])
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed insights request (${response.status})`);
+                }
+                return response.json();
+            })
+            .catch(() => fetchInsights(sourceIndex + 1));
+    };
+
+    fetchInsights()
         .then(data => {
-            const articles = Array.isArray(data.articles) ? data.articles.slice(0, 4) : [];
+            const payload = Array.isArray(data)
+                ? { articles: data }
+                : (data && typeof data === 'object' ? data : { articles: [] });
+            const articles = Array.isArray(payload.articles) ? payload.articles.slice(0, 4) : [];
             if (!articles.length) {
                 if (loading) loading.innerHTML = '<p>No articles available yet. Check back soon.</p>';
                 return;
@@ -2165,7 +2189,7 @@ if (btnBefore && btnAfter) {
                 grid.appendChild(card);
             });
 
-            if (footer && Array.isArray(data.articles) && data.articles.length > 4) {
+            if (footer && Array.isArray(payload.articles) && payload.articles.length > 4) {
                 footer.style.display = 'block';
             }
         })
