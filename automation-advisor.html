@@ -91,6 +91,9 @@
 
 
     <!-- Header / Navigation -->
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav__logo">
@@ -106,7 +109,7 @@
                         <a href="/why-us" class="nav__link">WHY US</a>
                     </li>
                     <li class="nav__item nav__item--dropdown">
-                        <a href="/services" class="nav__link nav__link--dropdown">
+                        <a href="/services" class="nav__link nav__link--dropdown" aria-haspopup="true">
                             SERVICES
                             <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
                         </a>
@@ -137,7 +140,7 @@
         </nav>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content">
 
         <!-- Page Hero -->
         <section class="page-hero page-hero--advisor">
