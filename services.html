@@ -152,6 +152,9 @@
 
 
     <!-- Header / Navigation -->
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav__logo">
@@ -180,7 +183,7 @@
                         </div>
                     </li>
                     <li class="nav__item nav__item--dropdown">
-                        <a href="#" class="nav__link nav__link--dropdown">
+                        <a href="#" class="nav__link nav__link--dropdown" aria-haspopup="true">
                             PRICING
                             <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
                         </a>
@@ -211,7 +214,7 @@
         </nav>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content">
 
         <!-- Page Hero -->
         <section class="page-hero">
@@ -550,7 +553,8 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/why-us">Why Choose Us</a></li>
                         <li><a href="/services">Our Services</a></li>
-                        <li><a href="/pricing-web-development">Web Development Pricing</a></li>
+                        <li><a href="/case-studies">Case Studies</a></li>
+                        <li><a href="/industries">Industries We Serve</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>

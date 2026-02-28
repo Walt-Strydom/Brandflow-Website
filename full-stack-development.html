@@ -89,6 +89,9 @@
 
 
     <!-- Header / Navigation -->
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav__logo">
@@ -117,7 +120,7 @@
                         </div>
                     </li>
                     <li class="nav__item nav__item--dropdown">
-                        <a href="#" class="nav__link nav__link--dropdown">
+                        <a href="#" class="nav__link nav__link--dropdown" aria-haspopup="true">
                             PRICING
                             <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
                         </a>
@@ -148,7 +151,7 @@
         </nav>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content">
 
         <!-- Page Hero -->
         <section class="page-hero page-hero--development">
@@ -509,6 +512,45 @@
             </div>
         </section>
 
+        <!-- Results from this service -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Results</span>
+                    <h2 class="section__title">What Our Full Stack Projects Deliver</h2>
+                </div>
+                <div class="service-proof-strip">
+                    <div class="service-proof-item reveal-on-scroll">
+                        <iconify-icon icon="ph:users-three-fill" width="28" height="28" class="service-proof-item__icon" aria-hidden="true"></iconify-icon>
+                        <div>
+                            <span class="service-proof-item__value">40%</span>
+                            <span class="service-proof-item__label">Reduction in client support volume after self-service portal launch</span>
+                        </div>
+                    </div>
+                    <div class="service-proof-item reveal-on-scroll">
+                        <iconify-icon icon="ph:clock-fill" width="28" height="28" class="service-proof-item__icon" aria-hidden="true"></iconify-icon>
+                        <div>
+                            <span class="service-proof-item__value">10 wks</span>
+                            <span class="service-proof-item__label">From scoping to live launch for a full-stack client portal</span>
+                        </div>
+                    </div>
+                    <div class="service-proof-item reveal-on-scroll">
+                        <iconify-icon icon="ph:shield-check-fill" width="28" height="28" class="service-proof-item__icon" aria-hidden="true"></iconify-icon>
+                        <div>
+                            <span class="service-proof-item__value">100%</span>
+                            <span class="service-proof-item__label">Code ownership transferred to client at project handover — no lock-in</span>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align:center;margin-top:0.5rem">
+                    <a href="/case-studies" class="proof-card__link" style="justify-content:center">
+                        Read our case studies
+                        <iconify-icon icon="ph:arrow-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                    </a>
+                </p>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="automation-cta section">
             <div class="container">
@@ -553,7 +595,8 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/why-us">Why Choose Us</a></li>
                         <li><a href="/services">Our Services</a></li>
-                        <li><a href="/pricing-web-development">Web Development Pricing</a></li>
+                        <li><a href="/case-studies">Case Studies</a></li>
+                        <li><a href="/industries">Industries We Serve</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>

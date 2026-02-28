@@ -114,6 +114,8 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header / Navigation -->
     <header class="header" id="header">
@@ -131,26 +133,26 @@
                         <a href="/why-us" class="nav__link active">WHY US</a>
                     </li>
                     <li class="nav__item nav__item--dropdown">
-                        <a href="/services" class="nav__link nav__link--dropdown">
+                        <a href="/services" class="nav__link nav__link--dropdown" aria-haspopup="true">
                             SERVICES
-                            <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
+                            <iconify-icon icon="ph:caret-down" width="16" height="16" aria-hidden="true"></iconify-icon>
                         </a>
                         <div class="nav__dropdown">
                             <a href="/web-development" class="nav__dropdown-link">Web Development</a>
-                            <a href="/ai-ml-engineering" class="nav__dropdown-link">AI & ML Engineering</a>
+                            <a href="/ai-ml-engineering" class="nav__dropdown-link">AI &amp; ML Engineering</a>
                             <a href="/full-stack-development" class="nav__dropdown-link">Full Stack Development</a>
                             <a href="/process-automation" class="nav__dropdown-link">Process Automation</a>
                             <a href="/api-development" class="nav__dropdown-link">API Development</a>
                         </div>
                     </li>
                     <li class="nav__item nav__item--dropdown">
-                        <a href="#" class="nav__link nav__link--dropdown">
+                        <a href="#" class="nav__link nav__link--dropdown" aria-haspopup="true">
                             PRICING
-                            <iconify-icon icon="ph:caret-down" width="16" height="16"></iconify-icon>
+                            <iconify-icon icon="ph:caret-down" width="16" height="16" aria-hidden="true"></iconify-icon>
                         </a>
                         <div class="nav__dropdown">
                             <a href="/pricing-web-development" class="nav__dropdown-link">Web Development</a>
-                            <a href="/pricing-ai-ml" class="nav__dropdown-link">AI & ML Engineering</a>
+                            <a href="/pricing-ai-ml" class="nav__dropdown-link">AI &amp; ML Engineering</a>
                             <a href="/pricing-full-stack" class="nav__dropdown-link">Full Stack Development</a>
                             <a href="/pricing-process-automation" class="nav__dropdown-link">Process Automation</a>
                             <a href="/pricing-api-development" class="nav__dropdown-link">API Development</a>
@@ -175,7 +177,7 @@
         </nav>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content">
 
         <!-- Page Hero -->
         <section class="page-hero">
@@ -676,6 +678,99 @@
             </div>
         </section>
 
+        <!-- Client Journey Section -->
+        <section class="client-journey section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">How We Engage</span>
+                    <h2 class="section__title">Your Journey with BrandFlow</h2>
+                    <p class="section__subtitle">A clear, collaborative process — from your first call to a live, supported system.</p>
+                </div>
+                <div class="client-journey__steps">
+                    <div class="client-journey__step reveal-on-scroll">
+                        <div class="client-journey__number">1</div>
+                        <h3 class="client-journey__step-title">Discovery Call</h3>
+                        <p class="client-journey__step-desc">30 minutes. We learn about your business, your bottlenecks, and what success looks like — no pitch deck required.</p>
+                    </div>
+                    <div class="client-journey__step reveal-on-scroll">
+                        <div class="client-journey__number">2</div>
+                        <h3 class="client-journey__step-title">Technical Scoping</h3>
+                        <p class="client-journey__step-desc">We map your processes, audit your existing tools, and produce a clear scope with timeline and cost — no vague estimates.</p>
+                    </div>
+                    <div class="client-journey__step reveal-on-scroll">
+                        <div class="client-journey__number">3</div>
+                        <h3 class="client-journey__step-title">Agile Build</h3>
+                        <p class="client-journey__step-desc">We build in short sprints with frequent check-ins. You see real progress, not just status updates, throughout delivery.</p>
+                    </div>
+                    <div class="client-journey__step reveal-on-scroll">
+                        <div class="client-journey__number">4</div>
+                        <h3 class="client-journey__step-title">Handover &amp; Training</h3>
+                        <p class="client-journey__step-desc">Your team gets full documentation, a walkthrough, and everything they need to operate and understand what was built.</p>
+                    </div>
+                    <div class="client-journey__step reveal-on-scroll">
+                        <div class="client-journey__number">5</div>
+                        <h3 class="client-journey__step-title">Ongoing Support</h3>
+                        <p class="client-journey__step-desc">We monitor, maintain, and evolve your systems as your business grows. We're your long-term technology partner, not a one-time vendor.</p>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:2.5rem">
+                    <a href="/contact" class="btn btn--primary">Start with a Discovery Call</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials section section--alt">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__tag">Client Feedback</span>
+                    <h2 class="section__title">What Our Clients Say</h2>
+                    <p class="section__subtitle">Honest feedback from the businesses we've built for.</p>
+                </div>
+                <div class="testimonials__grid">
+                    <div class="testimonial-card reveal-on-scroll">
+                        <p class="testimonial-card__quote">"The invoice automation BrandFlow built has completely changed how our finance team operates. What used to take our admin team a full day now happens automatically overnight. I genuinely wish we'd done this two years earlier."</p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar" aria-hidden="true">
+                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
+                            </div>
+                            <div>
+                                <p class="testimonial-card__name">Operations Director</p>
+                                <p class="testimonial-card__role">Finance &amp; Professional Services Firm, Johannesburg</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-on-scroll">
+                        <p class="testimonial-card__quote">"We were losing leads constantly because no one was picking up enquiries fast enough. BrandFlow set up a system that responds within minutes — even on weekends. Our conversion has improved noticeably and the team has less admin to worry about."</p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar" aria-hidden="true">
+                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
+                            </div>
+                            <div>
+                                <p class="testimonial-card__name">Managing Director</p>
+                                <p class="testimonial-card__role">Professional Services Business, Cape Town</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-on-scroll">
+                        <p class="testimonial-card__quote">"The process was clear from the start — no confusion about costs or timelines. They delivered exactly what was scoped, on time, and actually took the time to explain how everything works. That level of transparency is rare."</p>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar" aria-hidden="true">
+                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
+                            </div>
+                            <div>
+                                <p class="testimonial-card__name">Founder &amp; CEO</p>
+                                <p class="testimonial-card__role">Technology Startup, Pretoria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:2rem">
+                    <a href="/case-studies" class="btn btn--glass">View Full Case Studies</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -702,7 +797,8 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/why-us">Why Choose Us</a></li>
                         <li><a href="/services">Our Services</a></li>
-                        <li><a href="/pricing-web-development">Web Development Pricing</a></li>
+                        <li><a href="/case-studies">Case Studies</a></li>
+                        <li><a href="/industries">Industries We Serve</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>
