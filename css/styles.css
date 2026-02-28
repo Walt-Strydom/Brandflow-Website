@@ -8165,3 +8165,85 @@ body.advisor-loading-active {
         max-width: none;
     }
 }
+
+/* ============================================
+   SOCIAL PROOF STRIP
+   ============================================ */
+.proof-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.proof-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.proof-card__title {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+}
+
+.proof-card__result {
+    color: var(--color-text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.proof-card__meta {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   CONTACT FUNNEL
+   ============================================ */
+.contact-funnel__progress {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-funnel__step {
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.contact-funnel__step--active {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--color-green);
+    border-color: rgba(16, 185, 129, 0.45);
+}
+
+.contact-funnel__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.contact__next-steps {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.04);
+}
+
+.contact__next-steps ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1rem;
+}
+
+/* Cookie controls */
+.cookie-banner__btn--manage {
+    background: transparent;
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-border);
+}
