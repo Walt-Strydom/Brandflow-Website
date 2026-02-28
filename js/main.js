@@ -1849,7 +1849,11 @@ function animateCounters() {
     const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
     const animateCounter = (el) => {
-        const target = parseInt(el.dataset.target, 10);
+        const target = Number.parseInt(el.dataset.target, 10);
+        if (!Number.isFinite(target)) {
+            return;
+        }
+
         const duration = 1800;
         const start = performance.now();
 

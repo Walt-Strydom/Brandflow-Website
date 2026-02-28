@@ -8863,3 +8863,125 @@ textarea:focus-visible {
     line-height: 1.6;
     margin: 0;
 }
+
+
+.compare-table-ctas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.compare-table-ctas .btn {
+    justify-content: center;
+}
+
+.contact-steps-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.contact-steps-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(249, 115, 22, 0.06);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.contact-steps-card__avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-light) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.contact-steps-card__name {
+    font-weight: 700;
+    color: var(--color-text-dark);
+    font-size: 0.9rem;
+    margin: 0 0 0.1rem;
+}
+
+.contact-steps-card__role {
+    font-size: 0.78rem;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.contact-steps-card__status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.contact-steps-card__status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+}
+
+.contact-steps-card__agenda {
+    padding: 1.25rem 1.5rem;
+}
+
+.contact-steps-card__agenda-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-text-light);
+    margin-bottom: 0.875rem;
+}
+
+.contact-steps-card__agenda-item {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+}
+
+.contact-steps-card__agenda-item:last-child { border-bottom: none; }
+
+.contact-steps-card__agenda-time {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-orange);
+    min-width: 45px;
+    padding-top: 0.05rem;
+}
+
+.contact-steps-card__footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(30, 58, 95, 0.04);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.82rem;
+    color: var(--color-text-light);
+}
+
+@media (max-width: 900px) {
+    .compare-table-ctas {
+        grid-template-columns: 1fr;
+    }
+}
