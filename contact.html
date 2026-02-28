@@ -280,46 +280,100 @@
                 <div class="contact__wrapper">
                     <!-- Contact Form -->
                     <div class="contact__form-container">
-                        <form class="contact__form" id="contact-form" action="https://formsubmit.co/walt@brandflow.co.za" method="POST">
+                        <form class="contact__form contact__form--funnel" id="contact-form" action="https://formsubmit.co/walt@brandflow.co.za" method="POST">
                             <!-- FormSubmit Configuration -->
                             <input type="hidden" name="_subject" value="New BrandFlow Website Inquiry">
                             <input type="hidden" name="_captcha" value="true">
                             <input type="hidden" name="_template" value="table">
                             <input type="text" name="_honey" style="display:none">
 
-                            <div class="form__group">
-                                <label for="name" class="form__label">Your Name</label>
-                                <input type="text" id="name" name="name" class="form__input" required>
+                            <div class="contact-funnel__progress" aria-label="Form progress">
+                                <span class="contact-funnel__step contact-funnel__step--active" data-step-indicator="1">1. Goals</span>
+                                <span class="contact-funnel__step" data-step-indicator="2">2. Project</span>
+                                <span class="contact-funnel__step" data-step-indicator="3">3. Contact</span>
                             </div>
 
-                            <div class="form__group">
-                                <label for="email" class="form__label">Email Address</label>
-                                <input type="email" id="email" name="email" class="form__input" required>
+                            <div class="contact-funnel__step-panel" data-step="1">
+                                <div class="form__group">
+                                    <label for="website-need" class="form__label">What do you need?</label>
+                                    <select id="website-need" name="Website Need" class="form__select" required>
+                                        <option value="">Select an option</option>
+                                        <option value="New Website">New Website</option>
+                                        <option value="Redesign">Redesign</option>
+                                        <option value="Landing Page">Landing Page</option>
+                                        <option value="Process Automation">Process Automation</option>
+                                        <option value="API Development">API Development</option>
+                                        <option value="AI/ML Engineering">AI/ML Engineering</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="project-priority" class="form__label">How urgent is this project?</label>
+                                    <select id="project-priority" name="Project Priority" class="form__select" required>
+                                        <option value="">Select urgency</option>
+                                        <option value="ASAP (within 2 weeks)">ASAP (within 2 weeks)</option>
+                                        <option value="This month">This month</option>
+                                        <option value="This quarter">This quarter</option>
+                                        <option value="Just exploring">Just exploring</option>
+                                    </select>
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="budget-band" class="form__label">Estimated budget range</label>
+                                    <select id="budget-band" name="Budget Band" class="form__select" required>
+                                        <option value="">Select budget</option>
+                                        <option value="Under R15,000">Under R15,000</option>
+                                        <option value="R15,000 - R50,000">R15,000 - R50,000</option>
+                                        <option value="R50,000 - R150,000">R50,000 - R150,000</option>
+                                        <option value="R150,000+">R150,000+</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form__group">
-                                <label for="business" class="form__label">Business Name</label>
-                                <input type="text" id="business" name="business" class="form__input" required>
+                            <div class="contact-funnel__step-panel" data-step="2" hidden>
+                                <div class="form__group">
+                                    <label for="business" class="form__label">Business Name</label>
+                                    <input type="text" id="business" name="business" class="form__input" required>
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="current-tools" class="form__label">Current tools/systems (optional)</label>
+                                    <input type="text" id="current-tools" name="Current Tools" class="form__input" placeholder="e.g. Xero, HubSpot, Google Sheets">
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="message" class="form__label">Tell us about your project</label>
+                                    <textarea id="message" name="message" class="form__textarea" rows="4" required></textarea>
+                                </div>
                             </div>
 
-                            <div class="form__group">
-                                <label for="website-need" class="form__label">Website Need</label>
-                                <select id="website-need" name="Website Need" class="form__select" required>
-                                    <option value="">Select an option</option>
-                                    <option value="New Website">New Website</option>
-                                    <option value="Redesign">Redesign</option>
-                                    <option value="Landing Page">Landing Page</option>
-                                    <option value="Process Automation">Process Automation</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                            <div class="contact-funnel__step-panel" data-step="3" hidden>
+                                <div class="form__group">
+                                    <label for="name" class="form__label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form__input" required>
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="email" class="form__label">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form__input" required>
+                                </div>
+
+                                <div class="contact__next-steps">
+                                    <h4>What happens next?</h4>
+                                    <ul>
+                                        <li>We review your request within 1 business day.</li>
+                                        <li>We send a tailored recommendation and scope.</li>
+                                        <li>We schedule your discovery call at your convenience.</li>
+                                    </ul>
+                                </div>
                             </div>
 
-                            <div class="form__group">
-                                <label for="message" class="form__label">Tell us about your project</label>
-                                <textarea id="message" name="message" class="form__textarea" rows="4" required></textarea>
+                            <div class="contact-funnel__actions">
+                                <button type="button" class="btn btn--glass" id="contact-prev-step" hidden>Back</button>
+                                <button type="button" class="btn btn--primary" id="contact-next-step">Continue</button>
+                                <button type="submit" class="btn btn--primary btn--large form__submit" id="contact-submit" hidden>Request a Callback</button>
                             </div>
-
-                            <button type="submit" class="btn btn--primary btn--large form__submit">Request a Callback</button>
 
                             <div class="form__success" id="form-success">
                                 <div class="form__success-icon">✓</div>
@@ -499,7 +553,6 @@
     </button>
 
     <!-- Tilt.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
@@ -546,11 +599,12 @@
     <div class="cookie-banner" id="cookie-banner">
         <div class="cookie-banner__content">
             <p class="cookie-banner__text">
-                We use cookies to enhance your browsing experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies.
+                We use essential cookies to keep this site secure and functional. With your consent, we also use analytics cookies to improve performance and user experience.
             </p>
             <div class="cookie-banner__actions">
-                <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
-                <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
+                <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept all</button>
+                <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Reject analytics</button>
+                <button class="cookie-banner__btn cookie-banner__btn--manage" id="cookie-manage">Cookie settings</button>
             </div>
         </div>
     </div>
