@@ -11,14 +11,15 @@ if (!defined('BRANDFLOW_API')) {
 }
 
 // Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'brandfz2u5y3_brandflow'); // Update with your database name
-define('DB_USER', 'brandfz2u5y3_walt');          // Update with your database user
-define('DB_PASS', 'Lekker!Braai05');      // Update with your database password
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('DB_NAME') ?: 'brandfz2u5y3_brandflow');
+define('DB_USER', getenv('DB_USER') ?: 'brandfz2u5y3_walt');
+define('DB_PASS', getenv('DB_PASS') ?: 'Lekker!Braai05');
 
 // API Settings
-define('CORS_ORIGIN', 'https://brandflow.co.za'); // Update for production
-define('API_VERSION', '1.0.0');
+define('CORS_ORIGIN', getenv('CORS_ORIGIN') ?: 'https://brandflow.co.za');
+define('API_VERSION', '1.1.0');
+define('ALLOW_TEST_ENDPOINT', getenv('ALLOW_TEST_ENDPOINT') === '1');
 
 // PDF Settings
 define('COMPANY_NAME', 'BrandFlow');
@@ -101,4 +102,62 @@ function isValidPhone($phone) {
  */
 function generateAssessmentId() {
     return 'BF-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -6));
+}
+
+
+/**
+ * Get client IP address with proxy awareness
+ */
+function getClientIp() {
+    $headers = ['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR'];
+
+    foreach ($headers as $header) {
+        if (empty($_SERVER[$header])) {
+            continue;
+        }
+
+        $value = $_SERVER[$header];
+        if ($header === 'HTTP_X_FORWARDED_FOR') {
+            $parts = explode(',', $value);
+            $value = trim($parts[0]);
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_IP)) {
+            return $value;
+        }
+    }
+
+    return '0.0.0.0';
+}
+
+/**
+ * Basic file-based rate limiting
+ */
+function enforceRateLimit($bucket, $maxRequests = 60, $windowSeconds = 60) {
+    $ip = getClientIp();
+    $safeBucket = preg_replace('/[^a-zA-Z0-9_\-]/', '_', (string)$bucket);
+    $key = sha1($safeBucket . '|' . $ip);
+    $file = sys_get_temp_dir() . '/brandflow_rate_' . $key . '.json';
+
+    $now = time();
+    $data = ['count' => 0, 'window_start' => $now];
+
+    if (file_exists($file)) {
+        $raw = file_get_contents($file);
+        $parsed = json_decode($raw, true);
+        if (is_array($parsed) && isset($parsed['count'], $parsed['window_start'])) {
+            $data = $parsed;
+        }
+    }
+
+    if (($now - (int)$data['window_start']) >= $windowSeconds) {
+        $data = ['count' => 0, 'window_start' => $now];
+    }
+
+    $data['count'] = (int)$data['count'] + 1;
+    file_put_contents($file, json_encode($data), LOCK_EX);
+
+    if ($data['count'] > $maxRequests) {
+        jsonResponse(['error' => 'Too many requests. Please try again shortly.'], 429);
+    }
 }
