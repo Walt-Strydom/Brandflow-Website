@@ -3083,19 +3083,20 @@ p {
         left: 0;
     }
 
-    /* Mobile menu links always dark colored */
-    .header:not(.scrolled) .nav__menu .nav__link {
+    /* Mobile menu links always dark colored (exclude button-style links) */
+    .header:not(.scrolled) .nav__menu .nav__link:not(.nav__link--btn):not(.nav__link--highlight) {
         color: var(--color-navy);
     }
 
-    .header:not(.scrolled) .nav__menu .nav__link:hover,
-    .header:not(.scrolled) .nav__menu .nav__link.active {
+    .header:not(.scrolled) .nav__menu .nav__link:not(.nav__link--btn):not(.nav__link--highlight):hover,
+    .header:not(.scrolled) .nav__menu .nav__link:not(.nav__link--btn):not(.nav__link--highlight).active {
         color: var(--color-orange);
     }
 
     .nav__list {
         flex-direction: column;
         gap: 1.5rem;
+        align-items: stretch;
     }
 
     .nav__toggle {
@@ -3114,6 +3115,11 @@ p {
     select,
     textarea {
         min-height: 44px;
+    }
+
+    .nav__link {
+        display: flex;
+        align-items: center;
     }
 
     input,
