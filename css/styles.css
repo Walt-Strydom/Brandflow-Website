@@ -7137,17 +7137,18 @@ body.advisor-loading-active {
 
 .discovery-cta__eyebrow {
     display: inline-block;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #fdba74;
-    background: rgba(249, 115, 22, 0.15);
-    border: 1px solid rgba(251, 146, 60, 0.36);
-    padding: 0.3rem 0.875rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.16);
-    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    background: none;
+    border: none;
+    border-top: 2px solid rgba(249, 115, 22, 0.7);
+    border-radius: 0;
+    padding: 0.45rem 0 0;
+    box-shadow: none;
+    margin-bottom: 0.875rem;
 }
 
 .discovery-cta__title {
