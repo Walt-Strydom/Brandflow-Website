@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "description": "BrandFlow Insights — updated automatically by n8n workflow. To update: POST new articles to this file via GitHub API or direct file write. The website fetches this JSON on each page load.",
-    "n8n_instructions": "n8n workflow should: 1) Generate/curate article content 2) Write to this file 3) Trigger Vercel/Netlify redeploy via webhook. Article slugs must be URL-safe strings. Dates in ISO 8601 format.",
+    "description": "BrandFlow Insights — manually curated factual articles. Update this file through editorial review only. The website fetches this JSON on each page load.",
+    "n8n_instructions": "Editorial policy: publish only factual, verifiable content with reliable sources and internal review. Article slugs must be URL-safe strings. Dates in ISO 8601 format.",
     "lastUpdated": "2026-02-26T00:00:00Z",
     "totalArticles": 4
   },
