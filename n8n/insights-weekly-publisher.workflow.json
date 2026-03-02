@@ -1,0 +1,214 @@
+{
+  "name": "BrandFlow — Insights Weekly Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [1],
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "bf-node-001",
+      "name": "Weekly Article Generator",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "insights-feed",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "bf-node-002",
+      "name": "Insights Feed Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 480],
+      "webhookId": "brandflow-insights-feed"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://brandflow.co.za/api/insights-webhook.php",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "bf-node-003",
+      "name": "Fetch Articles for Generation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Build Claude Prompt ──────────────────────────────────────\n// Reads already-stored articles from n8n static data and the freshly\n// fetched base articles so Claude avoids duplicating existing titles.\n\nconst fetchResponse = $input.first().json;\nconst baseArticles = Array.isArray(fetchResponse.articles) ? fetchResponse.articles : [];\n\n// Load articles generated in previous weekly runs (persisted in n8n)\nconst staticData = $getWorkflowStaticData('global');\nconst storedArticles = Array.isArray(staticData.generatedArticles)\n  ? staticData.generatedArticles\n  : [];\n\n// Build \"avoid duplicate\" list from all known titles\nconst allTitles = [...storedArticles, ...baseArticles]\n  .map(a => a.title)\n  .filter(Boolean);\n\nconst avoidList = allTitles.length > 0\n  ? allTitles.map(t => `- ${t}`).join('\\n')\n  : '(none yet — write a fresh article)';\n\nconst prompt = `You write insight articles for BrandFlow, a South African digital agency \nhelping SMEs automate their business operations.\n\nGenerate ONE new insight article. Requirements:\n- Relevant to South African SMEs (reference local context where natural)\n- Practical and actionable for business owners and managers\n- Category MUST be exactly one of: \"Getting Started\", \"Case Study\", \"Compliance\", \"Tools\"\n- Topics: n8n automation, POPIA compliance, workflow optimisation, ROI, \n  reducing admin overhead, integrating local business tools\n\nAlready published — do NOT duplicate these:\n${avoidList}\n\nRespond with ONLY a valid JSON object. No markdown fences. No explanation:\n{\n  \"title\": \"concise headline under 70 characters\",\n  \"excerpt\": \"1–2 sentence hook for the reader, max 180 characters\",\n  \"category\": \"Getting Started|Case Study|Compliance|Tools\",\n  \"readTime\": \"N min read\",\n  \"slug\": \"url-safe-slug\",\n  \"tags\": [\"tag1\", \"tag2\", \"tag3\"]\n}`;\n\nreturn [{ json: { prompt, baseArticles, storedArticles } }];"
+      },
+      "id": "bf-node-004",
+      "name": "Build Claude Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $vars.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ model: 'claude-opus-4-6', max_tokens: 800, messages: [{ role: 'user', content: $json.prompt }] }) }}",
+        "options": {}
+      },
+      "id": "bf-node-005",
+      "name": "Claude API: Generate Article",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1020, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Parse Claude Response & Store Article ─────────────────────\n// Parses the JSON article Claude returned, assigns the next sequential ID,\n// then prepends it to the n8n static data store so it persists across runs.\n\nconst claudeResponse = $input.first().json;\nconst rawText = claudeResponse.content?.[0]?.text ?? '';\n\nif (!rawText) throw new Error('Claude API returned empty content — check your API key and model name.');\n\n// Strip markdown code fences if Claude wrapped the JSON\nconst cleaned = rawText\n  .replace(/^```json\\s*/i, '')\n  .replace(/^```\\s*/i, '')\n  .replace(/\\s*```$/i, '')\n  .trim();\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleaned);\n} catch (e) {\n  throw new Error(`Claude did not return valid JSON.\\nRaw: ${rawText.substring(0, 300)}`);\n}\n\n// Pull context set by Build Claude Prompt\nconst ctx = $('Build Claude Prompt').first().json;\nconst storedArticles = Array.isArray(ctx.storedArticles) ? ctx.storedArticles : [];\nconst baseArticles = Array.isArray(ctx.baseArticles) ? ctx.baseArticles : [];\n\n// Determine next sequential ID across all known articles\nconst allIds = [...storedArticles, ...baseArticles]\n  .map(a => parseInt((a.id || 'art-000').replace('art-', ''), 10))\n  .filter(n => !isNaN(n));\nconst maxId = allIds.length > 0 ? Math.max(...allIds) : 0;\nconst nextId = 'art-' + String(maxId + 1).padStart(3, '0');\n\n// Sanitise slug\nconst rawSlug = String(parsed.slug || parsed.title || nextId);\nconst slug = rawSlug\n  .toLowerCase()\n  .replace(/[^a-z0-9-]/g, '-')\n  .replace(/-+/g, '-')\n  .replace(/^-|-$/g, '')\n  .substring(0, 80);\n\n// Validate category\nconst validCategories = ['Getting Started', 'Case Study', 'Compliance', 'Tools'];\nconst category = validCategories.includes(parsed.category)\n  ? parsed.category\n  : 'Getting Started';\n\nconst newArticle = {\n  id: nextId,\n  title: String(parsed.title || '').trim(),\n  excerpt: String(parsed.excerpt || '').trim(),\n  category,\n  readTime: parsed.readTime || '5 min read',\n  publishedAt: new Date().toISOString().split('T')[0],\n  slug,\n  featured: false,\n  tags: Array.isArray(parsed.tags) ? parsed.tags : []\n};\n\n// Persist in n8n static data (survives between workflow executions)\nconst staticData = $getWorkflowStaticData('global');\nif (!Array.isArray(staticData.generatedArticles)) staticData.generatedArticles = [];\nstaticData.generatedArticles = [newArticle, ...staticData.generatedArticles];\n\nreturn [{\n  json: {\n    success: true,\n    articleId: newArticle.id,\n    title: newArticle.title,\n    publishedAt: newArticle.publishedAt,\n    totalStored: staticData.generatedArticles.length\n  }\n}];"
+      },
+      "id": "bf-node-006",
+      "name": "Parse & Store Article",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1280, 200]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://brandflow.co.za/api/insights-webhook.php",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "bf-node-007",
+      "name": "Fetch Articles for Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 480]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Build Article Response ────────────────────────────────────\n// Merges AI-generated articles (stored in n8n static data across weekly runs)\n// with the base articles served by the cPanel PHP endpoint.\n// Deduplicates by slug, sorts newest-first, returns the combined feed.\n\nconst fetchResponse = $input.first().json;\nconst baseArticles = Array.isArray(fetchResponse.articles) ? fetchResponse.articles : [];\n\n// Load all previously generated articles persisted in n8n\nconst staticData = $getWorkflowStaticData('global');\nconst storedArticles = Array.isArray(staticData.generatedArticles)\n  ? staticData.generatedArticles\n  : [];\n\n// Merge: stored (newest AI-generated) first, then base (static JSON)\n// Deduplicate by slug then by id\nconst seen = new Set();\nconst allArticles = [];\n\nfor (const article of [...storedArticles, ...baseArticles]) {\n  const key = article.slug || article.id;\n  if (key && !seen.has(key)) {\n    seen.add(key);\n    allArticles.push(article);\n  }\n}\n\n// Sort newest publishedAt first\nallArticles.sort((a, b) => {\n  const da = new Date(a.publishedAt || 0).getTime();\n  const db = new Date(b.publishedAt || 0).getTime();\n  return db - da;\n});\n\nreturn [{\n  json: {\n    success: true,\n    source: 'n8n-brandflow-insights',\n    updatedAt: new Date().toISOString(),\n    count: allArticles.length,\n    articles: allArticles\n  }\n}];"
+      },
+      "id": "bf-node-008",
+      "name": "Build Article Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 480]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "https://brandflow.co.za"
+              },
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
+        }
+      },
+      "id": "bf-node-009",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 480]
+    }
+  ],
+  "connections": {
+    "Weekly Article Generator": {
+      "main": [
+        [{ "node": "Fetch Articles for Generation", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Articles for Generation": {
+      "main": [
+        [{ "node": "Build Claude Prompt", "type": "main", "index": 0 }]
+      ]
+    },
+    "Build Claude Prompt": {
+      "main": [
+        [{ "node": "Claude API: Generate Article", "type": "main", "index": 0 }]
+      ]
+    },
+    "Claude API: Generate Article": {
+      "main": [
+        [{ "node": "Parse & Store Article", "type": "main", "index": 0 }]
+      ]
+    },
+    "Insights Feed Webhook": {
+      "main": [
+        [{ "node": "Fetch Articles for Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Articles for Response": {
+      "main": [
+        [{ "node": "Build Article Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Build Article Response": {
+      "main": [
+        [{ "node": "Respond to Webhook", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "BrandFlow" },
+    { "name": "Insights" }
+  ],
+  "triggerCount": 2,
+  "versionId": "brandflow-insights-v1"
+}

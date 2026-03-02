@@ -99,9 +99,9 @@
 
     
     <script>
-        // Optional: point this to your n8n GET webhook endpoint in production.
-        // Example: https://n8n.yourdomain.com/webhook/insights-feed
-        window.BRANDFLOW_INSIGHTS_WEBHOOK_URL = window.BRANDFLOW_INSIGHTS_WEBHOOK_URL || '/api/insights-webhook.php';
+        // n8n insights feed — weekly schedule generates a new article via Claude;
+        // GET requests return the combined feed (AI-generated + base articles).
+        window.BRANDFLOW_INSIGHTS_WEBHOOK_URL = 'https://n8n.brandflow.co.za/webhook/insights-feed';
     </script>
 
     <script src="js/main.js"></script>
