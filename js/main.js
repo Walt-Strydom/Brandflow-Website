@@ -231,6 +231,8 @@ if (navToggle && navMenu) {
 // Close mobile menu when clicking a nav link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
+        // Don't close menu when tapping a dropdown toggle on mobile
+        if (link.classList.contains('nav__link--dropdown') && window.innerWidth <= 768) return;
         closeMobileMenu();
     });
 });
