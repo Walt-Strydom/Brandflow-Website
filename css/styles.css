@@ -246,6 +246,14 @@ html {
     overscroll-behavior: auto;
 }
 
+/* Preserve comfortable notches/safe-area spacing on modern phones */
+:root {
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+}
+
 body {
     font-family: var(--font-body);
     color: var(--color-text-dark);
@@ -261,6 +269,8 @@ body {
     overscroll-behavior-y: auto;
     -webkit-overflow-scrolling: auto;
     position: relative;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 main {
@@ -341,7 +351,7 @@ p {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
 /* ============================================
@@ -3023,6 +3033,30 @@ p {
         max-width: 100%;
     }
 
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body {
+        padding-left: var(--safe-area-left);
+        padding-right: var(--safe-area-right);
+        padding-bottom: var(--safe-area-bottom);
+    }
+
+    p,
+    li,
+    .section__subtitle,
+    .hero__description,
+    .preview-card__text,
+    .service-card__description,
+    .pricing-card__description {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+    }
+
     .container {
         padding: 0 1rem;
     }
@@ -3033,13 +3067,13 @@ p {
 
     .nav__menu {
         position: fixed;
-        top: 80px;
+        top: calc(80px + var(--safe-area-top));
         left: -100%;
-        width: 100%;
+        width: calc(100% - var(--safe-area-left) - var(--safe-area-right));
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        padding: 2rem;
+        padding: 1.5rem;
         box-shadow: var(--shadow-lg);
         transition: left var(--transition-normal);
         z-index: var(--z-dropdown);
@@ -3066,6 +3100,26 @@ p {
 
     .nav__toggle {
         display: flex;
+        min-width: 44px;
+        min-height: 44px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav__link,
+    .nav__dropdown-link,
+    .btn,
+    button,
+    input,
+    select,
+    textarea {
+        min-height: 44px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
     }
 
     /* Mobile Dropdown Styles */
