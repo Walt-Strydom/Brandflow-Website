@@ -3454,6 +3454,11 @@ p {
     flex-wrap: wrap;
 }
 
+.page-hero--web .page-hero__buttons {
+    flex-direction: row;
+    align-items: center;
+}
+
 .page-hero--automation {
     padding-bottom: 5rem;
 }
@@ -3669,6 +3674,7 @@ p {
     .page-hero__buttons {
         justify-content: center;
     }
+
 
     .page-hero__subtitle {
         font-size: 1rem;
