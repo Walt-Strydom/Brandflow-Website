@@ -367,9 +367,9 @@ p {
 
 .section--navy .section__tag,
 .section--navy .section__badge {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.26);
+    color: rgba(255, 255, 255, 0.65);
+    background: none;
+    border-color: rgba(249, 115, 22, 0.7);
 }
 
 /* Light alternate section used across service + pricing pages */
@@ -878,16 +878,17 @@ p {
 
 .hero__eyebrow {
     display: inline-block;
+    background: none;
+    border: none;
+    border-top: 2px solid rgba(249, 115, 22, 0.8);
+    border-radius: 0;
+    padding: 0.45rem 0 0;
+    color: rgba(255, 255, 255, 0.72);
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-orange-dark);
-    background: rgba(249, 115, 22, 0.1);
-    border: 1px solid rgba(249, 115, 22, 0.24);
-    padding: 0.35rem 0.85rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.1);
+    box-shadow: none;
     margin-bottom: 1.75rem;
 }
 
@@ -1316,19 +1317,19 @@ p {
 }
 
 .section__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.46rem 0.92rem;
-    background: #fff;
-    border: 1px solid #dbe4ef;
-    border-radius: 999px;
-    color: #0f2744;
+    display: inline-block;
+    background: none;
+    border: none;
+    border-top: 2px solid var(--color-orange);
+    border-radius: 0;
+    padding: 0.45rem 0 0;
+    color: var(--color-text-light);
     font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: var(--spacing-md);
+    box-shadow: none;
 }
 
 .projects__grid {
@@ -3413,17 +3414,18 @@ p {
 
 .page-hero__badge {
     display: inline-block;
-    background: rgba(249, 115, 22, 0.16);
-    color: #ffedd5;
-    padding: 0.4rem 0.875rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(251, 146, 60, 0.35);
+    background: none;
+    border: none;
+    border-top: 2px solid rgba(249, 115, 22, 0.8);
+    border-radius: 0;
+    padding: 0.45rem 0 0;
+    color: rgba(255, 255, 255, 0.75);
     font-size: 0.78rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.14);
+    box-shadow: none;
 }
 
 .page-hero__title {
@@ -7622,19 +7624,19 @@ body.advisor-loading-active {
 
 /* Section Tag utility */
 .section__tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    display: inline-block;
+    background: none;
+    border: none;
+    border-top: 2px solid var(--color-orange);
+    border-radius: 0;
+    padding: 0.45rem 0 0;
+    color: var(--color-text-light);
     font-size: 0.74rem;
     font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #0f2744;
-    background: #fff;
-    border: 1px solid #dbe4ef;
-    padding: 0.42rem 0.86rem;
-    border-radius: 999px;
     margin-bottom: 0.875rem;
+    box-shadow: none;
 }
 
 /* ============================================
