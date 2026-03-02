@@ -1,0 +1,210 @@
+{
+  "name": "BrandFlow — Insights Weekly Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [1],
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "bf-node-001",
+      "name": "Weekly Article Generator",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "insights-feed",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "bf-node-002",
+      "name": "Insights Feed Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 480],
+      "webhookId": "brandflow-insights-feed"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://brandflow.co.za/api/insights-webhook.php",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "bf-node-003",
+      "name": "Fetch Existing Articles",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Build Search Query ────────────────────────────────────────\n// Rotates through keyword sets aligned with Brandflow's offerings.\n// Each week a different theme is searched so the Insight section covers\n// a broad range of topics over time.\n\nconst KEYWORD_SETS = [\n  {\n    query: 'business process automation South Africa SME',\n    category: 'Getting Started',\n    tags: ['automation', 'SME', 'South Africa', 'productivity']\n  },\n  {\n    query: 'n8n workflow automation small business South Africa',\n    category: 'Tools',\n    tags: ['n8n', 'workflow', 'automation', 'South Africa']\n  },\n  {\n    query: 'POPIA compliance automation South Africa 2026',\n    category: 'Compliance',\n    tags: ['POPIA', 'compliance', 'data protection', 'South Africa']\n  },\n  {\n    query: 'automation ROI cost savings South Africa business',\n    category: 'Getting Started',\n    tags: ['ROI', 'cost savings', 'automation', 'South Africa']\n  },\n  {\n    query: 'AI machine learning business automation South Africa',\n    category: 'Tools',\n    tags: ['AI', 'machine learning', 'automation', 'South Africa']\n  },\n  {\n    query: 'invoice payment workflow automation South Africa SME',\n    category: 'Case Study',\n    tags: ['finance', 'invoicing', 'automation', 'South Africa']\n  },\n  {\n    query: 'API integration business automation South Africa',\n    category: 'Tools',\n    tags: ['API', 'integration', 'automation', 'South Africa']\n  },\n  {\n    query: 'workflow automation small business case study South Africa',\n    category: 'Case Study',\n    tags: ['case study', 'workflow', 'automation', 'South Africa']\n  }\n];\n\n// Pick this week's keyword set (cycles every 8 weeks)\nconst weekIndex = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));\nconst keywordSet = KEYWORD_SETS[weekIndex % KEYWORD_SETS.length];\n\n// Pass through base articles from cPanel for deduplication\nconst fetchResponse = $input.first().json;\nconst baseArticles = Array.isArray(fetchResponse.articles) ? fetchResponse.articles : [];\n\nreturn [{ json: { ...keywordSet, baseArticles } }];"
+      },
+      "id": "bf-node-010",
+      "name": "Build Search Query",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 200]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://serpapi.com/search.json",
+        "sendQueryParameters": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "engine", "value": "google" },
+            { "name": "q", "value": "={{ $json.query }}" },
+            { "name": "gl", "value": "za" },
+            { "name": "hl", "value": "en" },
+            { "name": "num", "value": "5" },
+            { "name": "api_key", "value": "={{ $vars.SERPAPI_KEY }}" }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "bf-node-011",
+      "name": "Search the Web",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1020, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Parse & Store Search Results ──────────────────────────────\n// Maps the top 3 SerpAPI organic results directly into the article schema\n// and persists them in n8n static data (survives between weekly executions).\n// No AI generation — the search results ARE the articles.\n\nconst searchData = $input.first().json;\nconst organic = Array.isArray(searchData.organic_results)\n  ? searchData.organic_results.slice(0, 3)\n  : [];\n\nif (organic.length === 0) {\n  return [{ json: { success: true, newArticlesAdded: 0, totalStored: 0, articles: [],\n    warning: 'No organic results returned by SerpAPI. Check SERPAPI_KEY and query.' } }];\n}\n\n// Pull context set by Build Search Query\nconst ctx = $('Build Search Query').first().json;\nconst { category, tags, baseArticles } = ctx;\n\n// Load persisted articles from n8n static data\nconst staticData = $getWorkflowStaticData('global');\nif (!Array.isArray(staticData.generatedArticles)) staticData.generatedArticles = [];\n\n// Build deduplication set from all known slugs\nconst existingSlugs = new Set([\n  ...staticData.generatedArticles.map(a => a.slug),\n  ...(Array.isArray(baseArticles) ? baseArticles.map(a => a.slug) : [])\n]);\n\n// Determine next sequential article ID\nconst allIds = [...staticData.generatedArticles, ...(Array.isArray(baseArticles) ? baseArticles : [])]\n  .map(a => parseInt((a.id || 'art-000').replace('art-', ''), 10))\n  .filter(n => !isNaN(n));\nlet nextNum = allIds.length > 0 ? Math.max(...allIds) + 1 : 5;\n\nconst today = new Date().toISOString().split('T')[0];\nconst newArticles = [];\n\nfor (const result of organic) {\n  const title = String(result.title || '').trim();\n  const excerpt = String(result.snippet || '').trim().substring(0, 200);\n  if (!title || !excerpt) continue;\n\n  // Build URL-safe slug from title\n  const slug = title\n    .toLowerCase()\n    .replace(/[^a-z0-9-]/g, '-')\n    .replace(/-+/g, '-')\n    .replace(/^-|-$/g, '')\n    .substring(0, 80);\n\n  // Skip duplicates\n  if (existingSlugs.has(slug)) continue;\n  existingSlugs.add(slug);\n\n  // Conservatively estimate read time from snippet length\n  const wordCount = excerpt.split(/\\s+/).length;\n  const readTime = `${Math.max(3, Math.ceil(wordCount * 10 / 200))} min read`;\n\n  newArticles.push({\n    id: 'art-' + String(nextNum).padStart(3, '0'),\n    title,\n    excerpt,\n    category,\n    readTime,\n    publishedAt: today,\n    slug,\n    featured: false,\n    tags\n  });\n\n  nextNum++;\n}\n\n// Prepend new articles so newest appear first\nstaticData.generatedArticles = [...newArticles, ...staticData.generatedArticles];\n\nreturn [{ json: {\n  success: true,\n  newArticlesAdded: newArticles.length,\n  totalStored: staticData.generatedArticles.length,\n  articles: newArticles\n}}];"
+      },
+      "id": "bf-node-006",
+      "name": "Parse & Store Search Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1280, 200]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://brandflow.co.za/api/insights-webhook.php",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "bf-node-007",
+      "name": "Fetch Articles for Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 480]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── BrandFlow: Build Article Response ────────────────────────────────────\n// Merges web-search-curated articles (stored in n8n static data across runs)\n// with the baseline articles from the cPanel PHP endpoint.\n// Deduplicates by slug, sorts newest-first, returns the combined feed.\n\nconst fetchResponse = $input.first().json;\nconst baseArticles = Array.isArray(fetchResponse.articles) ? fetchResponse.articles : [];\n\n// Load all previously curated articles persisted in n8n\nconst staticData = $getWorkflowStaticData('global');\nconst storedArticles = Array.isArray(staticData.generatedArticles)\n  ? staticData.generatedArticles\n  : [];\n\n// Merge: stored (newest curated) first, then base (static JSON from cPanel)\n// Deduplicate by slug then by id\nconst seen = new Set();\nconst allArticles = [];\n\nfor (const article of [...storedArticles, ...baseArticles]) {\n  const key = article.slug || article.id;\n  if (key && !seen.has(key)) {\n    seen.add(key);\n    allArticles.push(article);\n  }\n}\n\n// Sort newest publishedAt first\nallArticles.sort((a, b) => {\n  const da = new Date(a.publishedAt || 0).getTime();\n  const db = new Date(b.publishedAt || 0).getTime();\n  return db - da;\n});\n\nreturn [{\n  json: {\n    success: true,\n    source: 'n8n-brandflow-insights',\n    updatedAt: new Date().toISOString(),\n    count: allArticles.length,\n    articles: allArticles\n  }\n}];"
+      },
+      "id": "bf-node-008",
+      "name": "Build Article Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 480]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "https://brandflow.co.za"
+              },
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
+        }
+      },
+      "id": "bf-node-009",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 480]
+    }
+  ],
+  "connections": {
+    "Weekly Article Generator": {
+      "main": [
+        [{ "node": "Fetch Existing Articles", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Existing Articles": {
+      "main": [
+        [{ "node": "Build Search Query", "type": "main", "index": 0 }]
+      ]
+    },
+    "Build Search Query": {
+      "main": [
+        [{ "node": "Search the Web", "type": "main", "index": 0 }]
+      ]
+    },
+    "Search the Web": {
+      "main": [
+        [{ "node": "Parse & Store Search Results", "type": "main", "index": 0 }]
+      ]
+    },
+    "Insights Feed Webhook": {
+      "main": [
+        [{ "node": "Fetch Articles for Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Articles for Response": {
+      "main": [
+        [{ "node": "Build Article Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Build Article Response": {
+      "main": [
+        [{ "node": "Respond to Webhook", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "BrandFlow" },
+    { "name": "Insights" }
+  ],
+  "triggerCount": 2,
+  "versionId": "brandflow-insights-v2"
+}
