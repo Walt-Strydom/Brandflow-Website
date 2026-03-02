@@ -127,7 +127,7 @@
                         <p class="page-hero__subtitle">API complexity varies widely. We scope your integration requirements first — then deliver a clear, fixed-price proposal built around your specific connectivity needs.</p>
                         <div class="page-hero__buttons">
                             <a href="/contact" class="btn btn--primary">Get a Quote</a>
-                            <a href="/api-development" class="btn btn--outline">View Service</a>
+                            <a href="/api-development" class="btn btn--glass-light">View Service</a>
                         </div>
                     </div>
                     <div class="page-hero__svg-container">
@@ -137,27 +137,89 @@
                                     <stop offset="0%" style="stop-color:#f97316" />
                                     <stop offset="100%" style="stop-color:#fb923c" />
                                 </linearGradient>
-                                <linearGradient id="apiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.12" />
-                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.04" />
+                                <linearGradient id="apiGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1e3a5f" />
+                                    <stop offset="100%" style="stop-color:#0f2340" />
                                 </linearGradient>
                                 <filter id="apiShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.15"/>
+                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.12"/>
                                 </filter>
                             </defs>
-                            <circle cx="200" cy="155" r="85" fill="none" stroke="url(#apiGrad1)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.35"/>
-                            <rect x="115" y="55" width="170" height="90" rx="12" fill="#ffffff" opacity="0.07" filter="url(#apiShadow)"/>
-                            <rect x="127" y="68" width="90" height="8" rx="4" fill="url(#apiGrad1)" opacity="0.75"/>
-                            <rect x="127" y="84" width="130" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <rect x="127" y="97" width="110" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <rect x="127" y="110" width="70" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <rect x="100" y="195" width="200" height="75" rx="12" fill="#ffffff" opacity="0.07" filter="url(#apiShadow)"/>
-                            <rect x="112" y="208" width="110" height="8" rx="4" fill="url(#apiGrad1)" opacity="0.75"/>
-                            <rect x="112" y="224" width="155" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <rect x="112" y="237" width="125" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <rect x="112" y="250" width="90" height="5" rx="3" fill="rgba(255,255,255,0.25)"/>
-                            <circle cx="55" cy="75" r="28" fill="url(#apiGrad2)"/>
-                            <circle cx="345" cy="245" r="22" fill="url(#apiGrad2)"/>
+
+                            <!-- Background decorative circles -->
+                            <g class="page-svg__layer page-svg__layer--bg">
+                                <circle cx="348" cy="38" r="32" fill="rgba(249,115,22,0.08)" />
+                                <circle cx="30" cy="278" r="40" fill="rgba(249,115,22,0.06)" />
+                                <circle cx="374" cy="262" r="18" fill="rgba(249,115,22,0.1)" />
+                            </g>
+
+                            <!-- Animated connection lines -->
+                            <g class="page-svg__layer page-svg__layer--lines">
+                                <path d="M77,142.0 L120,147.5" stroke="url(#apiGrad1)" stroke-width="1.5" fill="none" stroke-dasharray="5,4" opacity="0.5"/>
+                                <path d="M280,112 Q302,78 322,78" stroke="url(#apiGrad1)" stroke-width="1.5" fill="none" stroke-dasharray="5,4" opacity="0.5"/>
+                                <path d="M280,183 Q302,222 322,222" stroke="url(#apiGrad1)" stroke-width="1.5" fill="none" stroke-dasharray="5,4" opacity="0.5"/>
+                            </g>
+
+                            <!-- Central API endpoint card -->
+                            <g class="page-svg__layer page-svg__layer--main" filter="url(#apiShadow)">
+                                <rect x="120" y="90" width="160" height="115" rx="12" fill="#ffffff"/>
+                                <path d="M132,90 L268,90 Q280,90 280,102 L280,126 L120,126 L120,102 Q120,90 132,90 Z" fill="url(#apiGradNav)"/>
+                                <text x="200.0" y="113.0" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" letter-spacing="2" fill="#ffffff">API</text>
+                                <rect x="130" y="136" width="36" height="14" rx="7" fill="#f97316"/>
+                                <text x="148" y="146" text-anchor="middle" font-size="8" font-weight="700" font-family="monospace" fill="#ffffff">GET</text>
+                                <rect x="172" y="139" width="98" height="8" rx="4" fill="#e2e8f0"/>
+                                <rect x="130" y="160" width="140" height="6" rx="3" fill="#e2e8f0"/>
+                                <rect x="130" y="172" width="100" height="6" rx="3" fill="#e2e8f0"/>
+                                <rect x="130" y="186" width="52" height="14" rx="7" fill="#34d399"/>
+                                <text x="156" y="196" text-anchor="middle" font-size="8" font-weight="700" font-family="monospace" fill="#ffffff">200 OK</text>
+                            </g>
+
+                            <!-- Client node -->
+                            <g class="page-svg__layer page-svg__layer--bubble1" filter="url(#apiShadow)">
+                                <rect x="5" y="108" width="72" height="68" rx="10" fill="#ffffff"/>
+                                <circle cx="19" cy="122" r="8" fill="rgba(249,115,22,0.12)"/>
+                                <circle cx="19" cy="122" r="4" fill="#f97316"/>
+                                <rect x="31" y="116" width="38" height="11" rx="4" fill="#1e3a5f" opacity="0.9"/>
+                                <text x="50.0" y="125" text-anchor="middle" font-size="7" font-weight="700" font-family="sans-serif" fill="#ffffff">CLIENT</text>
+                                <rect x="13" y="142" width="56" height="5" rx="2" fill="#e2e8f0"/>
+                                <rect x="13" y="152" width="39" height="5" rx="2" fill="#e2e8f0"/>
+                                <rect x="13" y="162" width="47" height="5" rx="2" fill="#e2e8f0"/>
+                            </g>
+
+                            <!-- Database node -->
+                            <g class="page-svg__layer page-svg__layer--bubble2" filter="url(#apiShadow)">
+                                <rect x="322" y="48" width="72" height="60" rx="10" fill="url(#apiGrad1)"/>
+                                <text x="358.0" y="64" text-anchor="middle" font-size="7.5" font-weight="700" font-family="sans-serif" fill="rgba(255,255,255,0.95)" letter-spacing="0.5">DATABASE</text>
+                                <rect x="332" y="74" width="52" height="5" rx="2" fill="rgba(255,255,255,0.45)"/>
+                                <rect x="332" y="84" width="37" height="5" rx="2" fill="rgba(255,255,255,0.3)"/>
+                                <rect x="332" y="94" width="45" height="5" rx="2" fill="rgba(255,255,255,0.3)"/>
+                            </g>
+
+                            <!-- Service node -->
+                            <g class="page-svg__layer page-svg__layer--node3" filter="url(#apiShadow)">
+                                <rect x="322" y="192" width="72" height="60" rx="10" fill="#ffffff"/>
+                                <path d="M330,192 L386,192 Q394,192 394,200 L394,212 L322,212 L322,200 Q322,192 330,192 Z" fill="url(#apiGradNav)"/>
+                                <text x="358.0" y="205" text-anchor="middle" font-size="7.5" font-weight="700" font-family="sans-serif" fill="#ffffff">SERVICE</text>
+                                <rect x="330" y="220" width="56" height="5" rx="2" fill="#e2e8f0"/>
+                                <rect x="330" y="230" width="42" height="5" rx="2" fill="#e2e8f0"/>
+                                <rect x="330" y="240" width="50" height="5" rx="2" fill="#e2e8f0"/>
+                            </g>
+
+                            <!-- HTTP method pill badges -->
+                            <g class="page-svg__layer page-svg__layer--icons">
+                                <rect x="63" y="82" width="38" height="14" rx="7" fill="#3b82f6"/>
+                                <text x="82" y="92" text-anchor="middle" font-size="7.5" font-weight="700" font-family="monospace" fill="#ffffff">POST</text>
+                                <rect x="290" y="162" width="32" height="14" rx="7" fill="#a78bfa"/>
+                                <text x="306" y="172" text-anchor="middle" font-size="7.5" font-weight="700" font-family="monospace" fill="#ffffff">PUT</text>
+                            </g>
+
+                            <!-- Floating accent dots -->
+                            <g class="page-svg__layer page-svg__layer--dots">
+                                <circle cx="190" cy="52" r="4" fill="#f97316" opacity="0.6"/>
+                                <circle cx="338" cy="152" r="3" fill="#ffffff" opacity="0.5"/>
+                                <circle cx="26" cy="172" r="4" fill="#f97316" opacity="0.4"/>
+                                <circle cx="224" cy="285" r="3" fill="#ffffff" opacity="0.4"/>
+                            </g>
                         </svg>
                     </div>
                         </div>
