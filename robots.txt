@@ -1,6 +1,10 @@
 # robots.txt for BrandFlow Website
 # https://brandflow.co.za
 
+# Google AI products (NotebookLM, Gemini, Vertex AI)
+User-agent: Google-Extended
+Allow: /
+
 # Allow all search engine crawlers
 User-agent: *
 Allow: /
