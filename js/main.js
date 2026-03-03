@@ -1884,29 +1884,6 @@ function animateCounters() {
 
 document.addEventListener('DOMContentLoaded', animateCounters);
 
-// ============================================
-// BEFORE vs AFTER TOGGLE
-// ============================================
-const btnBefore = document.getElementById('ba-btn-before');
-const btnAfter = document.getElementById('ba-btn-after');
-const panelBefore = document.getElementById('ba-panel-before');
-const panelAfter = document.getElementById('ba-panel-after');
-
-if (btnBefore && btnAfter) {
-    btnBefore.addEventListener('click', () => {
-        btnBefore.classList.add('ba-toggle-btn--active');
-        btnAfter.classList.remove('ba-toggle-btn--active');
-        panelBefore.classList.remove('ba-panel--hidden');
-        panelAfter.classList.add('ba-panel--hidden');
-    });
-
-    btnAfter.addEventListener('click', () => {
-        btnAfter.classList.add('ba-toggle-btn--active');
-        btnBefore.classList.remove('ba-toggle-btn--active');
-        panelAfter.classList.remove('ba-panel--hidden');
-        panelBefore.classList.add('ba-panel--hidden');
-    });
-}
 
 // ============================================
 // ROI CALCULATOR
