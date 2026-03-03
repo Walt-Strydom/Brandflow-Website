@@ -259,8 +259,17 @@ dropdownItems.forEach((item, index) => {
     };
 
     dropdownLink.addEventListener('click', (e) => {
-        if (window.innerWidth > 768) return;
+        const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        if (!isTouchDevice && window.innerWidth > 768) return;
         e.preventDefault();
+        // Close any other open dropdowns first
+        dropdownItems.forEach(other => {
+            if (other !== item && other.classList.contains('active')) {
+                other.classList.remove('active');
+                const otherLink = other.querySelector('.nav__link--dropdown');
+                if (otherLink) otherLink.setAttribute('aria-expanded', 'false');
+            }
+        });
         toggleDropdown(!item.classList.contains('active'));
     });
 
@@ -274,6 +283,19 @@ dropdownItems.forEach((item, index) => {
             dropdownLink.focus();
         }
     });
+});
+
+// Close dropdowns when tapping/clicking outside (supports tablet touch)
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav__item--dropdown')) {
+        dropdownItems.forEach(item => {
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                const link = item.querySelector('.nav__link--dropdown');
+                if (link) link.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 });
 
 // ============================================
