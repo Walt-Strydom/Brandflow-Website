@@ -2805,7 +2805,7 @@ p {
 }
 
 .scroll-top:hover .scroll-top__text {
-    color: var(--color-orange);
+    color: var(--color-navy);
 }
 
 .scroll-top:hover .scroll-top__arrow {
@@ -2814,7 +2814,7 @@ p {
 }
 
 .scroll-top:hover .scroll-top__arrow iconify-icon {
-    color: var(--color-orange);
+    color: var(--color-navy);
 }
 
 /* White variant when over dark footer */
@@ -2828,7 +2828,7 @@ p {
 
 .scroll-top.over-footer:hover .scroll-top__text,
 .scroll-top.over-footer:hover .scroll-top__arrow iconify-icon {
-    color: var(--color-orange-light);
+    color: var(--color-white);
 }
 
 /* Loading state for scroll-to-top button */
