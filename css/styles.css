@@ -3538,6 +3538,17 @@ p {
 .page-hero--web .page-hero__buttons {
     flex-direction: row;
     align-items: center;
+    flex-wrap: nowrap;
+}
+
+.page-hero--web .page-hero__buttons .btn {
+    padding-inline: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .page-hero--web .page-hero__buttons {
+        flex-wrap: wrap;
+    }
 }
 
 .page-hero--automation {
