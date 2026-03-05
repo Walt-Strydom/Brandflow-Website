@@ -1,20 +1,35 @@
 # robots.txt for BrandFlow Website
 # https://brandflow.co.za
 
-# Google AI products (NotebookLM, Gemini, Vertex AI)
+# Explicitly allow Google crawlers used by Search and AI surfaces (including NotebookLM fetches)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GoogleOther-Image
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+# Google-Extended controls training/grounding usage permissions
 User-agent: Google-Extended
 Allow: /
 
-# Allow all search engine crawlers
+# Allow all other crawlers
 User-agent: *
 Allow: /
 
 # Sitemap location
 Sitemap: https://brandflow.co.za/sitemap.xml
-
-# Crawl-delay (optional - helps prevent server overload)
-Crawl-delay: 1
-
-# Disallow access to any sensitive directories (none currently)
-# Disallow: /admin/
-# Disallow: /private/

@@ -29,9 +29,12 @@ RewriteRule ^([^/.]+)$ $1.html [L]
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 <IfModule mod_headers.c>
-    # Clickjacking Protection - Prevent site from being embedded in iframes
-    Header always set X-Frame-Options "SAMEORIGIN"
-    Header always set Content-Security-Policy "frame-ancestors 'self'"
+    # Allow trusted Google surfaces (e.g., NotebookLM) to embed/fetch page previews
+    # Note: X-Frame-Options is intentionally omitted because SAMEORIGIN blocks NotebookLM embeds.
+    Header always set Content-Security-Policy "frame-ancestors 'self' https://notebooklm.google.com https://*.google.com"
+
+    # Encourage broad indexing/preview eligibility for crawlers and AI surfaces
+    Header always set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 
     # Prevent Content Type Sniffing
     Header always set X-Content-Type-Options "nosniff"
