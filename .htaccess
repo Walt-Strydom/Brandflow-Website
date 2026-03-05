@@ -33,6 +33,9 @@ RewriteRule ^([^/.]+)$ $1.html [L]
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Content-Security-Policy "frame-ancestors 'self'"
 
+    # Encourage broad indexing/preview eligibility for crawlers and AI surfaces
+    Header always set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
     # Prevent Content Type Sniffing
     Header always set X-Content-Type-Options "nosniff"
 
