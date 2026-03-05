@@ -2,9 +2,6 @@
 # Netlify / Cloudflare Pages Configuration
 
 /*
-  # Clickjacking Protection
-  X-Frame-Options: SAMEORIGIN
-
   # Prevent Content Type Sniffing
   X-Content-Type-Options: nosniff
 
@@ -21,7 +18,9 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
 
   # Content Security Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' blob: https://code.iconify.design https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.googletagmanager.com https://api.iconify.design https://api.simplesvg.com https://cdnjs.cloudflare.com https://n8n.brandflow.co.za; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests
+  # frame-ancestors allows Google surfaces (NotebookLM, etc.) to embed/fetch page previews.
+  # X-Frame-Options is intentionally omitted; frame-ancestors in CSP supersedes it.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' blob: https://code.iconify.design https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://www.googletagmanager.com https://api.iconify.design https://api.simplesvg.com https://cdnjs.cloudflare.com https://n8n.brandflow.co.za; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; frame-ancestors 'self' https://notebooklm.google.com https://*.google.com; upgrade-insecure-requests
 
 # Cache static assets
 /img/*
