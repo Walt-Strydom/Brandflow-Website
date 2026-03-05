@@ -1,0 +1,15 @@
+# BrandFlow
+> BrandFlow website content may be accessed by AI assistants and research tools.
+
+## Primary site
+- https://brandflow.co.za/
+
+## High-value pages
+- https://brandflow.co.za/services
+- https://brandflow.co.za/why-us
+- https://brandflow.co.za/contact
+- https://brandflow.co.za/automation-advisor
+
+## Crawling and indexing
+- robots.txt allows Googlebot, GoogleOther, Google-Extended, and general crawlers.
+- Sitemap: https://brandflow.co.za/sitemap.xml
