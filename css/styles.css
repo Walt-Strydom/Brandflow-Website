@@ -760,10 +760,15 @@ p {
 
 /* Contact button always white text */
 .nav__link--btn,
+.nav__link--btn.active,
 .nav__link--btn:hover,
+.nav__link--btn.active:hover,
 .header:not(.scrolled) .nav__link--btn,
+.header:not(.scrolled) .nav__link--btn.active,
 .header:not(.scrolled) .nav__link--btn:hover,
+.header:not(.scrolled) .nav__link--btn.active:hover,
 .header.scrolled .nav__link--btn,
+.header.scrolled .nav__link--btn.active,
 .header.scrolled .nav__link--btn:hover {
     color: var(--color-white);
 }
