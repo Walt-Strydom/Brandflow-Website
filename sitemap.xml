@@ -1,37 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-    <!-- Homepage -->
     <url>
         <loc>https://brandflow.co.za/</loc>
-        <lastmod>2026-02-03</lastmod>
+        <lastmod>2026-03-02T16:55:27+02:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/" />
         <image:image>
             <image:loc>https://brandflow.co.za/img/og-image.png</image:loc>
             <image:title>BrandFlow - AI Engineering, Full Stack Development &amp; Automation Solutions</image:title>
         </image:image>
     </url>
 
-    <url><loc>https://brandflow.co.za/why-us</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/services</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-    <url><loc>https://brandflow.co.za/contact</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url>
+        <loc>https://brandflow.co.za/services</loc>
+        <lastmod>2026-02-28T23:33:56+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/services" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/services" />
+    </url>
 
-    <url><loc>https://brandflow.co.za/web-development</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/ai-ml-engineering</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/full-stack-development</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/process-automation</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-    <url><loc>https://brandflow.co.za/api-development</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/automation-advisor</loc><lastmod>2026-02-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url>
+        <loc>https://brandflow.co.za/why-us</loc>
+        <lastmod>2026-03-03T10:18:04+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/why-us" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/why-us" />
+    </url>
 
-    <url><loc>https://brandflow.co.za/pricing-web-development</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/pricing-ai-ml</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/pricing-full-stack</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/pricing-process-automation</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://brandflow.co.za/pricing-api-development</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url>
+        <loc>https://brandflow.co.za/industries</loc>
+        <lastmod>2026-02-28T19:57:33+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/industries" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/industries" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/case-studies</loc>
+        <lastmod>2026-02-28T19:57:33+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/case-studies" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/case-studies" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/automation-advisor</loc>
+        <lastmod>2026-02-28T08:23:33+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/automation-advisor" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/automation-advisor" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/contact</loc>
+        <lastmod>2026-02-28T23:33:56+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/contact" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/contact" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/web-development</loc>
+        <lastmod>2026-02-28T22:51:30+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/web-development" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/web-development" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/ai-ml-engineering</loc>
+        <lastmod>2026-02-28T22:51:30+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/ai-ml-engineering" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/ai-ml-engineering" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/full-stack-development</loc>
+        <lastmod>2026-02-28T23:33:56+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/full-stack-development" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/full-stack-development" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/process-automation</loc>
+        <lastmod>2026-03-03T10:18:04+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/process-automation" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/process-automation" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/api-development</loc>
+        <lastmod>2026-02-28T22:51:30+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/api-development" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/api-development" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-web-development</loc>
+        <lastmod>2026-03-02T17:16:09+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-web-development" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-web-development" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-ai-ml</loc>
+        <lastmod>2026-03-02T17:16:09+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-ai-ml" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-ai-ml" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-full-stack</loc>
+        <lastmod>2026-03-02T17:16:09+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-full-stack" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-full-stack" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-process-automation</loc>
+        <lastmod>2026-03-02T17:16:09+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-process-automation" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-process-automation" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-api-development</loc>
+        <lastmod>2026-03-02T09:35:54+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-api-development" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-api-development" />
+    </url>
 
 </urlset>
