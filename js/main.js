@@ -1576,11 +1576,8 @@ if (downloadBtn) {
         e.stopPropagation();
         console.log('Download button clicked');
         console.log('currentAssessmentData:', window.currentAssessmentData);
+        console.log('currentAssessmentId:', window.currentAssessmentId);
         console.log('downloadModal element:', downloadModal);
-        if (!window.currentAssessmentData) {
-            alert('Assessment data not available. Please try running a new assessment.');
-            return;
-        }
         showDownloadModal();
         console.log('Modal active class added:', downloadModal ? downloadModal.classList.contains('active') : 'no modal');
     });
@@ -1747,8 +1744,11 @@ if (downloadForm) {
             return;
         }
 
-        if (!window.currentAssessmentData) {
-            alert('Assessment data not available. Please try running a new assessment.');
+        const hasClientData = !!window.currentAssessmentData;
+        const hasTrackedAssessment = !!window.currentAssessmentId;
+
+        if (!hasClientData && !hasTrackedAssessment) {
+            alert('Assessment data not available yet. Please run a new assessment and try again.');
             return;
         }
 
@@ -1758,19 +1758,47 @@ if (downloadForm) {
         submitBtn.disabled = true;
 
         try {
-            // Save user info to database (non-blocking)
+            let downloadStarted = false;
+
+            // Prefer server-generated report when we have a tracked assessment ID.
             if (window.currentAssessmentId) {
-                fetch(`${ASSESSMENT_API_URL}?action=download`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        assessment_id: window.currentAssessmentId,
-                        name: userName,
-                        email: userEmail,
-                        company: userCompany,
-                        phone: userPhone
-                    })
-                }).catch(err => console.error('Failed to save download info:', err));
+                try {
+                    const response = await fetch(`${ASSESSMENT_API_URL}?action=download`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            assessment_id: window.currentAssessmentId,
+                            name: userName,
+                            email: userEmail,
+                            company: userCompany,
+                            phone: userPhone
+                        })
+                    });
+
+                    const data = await response.json();
+                    if (response.ok && data.success && data.download_url) {
+                        downloadStarted = true;
+                        window.location.href = data.download_url;
+                    } else {
+                        console.error('Server download API error:', data.error || 'Unknown error');
+                    }
+                } catch (err) {
+                    console.error('Failed to request server download:', err);
+                }
+            }
+
+            // Fallback to client-side PDF generation when server download isn't available.
+            if (!downloadStarted && !window.currentAssessmentData) {
+                alert('Unable to generate report right now. Please run a new assessment and try again.');
+                return;
+            }
+
+            if (downloadStarted) {
+                setTimeout(() => {
+                    hideDownloadModal();
+                    downloadForm.reset();
+                }, 300);
+                return;
             }
 
             // Build PDF HTML
