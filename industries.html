@@ -56,11 +56,13 @@
     <meta name="twitter:image" content="https://brandflow.co.za/img/og-image.png">
     <meta name="twitter:image:alt" content="BrandFlow Industries">
 
-    <!-- Google Analytics - Loaded conditionally based on cookie consent -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-50G4QB6ETF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        window.GA_MEASUREMENT_ID = 'G-50G4QB6ETF';
+        gtag('js', new Date());
+        gtag('config', 'G-50G4QB6ETF');
     </script>
 
     <!-- Iconify -->
@@ -625,7 +627,6 @@
     </button>
 
     <!-- JavaScript -->
-    <script src="js/main.js"></script>
 
     <!-- WhatsApp Quick-Reply Panel -->
     <div class="wa-widget" id="wa-widget">
@@ -711,5 +712,6 @@
         </div>
     </div>
 
+    <script src="js/main.js"></script>
 </body>
 </html>

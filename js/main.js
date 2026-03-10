@@ -854,9 +854,9 @@ function getConsent() {
     return localStorage.getItem('cookieConsent') || getCookie(COOKIE_NAME);
 }
 
-// Load Google Analytics only when consent is given
+// Update GA4 consent when user accepts - script already loaded in HTML
 function loadGoogleAnalytics() {
-    if (gaLoaded || !window.GA_MEASUREMENT_ID) return;
+    if (gaLoaded) return;
 
     gaLoaded = true;
 
@@ -867,16 +867,6 @@ function loadGoogleAnalytics() {
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
     });
-
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
-    document.head.appendChild(script);
-
-    script.onload = function() {
-        gtag('js', new Date());
-        gtag('config', window.GA_MEASUREMENT_ID);
-    };
 }
 
 function showCookieBanner() {

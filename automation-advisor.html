@@ -52,11 +52,13 @@
     <meta name="twitter:description" content="Get instant AI-powered recommendations for automating your business processes. Completely free.">
     <meta name="twitter:image" content="https://brandflow.co.za/img/og-image.png">
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-50G4QB6ETF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        window.GA_MEASUREMENT_ID = 'G-50G4QB6ETF';
+        gtag('js', new Date());
+        gtag('config', 'G-50G4QB6ETF');
     </script>
 
     <!-- Favicon -->
@@ -590,7 +592,6 @@
 
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/main.js"></script>
 
     <!-- Step Indicator + Prompt Chips + Char Counter -->
     <script>
@@ -762,5 +763,6 @@
             </div>
         </div>
     </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
