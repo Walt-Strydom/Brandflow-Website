@@ -725,5 +725,36 @@
             </div>
         </div>
     </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-modal" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title" style="display:none">
+        <div class="cookie-modal__overlay" id="cookie-modal-overlay"></div>
+        <div class="cookie-modal__content">
+            <button class="cookie-modal__close" id="cookie-modal-close" aria-label="Close cookie settings">&times;</button>
+            <h2 class="cookie-modal__title" id="cookie-modal-title">Cookie Preferences</h2>
+            <div class="cookie-modal__body">
+                <div class="cookie-modal__item">
+                    <div class="cookie-modal__item-header">
+                        <span class="cookie-modal__item-name">Essential Cookies</span>
+                        <span class="cookie-modal__item-status cookie-modal__item-status--required">Always Active</span>
+                    </div>
+                    <p class="cookie-modal__item-desc">Required for the website to function. These cannot be disabled.</p>
+                </div>
+                <div class="cookie-modal__item">
+                    <div class="cookie-modal__item-header">
+                        <span class="cookie-modal__item-name">Analytics Cookies</span>
+                        <label class="cookie-modal__toggle" aria-label="Toggle analytics cookies">
+                            <input type="checkbox" id="analytics-toggle" checked>
+                            <span class="cookie-modal__toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-modal__item-desc">Help us understand how visitors use the site so we can improve performance and content.</p>
+                </div>
+            </div>
+            <div class="cookie-modal__footer">
+                <button class="btn btn--primary" id="cookie-save-prefs">Save Preferences</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
