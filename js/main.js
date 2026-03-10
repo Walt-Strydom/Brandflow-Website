@@ -860,6 +860,14 @@ function loadGoogleAnalytics() {
 
     gaLoaded = true;
 
+    // Update Consent Mode v2 - grant analytics, keep ads denied
+    gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+    });
+
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
@@ -867,8 +875,7 @@ function loadGoogleAnalytics() {
 
     script.onload = function() {
         gtag('js', new Date());
-        gtag('config', window.GA_MEASUREMENT_ID, { anonymize_ip: true });
-        trackEvent('consent_analytics_enabled', { source: 'cookie_banner' });
+        gtag('config', window.GA_MEASUREMENT_ID);
     };
 }
 
@@ -905,6 +912,12 @@ if (cookieDecline) {
     cookieDecline.addEventListener('click', () => {
         setConsent('declined');
         hideCookieBanner();
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
     });
 }
 
