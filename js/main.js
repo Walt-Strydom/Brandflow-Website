@@ -916,11 +916,44 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (cookieManage) {
+        const cookieModal = document.getElementById('cookie-modal');
+        const cookieModalClose = document.getElementById('cookie-modal-close');
+        const cookieModalOverlay = document.getElementById('cookie-modal-overlay');
+        const cookieSavePrefs = document.getElementById('cookie-save-prefs');
+        const analyticsToggle = document.getElementById('analytics-toggle');
+
         cookieManage.addEventListener('click', () => {
-            if (cookieBanner) {
-                cookieBanner.classList.add('show');
+            if (cookieModal) {
+                hideCookieBanner();
+                cookieModal.style.display = 'block';
             }
         });
+
+        function closeCookieModal() {
+            if (cookieModal) cookieModal.style.display = 'none';
+        }
+
+        if (cookieModalClose) cookieModalClose.addEventListener('click', closeCookieModal);
+        if (cookieModalOverlay) cookieModalOverlay.addEventListener('click', closeCookieModal);
+
+        if (cookieSavePrefs) {
+            cookieSavePrefs.addEventListener('click', () => {
+                const analyticsEnabled = analyticsToggle ? analyticsToggle.checked : false;
+                if (analyticsEnabled) {
+                    setConsent('accepted');
+                    loadGoogleAnalytics();
+                } else {
+                    setConsent('declined');
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied',
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied'
+                    });
+                }
+                closeCookieModal();
+            });
+        }
     }
 
     showCookieBanner();
