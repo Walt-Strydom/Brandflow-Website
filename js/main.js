@@ -823,113 +823,108 @@ if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
 // ============================================
 // COOKIE CONSENT BANNER & ANALYTICS
 // ============================================
-const cookieBanner = document.getElementById('cookie-banner');
-const cookieAccept = document.getElementById('cookie-accept');
-const cookieDecline = document.getElementById('cookie-decline');
-const cookieManage = document.getElementById('cookie-manage');
-const COOKIE_NAME = 'brandflow_cookie_consent';
-const COOKIE_DAYS = 180;
+document.addEventListener('DOMContentLoaded', function () {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAccept = document.getElementById('cookie-accept');
+    const cookieDecline = document.getElementById('cookie-decline');
+    const cookieManage = document.getElementById('cookie-manage');
+    const COOKIE_NAME = 'brandflow_cookie_consent';
+    const COOKIE_DAYS = 180;
 
-// Track if GA has been loaded to prevent duplicate loading
-let gaLoaded = false;
+    // Track if GA consent has been updated to prevent duplicates
+    let gaLoaded = false;
 
-function setCookie(name, value, days) {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax; Secure`;
-}
-
-function getCookie(name) {
-    return document.cookie.split('; ').reduce((acc, cookie) => {
-        const [key, ...vals] = cookie.split('=');
-        return key === name ? decodeURIComponent(vals.join('=')) : acc;
-    }, null);
-}
-
-function setConsent(consentValue) {
-    localStorage.setItem('cookieConsent', consentValue);
-    setCookie(COOKIE_NAME, consentValue, COOKIE_DAYS);
-}
-
-function getConsent() {
-    return localStorage.getItem('cookieConsent') || getCookie(COOKIE_NAME);
-}
-
-// Load Google Analytics only when consent is given
-function loadGoogleAnalytics() {
-    if (gaLoaded || !window.GA_MEASUREMENT_ID) return;
-
-    gaLoaded = true;
-
-    // Update Consent Mode v2 - grant analytics, keep ads denied
-    gtag('consent', 'update', {
-        'analytics_storage': 'granted',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-    });
-
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
-    document.head.appendChild(script);
-
-    script.onload = function() {
-        gtag('js', new Date());
-        gtag('config', window.GA_MEASUREMENT_ID);
-    };
-}
-
-function showCookieBanner() {
-    const consent = getConsent();
-
-    if (consent === 'accepted') {
-        loadGoogleAnalytics();
-        return;
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax; Secure`;
     }
 
-    if (cookieBanner) {
-        setTimeout(() => {
-            cookieBanner.classList.add('show');
-        }, 800);
+    function getCookie(name) {
+        return document.cookie.split('; ').reduce((acc, cookie) => {
+            const [key, ...vals] = cookie.split('=');
+            return key === name ? decodeURIComponent(vals.join('=')) : acc;
+        }, null);
     }
-}
 
-function hideCookieBanner() {
-    if (cookieBanner) {
-        cookieBanner.classList.remove('show');
+    function setConsent(consentValue) {
+        localStorage.setItem('cookieConsent', consentValue);
+        setCookie(COOKIE_NAME, consentValue, COOKIE_DAYS);
     }
-}
 
-if (cookieAccept) {
-    cookieAccept.addEventListener('click', () => {
-        setConsent('accepted');
-        hideCookieBanner();
-        loadGoogleAnalytics();
-    });
-}
+    function getConsent() {
+        return localStorage.getItem('cookieConsent') || getCookie(COOKIE_NAME);
+    }
 
-if (cookieDecline) {
-    cookieDecline.addEventListener('click', () => {
-        setConsent('declined');
-        hideCookieBanner();
+    // GA script is already loaded in <head>; this only updates Consent Mode v2
+    function loadGoogleAnalytics() {
+        if (gaLoaded || !window.GA_MEASUREMENT_ID) return;
+
+        gaLoaded = true;
+
+        // Grant analytics consent - GA script is already present and will start tracking
         gtag('consent', 'update', {
-            'analytics_storage': 'denied',
+            'analytics_storage': 'granted',
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'
         });
-    });
-}
 
-if (cookieManage) {
-    cookieManage.addEventListener('click', () => {
-        if (cookieBanner) {
-            cookieBanner.classList.add('show');
+        gtag('js', new Date());
+        gtag('config', window.GA_MEASUREMENT_ID);
+    }
+
+    function showCookieBanner() {
+        const consent = getConsent();
+
+        if (consent === 'accepted') {
+            loadGoogleAnalytics();
+            return;
         }
-    });
-}
 
-showCookieBanner();
+        if (cookieBanner) {
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 800);
+        }
+    }
+
+    function hideCookieBanner() {
+        if (cookieBanner) {
+            cookieBanner.classList.remove('show');
+        }
+    }
+
+    if (cookieAccept) {
+        cookieAccept.addEventListener('click', () => {
+            setConsent('accepted');
+            hideCookieBanner();
+            loadGoogleAnalytics();
+        });
+    }
+
+    if (cookieDecline) {
+        cookieDecline.addEventListener('click', () => {
+            setConsent('declined');
+            hideCookieBanner();
+            gtag('consent', 'update', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+            });
+        });
+    }
+
+    if (cookieManage) {
+        cookieManage.addEventListener('click', () => {
+            if (cookieBanner) {
+                cookieBanner.classList.add('show');
+            }
+        });
+    }
+
+    showCookieBanner();
+});
 
 // ============================================
 // SCROLL REVEAL ANIMATION - Slide from Left
