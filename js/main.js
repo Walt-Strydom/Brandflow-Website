@@ -1797,6 +1797,10 @@ if (downloadForm) {
                 setTimeout(() => {
                     hideDownloadModal();
                     downloadForm.reset();
+                    const assessmentIdField = document.getElementById('download-assessment-id');
+                    if (assessmentIdField && window.currentAssessmentId) {
+                        assessmentIdField.value = window.currentAssessmentId;
+                    }
                 }, 300);
                 return;
             }

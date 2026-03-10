@@ -214,7 +214,7 @@ function initiateDownload($data) {
 
         jsonResponse([
             'success' => true,
-            'download_url' => 'api/assessment.php?action=pdf&token=' . $token,
+            'download_url' => '/api/assessment.php?action=pdf&token=' . $token,
             'message' => 'Download ready'
         ]);
     } catch (PDOException $e) {
