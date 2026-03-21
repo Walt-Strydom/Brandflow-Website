@@ -2924,38 +2924,29 @@ p {
 }
 
 /* ============================================
-   REVEAL ON SCROLL ANIMATION - Slide from Left
+   REVEAL ON SCROLL ANIMATION
+   Driven by GSAP ScrollTrigger (gsap-animations.js).
+   opacity: 0 prevents a flash before GSAP initialises.
+   .revealed and @media query provide no-JS / a11y fallbacks.
    ============================================ */
 .reveal-on-scroll {
     opacity: 0;
-    transform: translateX(-60px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    /* GSAP manages transform and opacity via inline styles */
 }
 
+/* No-JS / explicit fallback once GSAP triggers */
 .reveal-on-scroll.revealed {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
 }
 
-/* Stagger animation for cards in a grid */
-.reveal-on-scroll:nth-child(2) {
-    transition-delay: 0.1s;
-}
-
-.reveal-on-scroll:nth-child(3) {
-    transition-delay: 0.2s;
-}
-
-.reveal-on-scroll:nth-child(4) {
-    transition-delay: 0.3s;
-}
-
-.reveal-on-scroll:nth-child(5) {
-    transition-delay: 0.4s;
-}
-
-.reveal-on-scroll:nth-child(6) {
-    transition-delay: 0.5s;
+/* Accessibility: show all elements immediately for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 /* ============================================
