@@ -51,17 +51,7 @@ function handleAllScrollEffects() {
         }
     }
 
-    // 2. Parallax effect (desktop only)
-    if (!isMobileDevice && heroSection && parallaxLayers.length > 0) {
-        const heroHeight = heroSection.offsetHeight;
-        if (scrollY < heroHeight) {
-            parallaxLayers.forEach((layer, index) => {
-                const speed = (index + 1) * 0.3;
-                const yPos = -(scrollY * speed);
-                layer.style.transform = `translateY(${yPos}px)`;
-            });
-        }
-    }
+    // 2. (Parallax now handled by GSAP ScrollTrigger in gsap-animations.js)
 
     // 3. Scroll to top button visibility
     if (scrollTopBtn) {
@@ -116,22 +106,9 @@ window.addEventListener('scroll', onScroll, { passive: true });
 
 // ============================================
 // PARALLAX SETUP
+// Parallax is now handled by GSAP ScrollTrigger (gsap-animations.js)
 // ============================================
-const parallaxLayers = document.querySelectorAll('.parallax-layer');
 const heroSection = document.querySelector('.hero');
-
-// Initialize parallax on load (desktop only)
-if (!isMobileDevice && heroSection) {
-    window.addEventListener('load', () => {
-        lastKnownScrollY = window.scrollY;
-        handleAllScrollEffects();
-    });
-} else {
-    // Disable parallax transforms on mobile
-    parallaxLayers.forEach(layer => {
-        layer.style.transform = 'none';
-    });
-}
 
 // ============================================
 // HERO ROTATING TITLE
@@ -539,58 +516,9 @@ faqItemsCompact.forEach(item => {
 });
 
 // ============================================
-// REVEAL ON SCROLL ANIMATION
+// REVEAL ON SCROLL + COUNTER ANIMATIONS
+// Now handled by GSAP ScrollTrigger in gsap-animations.js
 // ============================================
-const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-        }
-    });
-}, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-});
-
-revealElements.forEach(element => {
-    revealObserver.observe(element);
-});
-
-// Hero title blur-in animation removed per request
-
-// ============================================
-// HERO STATS COUNTER ANIMATION
-// ============================================
-function animateCounter(element, target, duration, suffix = '') {
-    let current = 0;
-    const increment = target / (duration / 16); // 60fps
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + suffix;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current) + suffix;
-        }
-    }, 16);
-}
-
-// Trigger counter animation on page load
-window.addEventListener('load', () => {
-    const projectsCounter = document.querySelector('.hero__stat:nth-child(1) .hero__stat-number');
-
-    if (projectsCounter) {
-        // Start from 0 and animate to 50
-        projectsCounter.textContent = '0+';
-
-        // Wait a brief moment then start animation
-        setTimeout(() => {
-            animateCounter(projectsCounter, 50, 2000, '+');
-        }, 500);
-    }
-});
 
 // ============================================
 // CONTACT FORM HANDLING
