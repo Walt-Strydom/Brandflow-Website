@@ -794,6 +794,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/gsap-animations.js"></script>
+    <script>
+        if (typeof gsap === 'undefined') {
+            document.querySelectorAll('.reveal-on-scroll').forEach(function (el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
+    </script>
     <!-- WhatsApp Quick-Reply Panel -->
     <div class="wa-widget" id="wa-widget">
         <div class="wa-panel" id="wa-panel" aria-hidden="true">

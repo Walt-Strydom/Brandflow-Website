@@ -10,6 +10,14 @@
     // Guard: GSAP must be available
     if (typeof gsap === 'undefined') return;
 
+    // Guard: ScrollTrigger must be available
+    if (typeof ScrollTrigger === 'undefined') {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            el.classList.add('revealed');
+        });
+        return;
+    }
+
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
@@ -226,18 +234,21 @@
         // Stagger the stat items in
         const statItems = qa('.stats-item');
         if (statItems.length) {
-            gsap.from(statItems, {
-                y: 40,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.6,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: statsSection,
-                    start: 'top 85%',
-                    once: true
+            gsap.fromTo(statItems,
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.12,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: statsSection,
+                        start: 'top 85%',
+                        once: true
+                    }
                 }
-            });
+            );
         }
 
         // Animate the number counters
@@ -292,50 +303,59 @@
         // Large featured card — from left
         const largeCard = q('.preview-card--large');
         if (largeCard) {
-            gsap.from(largeCard, {
-                x: -40,
-                opacity: 0,
-                duration: 0.75,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: largeCard,
-                    start: 'top 85%',
-                    once: true
+            gsap.fromTo(largeCard,
+                { x: -40, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.75,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: largeCard,
+                        start: 'top 85%',
+                        once: true
+                    }
                 }
-            });
+            );
         }
 
         // Right grid cards — stagger up
         const rightCards = qa('.preview-cards__right-grid .preview-card');
         if (rightCards.length) {
-            gsap.from(rightCards, {
-                y: 40,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.6,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '.preview-cards__right-grid',
-                    start: 'top 85%',
-                    once: true
+            gsap.fromTo(rightCards,
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.preview-cards__right-grid',
+                        start: 'top 85%',
+                        once: true
+                    }
                 }
-            });
+            );
         }
 
         // Advisor CTA strip
         const advisorCta = q('.preview-card--advisor-cta');
         if (advisorCta) {
-            gsap.from(advisorCta, {
-                y: 30,
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: advisorCta,
-                    start: 'top 88%',
-                    once: true
+            gsap.fromTo(advisorCta,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: advisorCta,
+                        start: 'top 88%',
+                        once: true
+                    }
                 }
-            });
+            );
         }
     }
 
@@ -344,18 +364,21 @@
     // ============================================
     const proofCards = qa('.proof-card');
     if (proofCards.length) {
-        gsap.from(proofCards, {
-            y: 48,
-            opacity: 0,
-            stagger: 0.15,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.proof-strip',
-                start: 'top 82%',
-                once: true
+        gsap.fromTo(proofCards,
+            { y: 48, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.proof-strip',
+                    start: 'top 82%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -363,18 +386,21 @@
     // ============================================
     const testimonialCards = qa('.testimonial-card');
     if (testimonialCards.length) {
-        gsap.from(testimonialCards, {
-            y: 40,
-            opacity: 0,
-            stagger: 0.15,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.testimonials',
-                start: 'top 82%',
-                once: true
+        gsap.fromTo(testimonialCards,
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.testimonials',
+                    start: 'top 82%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -446,18 +472,21 @@
             return;
         }
 
-        gsap.from(el, {
-            y: 36,
-            opacity: 0,
-            duration: 0.65,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 88%',
-                once: true,
-                onEnter: () => el.classList.add('revealed')
+        gsap.fromTo(el,
+            { y: 36, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.65,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: () => el.classList.add('revealed')
+                }
             }
-        });
+        );
     });
 
     // ============================================
@@ -640,5 +669,20 @@
             });
         });
     }
+
+    // ============================================
+    // FAILSAFE: Reveal any elements still hidden
+    //           after 3 seconds (handles edge cases
+    //           where ScrollTrigger never fires)
+    // ============================================
+    setTimeout(() => {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            if (parseFloat(window.getComputedStyle(el).opacity) < 0.1) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.classList.add('revealed');
+            }
+        });
+    }, 3000);
 
 })();
