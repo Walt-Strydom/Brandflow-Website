@@ -53,13 +53,10 @@
     // ============================================
     const header = q('.header');
     if (header) {
-        gsap.from(header, {
-            y: -60,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            delay: 0.1
-        });
+        gsap.fromTo(header,
+            { y: -60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.1 }
+        );
     }
 
     // ============================================
@@ -71,64 +68,55 @@
 
         // Left panel content — staggered entrance
         if (q('.hero__eyebrow')) {
-            heroTl.from('.hero__eyebrow', {
-                y: 24,
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power3.out'
-            });
+            heroTl.fromTo('.hero__eyebrow',
+                { y: 24, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+            );
         }
 
         if (q('.hero__title-rotator')) {
-            heroTl.from('.hero__title-rotator', {
-                y: 32,
-                opacity: 0,
-                duration: 0.7,
-                ease: 'power3.out'
-            }, '-=0.35');
+            heroTl.fromTo('.hero__title-rotator',
+                { y: 32, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
+                '-=0.35'
+            );
         }
 
         if (q('.hero__description')) {
-            heroTl.from('.hero__description', {
-                y: 20,
-                opacity: 0,
-                duration: 0.6
-            }, '-=0.35');
+            heroTl.fromTo('.hero__description',
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6 },
+                '-=0.35'
+            );
         }
 
         const heroButtons = qa('.hero__buttons .btn');
         if (heroButtons.length) {
-            heroTl.from(heroButtons, {
-                y: 20,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.5,
-                ease: 'power2.out'
-            }, '-=0.25');
+            heroTl.fromTo(heroButtons,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.12, duration: 0.5, ease: 'power2.out' },
+                '-=0.25'
+            );
         }
 
         // Right panel — slide in from right
         const heroRight = q('.hero__split-right');
         if (heroRight) {
-            heroTl.from(heroRight, {
-                x: 60,
-                opacity: 0,
-                duration: 1.0,
-                ease: 'power2.out'
-            }, '-=0.65');
+            heroTl.fromTo(heroRight,
+                { x: 60, opacity: 0 },
+                { x: 0, opacity: 1, duration: 1.0, ease: 'power2.out' },
+                '-=0.65'
+            );
         }
 
         // SVG nodes — pop in with back.out after panel appears
         const svgGroups = heroSection.querySelectorAll('.hero__svg g[filter]');
         if (svgGroups.length) {
-            heroTl.from(svgGroups, {
-                scale: 0.6,
-                opacity: 0,
-                stagger: 0.15,
-                duration: 0.55,
-                ease: 'back.out(1.6)',
-                transformOrigin: 'center center'
-            }, '-=0.5');
+            heroTl.fromTo(svgGroups,
+                { scale: 0.6, opacity: 0 },
+                { scale: 1, opacity: 1, stagger: 0.15, duration: 0.55, ease: 'back.out(1.6)', transformOrigin: 'center center' },
+                '-=0.5'
+            );
         }
 
         // SVG flow paths — draw in
@@ -148,13 +136,11 @@
         // SVG floating badges — fade up after nodes
         const svgBadges = heroSection.querySelectorAll('.hero__svg g:not([filter])');
         if (svgBadges.length) {
-            heroTl.from(svgBadges, {
-                y: -12,
-                opacity: 0,
-                stagger: 0.18,
-                duration: 0.5,
-                ease: 'power2.out'
-            }, '-=0.3');
+            heroTl.fromTo(svgBadges,
+                { y: -12, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.18, duration: 0.5, ease: 'power2.out' },
+                '-=0.3'
+            );
         }
     }
 
@@ -221,9 +207,9 @@
             }
         });
 
-        if (tag) tl.from(tag, { y: 16, opacity: 0, duration: 0.5 });
-        if (title) tl.from(title, { y: 24, opacity: 0, duration: 0.6 }, '-=0.25');
-        if (subtitle) tl.from(subtitle, { y: 16, opacity: 0, duration: 0.5 }, '-=0.25');
+        if (tag) tl.fromTo(tag, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
+        if (title) tl.fromTo(title, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.25');
+        if (subtitle) tl.fromTo(subtitle, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, '-=0.25');
     });
 
     // ============================================
@@ -280,18 +266,21 @@
     if (trustBar) {
         const sectors = qa('.trust-bar__sector');
         if (sectors.length) {
-            gsap.from(sectors, {
-                y: 12,
-                opacity: 0,
-                stagger: 0.08,
-                duration: 0.45,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: trustBar,
-                    start: 'top 90%',
-                    once: true
+            gsap.fromTo(sectors,
+                { y: 12, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.08,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: trustBar,
+                        start: 'top 90%',
+                        once: true
+                    }
                 }
-            });
+            );
         }
     }
 
@@ -419,31 +408,27 @@
             }
         });
 
-        if (content) tl.from(content, { x: -45, opacity: 0, duration: 0.75, ease: 'power2.out' });
-        if (visual) tl.from(visual, { x: 45, opacity: 0, duration: 0.75, ease: 'power2.out' }, '-=0.5');
+        if (content) tl.fromTo(content, { x: -45, opacity: 0 }, { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out' });
+        if (visual) tl.fromTo(visual, { x: 45, opacity: 0 }, { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out' }, '-=0.5');
 
         // List items stagger
         const listItems = qa('.discovery-cta__list li');
         if (listItems.length) {
-            tl.from(listItems, {
-                x: -20,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.4,
-                ease: 'power2.out'
-            }, '-=0.4');
+            tl.fromTo(listItems,
+                { x: -20, opacity: 0 },
+                { x: 0, opacity: 1, stagger: 0.1, duration: 0.4, ease: 'power2.out' },
+                '-=0.4'
+            );
         }
 
         // Agenda items stagger
         const agendaItems = qa('.discovery-cta__agenda-item');
         if (agendaItems.length) {
-            tl.from(agendaItems, {
-                y: 16,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.4,
-                ease: 'power2.out'
-            }, '-=0.3');
+            tl.fromTo(agendaItems,
+                { y: 16, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.1, duration: 0.4, ease: 'power2.out' },
+                '-=0.3'
+            );
         }
     }
 
@@ -504,23 +489,19 @@
             }
         });
 
-        pageSvgTl.from(pageSvg, {
-            scale: 0.88,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'back.out(1.4)'
-        });
+        pageSvgTl.fromTo(pageSvg,
+            { scale: 0.88, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.4)' }
+        );
 
         // Float elements within page SVG
         const floatEls = pageSvg.querySelectorAll('[class*="float"], [class*="pulse"]');
         if (floatEls.length) {
-            pageSvgTl.from(floatEls, {
-                y: 20,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.5,
-                ease: 'power2.out'
-            }, '-=0.4');
+            pageSvgTl.fromTo(floatEls,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.12, duration: 0.5, ease: 'power2.out' },
+                '-=0.4'
+            );
         }
     }
 
@@ -529,18 +510,21 @@
     // ============================================
     const serviceCards = qa('.service-card');
     if (serviceCards.length) {
-        gsap.from(serviceCards, {
-            y: 40,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.6,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: serviceCards[0].closest('section') || serviceCards[0],
-                start: 'top 82%',
-                once: true
+        gsap.fromTo(serviceCards,
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: serviceCards[0].closest('section') || serviceCards[0],
+                    start: 'top 82%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -548,18 +532,21 @@
     // ============================================
     const pricingCards = qa('.pricing-card');
     if (pricingCards.length) {
-        gsap.from(pricingCards, {
-            y: 50,
-            opacity: 0,
-            stagger: 0.15,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: pricingCards[0].closest('section') || pricingCards[0],
-                start: 'top 82%',
-                once: true
+        gsap.fromTo(pricingCards,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: pricingCards[0].closest('section') || pricingCards[0],
+                    start: 'top 82%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -567,18 +554,21 @@
     // ============================================
     const industryCards = qa('.industry-card');
     if (industryCards.length) {
-        gsap.from(industryCards, {
-            y: 36,
-            opacity: 0,
-            stagger: 0.09,
-            duration: 0.55,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: industryCards[0].closest('section') || industryCards[0],
-                start: 'top 82%',
-                once: true
+        gsap.fromTo(industryCards,
+            { y: 36, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.09,
+                duration: 0.55,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: industryCards[0].closest('section') || industryCards[0],
+                    start: 'top 82%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -586,18 +576,21 @@
     // ============================================
     const faqItems = qa('.faq-compact');
     if (faqItems.length) {
-        gsap.from(faqItems, {
-            y: 24,
-            opacity: 0,
-            stagger: 0.08,
-            duration: 0.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: faqItems[0].closest('section') || faqItems[0],
-                start: 'top 85%',
-                once: true
+        gsap.fromTo(faqItems,
+            { y: 24, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.08,
+                duration: 0.5,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: faqItems[0].closest('section') || faqItems[0],
+                    start: 'top 85%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -605,17 +598,20 @@
     // ============================================
     const contactFormContainer = q('.contact__form-container');
     if (contactFormContainer) {
-        gsap.from(contactFormContainer, {
-            y: 40,
-            opacity: 0,
-            duration: 0.75,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: contactFormContainer,
-                start: 'top 85%',
-                once: true
+        gsap.fromTo(contactFormContainer,
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.75,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: contactFormContainer,
+                    start: 'top 85%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================
@@ -623,17 +619,20 @@
     // ============================================
     const footer = q('.footer');
     if (footer) {
-        gsap.from(footer, {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: footer,
-                start: 'top 95%',
-                once: true
+        gsap.fromTo(footer,
+            { y: 30, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: footer,
+                    start: 'top 95%',
+                    once: true
+                }
             }
-        });
+        );
     }
 
     // ============================================

@@ -756,6 +756,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const cookieAccept = document.getElementById('cookie-accept');
     const cookieDecline = document.getElementById('cookie-decline');
     const cookieManage = document.getElementById('cookie-manage');
+    const cookieModal = document.getElementById('cookie-modal');
+    const cookieModalClose = document.getElementById('cookie-modal-close');
+    const cookieModalOverlay = document.getElementById('cookie-modal-overlay');
+    const cookieSavePrefs = document.getElementById('cookie-save-prefs');
+    const analyticsToggle = document.getElementById('analytics-toggle');
     const COOKIE_NAME = 'brandflow_cookie_consent';
     const COOKIE_DAYS = 180;
 
@@ -822,6 +827,34 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function syncAnalyticsToggle() {
+        if (!analyticsToggle) return;
+
+        analyticsToggle.checked = getConsent() !== 'declined';
+    }
+
+    function openCookieModal() {
+        if (!cookieModal) return;
+
+        syncAnalyticsToggle();
+        hideCookieBanner();
+        cookieModal.style.display = 'flex';
+        cookieModal.classList.add('is-open');
+        document.body.classList.add('cookie-modal-open');
+    }
+
+    function closeCookieModal(restoreBanner = !getConsent()) {
+        if (!cookieModal) return;
+
+        cookieModal.classList.remove('is-open');
+        cookieModal.style.display = 'none';
+        document.body.classList.remove('cookie-modal-open');
+
+        if (restoreBanner) {
+            showCookieBanner();
+        }
+    }
+
     if (cookieAccept) {
         cookieAccept.addEventListener('click', () => {
             setConsent('accepted');
@@ -844,22 +877,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (cookieManage) {
-        const cookieModal = document.getElementById('cookie-modal');
-        const cookieModalClose = document.getElementById('cookie-modal-close');
-        const cookieModalOverlay = document.getElementById('cookie-modal-overlay');
-        const cookieSavePrefs = document.getElementById('cookie-save-prefs');
-        const analyticsToggle = document.getElementById('analytics-toggle');
-
         cookieManage.addEventListener('click', () => {
-            if (cookieModal) {
-                hideCookieBanner();
-                cookieModal.style.display = 'block';
-            }
+            openCookieModal();
         });
-
-        function closeCookieModal() {
-            if (cookieModal) cookieModal.style.display = 'none';
-        }
 
         if (cookieModalClose) cookieModalClose.addEventListener('click', closeCookieModal);
         if (cookieModalOverlay) cookieModalOverlay.addEventListener('click', closeCookieModal);
@@ -879,10 +899,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         'ad_personalization': 'denied'
                     });
                 }
-                closeCookieModal();
+                closeCookieModal(false);
             });
         }
     }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && cookieModal && cookieModal.classList.contains('is-open')) {
+            closeCookieModal();
+        }
+    });
 
     showCookieBanner();
 });
