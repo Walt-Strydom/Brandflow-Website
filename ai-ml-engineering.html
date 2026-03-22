@@ -214,85 +214,159 @@
                         </div>
                     </div>
                     <div class="page-hero__svg-container">
-                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <defs>
-                                <filter id="aiShadow" x="-10%" y="-10%" width="120%" height="130%">
-                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
+                                <linearGradient id="aiOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f97316"/>
+                                    <stop offset="100%" stop-color="#ea580c"/>
+                                </linearGradient>
+                                <radialGradient id="aiCenterGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.2"/>
+                                    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                                </radialGradient>
+                                <filter id="aiShadow" x="-15%" y="-15%" width="130%" height="140%">
+                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
                                 </filter>
+                                <filter id="aiNodeGlow" x="-40%" y="-40%" width="180%" height="180%">
+                                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                                <!-- Signal paths for animateMotion -->
+                                <path id="signal1" d="M94 133 L182 161" fill="none"/>
+                                <path id="signal2" d="M218 161 L304 161" fill="none"/>
                             </defs>
 
-                            <!-- Neural network: 3 layers -->
-                            <!-- Input layer (left) — 4 nodes -->
-                            <circle cx="80" cy="80" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                            <circle cx="80" cy="133" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                            <circle cx="80" cy="186" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                            <circle cx="80" cy="239" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-                            <text x="80" y="20" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.05em">INPUT</text>
+                            <!-- Ambient glow behind hidden layer -->
+                            <ellipse cx="200" cy="161" rx="80" ry="120" fill="url(#aiCenterGlow)"/>
 
-                            <!-- Hidden layer (centre) — 5 nodes -->
-                            <circle cx="200" cy="55" r="18" fill="rgba(249,115,22,0.2)" stroke="#f97316" stroke-width="1.5"/>
-                            <circle cx="200" cy="108" r="18" fill="rgba(249,115,22,0.25)" stroke="#f97316" stroke-width="1.5"/>
-                            <circle cx="200" cy="161" r="18" fill="rgba(249,115,22,0.3)" stroke="#f97316" stroke-width="2"/>
-                            <circle cx="200" cy="214" r="18" fill="rgba(249,115,22,0.25)" stroke="#f97316" stroke-width="1.5"/>
-                            <circle cx="200" cy="267" r="18" fill="rgba(249,115,22,0.2)" stroke="#f97316" stroke-width="1.5"/>
-                            <text x="200" y="20" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.05em">HIDDEN</text>
+                            <!-- Layer header labels with underlines -->
+                            <text x="80" y="18" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,0.45)" letter-spacing="2">INPUT</text>
+                            <line x1="55" y1="22" x2="105" y2="22" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text x="200" y="18" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="700" fill="rgba(249,115,22,0.7)" letter-spacing="2">HIDDEN</text>
+                            <line x1="170" y1="22" x2="230" y2="22" stroke="rgba(249,115,22,0.25)" stroke-width="1"/>
+                            <text x="320" y="18" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,0.45)" letter-spacing="2">OUTPUT</text>
+                            <line x1="295" y1="22" x2="345" y2="22" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
 
-                            <!-- Output layer (right) — 3 nodes -->
-                            <circle cx="320" cy="107" r="16" fill="#f97316" filter="url(#aiShadow)"/>
-                            <circle cx="320" cy="161" r="16" fill="#f97316" filter="url(#aiShadow)"/>
-                            <circle cx="320" cy="215" r="16" fill="#f97316" filter="url(#aiShadow)"/>
-                            <text x="320" y="20" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.05em">OUTPUT</text>
-
-                            <!-- Connections: input → hidden -->
-                            <g stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="none">
-                                <line x1="94" y1="80" x2="182" y2="55"/>
-                                <line x1="94" y1="80" x2="182" y2="108"/>
-                                <line x1="94" y1="80" x2="182" y2="161"/>
-                                <line x1="94" y1="133" x2="182" y2="55"/>
-                                <line x1="94" y1="133" x2="182" y2="108"/>
-                                <line x1="94" y1="133" x2="182" y2="161"/>
-                                <line x1="94" y1="133" x2="182" y2="214"/>
-                                <line x1="94" y1="186" x2="182" y2="108"/>
-                                <line x1="94" y1="186" x2="182" y2="161"/>
-                                <line x1="94" y1="186" x2="182" y2="214"/>
-                                <line x1="94" y1="186" x2="182" y2="267"/>
-                                <line x1="94" y1="239" x2="182" y2="161"/>
-                                <line x1="94" y1="239" x2="182" y2="214"/>
-                                <line x1="94" y1="239" x2="182" y2="267"/>
+                            <!-- Input → Hidden connections (variable weight) -->
+                            <g fill="none">
+                                <line x1="94" y1="80" x2="182" y2="55" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+                                <line x1="94" y1="80" x2="182" y2="108" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+                                <line x1="94" y1="80" x2="182" y2="161" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+                                <line x1="94" y1="133" x2="182" y2="55" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
+                                <line x1="94" y1="133" x2="182" y2="108" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+                                <line x1="94" y1="133" x2="182" y2="161" stroke="rgba(249,115,22,0.55)" stroke-width="2.2"/>
+                                <line x1="94" y1="133" x2="182" y2="214" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+                                <line x1="94" y1="186" x2="182" y2="108" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+                                <line x1="94" y1="186" x2="182" y2="161" stroke="rgba(249,115,22,0.5)" stroke-width="2"/>
+                                <line x1="94" y1="186" x2="182" y2="214" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <line x1="94" y1="186" x2="182" y2="267" stroke="rgba(255,255,255,0.06)" stroke-width="0.6"/>
+                                <line x1="94" y1="239" x2="182" y2="161" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+                                <line x1="94" y1="239" x2="182" y2="214" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <line x1="94" y1="239" x2="182" y2="267" stroke="rgba(255,255,255,0.09)" stroke-width="0.9"/>
                             </g>
-                            <!-- Highlighted path -->
-                            <line x1="94" y1="133" x2="182" y2="161" stroke="#f97316" stroke-width="2" opacity="0.6"/>
-                            <line x1="94" y1="186" x2="182" y2="161" stroke="#f97316" stroke-width="2" opacity="0.6"/>
 
-                            <!-- Connections: hidden → output -->
-                            <g stroke="rgba(249,115,22,0.2)" stroke-width="1" fill="none">
-                                <line x1="218" y1="55" x2="304" y2="107"/>
-                                <line x1="218" y1="108" x2="304" y2="107"/>
-                                <line x1="218" y1="108" x2="304" y2="161"/>
-                                <line x1="218" y1="161" x2="304" y2="107"/>
-                                <line x1="218" y1="161" x2="304" y2="161"/>
-                                <line x1="218" y1="161" x2="304" y2="215"/>
-                                <line x1="218" y1="214" x2="304" y2="161"/>
-                                <line x1="218" y1="214" x2="304" y2="215"/>
-                                <line x1="218" y1="267" x2="304" y2="215"/>
+                            <!-- Hidden → Output connections (variable weight) -->
+                            <g fill="none">
+                                <line x1="218" y1="55" x2="304" y2="107" stroke="rgba(249,115,22,0.12)" stroke-width="0.8"/>
+                                <line x1="218" y1="108" x2="304" y2="107" stroke="rgba(249,115,22,0.18)" stroke-width="1.2"/>
+                                <line x1="218" y1="108" x2="304" y2="161" stroke="rgba(249,115,22,0.1)" stroke-width="0.8"/>
+                                <line x1="218" y1="161" x2="304" y2="107" stroke="rgba(249,115,22,0.14)" stroke-width="1"/>
+                                <line x1="218" y1="161" x2="304" y2="161" stroke="rgba(249,115,22,0.75)" stroke-width="2.5"/>
+                                <line x1="218" y1="161" x2="304" y2="215" stroke="rgba(249,115,22,0.14)" stroke-width="1"/>
+                                <line x1="218" y1="214" x2="304" y2="161" stroke="rgba(249,115,22,0.12)" stroke-width="0.9"/>
+                                <line x1="218" y1="214" x2="304" y2="215" stroke="rgba(249,115,22,0.18)" stroke-width="1.2"/>
+                                <line x1="218" y1="267" x2="304" y2="215" stroke="rgba(249,115,22,0.1)" stroke-width="0.8"/>
                             </g>
-                            <line x1="218" y1="161" x2="304" y2="161" stroke="#f97316" stroke-width="2" opacity="0.8"/>
 
-                            <!-- Output labels -->
-                            <text x="342" y="111" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Predict</text>
-                            <text x="342" y="165" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Classify</text>
-                            <text x="342" y="219" font-family="sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="600">Detect</text>
+                            <!-- INPUT LAYER nodes (4 nodes with data type icons) -->
+                            <!-- Node A: text/language -->
+                            <circle cx="80" cy="80" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <line x1="71" y1="76" x2="89" y2="76" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="71" y1="80" x2="85" y2="80" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round"/>
+                            <line x1="71" y1="84" x2="87" y2="84" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round"/>
+                            <!-- Node B: image/grid -->
+                            <circle cx="80" cy="133" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <rect x="71" y="124" width="18" height="18" rx="2" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+                            <line x1="77" y1="124" x2="77" y2="142" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+                            <line x1="83" y1="124" x2="83" y2="142" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+                            <line x1="71" y1="130" x2="89" y2="130" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+                            <line x1="71" y1="136" x2="89" y2="136" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+                            <!-- Node C: numeric -->
+                            <circle cx="80" cy="186" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <text x="80" y="190" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,0.75)">42</text>
+                            <!-- Node D: graph/chart bars -->
+                            <circle cx="80" cy="239" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                            <rect x="72" y="237" width="3" height="5" rx="1" fill="rgba(255,255,255,0.6)"/>
+                            <rect x="77" y="233" width="3" height="9" rx="1" fill="rgba(255,255,255,0.6)"/>
+                            <rect x="82" y="235" width="3" height="7" rx="1" fill="rgba(255,255,255,0.6)"/>
+                            <rect x="87" y="231" width="3" height="11" rx="1" fill="rgba(255,255,255,0.6)"/>
+
+                            <!-- HIDDEN LAYER nodes (5 nodes) -->
+                            <circle cx="200" cy="55" r="20" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.5)" stroke-width="1.5"/>
+                            <path d="M190 55 Q195 48 200 55 Q205 62 210 55" fill="none" stroke="rgba(249,115,22,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <circle cx="200" cy="108" r="20" fill="rgba(249,115,22,0.2)" stroke="rgba(249,115,22,0.6)" stroke-width="1.5"/>
+                            <path d="M190 108 Q195 101 200 108 Q205 115 210 108" fill="none" stroke="rgba(249,115,22,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <!-- Centre node (most active) -->
+                            <circle cx="200" cy="161" r="22" fill="rgba(249,115,22,0.35)" stroke="#f97316" stroke-width="2.5" filter="url(#aiNodeGlow)"/>
+                            <path d="M190 161 Q195 154 200 161 Q205 168 210 161" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="200" cy="161" r="22" fill="none" stroke="rgba(249,115,22,0.5)" stroke-width="1.5">
+                                <animate attributeName="r" values="22;28;22" dur="2.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+
+                            <circle cx="200" cy="214" r="20" fill="rgba(249,115,22,0.2)" stroke="rgba(249,115,22,0.6)" stroke-width="1.5"/>
+                            <path d="M190 214 Q195 207 200 214 Q205 221 210 214" fill="none" stroke="rgba(249,115,22,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <circle cx="200" cy="267" r="20" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.5)" stroke-width="1.5"/>
+                            <path d="M190 267 Q195 260 200 267 Q205 274 210 267" fill="none" stroke="rgba(249,115,22,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <!-- OUTPUT LAYER nodes (3 nodes with labels) -->
+                            <!-- Predict -->
+                            <circle cx="320" cy="107" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiShadow)"/>
+                            <path d="M312 111 L316 103 L320 108 L324 100 L328 107" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="342" y="99" width="52" height="20" rx="5" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
+                            <text x="368" y="113" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="600">Predict</text>
+
+                            <!-- Classify (highlighted) -->
+                            <circle cx="320" cy="161" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiNodeGlow)"/>
+                            <path d="M311 158 L319 166 L331 150" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="342" y="153" width="52" height="20" rx="5" fill="rgba(249,115,22,0.25)" stroke="rgba(249,115,22,0.6)" stroke-width="1"/>
+                            <text x="368" y="167" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white" font-weight="700">Classify</text>
+
+                            <!-- Detect -->
+                            <circle cx="320" cy="215" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiShadow)"/>
+                            <circle cx="320" cy="215" r="7" fill="none" stroke="white" stroke-width="2"/>
+                            <circle cx="320" cy="215" r="2" fill="white"/>
+                            <line x1="325" y1="210" x2="330" y2="205" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                            <rect x="342" y="207" width="52" height="20" rx="5" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
+                            <text x="368" y="221" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="600">Detect</text>
+
+                            <!-- Animated signal pulses -->
+                            <circle r="4" fill="#f97316" filter="url(#aiNodeGlow)">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#signal1"/></animateMotion>
+                            </circle>
+                            <circle r="4" fill="white" opacity="0.9" filter="url(#aiNodeGlow)">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.9s"><mpath href="#signal2"/></animateMotion>
+                            </circle>
 
                             <!-- Floating badges -->
                             <g filter="url(#aiShadow)">
-                                <rect x="10" y="270" width="64" height="26" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
-                                <text x="42" y="282" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" font-weight="700">NLP</text>
-                                <text x="42" y="292" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,0.5)">Language AI</text>
+                                <rect x="8" y="272" width="80" height="32" rx="7" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
+                                <text x="48" y="285" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f97316" font-weight="700">NLP</text>
+                                <text x="48" y="297" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.55)">Language AI</text>
                             </g>
                             <g filter="url(#aiShadow)">
-                                <rect x="160" y="285" width="80" height="26" rx="3" fill="rgba(255,255,255,0.12)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
-                                <text x="200" y="297" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" font-weight="700">Computer Vision</text>
-                                <text x="200" y="307" text-anchor="middle" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,0.5)">Image Analysis</text>
+                                <rect x="152" y="285" width="100" height="32" rx="7" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
+                                <text x="202" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f97316" font-weight="700">Computer Vision</text>
+                                <text x="202" y="310" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.55)">Image Analysis</text>
+                            </g>
+                            <!-- Accuracy badge -->
+                            <g filter="url(#aiShadow)">
+                                <rect x="298" y="265" width="96" height="42" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
+                                <text x="346" y="281" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#f97316">97.3%</text>
+                                <text x="346" y="296" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.6)">Model Accuracy</text>
                             </g>
                         </svg>
                     </div>

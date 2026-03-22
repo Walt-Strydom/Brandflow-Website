@@ -249,66 +249,141 @@
                         </div>
                     </div>
                     <div class="page-hero__svg-container">
-                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <defs>
-                                <filter id="autoShadow" x="-10%" y="-10%" width="120%" height="130%">
+                                <linearGradient id="autoOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f97316"/>
+                                    <stop offset="100%" stop-color="#ea580c"/>
+                                </linearGradient>
+                                <linearGradient id="autoNavyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e3a5f"/>
+                                    <stop offset="100%" stop-color="#2d5282"/>
+                                </linearGradient>
+                                <linearGradient id="autoPipeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.6"/>
+                                    <stop offset="50%" stop-color="#f97316" stop-opacity="0.85"/>
+                                    <stop offset="100%" stop-color="#f97316" stop-opacity="0.4"/>
+                                </linearGradient>
+                                <radialGradient id="autoNodeGlow3" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                                </radialGradient>
+                                <filter id="autoShadow" x="-15%" y="-15%" width="130%" height="140%">
+                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+                                </filter>
+                                <filter id="autoGlow" x="-40%" y="-40%" width="180%" height="180%">
+                                    <feGaussianBlur stdDeviation="6" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                                <filter id="autoCardShadow" x="-5%" y="-5%" width="115%" height="125%">
                                     <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
                                 </filter>
+                                <path id="autoFlowPath" d="M200 72 L200 290" fill="none"/>
                             </defs>
 
-                            <!-- 5-node automation pipeline: vertical layout -->
-                            <!-- Pipeline track line -->
-                            <line x1="200" y1="50" x2="200" y2="290" stroke="rgba(249,115,22,0.2)" stroke-width="2" stroke-dasharray="6,4"/>
+                            <!-- Pipeline track — dual parallel lines with gradient fill -->
+                            <rect x="197" y="50" width="6" height="240" rx="3" fill="url(#autoPipeGrad)" opacity="0.7"/>
 
-                            <!-- Node 1: Trigger -->
+                            <!-- Tick marks along pipeline -->
+                            <line x1="190" y1="50" x2="210" y2="50" stroke="rgba(249,115,22,0.5)" stroke-width="1.5"/>
+                            <line x1="190" y1="118" x2="210" y2="118" stroke="rgba(249,115,22,0.3)" stroke-width="1"/>
+                            <line x1="190" y1="186" x2="210" y2="186" stroke="rgba(249,115,22,0.3)" stroke-width="1"/>
+                            <line x1="190" y1="254" x2="210" y2="254" stroke="rgba(249,115,22,0.5)" stroke-width="1.5"/>
+
+                            <!-- Left INPUT / OUTPUT markers -->
+                            <text x="42" y="54" text-anchor="end" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.4)" letter-spacing="1">INPUT</text>
+                            <line x1="44" y1="50" x2="176" y2="50" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"/>
+                            <text x="42" y="258" text-anchor="end" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.4)" letter-spacing="1">OUTPUT</text>
+                            <line x1="44" y1="254" x2="176" y2="254" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"/>
+
+                            <!-- NODE 1: TRIGGER -->
+                            <ellipse cx="200" cy="50" rx="38" ry="38" fill="url(#autoNodeGlow3)" opacity="0.6"/>
                             <g filter="url(#autoShadow)">
-                                <circle cx="200" cy="50" r="22" fill="#1e3a5f" stroke="#f97316" stroke-width="2"/>
-                                <text x="200" y="54" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" font-weight="700">01</text>
+                                <circle cx="200" cy="50" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2.5"/>
+                                <!-- Lightning bolt icon -->
+                                <polygon points="204,38 197,52 202,52 196,64 209,48 203,48 210,38" fill="#f97316" opacity="0.95"/>
                             </g>
-                            <rect x="235" y="36" width="120" height="28" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="243" y="48" font-family="sans-serif" font-size="11" fill="#fff" font-weight="700">Trigger</text>
-                            <text x="243" y="60" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Email / Webhook / Schedule</text>
+                            <rect x="234" y="32" width="130" height="36" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <rect x="234" y="32" width="4" height="36" rx="2" fill="rgba(249,115,22,0.6)"/>
+                            <text x="244" y="46" font-family="Inter,sans-serif" font-size="11" fill="#fff" font-weight="700">Trigger</text>
+                            <text x="244" y="60" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Email / Webhook / Schedule</text>
 
-                            <!-- Node 2: Extract -->
+                            <!-- NODE 2: EXTRACT -->
                             <g filter="url(#autoShadow)">
-                                <circle cx="200" cy="118" r="22" fill="#1e3a5f" stroke="#f97316" stroke-width="2"/>
-                                <text x="200" y="122" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" font-weight="700">02</text>
+                                <circle cx="200" cy="118" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2"/>
+                                <!-- Funnel icon -->
+                                <polygon points="191,109 209,109 205,118 205,127 195,127 195,118" fill="none" stroke="rgba(249,115,22,0.9)" stroke-width="1.8" stroke-linejoin="round"/>
+                                <line x1="191" y1="109" x2="209" y2="109" stroke="rgba(249,115,22,0.9)" stroke-width="1.8" stroke-linecap="round"/>
                             </g>
-                            <rect x="235" y="104" width="120" height="28" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="243" y="116" font-family="sans-serif" font-size="11" fill="#fff" font-weight="700">Extract</text>
-                            <text x="243" y="128" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">AI reads &amp; parses data</text>
+                            <rect x="234" y="100" width="130" height="36" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <rect x="234" y="100" width="4" height="36" rx="2" fill="rgba(249,115,22,0.5)"/>
+                            <text x="244" y="114" font-family="Inter,sans-serif" font-size="11" fill="#fff" font-weight="700">Extract</text>
+                            <text x="244" y="128" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">AI reads &amp; parses data</text>
 
-                            <!-- Node 3: Classify (highlighted) -->
+                            <!-- NODE 3: CLASSIFY (highlighted / active) -->
+                            <ellipse cx="200" cy="186" rx="50" ry="50" fill="url(#autoNodeGlow3)"/>
+                            <g filter="url(#autoGlow)">
+                                <circle cx="200" cy="186" r="28" fill="url(#autoOrangeGrad)"/>
+                                <circle cx="200" cy="186" r="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+                                <!-- Brain/sparkle icon -->
+                                <circle cx="200" cy="183" r="7" fill="none" stroke="white" stroke-width="1.8"/>
+                                <line x1="200" y1="172" x2="200" y2="168" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="209" y1="175" x2="212" y2="172" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="209" y1="183" x2="213" y2="183" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="191" y1="175" x2="188" y2="172" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="191" y1="183" x2="187" y2="183" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                                <circle cx="200" cy="183" r="2.5" fill="white"/>
+                            </g>
+                            <!-- Pulse ring -->
+                            <circle cx="200" cy="186" r="28" fill="none" stroke="rgba(249,115,22,0.5)" stroke-width="2">
+                                <animate attributeName="r" values="28;40;28" dur="2.2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.6;0.05;0.6" dur="2.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <rect x="234" y="166" width="148" height="40" rx="7" fill="rgba(249,115,22,0.2)" stroke="rgba(249,115,22,0.55)" stroke-width="1.2"/>
+                            <rect x="234" y="166" width="4" height="40" rx="2" fill="#f97316"/>
+                            <text x="244" y="182" font-family="Inter,sans-serif" font-size="12" fill="#f97316" font-weight="700">Classify</text>
+                            <text x="244" y="197" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.65)">AI decision engine routes work</text>
+
+                            <!-- NODE 4: ROUTE & EXECUTE -->
                             <g filter="url(#autoShadow)">
-                                <circle cx="200" cy="186" r="26" fill="#f97316"/>
-                                <text x="200" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#fff" font-weight="700">03</text>
+                                <circle cx="200" cy="254" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2"/>
+                                <!-- Y-branch / route icon -->
+                                <line x1="200" y1="244" x2="200" y2="254" stroke="rgba(249,115,22,0.9)" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="200" y1="254" x2="193" y2="264" stroke="rgba(249,115,22,0.9)" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="200" y1="254" x2="207" y2="264" stroke="rgba(249,115,22,0.9)" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="193" cy="264" r="2" fill="#f97316"/>
+                                <circle cx="207" cy="264" r="2" fill="#f97316"/>
                             </g>
-                            <rect x="235" y="170" width="140" height="32" rx="3" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
-                            <text x="243" y="183" font-family="sans-serif" font-size="12" fill="#f97316" font-weight="700">Classify</text>
-                            <text x="243" y="197" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.65)">AI decision engine routes work</text>
+                            <rect x="234" y="236" width="130" height="36" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <rect x="234" y="236" width="4" height="36" rx="2" fill="rgba(249,115,22,0.6)"/>
+                            <text x="244" y="250" font-family="Inter,sans-serif" font-size="11" fill="#fff" font-weight="700">Route &amp; Execute</text>
+                            <text x="244" y="264" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Notify / Update / Approve</text>
 
-                            <!-- Node 4: Route -->
-                            <g filter="url(#autoShadow)">
-                                <circle cx="200" cy="254" r="22" fill="#1e3a5f" stroke="#f97316" stroke-width="2"/>
-                                <text x="200" y="258" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f97316" font-weight="700">04</text>
+                            <!-- Animated flow pulse down the pipeline -->
+                            <circle r="5" fill="#f97316" filter="url(#autoGlow)">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" begin="0s"><mpath href="#autoFlowPath"/></animateMotion>
+                            </circle>
+                            <circle r="3.5" fill="white" opacity="0.8" filter="url(#autoGlow)">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.25s"><mpath href="#autoFlowPath"/></animateMotion>
+                            </circle>
+
+                            <!-- Speed comparison badge -->
+                            <g filter="url(#autoCardShadow)">
+                                <rect x="8" y="160" width="100" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                                <rect x="8" y="160" width="4" height="52" rx="2" fill="#f97316"/>
+                                <text x="62" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="#1e3a5f">~3 sec</text>
+                                <line x1="20" y1="184" x2="102" y2="184" stroke="#e2e8f0" stroke-width="1"/>
+                                <!-- Mini comparison bars -->
+                                <rect x="20" y="190" width="8" height="6" rx="1" fill="#f97316"/>
+                                <text x="30" y="197" font-family="Inter,sans-serif" font-size="6.5" fill="#64748b">AI</text>
+                                <rect x="20" y="200" width="65" height="6" rx="1" fill="#e2e8f0"/>
+                                <text x="87" y="207" font-family="Inter,sans-serif" font-size="6.5" fill="#94a3b8">65 min</text>
                             </g>
-                            <rect x="235" y="240" width="120" height="28" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                            <text x="243" y="252" font-family="sans-serif" font-size="11" fill="#fff" font-weight="700">Route &amp; Execute</text>
-                            <text x="243" y="264" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Notify / Update / Approve</text>
 
-                            <!-- Left labels (before nodes) -->
-                            <text x="40" y="54" text-anchor="end" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.35)">Input</text>
-                            <text x="40" y="258" text-anchor="end" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.35)">Output</text>
-                            <line x1="42" y1="50" x2="178" y2="50" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,3"/>
-                            <line x1="42" y1="254" x2="178" y2="254" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,3"/>
-
-                            <!-- Floating result badge -->
-                            <g filter="url(#autoShadow)">
-                                <rect x="10" y="170" width="80" height="32" rx="3" fill="#fff"/>
-                                <rect x="10" y="170" width="3" height="32" fill="#f97316"/>
-                                <text x="20" y="182" font-family="sans-serif" font-size="9" fill="#1e3a5f" font-weight="700">~3 seconds</text>
-                                <text x="20" y="196" font-family="sans-serif" font-size="7" fill="#64748b">vs 65 min manual</text>
-                            </g>
+                            <!-- Accent dots -->
+                            <circle cx="390" cy="12" r="4" fill="rgba(249,115,22,0.35)"/>
+                            <circle cx="378" cy="20" r="2.5" fill="rgba(249,115,22,0.2)"/>
+                            <circle cx="10" cy="310" r="3.5" fill="rgba(255,255,255,0.15)"/>
                         </svg>
                     </div>
                 </div>
