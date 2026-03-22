@@ -207,83 +207,163 @@
                         <p class="page-hero__subtitle">Tell us where work slows down, breaks down, or gets stuck. We'll respond with fast clarity, honest scope, and practical next steps.</p>
                     </div>
                     <div class="page-hero__svg-container">
-                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="page-hero__svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <defs>
-                                <linearGradient id="contactGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316" />
-                                    <stop offset="100%" style="stop-color:#fb923c" />
+                                <linearGradient id="contactGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f97316"/>
+                                    <stop offset="100%" stop-color="#ea580c"/>
                                 </linearGradient>
-                                <linearGradient id="contactGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
-                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+                                <linearGradient id="contactGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e3a5f"/>
+                                    <stop offset="100%" stop-color="#2d5282"/>
                                 </linearGradient>
-                                <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.12"/>
+                                <linearGradient id="contactEnvFlap" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f97316"/>
+                                    <stop offset="60%" stop-color="#fb923c"/>
+                                    <stop offset="100%" stop-color="#fdba74"/>
+                                </linearGradient>
+                                <radialGradient id="contactBgGlow1" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#f97316" stop-opacity="0.18"/>
+                                    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                                </radialGradient>
+                                <radialGradient id="contactBgGlow2" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.15"/>
+                                    <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0"/>
+                                </radialGradient>
+                                <filter id="contactShadow" x="-15%" y="-15%" width="135%" height="140%">
+                                    <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.15"/>
                                 </filter>
+                                <filter id="contactIconGlow" x="-30%" y="-30%" width="160%" height="160%">
+                                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                                <pattern id="contactDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="0.9" fill="rgba(255,255,255,0.1)"/>
+                                </pattern>
                             </defs>
 
-                            <!-- Background decorative -->
-                            <g class="page-svg__layer page-svg__layer--bg">
-                                <circle cx="350" cy="50" r="35" fill="url(#contactGradient2)" />
-                                <circle cx="50" cy="270" r="40" fill="url(#contactGradient2)" />
-                                <circle cx="380" cy="250" r="20" fill="rgba(249, 115, 22, 0.1)" />
+                            <!-- Background texture -->
+                            <rect width="400" height="320" fill="url(#contactDots)"/>
+
+                            <!-- Background ambient glows -->
+                            <ellipse cx="200" cy="160" rx="130" ry="130" fill="url(#contactBgGlow1)"/>
+                            <ellipse cx="60" cy="260" rx="60" ry="60" fill="url(#contactBgGlow2)"/>
+                            <ellipse cx="360" cy="60" rx="50" ry="50" fill="url(#contactBgGlow1)"/>
+
+                            <!-- Network connection paths (behind everything) -->
+                            <path d="M80 135 Q130 115 128 115" stroke="rgba(249,115,22,0.25)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+                            <path d="M86 200 Q120 195 128 195" stroke="rgba(249,115,22,0.2)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+                            <path d="M280 150 Q290 120 296 100" stroke="rgba(249,115,22,0.25)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+                            <path d="M280 195 Q270 230 210 240" stroke="rgba(249,115,22,0.2)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+
+                            <!-- MAIN ENVELOPE -->
+                            <g filter="url(#contactShadow)">
+                                <!-- Envelope body -->
+                                <rect x="96" y="96" width="208" height="148" rx="14" fill="#ffffff"/>
+                                <!-- Inner envelope border highlight -->
+                                <rect x="100" y="100" width="200" height="140" rx="11" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+                                <!-- Envelope flap (orange gradient) -->
+                                <path d="M96 112 L200 182 L304 112 L304 96 C304 88 298 82 290 82 L110 82 C102 82 96 88 96 96 Z" fill="url(#contactEnvFlap)"/>
+                                <!-- Flap fold line -->
+                                <path d="M96 112 L200 182 L304 112" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+                                <!-- Stamp -->
+                                <rect x="272" y="90" width="18" height="18" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                                <rect x="275" y="93" width="12" height="12" rx="1" fill="rgba(255,255,255,0.2)"/>
+                                <!-- Content lines inside envelope body -->
+                                <rect x="126" y="195" width="148" height="6" rx="3" fill="#e8eef5"/>
+                                <rect x="126" y="208" width="112" height="6" rx="3" fill="#e8eef5"/>
+                                <rect x="126" y="221" width="130" height="6" rx="3" fill="#f1f5f9"/>
+                                <!-- Bottom envelope seams -->
+                                <line x1="96" y1="210" x2="134" y2="170" stroke="#f1f5f9" stroke-width="1"/>
+                                <line x1="304" y1="210" x2="266" y2="170" stroke="#f1f5f9" stroke-width="1"/>
                             </g>
 
-                            <!-- Main envelope -->
-                            <g class="page-svg__layer page-svg__layer--main" filter="url(#contactShadow)">
-                                <rect x="100" y="100" width="200" height="140" rx="12" fill="#ffffff"/>
-                                <!-- Envelope flap -->
-                                <path d="M100 115 L200 180 L300 115" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
-                                <path d="M100 115 L200 180 L300 115 L300 100 C300 93 294 87 287 87 L113 87 C106 87 100 93 100 100 Z" fill="url(#contactGradient1)"/>
-                                <!-- Content lines inside -->
-                                <rect x="130" y="200" width="140" height="6" rx="3" fill="#e2e8f0"/>
-                                <rect x="130" y="215" width="100" height="6" rx="3" fill="#e2e8f0"/>
+                            <!-- CHAT BUBBLE 1 (user, white, left) -->
+                            <g filter="url(#contactShadow)">
+                                <rect x="32" y="78" width="96" height="60" rx="12" fill="#ffffff"/>
+                                <!-- Tail -->
+                                <polygon points="44,138 56,138 38,155" fill="#ffffff"/>
+                                <!-- Avatar circle -->
+                                <circle cx="54" cy="100" r="10" fill="rgba(30,58,95,0.1)"/>
+                                <text x="54" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#1e3a5f">BF</text>
+                                <!-- Text lines -->
+                                <rect x="70" y="92" width="46" height="5" rx="2" fill="#1e3a5f"/>
+                                <rect x="70" y="102" width="38" height="4" rx="2" fill="#e2e8f0"/>
+                                <rect x="70" y="110" width="44" height="4" rx="2" fill="#e2e8f0"/>
+                                <!-- Timestamp -->
+                                <rect x="70" y="121" width="24" height="3" rx="1.5" fill="#cbd5e1"/>
                             </g>
 
-                            <!-- Chat bubbles -->
-                            <g class="page-svg__layer page-svg__layer--bubble1">
-                                <rect x="40" y="80" width="80" height="50" rx="10" fill="#ffffff" filter="url(#contactShadow)"/>
-                                <polygon points="55,130 65,130 50,145" fill="#ffffff"/>
-                                <rect x="55" y="95" width="50" height="5" rx="2" fill="#1e3a5f"/>
-                                <rect x="55" y="105" width="40" height="5" rx="2" fill="#e2e8f0"/>
-                                <rect x="55" y="115" width="45" height="5" rx="2" fill="#e2e8f0"/>
+                            <!-- CHAT BUBBLE 2 (reply, orange, right) -->
+                            <g filter="url(#contactShadow)">
+                                <rect x="272" y="176" width="96" height="64" rx="12" fill="url(#contactGrad1)"/>
+                                <!-- Tail -->
+                                <polygon points="354,240 366,240 358,256" fill="#f97316"/>
+                                <!-- Avatar -->
+                                <circle cx="358" cy="195" r="10" fill="rgba(255,255,255,0.2)"/>
+                                <text x="358" y="199" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="700" fill="white">You</text>
+                                <!-- Text lines -->
+                                <rect x="283" y="188" width="66" height="5" rx="2" fill="rgba(255,255,255,0.9)"/>
+                                <rect x="283" y="199" width="52" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+                                <rect x="283" y="208" width="58" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+                                <!-- Typing dots (pulsing) -->
+                                <circle cx="285" cy="222" r="3" fill="rgba(255,255,255,0.9)">
+                                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite" begin="0s"/>
+                                </circle>
+                                <circle cx="294" cy="222" r="3" fill="rgba(255,255,255,0.9)">
+                                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+                                </circle>
+                                <circle cx="303" cy="222" r="3" fill="rgba(255,255,255,0.9)">
+                                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite" begin="0.8s"/>
+                                </circle>
                             </g>
 
-                            <g class="page-svg__layer page-svg__layer--bubble2">
-                                <rect x="280" y="180" width="80" height="50" rx="10" fill="url(#contactGradient1)" filter="url(#contactShadow)"/>
-                                <polygon points="345,230 335,230 350,245" fill="#f97316"/>
-                                <rect x="295" y="195" width="50" height="5" rx="2" fill="#ffffff"/>
-                                <rect x="295" y="205" width="40" height="5" rx="2" fill="rgba(255,255,255,0.7)"/>
-                                <rect x="295" y="215" width="45" height="5" rx="2" fill="rgba(255,255,255,0.7)"/>
+                            <!-- PHONE ICON CIRCLE -->
+                            <g filter="url(#contactShadow)">
+                                <circle cx="316" cy="72" r="30" fill="#ffffff"/>
+                                <circle cx="316" cy="72" r="24" fill="rgba(30,58,95,0.05)"/>
+                                <!-- Phone icon -->
+                                <rect x="305" y="55" width="22" height="34" rx="5" fill="url(#contactGrad2)"/>
+                                <rect x="309" y="59" width="14" height="22" rx="2" fill="#f0f4f8"/>
+                                <circle cx="316" cy="84" r="2.5" fill="#94a3b8"/>
+                                <!-- Signal waves -->
+                                <path d="M323 58 Q328 64 323 70" fill="none" stroke="rgba(249,115,22,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M327 55 Q334 64 327 73" fill="none" stroke="rgba(249,115,22,0.4)" stroke-width="1.3" stroke-linecap="round"/>
                             </g>
 
-                            <!-- Phone icon -->
-                            <g class="page-svg__layer page-svg__layer--icons">
-                                <circle cx="320" cy="70" r="28" fill="#ffffff" filter="url(#contactShadow)"/>
-                                <rect x="308" y="52" width="24" height="36" rx="4" fill="#1e3a5f"/>
-                                <rect x="312" y="56" width="16" height="24" rx="2" fill="#e2e8f0"/>
-                                <circle cx="320" cy="82" r="3" fill="#e2e8f0"/>
+                            <!-- EMAIL @ ICON CIRCLE -->
+                            <g filter="url(#contactShadow)">
+                                <circle cx="72" cy="200" r="28" fill="#ffffff"/>
+                                <circle cx="72" cy="200" r="22" fill="rgba(249,115,22,0.05)"/>
+                                <!-- @ symbol styled -->
+                                <circle cx="72" cy="200" r="8" fill="none" stroke="#f97316" stroke-width="2"/>
+                                <circle cx="72" cy="200" r="3" fill="#f97316"/>
+                                <path d="M80 196 L82 196 C84 196 84 202 82 205 C80 207 76 208 72 208 C64 208 62 202 64 196 C66 192 72 190 78 193" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
                             </g>
 
-                            <!-- Email @ symbol -->
-                            <g class="page-svg__layer page-svg__layer--at">
-                                <circle cx="70" cy="200" r="24" fill="#ffffff" filter="url(#contactShadow)"/>
-                                <text x="70" y="208" text-anchor="middle" font-size="20" font-weight="600" fill="#f97316">@</text>
+                            <!-- RESPONSE TIME BADGE -->
+                            <g filter="url(#contactShadow)">
+                                <rect x="136" y="270" width="128" height="40" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                                <!-- Clock icon -->
+                                <circle cx="160" cy="290" r="12" fill="rgba(249,115,22,0.1)" stroke="rgba(249,115,22,0.3)" stroke-width="1"/>
+                                <circle cx="160" cy="290" r="7" fill="none" stroke="#f97316" stroke-width="1.5"/>
+                                <line x1="160" y1="284" x2="160" y2="290" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="160" y1="290" x2="163" y2="293" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Text -->
+                                <text x="212" y="286" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#1e3a5f">&lt; 24hr Reply</text>
+                                <!-- Green status dot + text -->
+                                <circle cx="180" cy="298" r="3" fill="#10b981"/>
+                                <text x="210" y="301" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#10b981">Usually within 2 hours</text>
                             </g>
 
-                            <!-- Floating dots -->
-                            <g class="page-svg__layer page-svg__layer--dots">
-                                <circle cx="180" cy="50" r="4" fill="#f97316" opacity="0.6"/>
-                                <circle cx="340" cy="140" r="3" fill="#ffffff" opacity="0.5"/>
-                                <circle cx="30" cy="150" r="4" fill="#f97316" opacity="0.4"/>
-                                <circle cx="250" cy="280" r="3" fill="#ffffff" opacity="0.4"/>
-                            </g>
-
-                            <!-- Connection lines -->
-                            <g class="page-svg__layer page-svg__layer--lines">
-                                <path d="M120 130 Q90 120 95 95" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
-                                <path d="M280 200 Q300 180 310 140" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity="0.4"/>
-                            </g>
+                            <!-- Floating accent dots -->
+                            <circle cx="186" cy="46" r="5" fill="#f97316" opacity="0.55"/>
+                            <circle cx="200" cy="36" r="3" fill="#f97316" opacity="0.3"/>
+                            <circle cx="342" cy="148" r="4" fill="rgba(255,255,255,0.45)"/>
+                            <circle cx="28" cy="148" r="4.5" fill="#f97316" opacity="0.35"/>
+                            <circle cx="18" cy="136" r="2.5" fill="#f97316" opacity="0.2"/>
+                            <circle cx="248" cy="278" r="3.5" fill="rgba(255,255,255,0.35)"/>
+                            <circle cx="388" cy="188" r="4" fill="rgba(249,115,22,0.25)"/>
                         </svg>
                     </div>
                 </div>
