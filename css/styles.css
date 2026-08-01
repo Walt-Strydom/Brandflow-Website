@@ -401,6 +401,13 @@ p {
     gap: 1.5rem;
 }
 
+.preview-cards__second-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
 .preview-cards__cta-row {
     margin-top: 0;
 }
@@ -1954,6 +1961,20 @@ p {
     transform: translateY(-6px);
     box-shadow: 0 20px 40px rgba(15, 39, 68, 0.14);
     border-color: rgba(249, 115, 22, 0.25);
+}
+
+.service-card__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-orange);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .service-card:hover .service-card__icon {
