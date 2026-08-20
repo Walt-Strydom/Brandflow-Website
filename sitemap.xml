@@ -119,6 +119,24 @@
     </url>
 
     <url>
+        <loc>https://brandflow.co.za/microsoft-dynamics-365</loc>
+        <lastmod>2026-08-20T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/microsoft-dynamics-365" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/microsoft-dynamics-365" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/penetration-testing</loc>
+        <lastmod>2026-08-20T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/penetration-testing" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/penetration-testing" />
+    </url>
+
+    <url>
         <loc>https://brandflow.co.za/pricing-web-development</loc>
         <lastmod>2026-03-02T17:16:09+02:00</lastmod>
         <changefreq>monthly</changefreq>
@@ -161,6 +179,24 @@
         <priority>0.70</priority>
         <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-api-development" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-api-development" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-microsoft-dynamics-365</loc>
+        <lastmod>2026-08-20T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-microsoft-dynamics-365" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-microsoft-dynamics-365" />
+    </url>
+
+    <url>
+        <loc>https://brandflow.co.za/pricing-penetration-testing</loc>
+        <lastmod>2026-08-20T00:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+        <xhtml:link rel="alternate" hreflang="en-ZA" href="https://brandflow.co.za/pricing-penetration-testing" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://brandflow.co.za/pricing-penetration-testing" />
     </url>
 
 </urlset>
