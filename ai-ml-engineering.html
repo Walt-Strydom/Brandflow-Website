@@ -228,14 +228,7 @@
                                     <stop offset="0%" stop-color="#f97316" stop-opacity="0.2"/>
                                     <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
                                 </radialGradient>
-                                <filter id="aiShadow" x="-15%" y="-15%" width="130%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
-                                </filter>
-                                <filter id="aiNodeGlow" x="-40%" y="-40%" width="180%" height="180%">
-                                    <feGaussianBlur stdDeviation="5" result="blur"/>
-                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                                <!-- Signal paths for animateMotion -->
+<!-- Signal paths for animateMotion -->
                                 <path id="signal1" d="M94 133 L182 161" fill="none"/>
                                 <path id="signal2" d="M218 161 L304 161" fill="none"/>
                             </defs>
@@ -313,7 +306,7 @@
                             <path d="M190 108 Q195 101 200 108 Q205 115 210 108" fill="none" stroke="rgba(249,115,22,0.85)" stroke-width="1.5" stroke-linecap="round"/>
 
                             <!-- Centre node (most active) -->
-                            <circle cx="200" cy="161" r="22" fill="rgba(249,115,22,0.35)" stroke="#f97316" stroke-width="2.5" filter="url(#aiNodeGlow)"/>
+                            <circle cx="200" cy="161" r="22" fill="rgba(249,115,22,0.35)" stroke="#f97316" stroke-width="2.5"/>
                             <path d="M190 161 Q195 154 200 161 Q205 168 210 161" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
                             <circle cx="200" cy="161" r="22" fill="none" stroke="rgba(249,115,22,0.5)" stroke-width="1.5">
                                 <animate attributeName="r" values="22;28;22" dur="2.5s" repeatCount="indefinite"/>
@@ -328,19 +321,19 @@
 
                             <!-- OUTPUT LAYER nodes (3 nodes with labels) -->
                             <!-- Predict -->
-                            <circle cx="320" cy="107" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiShadow)"/>
+                            <circle cx="320" cy="107" r="18" fill="url(#aiOrangeGrad)"/>
                             <path d="M312 111 L316 103 L320 108 L324 100 L328 107" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                             <rect x="342" y="99" width="52" height="20" rx="5" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
                             <text x="368" y="113" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="600">Predict</text>
 
                             <!-- Classify (highlighted) -->
-                            <circle cx="320" cy="161" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiNodeGlow)"/>
+                            <circle cx="320" cy="161" r="18" fill="url(#aiOrangeGrad)"/>
                             <path d="M311 158 L319 166 L331 150" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                             <rect x="342" y="153" width="52" height="20" rx="5" fill="rgba(249,115,22,0.25)" stroke="rgba(249,115,22,0.6)" stroke-width="1"/>
                             <text x="368" y="167" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white" font-weight="700">Classify</text>
 
                             <!-- Detect -->
-                            <circle cx="320" cy="215" r="18" fill="url(#aiOrangeGrad)" filter="url(#aiShadow)"/>
+                            <circle cx="320" cy="215" r="18" fill="url(#aiOrangeGrad)"/>
                             <circle cx="320" cy="215" r="7" fill="none" stroke="white" stroke-width="2"/>
                             <circle cx="320" cy="215" r="2" fill="white"/>
                             <line x1="325" y1="210" x2="330" y2="205" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
@@ -348,26 +341,26 @@
                             <text x="368" y="221" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="600">Detect</text>
 
                             <!-- Animated signal pulses -->
-                            <circle r="4" fill="#f97316" filter="url(#aiNodeGlow)">
+                            <circle r="4" fill="#f97316">
                                 <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#signal1"/></animateMotion>
                             </circle>
-                            <circle r="4" fill="white" opacity="0.9" filter="url(#aiNodeGlow)">
+                            <circle r="4" fill="white" opacity="0.9">
                                 <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.9s"><mpath href="#signal2"/></animateMotion>
                             </circle>
 
                             <!-- Floating badges -->
-                            <g filter="url(#aiShadow)">
+                            <g>
                                 <rect x="8" y="272" width="80" height="32" rx="7" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
                                 <text x="48" y="285" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f97316" font-weight="700">NLP</text>
                                 <text x="48" y="297" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.55)">Language AI</text>
                             </g>
-                            <g filter="url(#aiShadow)">
+                            <g>
                                 <rect x="152" y="285" width="100" height="32" rx="7" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
                                 <text x="202" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f97316" font-weight="700">Computer Vision</text>
                                 <text x="202" y="310" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.55)">Image Analysis</text>
                             </g>
                             <!-- Accuracy badge -->
-                            <g filter="url(#aiShadow)">
+                            <g>
                                 <rect x="298" y="265" width="96" height="42" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(249,115,22,0.5)" stroke-width="1.2"/>
                                 <text x="346" y="281" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#f97316">97.3%</text>
                                 <text x="346" y="296" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.6)">Model Accuracy</text>

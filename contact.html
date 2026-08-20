@@ -234,14 +234,7 @@
                                     <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.15"/>
                                     <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0"/>
                                 </radialGradient>
-                                <filter id="contactShadow" x="-15%" y="-15%" width="135%" height="140%">
-                                    <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.15"/>
-                                </filter>
-                                <filter id="contactIconGlow" x="-30%" y="-30%" width="160%" height="160%">
-                                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                                <pattern id="contactDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+<pattern id="contactDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
                                     <circle cx="2" cy="2" r="0.9" fill="rgba(255,255,255,0.1)"/>
                                 </pattern>
                             </defs>
@@ -261,7 +254,7 @@
                             <path d="M280 195 Q270 230 210 240" stroke="rgba(249,115,22,0.2)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
 
                             <!-- MAIN ENVELOPE -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <!-- Envelope body -->
                                 <rect x="96" y="96" width="208" height="148" rx="14" fill="#ffffff"/>
                                 <!-- Inner envelope border highlight -->
@@ -283,7 +276,7 @@
                             </g>
 
                             <!-- CHAT BUBBLE 1 (user, white, left) -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <rect x="32" y="78" width="96" height="60" rx="12" fill="#ffffff"/>
                                 <!-- Tail -->
                                 <polygon points="44,138 56,138 38,155" fill="#ffffff"/>
@@ -299,7 +292,7 @@
                             </g>
 
                             <!-- CHAT BUBBLE 2 (reply, orange, right) -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <rect x="272" y="176" width="96" height="64" rx="12" fill="url(#contactGrad1)"/>
                                 <!-- Tail -->
                                 <polygon points="354,240 366,240 358,256" fill="#f97316"/>
@@ -323,7 +316,7 @@
                             </g>
 
                             <!-- PHONE ICON CIRCLE -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <circle cx="316" cy="72" r="30" fill="#ffffff"/>
                                 <circle cx="316" cy="72" r="24" fill="rgba(30,58,95,0.05)"/>
                                 <!-- Phone icon -->
@@ -336,7 +329,7 @@
                             </g>
 
                             <!-- EMAIL @ ICON CIRCLE -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <circle cx="72" cy="200" r="28" fill="#ffffff"/>
                                 <circle cx="72" cy="200" r="22" fill="rgba(249,115,22,0.05)"/>
                                 <!-- @ symbol styled -->
@@ -346,7 +339,7 @@
                             </g>
 
                             <!-- RESPONSE TIME BADGE -->
-                            <g filter="url(#contactShadow)">
+                            <g>
                                 <rect x="136" y="270" width="128" height="40" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <!-- Clock icon -->
                                 <circle cx="160" cy="290" r="12" fill="rgba(249,115,22,0.1)" stroke="rgba(249,115,22,0.3)" stroke-width="1"/>

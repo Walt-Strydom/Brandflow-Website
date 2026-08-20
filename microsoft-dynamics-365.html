@@ -272,17 +272,7 @@
                                     <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
                                     <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
                                 </radialGradient>
-                                <filter id="msftShadow" x="-15%" y="-15%" width="130%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
-                                </filter>
-                                <filter id="msftGlow" x="-40%" y="-40%" width="180%" height="180%">
-                                    <feGaussianBlur stdDeviation="6" result="blur"/>
-                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                                <filter id="msftCardShadow" x="-5%" y="-5%" width="115%" height="125%">
-                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
-                                </filter>
-                                <path id="msftFlowPath" d="M200 72 L200 290" fill="none"/>
+<path id="msftFlowPath" d="M200 72 L200 290" fill="none"/>
                             </defs>
 
                             <!-- Pipeline track -->
@@ -302,7 +292,7 @@
 
                             <!-- NODE 1: SCOPE -->
                             <ellipse cx="200" cy="50" rx="38" ry="38" fill="url(#msftNodeGlow)" opacity="0.6"/>
-                            <g filter="url(#msftShadow)">
+                            <g>
                                 <circle cx="200" cy="50" r="24" fill="url(#msftNavyGrad)" stroke="#f97316" stroke-width="2.5"/>
                                 <!-- Magnifying glass icon -->
                                 <circle cx="196" cy="46" r="7" fill="none" stroke="#f97316" stroke-width="2"/>
@@ -314,7 +304,7 @@
                             <text x="244" y="60" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Requirements &amp; discovery</text>
 
                             <!-- NODE 2: ARCHITECT -->
-                            <g filter="url(#msftShadow)">
+                            <g>
                                 <circle cx="200" cy="118" r="24" fill="url(#msftNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Blueprint icon -->
                                 <rect x="191" y="109" width="18" height="18" fill="none" stroke="rgba(249,115,22,0.9)" stroke-width="1.6"/>
@@ -328,7 +318,7 @@
 
                             <!-- NODE 3: IMPLEMENT (highlighted / active) -->
                             <ellipse cx="200" cy="186" rx="50" ry="50" fill="url(#msftNodeGlow)"/>
-                            <g filter="url(#msftGlow)">
+                            <g>
                                 <circle cx="200" cy="186" r="28" fill="url(#msftOrangeGrad)"/>
                                 <circle cx="200" cy="186" r="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
                                 <!-- Gear icon -->
@@ -350,7 +340,7 @@
                             <text x="244" y="197" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.65)">Configure, build &amp; test</text>
 
                             <!-- NODE 4: MIGRATE -->
-                            <g filter="url(#msftShadow)">
+                            <g>
                                 <circle cx="200" cy="254" r="24" fill="url(#msftNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Transfer/migration icon -->
                                 <path d="M191 250 H206 M201 245 L206 250 L201 255" stroke="rgba(249,115,22,0.9)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -370,7 +360,7 @@
                             </circle>
 
                             <!-- Platform badge -->
-                            <g filter="url(#msftCardShadow)">
+                            <g>
                                 <rect x="8" y="160" width="100" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <rect x="8" y="160" width="4" height="52" rx="2" fill="#f97316"/>
                                 <text x="62" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="800" fill="#1e3a5f">D365 · SPO</text>

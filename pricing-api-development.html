@@ -208,9 +208,6 @@
                                     <stop offset="0%" style="stop-color:#1e3a5f" />
                                     <stop offset="100%" style="stop-color:#0f2340" />
                                 </linearGradient>
-                                <filter id="apiShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.12"/>
-                                </filter>
                             </defs>
 
                             <!-- Background decorative circles -->
@@ -228,7 +225,7 @@
                             </g>
 
                             <!-- Central API endpoint card -->
-                            <g class="page-svg__layer page-svg__layer--main" filter="url(#apiShadow)">
+                            <g class="page-svg__layer page-svg__layer--main">
                                 <rect x="120" y="90" width="160" height="115" rx="12" fill="#ffffff"/>
                                 <path d="M132,90 L268,90 Q280,90 280,102 L280,126 L120,126 L120,102 Q120,90 132,90 Z" fill="url(#apiGradNav)"/>
                                 <text x="200.0" y="113.0" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" letter-spacing="2" fill="#ffffff">API</text>
@@ -242,7 +239,7 @@
                             </g>
 
                             <!-- Client node -->
-                            <g class="page-svg__layer page-svg__layer--bubble1" filter="url(#apiShadow)">
+                            <g class="page-svg__layer page-svg__layer--bubble1">
                                 <rect x="5" y="108" width="72" height="68" rx="10" fill="#ffffff"/>
                                 <circle cx="19" cy="122" r="8" fill="rgba(249,115,22,0.12)"/>
                                 <circle cx="19" cy="122" r="4" fill="#f97316"/>
@@ -254,7 +251,7 @@
                             </g>
 
                             <!-- Database node -->
-                            <g class="page-svg__layer page-svg__layer--bubble2" filter="url(#apiShadow)">
+                            <g class="page-svg__layer page-svg__layer--bubble2">
                                 <rect x="322" y="48" width="72" height="60" rx="10" fill="url(#apiGrad1)"/>
                                 <text x="358.0" y="64" text-anchor="middle" font-size="7.5" font-weight="700" font-family="sans-serif" fill="rgba(255,255,255,0.95)" letter-spacing="0.5">DATABASE</text>
                                 <rect x="332" y="74" width="52" height="5" rx="2" fill="rgba(255,255,255,0.45)"/>
@@ -263,7 +260,7 @@
                             </g>
 
                             <!-- Service node -->
-                            <g class="page-svg__layer page-svg__layer--node3" filter="url(#apiShadow)">
+                            <g class="page-svg__layer page-svg__layer--node3">
                                 <rect x="322" y="192" width="72" height="60" rx="10" fill="#ffffff"/>
                                 <path d="M330,192 L386,192 Q394,192 394,200 L394,212 L322,212 L322,200 Q322,192 330,192 Z" fill="url(#apiGradNav)"/>
                                 <text x="358.0" y="205" text-anchor="middle" font-size="7.5" font-weight="700" font-family="sans-serif" fill="#ffffff">SERVICE</text>

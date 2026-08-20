@@ -272,17 +272,7 @@
                                     <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
                                     <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
                                 </radialGradient>
-                                <filter id="pentShadow" x="-15%" y="-15%" width="130%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
-                                </filter>
-                                <filter id="pentGlow" x="-40%" y="-40%" width="180%" height="180%">
-                                    <feGaussianBlur stdDeviation="6" result="blur"/>
-                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                                <filter id="pentCardShadow" x="-5%" y="-5%" width="115%" height="125%">
-                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
-                                </filter>
-                                <path id="pentFlowPath" d="M200 72 L200 290" fill="none"/>
+<path id="pentFlowPath" d="M200 72 L200 290" fill="none"/>
                             </defs>
 
                             <!-- Pipeline track -->
@@ -302,7 +292,7 @@
 
                             <!-- NODE 1: SCOPE -->
                             <ellipse cx="200" cy="50" rx="38" ry="38" fill="url(#pentNodeGlow)" opacity="0.6"/>
-                            <g filter="url(#pentShadow)">
+                            <g>
                                 <circle cx="200" cy="50" r="24" fill="url(#pentNavyGrad)" stroke="#f97316" stroke-width="2.5"/>
                                 <!-- Document/checklist icon -->
                                 <rect x="192" y="39" width="16" height="20" rx="1.5" fill="none" stroke="#f97316" stroke-width="1.8"/>
@@ -316,7 +306,7 @@
                             <text x="244" y="60" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Rules of engagement signed</text>
 
                             <!-- NODE 2: RECON -->
-                            <g filter="url(#pentShadow)">
+                            <g>
                                 <circle cx="200" cy="118" r="24" fill="url(#pentNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Radar/scan icon -->
                                 <circle cx="200" cy="118" r="9" fill="none" stroke="rgba(249,115,22,0.9)" stroke-width="1.4"/>
@@ -330,7 +320,7 @@
 
                             <!-- NODE 3: EXPLOIT (highlighted / active) -->
                             <ellipse cx="200" cy="186" rx="50" ry="50" fill="url(#pentNodeGlow)"/>
-                            <g filter="url(#pentGlow)">
+                            <g>
                                 <circle cx="200" cy="186" r="28" fill="url(#pentOrangeGrad)"/>
                                 <circle cx="200" cy="186" r="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
                                 <!-- Unlocked padlock icon -->
@@ -349,7 +339,7 @@
                             <text x="244" y="197" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.65)">Controlled, authorized testing</text>
 
                             <!-- NODE 4: REPORT -->
-                            <g filter="url(#pentShadow)">
+                            <g>
                                 <circle cx="200" cy="254" r="24" fill="url(#pentNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Shield-check icon -->
                                 <path d="M200 243 L209 247 V254 Q209 261 200 265 Q191 261 191 254 V247 Z" fill="none" stroke="rgba(249,115,22,0.9)" stroke-width="1.6" stroke-linejoin="round"/>
@@ -369,7 +359,7 @@
                             </circle>
 
                             <!-- Methodology badge -->
-                            <g filter="url(#pentCardShadow)">
+                            <g>
                                 <rect x="8" y="160" width="100" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <rect x="8" y="160" width="4" height="52" rx="2" fill="#f97316"/>
                                 <text x="62" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="#1e3a5f">OWASP</text>

@@ -272,17 +272,7 @@
                                     <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
                                     <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
                                 </radialGradient>
-                                <filter id="autoShadow" x="-15%" y="-15%" width="130%" height="140%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
-                                </filter>
-                                <filter id="autoGlow" x="-40%" y="-40%" width="180%" height="180%">
-                                    <feGaussianBlur stdDeviation="6" result="blur"/>
-                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                </filter>
-                                <filter id="autoCardShadow" x="-5%" y="-5%" width="115%" height="125%">
-                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.15"/>
-                                </filter>
-                                <path id="autoFlowPath" d="M200 72 L200 290" fill="none"/>
+<path id="autoFlowPath" d="M200 72 L200 290" fill="none"/>
                             </defs>
 
                             <!-- Pipeline track — dual parallel lines with gradient fill -->
@@ -302,7 +292,7 @@
 
                             <!-- NODE 1: TRIGGER -->
                             <ellipse cx="200" cy="50" rx="38" ry="38" fill="url(#autoNodeGlow3)" opacity="0.6"/>
-                            <g filter="url(#autoShadow)">
+                            <g>
                                 <circle cx="200" cy="50" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2.5"/>
                                 <!-- Lightning bolt icon -->
                                 <polygon points="204,38 197,52 202,52 196,64 209,48 203,48 210,38" fill="#f97316" opacity="0.95"/>
@@ -313,7 +303,7 @@
                             <text x="244" y="60" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Email / Webhook / Schedule</text>
 
                             <!-- NODE 2: EXTRACT -->
-                            <g filter="url(#autoShadow)">
+                            <g>
                                 <circle cx="200" cy="118" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Funnel icon -->
                                 <polygon points="191,109 209,109 205,118 205,127 195,127 195,118" fill="none" stroke="rgba(249,115,22,0.9)" stroke-width="1.8" stroke-linejoin="round"/>
@@ -326,7 +316,7 @@
 
                             <!-- NODE 3: CLASSIFY (highlighted / active) -->
                             <ellipse cx="200" cy="186" rx="50" ry="50" fill="url(#autoNodeGlow3)"/>
-                            <g filter="url(#autoGlow)">
+                            <g>
                                 <circle cx="200" cy="186" r="28" fill="url(#autoOrangeGrad)"/>
                                 <circle cx="200" cy="186" r="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
                                 <!-- Brain/sparkle icon -->
@@ -349,7 +339,7 @@
                             <text x="244" y="197" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.65)">AI decision engine routes work</text>
 
                             <!-- NODE 4: ROUTE & EXECUTE -->
-                            <g filter="url(#autoShadow)">
+                            <g>
                                 <circle cx="200" cy="254" r="24" fill="url(#autoNavyGrad)" stroke="#f97316" stroke-width="2"/>
                                 <!-- Y-branch / route icon -->
                                 <line x1="200" y1="244" x2="200" y2="254" stroke="rgba(249,115,22,0.9)" stroke-width="2" stroke-linecap="round"/>
@@ -364,15 +354,15 @@
                             <text x="244" y="264" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">Notify / Update / Approve</text>
 
                             <!-- Animated flow pulse down the pipeline -->
-                            <circle r="5" fill="#f97316" filter="url(#autoGlow)">
+                            <circle r="5" fill="#f97316">
                                 <animateMotion dur="2.5s" repeatCount="indefinite" begin="0s"><mpath href="#autoFlowPath"/></animateMotion>
                             </circle>
-                            <circle r="3.5" fill="white" opacity="0.8" filter="url(#autoGlow)">
+                            <circle r="3.5" fill="white" opacity="0.8">
                                 <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.25s"><mpath href="#autoFlowPath"/></animateMotion>
                             </circle>
 
                             <!-- Speed comparison badge -->
-                            <g filter="url(#autoCardShadow)">
+                            <g>
                                 <rect x="8" y="160" width="100" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <rect x="8" y="160" width="4" height="52" rx="2" fill="#f97316"/>
                                 <text x="62" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="#1e3a5f">~3 sec</text>

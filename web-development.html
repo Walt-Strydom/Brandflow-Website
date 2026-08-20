@@ -232,16 +232,10 @@
                                     <stop offset="0%" stop-color="#1e3a5f"/>
                                     <stop offset="100%" stop-color="#2d5282"/>
                                 </linearGradient>
-                                <filter id="webShadow" x="-8%" y="-8%" width="120%" height="130%">
-                                    <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.18"/>
-                                </filter>
-                                <filter id="webCardShadow" x="-5%" y="-5%" width="115%" height="125%">
-                                    <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1e3a5f" flood-opacity="0.1"/>
-                                </filter>
                             </defs>
 
                             <!-- BROWSER WINDOW FRAME -->
-                            <g filter="url(#webShadow)">
+                            <g>
                                 <!-- Window body -->
                                 <rect x="46" y="36" width="306" height="220" rx="10" fill="#ffffff"/>
                                 <!-- Browser chrome bar -->
@@ -329,7 +323,7 @@
                             <rect x="262" y="237" width="68" height="9" rx="4" fill="rgba(249,115,22,0.08)"/>
 
                             <!-- MOBILE DEVICE MOCKUP -->
-                            <g filter="url(#webCardShadow)">
+                            <g>
                                 <rect x="14" y="112" width="38" height="74" rx="8" fill="url(#webNavyGrad)"/>
                                 <!-- Notch -->
                                 <rect x="24" y="112" width="18" height="5" rx="2" fill="rgba(0,0,0,0.3)"/>
@@ -348,7 +342,7 @@
                             </g>
 
                             <!-- PERFORMANCE BADGE -->
-                            <g filter="url(#webCardShadow)">
+                            <g>
                                 <rect x="10" y="280" width="120" height="36" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <!-- Performance score gauge (partial arc) -->
                                 <path d="M40 305 A14 14 0 0 1 68 305" fill="none" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
@@ -359,7 +353,7 @@
                             </g>
 
                             <!-- RESPONSIVE BADGE -->
-                            <g filter="url(#webCardShadow)">
+                            <g>
                                 <rect x="270" y="280" width="120" height="36" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
                                 <rect x="278" y="289" width="16" height="12" rx="2" fill="none" stroke="#1e3a5f" stroke-width="1.5"/>
                                 <rect x="296" y="292" width="10" height="8" rx="1.5" fill="none" stroke="#f97316" stroke-width="1.2"/>

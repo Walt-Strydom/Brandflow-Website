@@ -252,31 +252,8 @@
                             <svg class="hero__svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <defs>
                                     <!-- Soft shadow for premium glass/card effect -->
-                                    <filter id="premiumShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0f2744" flood-opacity="0.06"/>
-                                    </filter>
-                                    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#0f2744" flood-opacity="0.05"/>
-                                    </filter>
-                                    
-                                    <!-- Glows -->
-                                    <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="4" result="blur" />
-                                        <feMerge>
-                                            <feMergeNode in="blur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-                                    
-                                    <filter id="glowNavy" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="4" result="blur" />
-                                        <feMerge>
-                                            <feMergeNode in="blur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-
-                                    <!-- Subtle Dot Grid -->
+<!-- Glows -->
+<!-- Subtle Dot Grid -->
                                     <pattern id="premiumGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
                                         <circle cx="2" cy="2" r="1" fill="#94a3b8" opacity="0.15"/>
                                     </pattern>
@@ -338,7 +315,7 @@
                                         <animate attributeName="opacity" values="0.3; 0; 0.3" dur="4s" repeatCount="indefinite" />
                                     </circle>
                                     
-                                    <rect x="50" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
+                                    <rect x="50" y="120" width="80" height="80" rx="22" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <rect x="65" y="135" width="50" height="50" rx="14" fill="#fff7ed" />
                                     <path d="M82 162 L90 152 L98 162 M90 152 L90 168" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                                     <circle cx="62" cy="132" r="2.5" fill="#f1f5f9"/>
@@ -353,7 +330,7 @@
                                         <animate attributeName="opacity" values="0.25; 0; 0.25" dur="4s" begin="1s" repeatCount="indefinite" />
                                     </circle>
 
-                                    <rect x="210" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
+                                    <rect x="210" y="120" width="80" height="80" rx="22" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <rect x="225" y="135" width="50" height="50" rx="14" fill="#f8fafc" />
                                     <path d="M240 160 C240 150 260 150 260 160" stroke="#1e3a5f" stroke-width="2" fill="none" stroke-linecap="round"/>
                                     <circle cx="250" cy="160" r="10" fill="none" stroke="#1e3a5f" stroke-width="2"/>
@@ -371,7 +348,7 @@
                                         <animate attributeName="opacity" values="0.3; 0; 0.3" dur="4s" begin="2s" repeatCount="indefinite" />
                                     </circle>
 
-                                    <rect x="370" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
+                                    <rect x="370" y="120" width="80" height="80" rx="22" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <rect x="385" y="135" width="50" height="50" rx="14" fill="#fff7ed" />
                                     <path d="M398 160 H422 M414 154 L422 160 L414 166" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                                 </g>
@@ -385,7 +362,7 @@
                                         <animate attributeName="opacity" values="0.25; 0; 0.25" dur="5s" begin="0.5s" repeatCount="indefinite" />
                                     </circle>
                                     
-                                    <rect x="210" y="250" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
+                                    <rect x="210" y="250" width="80" height="80" rx="22" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <circle cx="250" cy="290" r="22" fill="#ecfdf5" />
                                     <path d="M242 290 L248 296 L258 284" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                                 </g>
@@ -394,7 +371,7 @@
 
                                 <!-- Floating Premium Badges -->
                                 <!-- Cost Savings -->
-                                <g filter="url(#badgeShadow)">
+                                <g>
                                     <rect x="25" y="55" width="130" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <circle cx="51" cy="76" r="12" fill="#ecfdf5"/>
                                     <path d="M47 76 L51 80 L55 72" stroke="#10b981" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -403,7 +380,7 @@
                                 </g>
 
                                 <!-- Speed -->
-                                <g filter="url(#badgeShadow)">
+                                <g>
                                     <rect x="345" y="55" width="130" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <circle cx="371" cy="76" r="12" fill="#fff7ed"/>
                                     <path d="M371 71 L371 76 L374 78" stroke="#f97316" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -412,7 +389,7 @@
                                 </g>
 
                                 <!-- Uptime -->
-                                <g filter="url(#badgeShadow)">
+                                <g>
                                     <rect x="345" y="305" width="140" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
                                     <circle cx="371" cy="326" r="12" fill="#f8fafc"/>
                                     <circle cx="371" cy="326" r="5" fill="none" stroke="#1e3a5f" stroke-width="1.5"/>
