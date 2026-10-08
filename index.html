@@ -135,6 +135,8 @@
         }
     }
     </script>
+    <link rel="stylesheet" href="css/modern.css">
+    <link rel="stylesheet" href="css/illustrations.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -149,21 +151,19 @@
 
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="/" class="nav__logo">
-                <img src="img/logo.png" alt="BrandFlow Agency" class="nav__logo-img">
-            </a>
+            <a href="/" class="nav__logo"><img src="img/logo.png" alt="BrandFlow Agency" class="nav__logo-img"></a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="/" class="nav__link active">HOME</a>
+                        <a href="/" class="nav__link active">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="/why-us" class="nav__link">WHY US</a>
+                        <a href="/why-us" class="nav__link">Why BrandFlow</a>
                     </li>
                     <li class="nav__item nav__item--dropdown">
                         <a href="/services" class="nav__link nav__link--dropdown" aria-haspopup="true">
-                            SERVICES
+                            Services
                             <iconify-icon icon="ph:caret-down" width="16" height="16" aria-hidden="true"></iconify-icon>
                         </a>
                         <div class="nav__dropdown">
@@ -176,7 +176,7 @@
                     </li>
                     <li class="nav__item nav__item--dropdown">
                         <a href="#" class="nav__link nav__link--dropdown" aria-haspopup="true">
-                            PRICING
+                            Pricing
                             <iconify-icon icon="ph:caret-down" width="16" height="16" aria-hidden="true"></iconify-icon>
                         </a>
                         <div class="nav__dropdown">
@@ -189,554 +189,49 @@
                     </li>
                     <li class="nav__item">
                         <a href="/automation-advisor" class="nav__link nav__link--highlight">
-                            AUTOMATION ADVISOR
+                            Automation Advisor
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a href="/contact" class="nav__link nav__link--btn">CONTACT</a>
+                        <a href="/contact" class="nav__link nav__link--btn">Let's talk ↗</a>
                     </li>
                 </ul>
             </div>
 
-            <div class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+            <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-controls="nav-menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
-    <main class="main" id="main-content">
-
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero__split">
-
-                <!-- Left: dark navy panel -->
-                <div class="hero__split-left">
-                    <div class="hero__split-left__inner">
-                        <div class="hero__content">
-                            <span class="hero__eyebrow">Trusted by South African SMEs across 8+ industries</span>
-
-                            <h1 class="hero__title">
-                                <span class="hero__title-rotator">
-                                    <span class="hero__title-rotating">Build systems that <span class="hero__keyword">move your business forward</span></span>
-                                </span>
-                            </h1>
-
-                            <p class="hero__description">
-                                We design fast, precise AI systems, full stack applications, and automated workflows that remove friction from daily operations. Move quicker, respond sooner, and scale with confidence.
-                            </p>
-
-                            <div class="hero__buttons">
-                                <a href="/automation-advisor" class="btn btn--primary">
-                                    Try Automation Advisor
-                                </a>
-                                <a href="#discovery-call" class="btn btn--glass-light">
-                                    Book a Discovery Call
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: light panel with SVG -->
-                <div class="hero__split-right">
-                    <div class="hero__media">
-                        <div class="hero__svg-container">
-                            <!-- Automation Process Visualiser -->
-                            <svg class="hero__svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <defs>
-                                    <!-- Soft shadow for premium glass/card effect -->
-                                    <filter id="premiumShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0f2744" flood-opacity="0.06"/>
-                                    </filter>
-                                    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#0f2744" flood-opacity="0.05"/>
-                                    </filter>
-                                    
-                                    <!-- Glows -->
-                                    <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="4" result="blur" />
-                                        <feMerge>
-                                            <feMergeNode in="blur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-                                    
-                                    <filter id="glowNavy" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="4" result="blur" />
-                                        <feMerge>
-                                            <feMergeNode in="blur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-
-                                    <!-- Subtle Dot Grid -->
-                                    <pattern id="premiumGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                                        <circle cx="2" cy="2" r="1" fill="#94a3b8" opacity="0.15"/>
-                                    </pattern>
-                                </defs>
-
-                                <!-- Background Grid -->
-                                <rect width="500" height="400" fill="url(#premiumGrid)"/>
-
-                                <!-- Section Label -->
-                                <g opacity="0.8">
-                                    <line x1="40" y1="35" x2="130" y2="35" stroke="#cbd5e1" stroke-width="1"/>
-                                    <text x="250" y="39" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="4">PRECISION AUTOMATION</text>
-                                    <line x1="370" y1="35" x2="460" y2="35" stroke="#cbd5e1" stroke-width="1"/>
-                                </g>
-
-                                <!-- Momentum Curves (Background) -->
-                                <path d="M -20 200 C 150 150, 350 250, 520 200" fill="none" stroke="#f1f5f9" stroke-width="2"/>
-                                <path d="M -20 220 C 150 170, 350 270, 520 220" fill="none" stroke="#f1f5f9" stroke-width="1"/>
-
-                                <!-- Connection Paths -->
-                                <!-- Trigger to Engine -->
-                                <path id="track1" d="M 90 160 L 250 160" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
-                                
-                                <!-- Engine to Action -->
-                                <path id="track2" d="M 250 160 L 410 160" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
-                                
-                                <!-- Action to Outcome -->
-                                <path id="track3" d="M 410 160 C 410 290 340 290 250 290" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
-                                
-                                <!-- Trigger to Outcome (Secondary) -->
-                                <path id="track4" d="M 90 160 C 90 290 160 290 250 290" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="6 6" stroke-linecap="round"/>
-
-                                <!-- Flow Particles -->
-                                <circle r="4" fill="#f97316">
-                                    <animateMotion dur="8.6s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.2791;1" keyPoints="0;1;1">
-                                        <mpath href="#track1"/>
-                                    </animateMotion>
-                                    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.05;0.22;0.2791;1" dur="8.6s" repeatCount="indefinite" />
-                                </circle>
-
-                                <circle r="4" fill="#1e3a5f">
-                                    <animateMotion dur="8.6s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.2791;0.5581;1" keyPoints="0;0;1;1">
-                                        <mpath href="#track2"/>
-                                    </animateMotion>
-                                    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.2791;0.3291;0.50;0.5581;1" dur="8.6s" repeatCount="indefinite" />
-                                </circle>
-
-                                <circle r="4" fill="#10b981">
-                                    <animateMotion dur="8.6s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.5581;0.9070;1" keyPoints="0;0;1;1">
-                                        <mpath href="#track3"/>
-                                    </animateMotion>
-                                    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5581;0.6081;0.8570;0.9070;1" dur="8.6s" repeatCount="indefinite" />
-                                </circle>
-
-                                <!-- NODE 1: SIGNAL (Trigger) -->
-                                <g>
-                                    <circle cx="90" cy="160" r="42" fill="none" stroke="#f97316" stroke-width="1" opacity="0.15">
-                                        <animate attributeName="r" values="42; 56; 42" dur="4s" repeatCount="indefinite" />
-                                        <animate attributeName="opacity" values="0.3; 0; 0.3" dur="4s" repeatCount="indefinite" />
-                                    </circle>
-                                    
-                                    <rect x="50" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
-                                    <rect x="65" y="135" width="50" height="50" rx="14" fill="#fff7ed" />
-                                    <path d="M82 162 L90 152 L98 162 M90 152 L90 168" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="62" cy="132" r="2.5" fill="#f1f5f9"/>
-                                </g>
-                                <text x="90" y="215" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e293b" letter-spacing="1">SIGNAL</text>
-                                <text x="90" y="229" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Email / API</text>
-
-                                <!-- NODE 2: ENGINE (AI Process) -->
-                                <g>
-                                    <circle cx="250" cy="160" r="42" fill="none" stroke="#1e3a5f" stroke-width="1" opacity="0.15">
-                                        <animate attributeName="r" values="42; 60; 42" dur="4s" begin="1s" repeatCount="indefinite" />
-                                        <animate attributeName="opacity" values="0.25; 0; 0.25" dur="4s" begin="1s" repeatCount="indefinite" />
-                                    </circle>
-
-                                    <rect x="210" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
-                                    <rect x="225" y="135" width="50" height="50" rx="14" fill="#f8fafc" />
-                                    <path d="M240 160 C240 150 260 150 260 160" stroke="#1e3a5f" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                    <circle cx="250" cy="160" r="10" fill="none" stroke="#1e3a5f" stroke-width="2"/>
-                                    <circle cx="250" cy="160" r="3" fill="#f97316"/>
-                                    <circle cx="238" cy="160" r="2.5" fill="#1e3a5f"/>
-                                    <circle cx="262" cy="160" r="2.5" fill="#1e3a5f"/>
-                                </g>
-                                <text x="250" y="215" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e293b" letter-spacing="1">ENGINE</text>
-                                <text x="250" y="229" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Route &amp; Process</text>
-
-                                <!-- NODE 3: ACTION -->
-                                <g>
-                                    <circle cx="410" cy="160" r="42" fill="none" stroke="#f97316" stroke-width="1" opacity="0.15">
-                                        <animate attributeName="r" values="42; 56; 42" dur="4s" begin="2s" repeatCount="indefinite" />
-                                        <animate attributeName="opacity" values="0.3; 0; 0.3" dur="4s" begin="2s" repeatCount="indefinite" />
-                                    </circle>
-
-                                    <rect x="370" y="120" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
-                                    <rect x="385" y="135" width="50" height="50" rx="14" fill="#fff7ed" />
-                                    <path d="M398 160 H422 M414 154 L422 160 L414 166" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <text x="410" y="215" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e293b" letter-spacing="1">ACTION</text>
-                                <text x="410" y="229" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Update &amp; Send</text>
-
-                                <!-- NODE 4: OUTCOME (Complete) -->
-                                <g>
-                                    <circle cx="250" cy="290" r="42" fill="none" stroke="#10b981" stroke-width="1" opacity="0.15">
-                                        <animate attributeName="r" values="42; 56; 42" dur="5s" begin="0.5s" repeatCount="indefinite" />
-                                        <animate attributeName="opacity" values="0.25; 0; 0.25" dur="5s" begin="0.5s" repeatCount="indefinite" />
-                                    </circle>
-                                    
-                                    <rect x="210" y="250" width="80" height="80" rx="22" fill="#ffffff" filter="url(#premiumShadow)" stroke="#f8fafc" stroke-width="1"/>
-                                    <circle cx="250" cy="290" r="22" fill="#ecfdf5" />
-                                    <path d="M242 290 L248 296 L258 284" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <text x="250" y="345" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1e293b" letter-spacing="1">OUTCOME</text>
-                                <text x="250" y="359" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">Frictionless Flow</text>
-
-                                <!-- Floating Premium Badges -->
-                                <!-- Cost Savings -->
-                                <g filter="url(#badgeShadow)">
-                                    <rect x="25" y="55" width="130" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
-                                    <circle cx="51" cy="76" r="12" fill="#ecfdf5"/>
-                                    <path d="M47 76 L51 80 L55 72" stroke="#10b981" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <text x="71" y="75" font-family="Inter,sans-serif" font-size="13" font-weight="800" fill="#1e293b">40%</text>
-                                    <text x="71" y="86" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#64748b">Cost Savings</text>
-                                </g>
-
-                                <!-- Speed -->
-                                <g filter="url(#badgeShadow)">
-                                    <rect x="345" y="55" width="130" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
-                                    <circle cx="371" cy="76" r="12" fill="#fff7ed"/>
-                                    <path d="M371 71 L371 76 L374 78" stroke="#f97316" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <text x="391" y="75" font-family="Inter,sans-serif" font-size="13" font-weight="800" fill="#1e293b">87%</text>
-                                    <text x="391" y="86" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#64748b">Faster Flow</text>
-                                </g>
-
-                                <!-- Uptime -->
-                                <g filter="url(#badgeShadow)">
-                                    <rect x="345" y="305" width="140" height="42" rx="10" fill="#ffffff" stroke="#f8fafc" stroke-width="1"/>
-                                    <circle cx="371" cy="326" r="12" fill="#f8fafc"/>
-                                    <circle cx="371" cy="326" r="5" fill="none" stroke="#1e3a5f" stroke-width="1.5"/>
-                                    <circle cx="371" cy="326" r="1.5" fill="#1e3a5f"/>
-                                    <text x="391" y="325" font-family="Inter,sans-serif" font-size="13" font-weight="800" fill="#1e293b">99.9%</text>
-                                    <text x="391" y="336" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#64748b">Precision Uptime</text>
-                                </g>
-
-                                <!-- Accent / Flow Decorators -->
-                                <circle cx="485" cy="110" r="3" fill="#f97316" opacity="0.3"/>
-                                <circle cx="475" cy="120" r="2" fill="#f97316" opacity="0.15"/>
-                                <circle cx="15" cy="280" r="3" fill="#1e3a5f" opacity="0.2"/>
-                                <circle cx="25" cy="290" r="1.5" fill="#1e3a5f" opacity="0.1"/>
-                                <circle cx="465" cy="370" r="4" fill="#10b981" opacity="0.15"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <!-- end hero__split-right -->
-            </div>
-            <!-- end hero__split -->
-        </section>
-
-        <!-- Stats Strip -->
-        <section class="stats-strip" id="stats">
-            <div class="container">
-                <div class="stats-strip__grid">
-                    <div class="stats-item reveal-on-scroll">
-                        <div class="stats-item__number">
-                            <span class="stats-item__count" data-target="50">0</span><span class="stats-item__suffix">+</span>
-                        </div>
-                        <p class="stats-item__label">Automations Deployed</p>
-                    </div>
-                    <div class="stats-item reveal-on-scroll">
-                        <div class="stats-item__number">
-                            <span class="stats-item__count" data-target="3200">0</span><span class="stats-item__suffix">+</span>
-                        </div>
-                        <p class="stats-item__label">Hours Saved for Clients</p>
-                    </div>
-                    <div class="stats-item reveal-on-scroll">
-                        <div class="stats-item__number">
-                            <span class="stats-item__count" data-target="8">0</span>
-                        </div>
-                        <p class="stats-item__label">Industries Served</p>
-                    </div>
-                    <div class="stats-item reveal-on-scroll">
-                        <div class="stats-item__number">
-                            <span class="stats-item__count" data-target="99">0</span><span class="stats-item__suffix">.9%</span>
-                        </div>
-                        <p class="stats-item__label">Uptime Guarantee</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Trust Bar -->
-        <div class="trust-bar">
-            <div class="container">
-                <div class="trust-bar__inner">
-                    <p class="trust-bar__label">Businesses we've served:</p>
-                    <div class="trust-bar__sectors">
-                        <span class="trust-bar__sector">Retail &amp; E-commerce</span>
-                        <span class="trust-bar__divider">·</span>
-                        <span class="trust-bar__sector">Finance &amp; Insurance</span>
-                        <span class="trust-bar__divider">·</span>
-                        <span class="trust-bar__sector">Professional Services</span>
-                        <span class="trust-bar__divider">·</span>
-                        <span class="trust-bar__sector">Healthcare &amp; Wellness</span>
-                        <span class="trust-bar__divider">·</span>
-                        <span class="trust-bar__sector">Logistics</span>
-                        <span class="trust-bar__divider">·</span>
-                        <span class="trust-bar__sector">Manufacturing</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Preview Cards Section -->
-        <section class="preview-cards section">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__tag">Our Services</span>
-                    <h2 class="section__title">What We Build</h2>
-                    <p class="section__subtitle">From professional websites to enterprise AI systems — end-to-end services built for SMEs</p>
-                </div>
-
-                <!-- Asymmetric Grid: large card left + 2x2 right -->
-                <div class="preview-cards__asymmetric-grid">
-                    <!-- Large featured left: Process Automation -->
-                    <a href="/process-automation" class="preview-card preview-card--large reveal-on-scroll">
-                        <div class="preview-card__icon">
-                            <iconify-icon icon="ph:flow-arrow" width="44" height="44"></iconify-icon>
-                        </div>
-                        <div>
-                            <h3 class="preview-card__title">Process Automation</h3>
-                            <p class="preview-card__text">Eliminate repetitive manual work. We build intelligent automation pipelines — connecting your email, CRM, accounting system, and more — so your team focuses on high-value work.</p>
-                            <span class="preview-card__link">
-                                Explore Automation
-                                <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- 2x2 right grid -->
-                    <div class="preview-cards__right-grid">
-                        <a href="/web-development" class="preview-card reveal-on-scroll">
-                            <div class="preview-card__icon">
-                                <iconify-icon icon="ph:globe" width="30" height="30"></iconify-icon>
-                            </div>
-                            <h3 class="preview-card__title">Web Development</h3>
-                            <p class="preview-card__text">Professional, mobile-responsive websites. Fixed once-off pricing, no retainers.</p>
-                            <span class="preview-card__link">Explore <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon></span>
-                        </a>
-
-                        <a href="/ai-ml-engineering" class="preview-card reveal-on-scroll">
-                            <div class="preview-card__icon">
-                                <iconify-icon icon="ph:brain" width="30" height="30"></iconify-icon>
-                            </div>
-                            <h3 class="preview-card__title">AI & ML Engineering</h3>
-                            <p class="preview-card__text">Custom ML models, NLP, computer vision, and predictive analytics.</p>
-                            <span class="preview-card__link">Explore <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon></span>
-                        </a>
-
-                        <a href="/full-stack-development" class="preview-card reveal-on-scroll">
-                            <div class="preview-card__icon">
-                                <iconify-icon icon="ph:stack" width="30" height="30"></iconify-icon>
-                            </div>
-                            <h3 class="preview-card__title">Full Stack Development</h3>
-                            <p class="preview-card__text">Scalable web applications, SPAs, and cloud-deployed systems end-to-end.</p>
-                            <span class="preview-card__link">Explore <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon></span>
-                        </a>
-
-                        <a href="/api-development" class="preview-card reveal-on-scroll">
-                            <div class="preview-card__icon">
-                                <iconify-icon icon="ph:plugs-connected" width="30" height="30"></iconify-icon>
-                            </div>
-                            <h3 class="preview-card__title">API Development</h3>
-                            <p class="preview-card__text">RESTful APIs, GraphQL, microservices, and third-party integrations built to scale.</p>
-                            <span class="preview-card__link">Explore <iconify-icon icon="ph:arrow-right" width="16" height="16"></iconify-icon></span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Advisor CTA strip -->
-                <div class="preview-cards__cta-row">
-                    <a href="/automation-advisor" class="preview-card preview-card--advisor-cta reveal-on-scroll">
-                        <div class="preview-card__icon">
-                            <iconify-icon icon="ph:robot" width="32" height="32"></iconify-icon>
-                        </div>
-                        <div>
-                            <h3 class="preview-card__title">Not sure where to start?</h3>
-                            <p class="preview-card__text">Use our free AI Automation Advisor — describe your process and receive an instant assessment with implementation roadmap.</p>
-                        </div>
-                        <span class="preview-card__link">
-                            Try Free Advisor
-                            <iconify-icon icon="ph:arrow-right" width="18" height="18"></iconify-icon>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="proof-strip section section--alt">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__tag">Results</span>
-                    <h2 class="section__title">Proof, Not Promises</h2>
-                    <p class="section__subtitle">Real outcomes from practical solutions delivered for growth-focused South African teams.</p>
-                </div>
-                <div class="proof-strip__grid">
-                    <article class="proof-card reveal-on-scroll">
-                        <h3 class="proof-card__title">Invoice Processing Automation</h3>
-                        <p class="proof-card__challenge">A finance team was spending 40+ hrs/month processing invoices by hand across email, spreadsheets, and their accounting system.</p>
-                        <p class="proof-card__result">Reduced manual handling time by <strong>70%</strong> in 6 weeks.</p>
-                        <p class="proof-card__meta">Finance &amp; operations • Mid-sized services business</p>
-                        <a href="/case-studies#invoice-processing" class="proof-card__link">
-                            Read full case study
-                            <iconify-icon icon="ph:arrow-right" width="14" height="14" aria-hidden="true"></iconify-icon>
-                        </a>
-                    </article>
-                    <article class="proof-card reveal-on-scroll">
-                        <h3 class="proof-card__title">Lead Response Workflow</h3>
-                        <p class="proof-card__challenge">New enquiries from paid ads were sitting in a shared inbox for hours — by which point many leads had moved on.</p>
-                        <p class="proof-card__result">Cut response time from hours to <strong>under 5 minutes</strong>.</p>
-                        <p class="proof-card__meta">Sales automation • Professional services</p>
-                        <a href="/case-studies#lead-response" class="proof-card__link">
-                            Read full case study
-                            <iconify-icon icon="ph:arrow-right" width="14" height="14" aria-hidden="true"></iconify-icon>
-                        </a>
-                    </article>
-                    <article class="proof-card reveal-on-scroll">
-                        <h3 class="proof-card__title">Custom Client Portal</h3>
-                        <p class="proof-card__challenge">Staff were answering 15–20 repetitive client status enquiries per day — time that could have been spent on billable work.</p>
-                        <p class="proof-card__result">Improved client self-service and reduced support load by <strong>40%</strong>.</p>
-                        <p class="proof-card__meta">Full-stack delivery • Growing SME</p>
-                        <a href="/case-studies#client-portal" class="proof-card__link">
-                            Read full case study
-                            <iconify-icon icon="ph:arrow-right" width="14" height="14" aria-hidden="true"></iconify-icon>
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="testimonials section">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__tag">Client Feedback</span>
-                    <h2 class="section__title">What Our Clients Say</h2>
-                    <p class="section__subtitle">Honest feedback from the businesses we've built for.</p>
-                </div>
-                <div class="testimonials__grid">
-                    <div class="testimonial-card reveal-on-scroll">
-                        <p class="testimonial-card__quote">"The invoice automation BrandFlow built has completely changed how our finance team operates. What used to take our admin team a full day now happens automatically overnight. I genuinely wish we'd done this two years earlier."</p>
-                        <div class="testimonial-card__author">
-                            <div class="testimonial-card__avatar" aria-hidden="true">
-                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="testimonial-card__name">Operations Director</p>
-                                <p class="testimonial-card__role">Finance &amp; Professional Services Firm, Johannesburg</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card reveal-on-scroll">
-                        <p class="testimonial-card__quote">"We were losing leads constantly because no one was picking up enquiries fast enough. BrandFlow set up a system that responds within minutes — even on weekends. Our lead-to-meeting conversion has improved noticeably and the team has less admin to worry about."</p>
-                        <div class="testimonial-card__author">
-                            <div class="testimonial-card__avatar" aria-hidden="true">
-                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="testimonial-card__name">Managing Director</p>
-                                <p class="testimonial-card__role">Professional Services Business, Cape Town</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card reveal-on-scroll">
-                        <p class="testimonial-card__quote">"The client portal they built looks more professional than what our enterprise competitors use. Our clients comment on it all the time. Support requests dropped significantly within the first few weeks of going live — exactly as promised."</p>
-                        <div class="testimonial-card__author">
-                            <div class="testimonial-card__avatar" aria-hidden="true">
-                                <iconify-icon icon="ph:user" width="22" height="22"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="testimonial-card__name">Founder &amp; CEO</p>
-                                <p class="testimonial-card__role">Growing SME, Pretoria</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =============================================
-             DISCOVERY CALL CTA
-             ============================================= -->
-        <section class="discovery-cta section" id="discovery-call">
-            <div class="container">
-                <div class="discovery-cta__inner">
-                    <div class="discovery-cta__content">
-                        <span class="discovery-cta__eyebrow">Free — No Obligation</span>
-                        <h2 class="discovery-cta__title">Book a 30-Minute Discovery Call</h2>
-                        <p class="discovery-cta__desc">Tell us about your business and its biggest bottlenecks. We'll map out exactly which processes to automate first, what it'll cost, and what ROI to expect — all in 30 minutes.</p>
-                        <ul class="discovery-cta__list">
-                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Process audit &amp; bottleneck identification</li>
-                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Custom automation roadmap for your business</li>
-                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Honest ROI estimate — no sales pressure</li>
-                            <li><iconify-icon icon="ph:check-circle-fill" width="18" height="18"></iconify-icon> Tailored to SA market &amp; pricing reality</li>
-                        </ul>
-                        <div class="discovery-cta__actions">
-                            <a href="https://wa.me/27827853646?text=Hi!%20I'd%20like%20to%20book%20a%2030-minute%20discovery%20call%20about%20automation%20for%20my%20business."
-                               class="btn btn--primary btn--lg"
-                               target="_blank" rel="noopener noreferrer">
-                                Book via WhatsApp
-                            </a>
-                            <a href="mailto:hello@brandflow.co.za?subject=Discovery%20Call%20Request&body=Hi%20BrandFlow%2C%20I'd%20like%20to%20book%20a%2030-minute%20discovery%20call."
-                               class="btn btn--glass-light btn--lg">
-                                Book via Email
-                            </a>
-                        </div>
-                    </div>
-                    <div class="discovery-cta__visual">
-                        <div class="discovery-cta__card">
-                            <div class="discovery-cta__card-header">
-                                <div class="discovery-cta__avatar">
-                                    <iconify-icon icon="ph:user-circle" width="40" height="40"></iconify-icon>
-                                </div>
-                                <div>
-                                    <p class="discovery-cta__name">BrandFlow Team</p>
-                                    <p class="discovery-cta__role">Automation Specialist</p>
-                                </div>
-                                <span class="discovery-cta__status">
-                                    <span class="discovery-cta__status-dot"></span>
-                                    Available
-                                </span>
-                            </div>
-                            <div class="discovery-cta__agenda">
-                                <p class="discovery-cta__agenda-title">What we'll cover:</p>
-                                <div class="discovery-cta__agenda-item">
-                                    <span class="discovery-cta__agenda-time">0:00</span>
-                                    <span>Understand your business &amp; processes</span>
-                                </div>
-                                <div class="discovery-cta__agenda-item">
-                                    <span class="discovery-cta__agenda-time">10:00</span>
-                                    <span>Identify top 3 automation opportunities</span>
-                                </div>
-                                <div class="discovery-cta__agenda-item">
-                                    <span class="discovery-cta__agenda-time">20:00</span>
-                                    <span>ROI estimate &amp; implementation roadmap</span>
-                                </div>
-                                <div class="discovery-cta__agenda-item">
-                                    <span class="discovery-cta__agenda-time">28:00</span>
-                                    <span>Q&amp;A — your questions answered</span>
-                                </div>
-                            </div>
-                            <div class="discovery-cta__card-footer">
-                                <iconify-icon icon="ph:clock" width="16" height="16"></iconify-icon>
-                                30 minutes · Free · No commitment
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
+    <main class="main bf-home" id="main-content">
+<section class="bf-hero"><div class="container bf-hero-grid">
+<div class="bf-hero-copy"><p class="bf-kicker"><span></span> DIGITAL SYSTEMS. HUMAN AMBITION.</p>
+<h1>Less friction.<br>More <em>forward.</em></h1>
+<p class="bf-lead">We connect your systems, automate the everyday, and build the technology that moves your business forward.</p>
+<div class="bf-actions"><a class="bf-button" href="/contact">Let's build what's next <span>↗</span></a><a class="bf-text-link" href="#capabilities">Explore our capabilities <span>↓</span></a></div>
+<p class="bf-location"><span>◎</span> Built in South Africa. Built for your business.</p></div>
+<div class="bf-system bf-home-art" data-art="brandflow" data-motion="paused" aria-label="Illustration of a connected business workflow">
+<div class="bf-system-top"><span>THE CONNECTED BUSINESS</span><span class="bf-system-status">● SYSTEM OVERVIEW</span></div>
+<div class="bf-orbit"><div class="bf-orbit-ring"></div><div class="bf-orbit-ring bf-orbit-ring--inner"></div>
+<svg class="bf-wires" viewBox="0 0 520 420" aria-hidden="true"><path class="bf-platform-shadow" d="M260 183L370 247 260 311 150 247Z" fill="#e2e8f0" opacity=".6"/><path class="bf-platform" d="M260 173L370 237 260 301 150 237Z" fill="#fff" stroke="#cbd5e1"/><path class="bf-art-signal" d="M100 94H190Q210 94 210 114V200H260 M420 110H335Q315 110 315 130V210H260 M96 318H190Q210 318 210 298V220H260 M423 311H340Q315 311 315 291V210H260"/><circle cx="210" cy="148" r="4"/><circle cx="315" cy="275" r="4"/></svg>
+<button class="bf-node bf-node--one" data-flow="connect" aria-pressed="false"><span class="bf-node-symbol">⇄</span><span>Connect<small>Your tools, together</small></span><i>↗</i></button>
+<button class="bf-node bf-node--two" data-flow="think" aria-pressed="false"><span class="bf-node-symbol">✳</span><span>Think<small>Intelligence in action</small></span><i>↗</i></button>
+<div class="bf-core" aria-hidden="true"><div class="bf-core-back"></div><div class="bf-core-face"><img class="bf-core-logo" src="img/logo.png" alt=""></div></div>
+<button class="bf-node bf-node--three" data-flow="automate" aria-pressed="true"><span class="bf-node-symbol">⌁</span><span>Automate<small>Work that flows</small></span><i>↗</i></button>
+<button class="bf-node bf-node--four" data-flow="grow" aria-pressed="false"><span class="bf-node-symbol">↗</span><span>Grow<small>Room for what's next</small></span><i>↗</i></button>
+</div><div class="bf-system-bottom"><span class="bf-pulse"></span><p id="flow-description" aria-live="polite">Less repetitive work. More time for what matters.</p><span>03 / 04</span></div>
+<p class="bf-diagram-hint">Explore the connections. Select a capability.</p><div class="bf-art-controls"><button class="bf-motion-toggle" type="button" aria-label="Pause illustration animation" aria-pressed="false" hidden>Pause motion</button></div></div></div></section>
+<section class="bf-industry"><div class="container"><p>BUILT FOR THE WAY<br><strong>YOUR BUSINESS WORKS</strong></p><span>Professional services</span><span>Retail & e-commerce</span><span>Finance & insurance</span><span>Logistics & operations</span></div></section>
+<section class="bf-section" id="capabilities"><div class="container"><div class="bf-section-heading"><div><p class="bf-kicker">01 / OUR CAPABILITIES</p><h2>One partner.<br>A world of possibility.</h2></div><div><p>From your first website to your next intelligent system. Start with what you need. Build towards what comes next.</p><a class="bf-text-link" href="/services">Discover all services <span>↗</span></a></div></div>
+<div class="bf-services"><a class="bf-service bf-service--featured" href="/process-automation"><div class="bf-service-top"><span>01 / Process automation</span><span class="bf-service-arrow">↗</span></div><div class="bf-mini-flow" aria-hidden="true"><span>IN</span><i></i><b><img src="img/logo.png" alt=""></b><i></i><span>OUT</span></div><div><h3>Less busywork. More momentum.</h3><p>Connect your everyday tools and turn repetitive tasks into reliable, automated workflows.</p></div><span class="bf-service-link">Explore process automation <span>→</span></span></a><a class="bf-service " href="/ai-ml-engineering"><div class="bf-service-top"><span>02 / AI & ML engineering</span><span class="bf-service-arrow">↗</span></div><span class="bf-service-icon" aria-hidden="true">✳</span><div><h3>Intelligence with a purpose.</h3><p>Put your data to work with practical AI, predictive models and intelligent assistants.</p></div><span class="bf-service-link">Explore ai & ml engineering <span>→</span></span></a><a class="bf-service " href="/full-stack-development"><div class="bf-service-top"><span>03 / Full stack development</span><span class="bf-service-arrow">↗</span></div><span class="bf-service-icon" aria-hidden="true">⌘</span><div><h3>Built around your business.</h3><p>Custom applications that bring your operations together, from interface to infrastructure.</p></div><span class="bf-service-link">Explore full stack development <span>→</span></span></a><a class="bf-service " href="/api-development"><div class="bf-service-top"><span>04 / API development</span><span class="bf-service-arrow">↗</span></div><span class="bf-service-icon" aria-hidden="true">⇄</span><div><h3>Everything, connected.</h3><p>Secure integrations that help your platforms share information and work together.</p></div><span class="bf-service-link">Explore api development <span>→</span></span></a><a class="bf-service " href="/web-development"><div class="bf-service-top"><span>05 / Web development</span><span class="bf-service-arrow">↗</span></div><span class="bf-service-icon" aria-hidden="true">↗</span><div><h3>A stronger first impression.</h3><p>Fast, considered websites that turn your business into a compelling digital experience.</p></div><span class="bf-service-link">Explore web development <span>→</span></span></a></div>
+<div class="bf-advisor"><div><span class="bf-advisor-icon">✳</span><div><h3>Big ideas. A clear starting point.</h3><p>Find the right opportunities for your business with our free Automation Advisor.</p></div></div><a class="bf-text-link" href="/automation-advisor">Find your starting point <span>↗</span></a></div></div></section>
+<section class="bf-approach bf-section"><div class="container"><div class="bf-section-heading"><div><p class="bf-kicker">02 / HOW WE WORK</p><h2>Clarity first.<br>Momentum follows.</h2></div><div><p>Good technology starts with understanding your business. We stay close to the problem, build with intention, and make every connection count.</p><a class="bf-text-link" href="/why-us">Get to know BrandFlow <span>↗</span></a></div></div>
+<div class="bf-steps"><article><span>01</span><h3>Understand the everyday.</h3><p>We map your processes, listen to your team and find the friction holding you back.</p></article><article><span>02</span><h3>Build what matters.</h3><p>A clear scope, thoughtful engineering and systems designed around the way you work.</p></article><article><span>03</span><h3>Keep moving forward.</h3><p>We help you launch, adapt and get more from your technology as your business evolves.</p></article></div></div></section>
+<section class="bf-section bf-next" id="discovery-call"><div class="container"><p class="bf-kicker">YOUR NEXT CHAPTER STARTS HERE</p><h2>Make room for<br><em>what's next.</em></h2><p>Tell us where you want to go.<br>Let's build the systems to get you there.</p><div class="bf-actions"><a class="bf-button" href="/contact">Book a discovery call <span>↗</span></a><a class="bf-text-link" href="mailto:hello@brandflow.co.za">hello@brandflow.co.za <span>↗</span></a></div><span class="bf-next-note">30 minutes. A fresh perspective. No obligation.</span></div><div class="bf-next-art" aria-hidden="true"><span>↗</span></div></section>
+</main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -831,8 +326,6 @@
 
     <!-- JavaScript -->
     <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
         // Safety net: if GSAP didn't load from CDN, reveal all content immediately
         if (typeof gsap === 'undefined') {
@@ -843,7 +336,6 @@
         }
     </script>
     <script src="js/main.js"></script>
-    <script src="js/gsap-animations.js"></script>
 
     <!-- WhatsApp Quick-Reply Panel -->
     <div class="wa-widget" id="wa-widget">
@@ -928,5 +420,7 @@
             </div>
         </div>
     </div>
+    <script src="js/modern.js"></script>
+    <script src="js/illustrations.js" defer></script>
 </body>
 </html>
