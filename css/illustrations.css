@@ -1,0 +1,27 @@
+/* BrandFlow dimensional artwork. Native SVG, no canvas or 3D runtime. */
+.page-hero__svg-container:has(.bf-art){max-width:none;width:100%;min-width:0;perspective:1100px}
+.bf-art{width:100%;max-width:620px;margin:0;isolation:isolate;--art-rx:0deg;--art-ry:0deg}
+.bf-art-stage{transform:rotateX(var(--art-rx)) rotateY(var(--art-ry));transform-origin:50% 55%;transition:transform .45s ease;aspect-ratio:4/3}
+.bf-illustration{display:block;width:100%;height:auto;overflow:visible}
+.bf-art figcaption{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:40px;padding:8px 10px 0;border-top:1px solid #1e3a5f15;color:#64748b;font-size:11px;letter-spacing:.015em;line-height:1.5}
+.bf-motion-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:106px;min-height:34px;padding:6px 10px;border:1px solid #cbd5e1;border-radius:5px;background:#ffffffc9;color:#1e3a5f;font:500 10px/1.4 Inter,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.bf-motion-toggle[hidden]{display:none}.bf-motion-toggle:hover{border-color:#f97316;background:#fff7ed}.bf-motion-toggle:focus-visible{outline:3px solid #f97316;outline-offset:4px}.bf-motion-toggle:disabled{cursor:default;background:transparent;border-color:transparent;color:#64748b}
+.bf-art-float{animation:bf-art-drift 7s ease-in-out infinite;animation-play-state:paused}
+.bf-art-float--late{animation-delay:-2.4s;animation-duration:8s}.bf-art-float--slow{animation-delay:-4.2s;animation-duration:9s}
+.bf-art-signal{animation:bf-art-route 12s linear infinite;animation-play-state:paused}
+[data-motion=running] .bf-art-float,[data-motion=running] .bf-art-signal{animation-play-state:running}
+@keyframes bf-art-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes bf-art-route{to{stroke-dashoffset:-254}}
+/* The homepage retains the original logo and interactive capability controls. */
+.bf-home-art .bf-core-back{display:block;inset:12px -6px -12px 6px;background:linear-gradient(135deg,#2d4a6f,#0f2744);border-color:#1e3a5f;transform:none;border-radius:20px;box-shadow:0 12px 22px #0f274410}
+.bf-home-art .bf-core-face{border-color:#cbd5e1;background:linear-gradient(140deg,#fff 60%,#f1f5f9);box-shadow:inset 0 0 0 5px #fff,0 1px 0 #ffffff80}
+.bf-home-art .bf-core{animation:bf-home-core 8s ease-in-out infinite;animation-play-state:paused}
+.bf-home-art[data-motion=running] .bf-core{animation-play-state:running}
+.bf-art-controls{display:flex;justify-content:center;margin-top:12px}
+@keyframes bf-home-core{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+.bf-loading-orbit{transform-origin:60px 60px;animation:bf-loading-turn 8s linear infinite}
+@keyframes bf-loading-turn{to{transform:rotate(360deg)}}
+@media(max-width:768px){.page-hero__svg-container:has(.bf-art){max-width:490px}.bf-art figcaption{font-size:10px;padding-inline:0;gap:10px}.bf-motion-toggle{min-width:98px;min-height:40px}.bf-art-stage{transition:none}.bf-art-float{animation-duration:9s}}
+@media(prefers-reduced-motion:reduce){.bf-art-stage{transform:none!important;transition:none!important}.bf-art-float,.bf-art-signal,.bf-home-art .bf-core,.bf-loading-orbit{animation:none!important}}
+
+.bf-home-art .bf-wires .bf-platform{fill:#fff;stroke:#cbd5e1;stroke-dasharray:none}.bf-home-art .bf-wires .bf-platform-shadow{fill:#e2e8f0;stroke:none;stroke-dasharray:none}
